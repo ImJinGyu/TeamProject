@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+<!-- 	<bean id="memberController" class="com.itwillbs.controller.MemberController"> -->
+<!-- 		<constructor-arg ref="memberServiceImpl"></constructor-arg> -->
+<!-- 	</bean> -->
+
+	
+
+	<bean id="memberController" class="com.itwillbs.controller.MemberController">
+		<property name="memberServiceInterface" ref="memberServiceImpl"></property>	
+	</bean>
+	
+	<bean id="memberServiceImpl" class="com.itwillbs.service.MemberServiceImpl">
+		<property name="memberDAOInterface" ref="memberDAOImpl"></property>
+	</bean>
+	
+	<bean id="memberDAOImpl" class="com.itwillbs.dao.MemberDAOImpl"></bean>
+	
+	<bean id="boardController" class="com.itwillbs.controller.BoardController">
+		<property name="boardServiceInterface" ref="boardServiceImpl"></property>	
+	</bean>
+	
+	<bean id="boardServiceImpl" class="com.itwillbs.service.BoardServiceImpl">
+		<property name="boardDAOInterface" ref="boardDAOImpl"></property>
+	</bean>
+	
+	<bean id="boardDAOImpl" class="com.itwillbs.dao.BoardDAOImpl"></bean>
+		
+</beans>

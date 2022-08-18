@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="com.itwillbs.controller.MemberController"/>
+    <fullyQualifiedTypeName name="com.itwillbs.domain.MemberDTOImpl"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="com.itwillbs.service.MemberServiceInterface"/>
+    <fullyQualifiedTypeName name="com.itwillbs.dao.MemberDAOImpl"/>
+    <fullyQualifiedTypeName name="com.itwillbs.domain.MemberDTO"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="com.itwillbs.dao.MemberDAOInterface"/>
+    <fullyQualifiedTypeName name="com.itwillbs.service.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="javax.inject.Inject"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="com.itwillbs.dao.BoardDAOInterface"/>
+    <fullyQualifiedTypeName name="com.itwillbs.service.BoardServiceInterface"/>
+    <fullyQualifiedTypeName name="com.itwillbs.domain.BoardDTO"/>
+</qualifiedTypeNameHistroy>
