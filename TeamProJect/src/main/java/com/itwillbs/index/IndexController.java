@@ -24,6 +24,11 @@ public class IndexController {
 		return "teamProJect/main";
 	}
 	
+	
+	
+	
+	
+	
 
 	
 }
