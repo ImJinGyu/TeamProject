@@ -5,8 +5,8 @@
 <mapper namespace="com.itwillbs.mappers.memberMapper">
 	
 <!-- 	회원가입 -->
-	<insert id="InsertMeber">
-		INSERT INTO CUSTOMER
+	<insert id="InsertMember">
+		INSERT INTO MEMBER
 			 ( USER_ID
 			 , USER_TYPE
 			 , PASSWORD
@@ -15,7 +15,8 @@
 		     , USER_PHONENUMBER
 		     , USER_ADDRESS
 			 , USER_ZIPCODE) 
-		VALUES (#{user_id} 
+		VALUES
+			 ( #{user_id} 
 			 , #{user_type}
 			 , #{password}
 			 , #{user_name}
