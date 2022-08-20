@@ -16,7 +16,6 @@ import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 @Controller
 public class IndexController {
 	
-
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String home() {
@@ -24,6 +23,29 @@ public class IndexController {
 		return "teamProJect/main";
 	}
 	
+	@RequestMapping(value = "/about_us", method = RequestMethod.GET)
+	public String aboutUs() {
+				
+		return "teamProJect/about_us";
+	}
+	
+	@RequestMapping(value = "/pension", method = RequestMethod.GET)
+	public String pension() {
+				
+		return "teamProJect/pension";
+	}
+	
+	@RequestMapping(value = "/reserveList", method = RequestMethod.GET)
+	public String reserveList() {
+				
+		return "teamProJect/reserveList";
+	}
+	
+	@RequestMapping(value = "/blog", method = RequestMethod.GET)
+	public String blog() {
+				
+		return "teamProJect/blog";
+	}
 	
 	
 	

@@ -17,42 +17,10 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
 </head>
 
-    <body>
-        <header id="menu-jk" class="container-fluid">
-            <div class="row">
-                <div class="col-md-3 logo">
-                    <img src="${pageContext.request.contextPath }/resources/images/logo.jpg" alt="">
-                     <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
-                </div>
-                <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
-                    <ul>
-                        <li><a href="${pageContext.request.contextPath }/main">부산온나</a></li>
-                        <li><a href="about_us.html">소개</a></li>
-                        <li><a href="packages.html">펜션</a></li>
-                        <li><a href="destination.html">예약내역</a></li>
-                        <li><a href="blog.html">구역</a></li>
-<!--                         <li><a href="contact-us.html">Contact US</a></li> -->
-                    </ul>
-                </div>
-                <div class="col-md-3 d-none d-lg-block socila-link">
-                    <ul>
-                        <li>
-                            <i class="fab fa-facebook-square"></i>
-                        </li>
-                        <li>
-                            <i class="fab fa-twitter-square"></i>
-                        </li>
-                        <li>
-                            <i class="fab fa-instagram"></i>
-                        </li>
-                        <li>
-                            <i class="fab fa-linkedin"></i>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-        
+<body>
+<!--헤더 -->
+<%@ include file="header.jsp" %>
+ 
     <!-- ******************** Slider Starts Here ******************* -->
     <div class="slider">
         <!-- Set up your HTML -->
@@ -326,130 +294,130 @@
   <!--################### Tour Review Starts Here #######################--->   
     
      
-     <div class="review container-fluid">
-         <div class="container">
-              <div class="session-title">
-                <h2>What people say about Us</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin nisi id consequat bibendum. Phasellus at convallis elit. In purus enim, scelerisque id arcu vitae</p>
-            </div>
-            <div class="row review-row">
-                <div class="col-md-6">
-                    <div class="review-col">
-                        <div class="profil">
-                          <img src="${pageContext.request.contextPath }/resources/images/testimonial/member-01.jpg" alt="">  
-                        </div>
-                        <div class="review-detail">
-                            <h4>Canadian Rockies</h4>
-                            <p>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</p>
-                            <h6>John Smith</h6>
-                            <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<!--      <div class="review container-fluid"> -->
+<!--          <div class="container"> -->
+<!--               <div class="session-title"> -->
+<!--                 <h2>What people say about Us</h2> -->
+<!--                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin nisi id consequat bibendum. Phasellus at convallis elit. In purus enim, scelerisque id arcu vitae</p> -->
+<!--             </div> -->
+<!--             <div class="row review-row"> -->
+<!--                 <div class="col-md-6"> -->
+<!--                     <div class="review-col"> -->
+<!--                         <div class="profil"> -->
+<%--                           <img src="${pageContext.request.contextPath }/resources/images/testimonial/member-01.jpg" alt="">   --%>
+<!--                         </div> -->
+<!--                         <div class="review-detail"> -->
+<!--                             <h4>Canadian Rockies</h4> -->
+<!--                             <p>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</p> -->
+<!--                             <h6>John Smith</h6> -->
+<!--                             <ul class="rat"> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                             </ul> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
                 
-                <div class="col-md-6">
-                    <div class="review-col">
-                        <div class="profil">
-                          <img src="${pageContext.request.contextPath }/resources/images/testimonial/member-02.jpg" alt="">  
-                        </div>
-                        <div class="review-detail">
-                            <h4>Lake Tahoe Adventure</h4>
-                            <p>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</p>
-                            <h6>John Smith</h6>
-                            <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<!--                 <div class="col-md-6"> -->
+<!--                     <div class="review-col"> -->
+<!--                         <div class="profil"> -->
+<%--                           <img src="${pageContext.request.contextPath }/resources/images/testimonial/member-02.jpg" alt="">   --%>
+<!--                         </div> -->
+<!--                         <div class="review-detail"> -->
+<!--                             <h4>Lake Tahoe Adventure</h4> -->
+<!--                             <p>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</p> -->
+<!--                             <h6>John Smith</h6> -->
+<!--                             <ul class="rat"> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                             </ul> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
                 
-                <div class="col-md-6">
-                    <div class="review-col">
-                        <div class="profil">
-                          <img src="${pageContext.request.contextPath }/resources/images/testimonial/member-02.jpg" alt="">  
-                        </div>
-                        <div class="review-detail">
-                            <h4>Discover Costa Rica</h4>
-                            <p>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</p>
-                            <h6>John Smith</h6>
-                            <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<!--                 <div class="col-md-6"> -->
+<!--                     <div class="review-col"> -->
+<!--                         <div class="profil"> -->
+<%--                           <img src="${pageContext.request.contextPath }/resources/images/testimonial/member-02.jpg" alt="">   --%>
+<!--                         </div> -->
+<!--                         <div class="review-detail"> -->
+<!--                             <h4>Discover Costa Rica</h4> -->
+<!--                             <p>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</p> -->
+<!--                             <h6>John Smith</h6> -->
+<!--                             <ul class="rat"> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                             </ul> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
                 
-                <div class="col-md-6">
-                    <div class="review-col">
-                        <div class="profil">
-                          <img src="${pageContext.request.contextPath }/resources/images/testimonial/member-03.jpg" alt="">  
-                        </div>
-                        <div class="review-detail">
-                            <h4>Canadian Rockies</h4>
-                            <p>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</p>
-                            <h6>John Smith</h6>
-                            <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
-     </div>
+<!--                 <div class="col-md-6"> -->
+<!--                     <div class="review-col"> -->
+<!--                         <div class="profil"> -->
+<%--                           <img src="${pageContext.request.contextPath }/resources/images/testimonial/member-03.jpg" alt="">   --%>
+<!--                         </div> -->
+<!--                         <div class="review-detail"> -->
+<!--                             <h4>Canadian Rockies</h4> -->
+<!--                             <p>The sightseeing and activities were better than we even thought! I still can’t believe we did so much in such a short time, but we did not feel stressed. We really loved the tour and would do it all over again in a minute! Thanks.</p> -->
+<!--                             <h6>John Smith</h6> -->
+<!--                             <ul class="rat"> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                                 <li><i class="fa fa-star"></i></li> -->
+<!--                             </ul> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--          </div> -->
+<!--      </div> -->
      
      
       <!--################### Blog Starts Here #######################--->  
      
-        <div class="blog container-fluid">
-            <div class="container">
-                 <div class="session-title row">
-                    <h2>Our Latest Blog</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin nisi id consequat bibendum. Phasellus at convallis elit. In purus enim, scelerisque id arcu vitae</p>
-                </div>
-                <div class="row blog-row">
-                    <div class="col-md-4">
-                        <div class="blogcol">
-                            <img src="${pageContext.request.contextPath }/resources/images/packages/p1.jpg" alt="">
-                              <span>Oct 12, 2019</span> 
-                              <h4>Journeys Are Best Measured In New Friends</h4> 
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="blogcol">
-                            <img src="${pageContext.request.contextPath }/resources/images/packages/p2.jpg" alt="">
-                              <span>Oct 12, 2019</span> 
-                              <h4>Morbi sollicitudin nisi id consequat bibendum</h4> 
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="blogcol">
-                            <img src="${pageContext.request.contextPath }/resources/images/packages/p3.jpg" alt="">
-                              <span>Oct 12, 2019</span> 
-                              <h4>Journeys Are Best Measured In New Friends</h4> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--         <div class="blog container-fluid"> -->
+<!--             <div class="container"> -->
+<!--                  <div class="session-title row"> -->
+<!--                     <h2>Our Latest Blog</h2> -->
+<!--                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin nisi id consequat bibendum. Phasellus at convallis elit. In purus enim, scelerisque id arcu vitae</p> -->
+<!--                 </div> -->
+<!--                 <div class="row blog-row"> -->
+<!--                     <div class="col-md-4"> -->
+<!--                         <div class="blogcol"> -->
+<%--                             <img src="${pageContext.request.contextPath }/resources/images/packages/p1.jpg" alt=""> --%>
+<!--                               <span>Oct 12, 2019</span>  -->
+<!--                               <h4>Journeys Are Best Measured In New Friends</h4>  -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="col-md-4"> -->
+<!--                         <div class="blogcol"> -->
+<%--                             <img src="${pageContext.request.contextPath }/resources/images/packages/p2.jpg" alt=""> --%>
+<!--                               <span>Oct 12, 2019</span>  -->
+<!--                               <h4>Morbi sollicitudin nisi id consequat bibendum</h4>  -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="col-md-4"> -->
+<!--                         <div class="blogcol"> -->
+<%--                             <img src="${pageContext.request.contextPath }/resources/images/packages/p3.jpg" alt=""> --%>
+<!--                               <span>Oct 12, 2019</span>  -->
+<!--                               <h4>Journeys Are Best Measured In New Friends</h4>  -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
      
        <!--  ************************* Footer Start Here ************************** --> 
      
