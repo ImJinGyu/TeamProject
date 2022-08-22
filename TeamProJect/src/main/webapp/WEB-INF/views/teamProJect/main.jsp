@@ -27,7 +27,7 @@
         <div class="owl-carousel ">
             <div class="slider-img">
                 <div class="item">
-                    <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/slider-3.jpg" alt=""></div>
+                    <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-0.jpg" alt=""></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="item">
-                <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/slider-1.jpg" alt=""></div>
+                <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-1.jpg" alt=""></div>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="item">
-                <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/slider-2.jpg" alt=""></div>
+                <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-2.jpg" alt=""></div>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
@@ -69,7 +69,105 @@
                     </div>
                 </div>
             </div>
-
+            <div class="item">
+                <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-3.jpg" alt=""></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                            <div class="slider-captions ">
+                                <h1 class="slider-title">Most Attractive Travel Template</h1>
+                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-4.jpg" alt=""></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                            <div class="slider-captions ">
+                                <h1 class="slider-title">Most Attractive Travel Template</h1>
+                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-5.jpg" alt=""></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                            <div class="slider-captions ">
+                                <h1 class="slider-title">Most Attractive Travel Template</h1>
+                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-6.jpg" alt=""></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                            <div class="slider-captions ">
+                                <h1 class="slider-title">Most Attractive Travel Template</h1>
+                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--             <div class="item"> -->
+<%--                 <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-7.jpg" alt=""></div> --%>
+<!--                 <div class="container"> -->
+<!--                     <div class="row"> -->
+<!--                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12"> -->
+<!--                             <div class="slider-captions "> -->
+<!--                                 <h1 class="slider-title">Most Attractive Travel Template</h1> -->
+<!--                                 <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
+                               
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+            <div class="item">
+                <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-8.jpg" alt=""></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                            <div class="slider-captions ">
+                                <h1 class="slider-title">Most Attractive Travel Template</h1>
+                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--             <div class="item"> -->
+<%--                 <div class="slider-img"><img src="${pageContext.request.contextPath }/resources/images/slider/busan_onna_slider-9.jpg" alt=""></div> --%>
+<!--                 <div class="container"> -->
+<!--                     <div class="row"> -->
+<!--                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12"> -->
+<!--                             <div class="slider-captions "> -->
+<!--                                 <h1 class="slider-title">Most Attractive Travel Template</h1> -->
+<!--                                 <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
+                               
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+            
         </div>
     </div>
     <div class="search container-fluid">
