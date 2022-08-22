@@ -47,6 +47,11 @@ public class IndexController {
 		return "teamProJect/blog";
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+				
+		return "teamProJect/login";
+	}
 	
 	
 	

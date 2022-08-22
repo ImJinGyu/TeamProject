@@ -31,6 +31,7 @@
                         <li><a href="${pageContext.request.contextPath }/pension">펜션</a></li>
                         <li><a href="${pageContext.request.contextPath }/reserveList">예약내역</a></li>
                         <li><a href="${pageContext.request.contextPath }/blog">주변(미정)</a></li>
+                        <li><a href="${pageContext.request.contextPath }/login">로그인</a></li>
 <!--                         <li><a href="contact-us.html">Contact US</a></li> -->
                     </ul>
                 </div>
