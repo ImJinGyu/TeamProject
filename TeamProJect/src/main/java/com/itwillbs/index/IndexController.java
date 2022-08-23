@@ -53,9 +53,23 @@ public class IndexController {
 		return "teamProJect/login";
 	}
 	
+	@RequestMapping(value = "/roomInsert", method = RequestMethod.GET)
+	public String roomInsert() {
+				
+		return "teamProJect/roomInsert";
+	}
 	
+	@RequestMapping(value = "/roomUpdate", method = RequestMethod.GET)
+	public String roomUpdate() {
+				
+		return "teamProJect/roomUpdate";
+	}
 	
-	
+	@RequestMapping(value = "/roomDelete", method = RequestMethod.GET)
+	public String roomDelete() {
+				
+		return "teamProJect/roomDelete";
+	}
 
 	
 }
