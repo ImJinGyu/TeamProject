@@ -54,9 +54,9 @@
  <div id="member-login" class="container tab-pane active">		
   <div class="login">
    <div class="fix_title">
-    <strong class="logo">
-     <a href="${pageContext.request.contextPath }/search/main">부산온나</a>
-    </strong>
+    <div class="logo">
+     	<a href="${pageContext.request.contextPath }/search/main"><img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png"></a>
+    </div>
    </div>
     네이버 로그인(예정) <br>
     카카오톡 로그인(예정)
@@ -74,7 +74,7 @@
      <span id="loginspan"></span>
     <div class="link_half">
      <div><a href="#"><span>비밀번호 재설정</span></a></div>
-     <div><a href="${pageContext.request.contextPath }/join"><span>회원가입</span></a></div>
+     <div><a href="${pageContext.request.contextPath }/member/join"><span>회원가입</span></a></div>
     </div>
    </form>
   </div>
@@ -84,9 +84,9 @@
  <div id="business-login" class="container tab-pane fade">		
   <div class="login">
    <div class="fix_title">
-    <strong class="logo">
-     <a href="${pageContext.request.contextPath }/search/main">부산온나</a>
-    </strong>
+	<div class="logo">
+     	<a href="${pageContext.request.contextPath }/search/main"><img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png"></a>
+    </div>
    </div>
     네이버 로그인(예정) <br>
     카카오톡 로그인(예정)
@@ -103,7 +103,7 @@
      <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로그인">
      <div class="link_half">
       <div><a href="#"><span>비밀번호 재설정</span></a></div>
-      <div><a href="${pageContext.request.contextPath }/join"><span>회원가입</span></a></div>
+      <div><a href="${pageContext.request.contextPath }/member/join"><span>회원가입</span></a></div>
      </div>
     </form>
   </div>
@@ -113,9 +113,9 @@
  <div id="admin-login" class="container tab-pane fade">		
   <div class="login">
    <div class="fix_title">
-    <strong class="logo">
-     <a href="${pageContext.request.contextPath }/search/main">부산온나</a>
-    </strong>
+	<div class="logo">
+     	<a href="${pageContext.request.contextPath }/search/main"><img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png"></a>
+    </div>
    </div>
     <form class="needs-vallidation" action="loginPro" method="get">
      <div class="form-group">

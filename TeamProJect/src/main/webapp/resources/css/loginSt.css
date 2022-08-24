@@ -134,7 +134,19 @@ p {
     background: rgba(0,0,0,0.08);
 }
 
-.login .link_half div a {
-     
+/* 부산온나 로고 */
+.logo img {	
+	max-width: 50%;
+}
+
+div .logo {
+	text-align: center;
+	max-width: 100%;
+} 
+
+/* 로그인 회원가입 버튼 */
+.btn btn-danger {
+	max-height: 100%;
+	max-width: 100%;
 }
 

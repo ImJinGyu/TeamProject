@@ -54,4 +54,11 @@ public class MemberController {
 		return "teamProJect/member/loginPro";
 		
 	}
+	
+	
+	@RequestMapping(value = "/member/join", method = RequestMethod.GET)
+	public String join() {
+				
+		return "teamProJect/member/join";
+	}
 }
