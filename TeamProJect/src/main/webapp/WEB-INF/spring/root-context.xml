@@ -19,7 +19,7 @@
 		<!-- 마이바티스 환경설정경로  -->
 		<property name="configLocation" value="classpath:/mybatis_config.xml"></property>
 		<!-- 마이바티스 sql구문 파일경로 -->
-		<property name="mapperLocations" value="classpath:mappers/**/*sql.xml"></property>
+		<property name="mapperLocations" value="classpath:mappers/**/*.xml"></property>
 	</bean>
 	
 	<!-- 마이바티스 세션 생성 -->

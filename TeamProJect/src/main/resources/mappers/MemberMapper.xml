@@ -26,5 +26,13 @@
 		     , #{user_zipcode})
 	</insert>
 	
+	<select id="userlogin" resultType="map">
+		SELECT USER_ID
+			 , USER_TYPE
+		     , PASSWORD
+		  FROM MEMBER
+		 WHERE USER_ID = #{user_id}
+		   AND USER_TYPE = #{user_type}
+	</select>
 	
 </mapper>
