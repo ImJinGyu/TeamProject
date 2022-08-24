@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
+    <title>Come to Busan - 부산온나</title><!-- Free Tour and Travel Website Tempalte | Smarteyeapps.com -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/fav.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/fav.jpg">
@@ -170,39 +170,83 @@
             
         </div>
     </div>
-    <div class="search container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 ">
-                    <h4>Where you want to go?</h4>
-                </div>
-                <div class="col-md-8">
-                    <div class="row form-detail">
-                        <div class="col-md-3 ffb">
-                            <select name="" id="" class="form-control">
-                                <option value="">Travel Destinaton</option>
-                                <option value="1">Australia</option>
-                                <option value="2">Canada</option>
-                            </select>
-                        </div>
-                         <div class="col-md-3 ffb">
-                            <input placeholder="Select Date" type="text" class="form-control">
-                        </div>
-                         <div class="col-md-3 ffb">
-                             <select name="" id="" class="form-control">
-                                <option value="">Travel Type</option>
-                                <option value="1">First Option</option>
-                                <option value="2">Second Option</option>
-                            </select>
-                        </div>
-                         <div class="col-md-3 ffb">
-                            <button class="btn btn-primary w-100">Search</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--     <div class="search container-fluid"> -->
+<!--         <div class="container"> -->
+<!--             <div class="row"> -->
+<!--                 <div class="col-md-4 "> -->
+<!--                     <h4>Where you want to go?</h4> -->
+<!--                 </div> -->
+<!--                 <div class="col-md-8"> -->
+<!--                     <div class="row form-detail"> -->
+<!--                         <div class="col-md-3 ffb"> -->
+<!--                             <select name="" id="" class="form-control"> -->
+<!--                                 <option value="">Travel Destinaton</option> -->
+<!--                                 <option value="1">Australia</option> -->
+<!--                                 <option value="2">Canada</option> -->
+<!--                             </select> -->
+<!--                         </div> -->
+<!--                          <div class="col-md-3 ffb"> -->
+<!--                             <input placeholder="Select Date" type="text" class="form-control"> -->
+<!--                         </div> -->
+<!--                          <div class="col-md-3 ffb"> -->
+<!--                              <select name="" id="" class="form-control"> -->
+<!--                                 <option value="">Travel Type</option> -->
+<!--                                 <option value="1">First Option</option> -->
+<!--                                 <option value="2">Second Option</option> -->
+<!--                             </select> -->
+<!--                         </div> -->
+<!--                          <div class="col-md-3 ffb"> -->
+<!--                             <button class="btn btn-primary w-100">Search</button> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+	
+    <div style="background-color: #f5f5f5">
+
+		<!-- 메인페이지 검색 창 -->
+		<div class=main_first_box>
+			<form action="${pageContext.request.contextPath}/search/search" name="f" method="get">
+				<div class="mtb"></div><br>
+				<div class=main_twice_box>
+					<input type="hidden" name="bu_id" id="bu_id" value="1">
+					<div class="main_search_all"> <!-- style="padding-top: 10px;" -->
+						<div class=main_checkinout>
+							<div role=button>
+								<div class="main_checkinout_buttonbox">
+									<div>
+										<input type='date' id="checkin" min="2022-08-23" value="2022-08-23" class="main_checkin_1" name="checkin" onchange="dateChk()" required><!-- min="${today }" value="${today }" -->
+									</div>
+									<div>
+										<input type='date' id="checkout" min="2022-08-24" value="2022-08-24" class="main_checkout_1" name="checkout" onchange="dateChk()" required><!-- min="${tomorrow }" value="${tomorrow }" -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class=main_count_box>
+							<div role="button" >
+								<input type="hidden" name="ro_count" value="2">
+								<!-- select 저장용 -->
+								<select id="select_ro_count" class="form-select form-select-lg" onchange="change_ro_count()" style="border: none; width: 50px;">
+									<option value="1">1</option>
+									<option value="2" selected>2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+								</select>
+							</div>
+						</div>
+						<div style="border-left: 1px solid #c8c8c8;">
+							<input type=search class=main_search_text placeholder=지역,숙소명 name="bu_address" required>
+						</div>
+						<div class="main_search_button_box">
+							<button type=submit style="border: none;" class="btn main_search_button">검 색</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
     
     <!-- ******************** Travel Destination Starts Here ******************* -->
     
