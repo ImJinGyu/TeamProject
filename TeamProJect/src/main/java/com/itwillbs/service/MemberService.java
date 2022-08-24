@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.MemberDAO;
+import com.itwillbs.domain.MemberDTO;
 
 @Service
 public class MemberService {
@@ -15,11 +16,7 @@ public class MemberService {
 	@Inject
 	private MemberDAO dao;
 	
-	public List<Map<String, String>> select() {
-		return dao.userSelect();
-	}
-	
-	public Map<String, String> userlogin(Map<String, String> uMap) {
-		return dao.userlogin(uMap);
+	public Map<String, String> userlogin(MemberDTO mT) {
+		return dao.userlogin(mT);
 	}
 }
