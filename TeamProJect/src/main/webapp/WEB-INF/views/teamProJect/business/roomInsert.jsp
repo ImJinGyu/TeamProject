@@ -19,86 +19,97 @@
 
 <body>
 <!--헤더 -->
-<%@ include file="header.jsp" %>
-        
+<%@ include file="../header.jsp" %>
+ 
 <!--  ************************* Page Title Starts Here ************************** -->
 <div class="page-nav no-margin row">
     <div class="container">
         <div class="row">
-            <h2>Destination</h2>
+            <h2>객실 등록</h2>
             <ul>
-                <li> <a href="#"><i class="fas fa-home"></i> Home</a></li>
-                <li><i class="fas fa-angle-double-right"></i> Destination</li>
+                <li> <a href="#"><i class="fas fa-home"></i> 사업자 페이지</a></li>
+                <li><i class="fas fa-angle-double-right"></i> 객실 등록</li>
             </ul>
         </div>
     </div>
 </div>
-     
- <!-- ******************** Travel Destination Starts Here ******************* -->
-    
-    <div class="travel-destination container-fluid">
-        <div class="container">
-         
-            <div class="destination-row row">
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="assets/images/destination/d1.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Brazil <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="assets/images/destination/d2.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Malaysia <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="assets/images/destination/d3.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Sri Lanka <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="assets/images/destination/d4.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Canada <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="assets/images/destination/d3.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Vietnam <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="assets/images/destination/d2.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Thailand <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-            </div>
-        </div>
+
+<!-- 객실 등록 폼 시작 -->
+<div class="container" style="width: 800px; margin-top: 100px; margin-bottom: 50px;">
+<h2 style="text-align: center;">객실등록</h2>
+  <form action="${pageContext.request.contextPath}/roomInsertPro" method="post" name="f">
+    <div class="mb-3 mt-3">
+      <label>객실이름 : </label>
+      <input type="text" class="form-control" id="RM_NAME" name="RM_NAME" required>
     </div>
+    <div class="mb-3">
+      <label>가격</label>
+      <input type="text" class="form-control" id="RM_PRICE" name="RM_PRICE"  pattern="[0-9]+" required placeholder="숫자만 입력하세요">
+    </div>
+	    
+    <div style="clear:both;"></div>
     
-    
-                     
-        
-   
+    <div class="mb-3" style="margin-top: 20px;">
+    <label>객실이용인원</label>
+    <select id="people" name="r_count">
+    	<option>1</option>
+    	<option>2</option>
+    	<option>3</option>
+    	<option>4</option>
+    </select>
+    </div>
+	<div class="mb-3" >
+    	<label style=" margin-bottom: 10px;" >객실기본정보&nbsp;&nbsp;&nbsp;</label>
+    	<span id="byteInfo" style="display: inline;">0</span> /4000bytes
+   		<textarea rows="10" cols="100" name="ro_info" onKeyUp="javascript:fnChkByte(this,'4000')" required></textarea>
+    </div>
+
+    <label style=" margin-bottom: 10px;">객실사진등록&nbsp;&nbsp;&nbsp;</label>
+    <textarea rows="10" cols="100" name="location" required></textarea>
+    <button type="submit" class="default_btn rounded mt-1" style="width:100px;margin:auto; display:block;">등록</button>
+  </form>
+</div>
+<!-- 객실 등록 폼 끝 -->
+<!-- 객실 등록 폼 기능 시작-->
+<script type="text/javascript">
+
+//Byte 수 체크 제한
+function fnChkByte(obj, maxByte)
+{
+    var str = obj.value;
+    var str_len = str.length;
+    var rbyte = 0;
+    var rlen = 0;
+    var one_char = "";
+    var str2 = "";
+    for(var i=0; i<str_len; i++)
+    {
+        one_char = str.charAt(i);
+        if(escape(one_char).length > 4) {
+            rbyte += 3;                                         //한글3Byte
+        }else{
+            rbyte++;                                            //영문 등 나머지 1Byte
+        }
+        if(rbyte <= maxByte){
+            rlen = i+1;                                          //return할 문자열 갯수
+        }
+     }
+     if(rbyte > maxByte)
+     {
+        // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
+        alert("메세지는 최대 " + maxByte + "byte를 초과할 수 없습니다.")
+        str2 = str.substr(0,rlen);                                  //문자열 자르기
+        obj.value = str2;
+        fnChkByte(obj, maxByte);
+     }
+     else
+     {
+        document.getElementById('byteInfo').innerText = rbyte;
+     }
+}
+  
+</script>
+<!-- 객실 등록 폼 기능 끝 -->
 <!--  ************************* Footer Start Here ************************** --> 
      
     <footer class="footer">

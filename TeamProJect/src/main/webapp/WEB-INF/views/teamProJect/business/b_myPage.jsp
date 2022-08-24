@@ -15,101 +15,84 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
+    
 </head>
 
 <body>
 <!--헤더 -->
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
  
 <!--  ************************* Page Title Starts Here ************************** -->
 <div class="page-nav no-margin row">
     <div class="container">
         <div class="row">
-            <h2>객실 등록</h2>
-            <ul>
-                <li> <a href="#"><i class="fas fa-home"></i> 사업자 페이지</a></li>
-                <li><i class="fas fa-angle-double-right"></i> 객실 등록</li>
-            </ul>
+            <h2>마이페이지</h2>
         </div>
     </div>
 </div>
 
-<!-- 객실 등록 폼 시작 -->
-<div class="container" style="width: 800px; margin-top: 100px; margin-bottom: 50px;">
-<h2 style="text-align: center;">객실등록</h2>
-  <form action="${pageContext.request.contextPath}/roomInsertPro" method="post" name="f">
-    <div class="mb-3 mt-3">
-      <label>객실이름 : </label>
-      <input type="text" class="form-control" id="RM_NAME" name="RM_NAME" required>
-    </div>
-    <div class="mb-3">
-      <label>가격</label>
-      <input type="text" class="form-control" id="RM_PRICE" name="RM_PRICE"  pattern="[0-9]+" required placeholder="숫자만 입력하세요">
-    </div>
-	    
-    <div style="clear:both;"></div>
-    
-    <div class="mb-3" style="margin-top: 20px;">
-    <label>객실이용인원</label>
-    <select id="people" name="r_count">
-    	<option>1</option>
-    	<option>2</option>
-    	<option>3</option>
-    	<option>4</option>
-    </select>
-    </div>
-	<div class="mb-3" >
-    	<label style=" margin-bottom: 10px;" >객실기본정보&nbsp;&nbsp;&nbsp;</label>
-    	<span id="byteInfo" style="display: inline;">0</span> /4000bytes
-   		<textarea rows="10" cols="100" name="ro_info" onKeyUp="javascript:fnChkByte(this,'4000')" required></textarea>
-    </div>
+<!-- 마이페이지 폼 시작-->
 
-    <label style=" margin-bottom: 10px;">객실사진등록&nbsp;&nbsp;&nbsp;</label>
-    <textarea rows="10" cols="100" name="location" required></textarea>
-    <button type="submit" class="default_btn rounded mt-1" style="width:100px;margin:auto; display:block;">등록</button>
-  </form>
-</div>
-<!-- 객실 등록 폼 끝 -->
-<!-- 객실 등록 폼 기능 시작-->
-<script type="text/javascript">
+ <div class="section bg-light" style="margin-top: 25px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 col-lg-4">
+					<div class="box-feature mb-4">
+						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/note.png" style="width:50px">
+						<h3 class="text-black mb-3 font-weight-bold">예약내역 조회</h3>
+						<p class="text-black-50">펜션 예약 내역을 조회합니다.</p>
+						<p><a href="/member/mypage/listReservation" class="learn-more">페이지 이동</a></p>
+					</div>
+				</div>
+				<div class="col-6 col-lg-4">
+					<div class="box-feature mb-4">
+						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/get-money.png" style="width:50px">
+						<h3 class="text-black mb-3 font-weight-bold">포인트내역 조회</h3>
+						<p class="text-black-50">포인트 내역을 조회합니다.</p>
+						<p><a href="#" class="learn-more" id="mypagePoint">페이지 이동</a></p>
+					</div>
+				</div>
+				<div class="col-6 col-lg-4">
+					<div class="box-feature mb-4">
+						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/chat.png" style="width:50px">
+						<h3 class="text-black mb-3 font-weight-bold">내가 쓴 댓글 조회</h3>
+						<p class="text-black-50">내가 쓴 댓글을 조회합니다.</p>
+						<p><a href="#" class="learn-more" id="mypageReply">페이지 이동</a></p>
+					</div>
+				</div>
+				<div class="col-6 col-lg-4">
+					<div class="box-feature mb-4">
+						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/phone-call.png" style="width:50px">
+						<h3 class="text-black mb-3 font-weight-bold">1:1 문의내역</h3>
+						<p class="text-black-50">1:1 문의내역을 조회합니다.</p>
+						<p><a href="/member/mypage/listInquiry" class="learn-more">페이지 이동</a></p>
+					</div>
+				</div>	
 
-//Byte 수 체크 제한
-function fnChkByte(obj, maxByte)
-{
-    var str = obj.value;
-    var str_len = str.length;
-    var rbyte = 0;
-    var rlen = 0;
-    var one_char = "";
-    var str2 = "";
-    for(var i=0; i<str_len; i++)
-    {
-        one_char = str.charAt(i);
-        if(escape(one_char).length > 4) {
-            rbyte += 3;                                         //한글3Byte
-        }else{
-            rbyte++;                                            //영문 등 나머지 1Byte
-        }
-        if(rbyte <= maxByte){
-            rlen = i+1;                                          //return할 문자열 갯수
-        }
-     }
-     if(rbyte > maxByte)
-     {
-        // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
-        alert("메세지는 최대 " + maxByte + "byte를 초과할 수 없습니다.")
-        str2 = str.substr(0,rlen);                                  //문자열 자르기
-        obj.value = str2;
-        fnChkByte(obj, maxByte);
-     }
-     else
-     {
-        document.getElementById('byteInfo').innerText = rbyte;
-     }
-}
-  
-</script>
-<!-- 객실 등록 폼 기능 끝 -->
+				<div class="col-6 col-lg-4">
+					<div class="box-feature mb-4">
+						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px">
+						<h3 class="text-black mb-3 font-weight-bold">회원정보 수정</h3>
+						<p class="text-black-50">회원정보를 수정합니다.</p>
+						<p><a href="/member/modify" class="learn-more">페이지 이동</a></p>
+					</div>
+				</div>
+				
+				<div class="col-6 col-lg-4">
+					<div class="box-feature mb-4">
+						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/settings.png" style="width:50px">
+						<h3 class="text-black mb-3 font-weight-bold">관리자 페이지</h3>
+						<p class="text-black-50">관리자 페이지로 이동합니다.</p>
+						<p><a href="/admin/index" class="learn-more">페이지 이동</a></p>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+<!-- 마이페이지 폼 끝-->
+
 <!--  ************************* Footer Start Here ************************** --> 
      
     <footer class="footer">

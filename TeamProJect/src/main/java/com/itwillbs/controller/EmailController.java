@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.itwillbs.service.MailSendService;
 
 @Controller
-public class EmailControllor {
+public class EmailController {
 	
 	@Autowired
 	private MailSendService mailService;

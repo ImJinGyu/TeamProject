@@ -26,12 +26,9 @@
                 </div>
                 <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
                     <ul>
-                        <li><a href="${pageContext.request.contextPath }/main">부산온나</a></li>
-                        <li><a href="${pageContext.request.contextPath }/about_us">소개</a></li>
-                        <li><a href="${pageContext.request.contextPath }/pension">펜션</a></li>
-                        <li><a href="${pageContext.request.contextPath }/reserveList">예약내역</a></li>
-                        <li><a href="${pageContext.request.contextPath }/blog">주변(미정)</a></li>
-                        <li><a href="${pageContext.request.contextPath }/login">로그인</a></li>
+                        <li><a href="${pageContext.request.contextPath }/search/main">부산온나</a></li>
+                        <li><a href="${pageContext.request.contextPath }/reservationList/reserveList">예약내역</a></li>
+                        <li><a href="${pageContext.request.contextPath }/member/login">로그인</a></li>
 <!--                         <li><a href="contact-us.html">Contact US</a></li> -->
                     </ul>
                 </div>

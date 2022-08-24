@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
@@ -5,53 +6,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
-    <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/fav.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/images/fav.jpg">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/plugins/slider/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/plugins/slider/css/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/fav.jpg">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
 </head>
 
 <body>
-    <header id="menu-jk" class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 logo">
-                <img src="assets/images/logo.jpg" alt="">
-                 <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
-            </div>
-            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                    <li><a href="packages.html">Packages</a></li>
-                    <li><a href="destination.html">Destinations</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact-us.html">Contact US</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 d-none d-lg-block socila-link">
-                <ul>
-                    <li>
-                        <i class="fab fa-facebook-square"></i>
-                    </li>
-                    <li>
-                        <i class="fab fa-twitter-square"></i>
-                    </li>
-                    <li>
-                        <i class="fab fa-instagram"></i>
-                    </li>
-                    <li>
-                        <i class="fab fa-linkedin"></i>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </header>
-        
+<!--헤더 -->
+<%@ include file="../header.jsp" %>
+ 
 <!--  ************************* Page Title Starts Here ************************** -->
 <div class="page-nav no-margin row">
     <div class="container">

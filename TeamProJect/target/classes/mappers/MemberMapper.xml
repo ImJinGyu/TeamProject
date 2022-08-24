@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwillbs.mappers.memberMapper">
+	
+<!-- 	회원가입 -->
+	<insert id="InsertMember">
+		INSERT INTO MEMBER
+			 ( USER_ID
+			 , USER_TYPE
+			 , PASSWORD
+			 , USER_NAME
+		     , JUMIN
+		     , USER_PHONENUMBER
+		     , USER_ADDRESS
+			 , USER_ZIPCODE) 
+		VALUES
+			 ( #{user_id} 
+			 , #{user_type}
+			 , #{password}
+			 , #{user_name}
+		     , HEX(AES_ENCRYPT(#{jumin},'itwill'))
+		     , #{user_phonenumber}
+		     , #{user_address}
+		     , #{user_zipcode})
+	</insert>
+	
+	<select id="userlogin" resultType="map">
+		SELECT USER_ID
+			 , USER_TYPE
+		     , PASSWORD
+		  FROM MEMBER
+		 WHERE USER_ID = #{user_id}
+		   AND USER_TYPE = #{user_type}
+	</select>
+	
+</mapper>

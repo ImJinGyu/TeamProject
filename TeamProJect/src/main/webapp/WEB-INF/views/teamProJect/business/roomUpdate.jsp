@@ -19,100 +19,102 @@
 
 <body>
 <!--헤더 -->
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
+ 
 <!--  ************************* Page Title Starts Here ************************** -->
 <div class="page-nav no-margin row">
     <div class="container">
         <div class="row">
-            <h2>Contact Us</h2>
+            <h2>객실 등록 수정</h2>
             <ul>
-                <li> <a href="#"><i class="fas fa-home"></i> Home</a></li>
-                <li><i class="fas fa-angle-double-right"></i> Contact US</li>
+                <li> <a href="#"><i class="fas fa-home"></i> 사업자 페이지</a></li>
+                <li><i class="fas fa-angle-double-right"></i> 객실 등록 수정</li>
             </ul>
         </div>
     </div>
 </div>
-     
 
-      <!--  ************************* Contact Us Starts Here ************************** -->
-
-
-    <div style="margin-top:0px;" class="row no-margin">
-
-        <iframe style="width:100%" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d249759.19784092825!2d79.10145254589841!3d12.009924873581818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1448883859107"  height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-
+<!-- 객실 등록 폼 시작 -->
+<div class="container" style="width: 800px; margin-top: 100px; margin-bottom: 50px;">
+<h2 style="text-align: center;">객실수정</h2>
+  <form action="${pageContext.request.contextPath}/roomInsertPro" method="post" name="f">
+    <div class="mb-3 mt-3">
+      <label>객실이름 : </label>
+      <input type="text" class="form-control" id="RM_NAME" name="RM_NAME" value="${room.RM_NAME}" required>
+    </div>
+    <div class="mb-3">
+      <label>가격</label>
+      <input type="text" class="form-control" id="RM_PRICE" name="RM_PRICE" value="${room.RM_PRICE}" pattern="[0-9]+" required >
+    </div>
+	    
+    <div style="clear:both;"></div>
+    
+    <div class="mb-3" style="margin-top: 20px;">
+    <label>객실이용인원</label>
+     <select id="people" name="r_count">
+    	<option ${room.r_count == '1' ? 'selected' : '' }>1</option>
+    	<option ${room.r_count == '2' ? 'selected' : '' }>2</option>
+    	<option ${room.r_count == '3' ? 'selected' : '' }>3</option>
+    	<option ${room.r_count == '4' ? 'selected' : '' }>4</option>
+    </select>
+    </div>
+	<div class="mb-3" >
+    	<label style=" margin-bottom: 10px;" >객실기본정보&nbsp;&nbsp;&nbsp;</label>
+    	<span id="byteInfo" style="display: inline;">0</span> /4000bytes
+   		<textarea rows="10" cols="100" name="ro_info" onKeyUp="javascript:fnChkByte(this,'4000')" required>${room.ro_info}</textarea>
     </div>
 
-    <div class="row contact-rooo no-margin">
-        <div class="container">
-            <div class="row">
+    <label style=" margin-bottom: 10px;">객실사진등록&nbsp;&nbsp;&nbsp;</label>
+    <textarea rows="10" cols="100" name="location" required>${pic}</textarea>
+    
+    <!-- DB에 등록된 사진 번호  -->
+    <input type="hidden" name="pic_num" value="${room.pic_num}">
+    <!-- DB에 등록된 룸 번호  -->
+	<input type="hidden" name="ro_num" value="${room.ro_num}">
+    <button type="submit" class="default_btn rounded mt-1" style="width:100px;margin:auto; display:block;">등록</button>
+  </form>
+</div>
+<!-- 객실 등록 폼 끝 -->
+<!-- 객실 등록 폼 기능 시작-->
+<script type="text/javascript">
 
-
-                <div style="padding:20px" class="col-sm-7">
-                    <h2 >Contact Form</h2> <br>
-                    <div class="row cont-row">
-                        <div  class="col-sm-3"><label>Enter Name </label><span>:</span></div>
-                        <div class="col-sm-8"><input type="text" placeholder="Enter Name" name="name" class="form-control input-sm"  ></div>
-                    </div>
-                    <div  class="row cont-row">
-                        <div  class="col-sm-3"><label>Email Address </label><span>:</span></div>
-                        <div class="col-sm-8"><input type="text" name="name" placeholder="Enter Email Address" class="form-control input-sm"  ></div>
-                    </div>
-                    <div  class="row cont-row">
-                        <div  class="col-sm-3"><label>Mobile Number</label><span>:</span></div>
-                        <div class="col-sm-8"><input type="text" name="name" placeholder="Enter Mobile Number" class="form-control input-sm"  ></div>
-                    </div>
-                    <div  class="row cont-row">
-                        <div  class="col-sm-3"><label>Enter Message</label><span>:</span></div>
-                        <div class="col-sm-8">
-                            <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm"></textarea>
-                        </div>
-                    </div>
-                    <div style="margin-top:10px;" class="row">
-                        <div style="padding-top:10px;" class="col-sm-3"><label></label></div>
-                        <div class="col-sm-8">
-                            <button class="btn btn-success btn-sm">Send Message</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-
-                    <div style="margin:50px" class="serv">
-
-
-
-
-
-                        <h2 style="margin-top:10px;">Address</h2>
-
-                       Antonya Street, <br>
-                        23/H-2, Building<br>
-                        TA, AUS District<br>
-                        Phone:+91 9159669599<br>
-                        Email:support@smarteyeapps.com<br>
-                        Website:www.smarteyeapps.com.com<br>
-
-
-
-
-
-
-
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-     
-                     
-        
-   
+//Byte 수 체크 제한
+function fnChkByte(obj, maxByte)
+{
+    var str = obj.value;
+    var str_len = str.length;
+    var rbyte = 0;
+    var rlen = 0;
+    var one_char = "";
+    var str2 = "";
+    for(var i=0; i<str_len; i++)
+    {
+        one_char = str.charAt(i);
+        if(escape(one_char).length > 4) {
+            rbyte += 3;                                         //한글3Byte
+        }else{
+            rbyte++;                                            //영문 등 나머지 1Byte
+        }
+        if(rbyte <= maxByte){
+            rlen = i+1;                                          //return할 문자열 갯수
+        }
+     }
+     if(rbyte > maxByte)
+     {
+        // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
+        alert("메세지는 최대 " + maxByte + "byte를 초과할 수 없습니다.")
+        str2 = str.substr(0,rlen);                                  //문자열 자르기
+        obj.value = str2;
+        fnChkByte(obj, maxByte);
+     }
+     else
+     {
+        document.getElementById('byteInfo').innerText = rbyte;
+     }
+}
+  
+</script>
+<!-- 객실 등록 폼 기능 끝 -->
 <!--  ************************* Footer Start Here ************************** --> 
      
     <footer class="footer">

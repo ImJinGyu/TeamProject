@@ -17,58 +17,30 @@ import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 public class IndexController {
 	
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String home() {
-				
-		return "teamProJect/main";
-	}
-	
-	@RequestMapping(value = "/about_us", method = RequestMethod.GET)
-	public String aboutUs() {
-				
-		return "teamProJect/about_us";
-	}
-	
-	@RequestMapping(value = "/pension", method = RequestMethod.GET)
-	public String pension() {
-				
-		return "teamProJect/pension";
-	}
-	
-	@RequestMapping(value = "/reserveList", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/reservationList/reserveList", method = RequestMethod.GET)
 	public String reserveList() {
 				
-		return "teamProJect/reserveList";
+		return "teamProJect/reservationList/reserveList";
 	}
 	
-	@RequestMapping(value = "/blog", method = RequestMethod.GET)
-	public String blog() {
-				
-		return "teamProJect/blog";
-	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-				
-		return "teamProJect/login";
-	}
-	
-	@RequestMapping(value = "/roomInsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/business/roomInsert", method = RequestMethod.GET)
 	public String roomInsert() {
 				
-		return "teamProJect/roomInsert";
+		return "teamProJect/business/roomInsert";
 	}
 	
-	@RequestMapping(value = "/roomUpdate", method = RequestMethod.GET)
+	@RequestMapping(value = "/business/roomUpdate", method = RequestMethod.GET)
 	public String roomUpdate() {
 				
-		return "teamProJect/roomUpdate";
+		return "teamProJect/business/roomUpdate";
 	}
 	
-	@RequestMapping(value = "/roomDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/business/roomDelete", method = RequestMethod.GET)
 	public String roomDelete() {
 				
-		return "teamProJect/roomDelete";
+		return "teamProJect/business/roomDelete";
 	}
 
 	

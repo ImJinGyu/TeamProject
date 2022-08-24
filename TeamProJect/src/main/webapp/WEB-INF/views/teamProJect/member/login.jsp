@@ -55,7 +55,7 @@
   <div class="login">
    <div class="fix_title">
     <strong class="logo">
-     <a href="${pageContext.request.contextPath }/main">부산온나</a>
+     <a href="${pageContext.request.contextPath }/search/main">부산온나</a>
     </strong>
    </div>
     네이버 로그인(예정) <br>
@@ -85,7 +85,7 @@
   <div class="login">
    <div class="fix_title">
     <strong class="logo">
-     <a href="${pageContext.request.contextPath }/main">부산온나</a>
+     <a href="${pageContext.request.contextPath }/search/main">부산온나</a>
     </strong>
    </div>
     네이버 로그인(예정) <br>
@@ -114,7 +114,7 @@
   <div class="login">
    <div class="fix_title">
     <strong class="logo">
-     <a href="${pageContext.request.contextPath }/main">부산온나</a>
+     <a href="${pageContext.request.contextPath }/search/main">부산온나</a>
     </strong>
    </div>
     <form class="needs-vallidation" action="loginPro" method="get">

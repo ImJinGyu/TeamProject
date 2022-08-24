@@ -15,47 +15,90 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
-    
 </head>
 
 <body>
 <!--헤더 -->
-<%@ include file="header.jsp" %>
- 
+<%@ include file="../header.jsp" %>
+        
 <!--  ************************* Page Title Starts Here ************************** -->
 <div class="page-nav no-margin row">
     <div class="container">
         <div class="row">
-            <h2>객실 삭제</h2>
+            <h2>Destination</h2>
             <ul>
-                <li> <a href="#"><i class="fas fa-home"></i> 사업자 페이지</a></li>
-                <li><i class="fas fa-angle-double-right"></i> 객실 삭제</li>
+                <li> <a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><i class="fas fa-angle-double-right"></i> Destination</li>
             </ul>
         </div>
     </div>
 </div>
-
-<!-- 객실 등록 삭제 폼 시작-->
-
- <div align="center" class = "roominfo_div_box" style="margin-top: 50px; margin-bottom: 50px;">
-  <form action="${pageContext.request.contextPath}/roomDeletePro" method="post">
-	<div class="mb-3 mt-3">
-		<div style="margin-right: 220px;">
-	      <label>비밀번호</label>
-	    </div>
-	      <div style=width:30%>
-      		<input class="form-control" type="password" id="password" required placeholder="비밀번호">
-     	  </div>
-	      <input type="hidden" name = "RM_NUM" value="${RM_NUM}">
-	</div>
-	<div class="col-md-3 ffb">
-     <input style=width:40% type="submit" class="btn-primary" value="객실삭제" onclick="location.href='${pageContext.request.contextPath}/roomDeletePro?ro_num=${ro_num}'">                       
+     
+ <!-- ******************** Travel Destination Starts Here ******************* -->
+    
+    <div class="travel-destination container-fluid">
+        <div class="container">
+         
+            <div class="destination-row row">
+                <div class="col-md-4 descol">
+                   <div class="destcol">
+                       <img src="assets/images/destination/d1.jpg" alt="">
+                       <div class="layycover">
+                           <h4>Brazil <span class="badge badge-info">5 Places</span></h4>
+                       </div>
+                   </div>
+                </div>
+                <div class="col-md-4 descol">
+                   <div class="destcol">
+                       <img src="assets/images/destination/d2.jpg" alt="">
+                       <div class="layycover">
+                           <h4>Malaysia <span class="badge badge-info">5 Places</span></h4>
+                       </div>
+                   </div>
+                </div>
+                
+                <div class="col-md-4 descol">
+                   <div class="destcol">
+                       <img src="assets/images/destination/d3.jpg" alt="">
+                       <div class="layycover">
+                           <h4>Sri Lanka <span class="badge badge-info">5 Places</span></h4>
+                       </div>
+                   </div>
+                </div>
+                
+                <div class="col-md-4 descol">
+                   <div class="destcol">
+                       <img src="assets/images/destination/d4.jpg" alt="">
+                       <div class="layycover">
+                           <h4>Canada <span class="badge badge-info">5 Places</span></h4>
+                       </div>
+                   </div>
+                </div>
+                
+                <div class="col-md-4 descol">
+                   <div class="destcol">
+                       <img src="assets/images/destination/d3.jpg" alt="">
+                       <div class="layycover">
+                           <h4>Vietnam <span class="badge badge-info">5 Places</span></h4>
+                       </div>
+                   </div>
+                </div>
+                <div class="col-md-4 descol">
+                   <div class="destcol">
+                       <img src="assets/images/destination/d2.jpg" alt="">
+                       <div class="layycover">
+                           <h4>Thailand <span class="badge badge-info">5 Places</span></h4>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </form>
- </div>
-
-<!-- 객실 등록 삭제 폼 끝-->
-
+    
+    
+                     
+        
+   
 <!--  ************************* Footer Start Here ************************** --> 
      
     <footer class="footer">

@@ -15,111 +15,47 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
+    
 </head>
 
 <body>
 <!--헤더 -->
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
  
 <!--  ************************* Page Title Starts Here ************************** -->
 <div class="page-nav no-margin row">
     <div class="container">
         <div class="row">
-            <h2>About Tour & Travel</h2>
+            <h2>객실 삭제</h2>
             <ul>
-                <li> <a href="#"><i class="fas fa-home"></i> Home</a></li>
-                <li><i class="fas fa-angle-double-right"></i> About Us</li>
+                <li> <a href="#"><i class="fas fa-home"></i> 사업자 페이지</a></li>
+                <li><i class="fas fa-angle-double-right"></i> 객실 삭제</li>
             </ul>
         </div>
     </div>
 </div>
-     
-      
-  <!--  ************************* About Us Starts Here ************************** -->    
-       
-<div class="about-us container-fluid">
-    <div class="container">
 
-        <div class="row natur-row no-margin w-100">
-            <div class="text-part col-md-6">
-                <h2>We Are Nature Lovers</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius faucibus
-                    ligula non congue. Suspendisse at pretium massa, sit amet
-                    vulputate nibh. Nam posuere eros dolor. Donec vel arcu sagittis, pretium nisl </p>
-                <p> Cras faucibus laoreet nibh, sit amet tincidunt leo mollis in. Etiam eu mauris metus.
-                    Nulla facilisi. Etiam vestibulum,
-                    nisi et convallis elementum, leo orci aliquam metus, id posuere massa neque vitae
-                    arcu.</p>
+<!-- 객실 등록 삭제 폼 시작-->
 
-                <p>Integer vulputate vehicula dolor a eleifend. Duis aliquam condimentum sapien,
-                    eget tempor justo. Aenean porttitor nibh metus, sollicitudin egestas metus posuere et
-                    . Fusce egestas volutpat metus, in sodales sem bibendum porta. Nunc hendrerit nunc sit
-                    amet tellus posuere, at malesuada sem gravida. Integer maximus ultricies augue, at
-                    dapibus elit bibendum consequat. Cras faucibus tellus eleifend, fermentum purus in,
-                    dapibus sapien. Praesent nec ornare risus. Etiam iaculis, ligula vel gravida
-                    vestibulum, urna justo posuere ante,
-                    id pretium massa arcu sed mi. Nunc a sollicitudin sem. Duis tempus </p>
-            </div>
-            <div class="image-part col-md-6">
-                <img src="assets/images/about.jpg" alt="">
-            </div>
-        </div>
+ <div align="center" class = "roominfo_div_box" style="margin-top: 50px; margin-bottom: 50px;">
+  <form action="${pageContext.request.contextPath}/roomDeletePro" method="post">
+	<div class="mb-3 mt-3">
+		<div style="margin-right: 220px;">
+	      <label>비밀번호</label>
+	    </div>
+	      <div style=width:30%>
+      		<input class="form-control" type="password" id="password" required placeholder="비밀번호">
+     	  </div>
+	      <input type="hidden" name = "RM_NUM" value="${RM_NUM}">
+	</div>
+	<div class="col-md-3 ffb">
+     <input style=width:40% type="submit" class="btn-primary" value="객실삭제" onclick="location.href='${pageContext.request.contextPath}/roomDeletePro?ro_num=${ro_num}'">                       
     </div>
-    </div> 
-       
+  </form>
+ </div>
 
-    <!-- ################# Our Team Starts Here#######################--->
-    <section class="our-team">
-        <div class="container">
-            <div class="session-title row">
-                <h2>Our Team</h2>
-               
-            </div>
-            <div class="row team-row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-usr">
-                        <img src="assets/images/team/team-memb1.jpg" alt="">
-                        <div class="det-o">
-                            <h4>David Kanuel</h4>
-                            <i>Facial Surgan</i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-usr">
-                        <img src="assets/images/team/team-memb2.jpg" alt="">
-                        <div class="det-o">
-                            <h4>David Kanuel</h4>
-                            <i>Facial Surgan</i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-usr">
-                        <img src="assets/images/team/team-memb3.jpg" alt="">
-                        <div class="det-o">
-                            <h4>David Kanuel</h4>
-                            <i>Facial Surgan</i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-usr">
-                        <img src="assets/images/team/team-memb4.jpg" alt="">
-                        <div class="det-o">
-                            <h4>David Kanuel</h4>
-                            <i>Facial Surgan</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- 객실 등록 삭제 폼 끝-->
 
-
-    </section>
-                     
-        
-   
 <!--  ************************* Footer Start Here ************************** --> 
      
     <footer class="footer">

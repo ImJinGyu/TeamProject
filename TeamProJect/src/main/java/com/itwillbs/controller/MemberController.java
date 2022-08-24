@@ -12,12 +12,18 @@ import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.MemberService;
 
 @Controller
-public class MemberControllor {
+public class MemberController {
 	
 	@Inject
 	private MemberService service;
+	
+	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
+	public String login() {
+				
+		return "teamProJect/member/login";
+	}
 
-	@RequestMapping(value = "/loginPro", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/loginPro", method = RequestMethod.GET)
 	public String loginPro(MemberDTO mT, HttpServletRequest req){
 		
 //		String user_id = req.getParameter("email");
@@ -36,16 +42,16 @@ public class MemberControllor {
 		System.out.println(userMap);
 		if(userMap == null) {
 			req.setAttribute("msg", "아이디가 존재하지 않습니다.");
-			return "teamProJect/loginPro";
+			return "teamProJect/member/loginPro";
 		}
 		if(mT.getPassword().equals(userMap.get("PASSWORD").toString())) {
 			HttpSession session = req.getSession();
 			session.setAttribute("user_id", mT.getUser_id());
 			session.setAttribute("user_type", userMap.get("USER_TYPE"));
-			return "redirect:/main";
+			return "redirect:/search/main";
 		}
 		req.setAttribute("msg", "패스워드가 일치하지 않습니다.");
-		return "teamProJect/loginPro";
+		return "teamProJect/member/loginPro";
 		
 	}
 }

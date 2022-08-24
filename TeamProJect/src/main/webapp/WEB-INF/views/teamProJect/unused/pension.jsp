@@ -19,75 +19,137 @@
 
 <body>
 <!--헤더 -->
-<%@ include file="header.jsp" %>
- 
-  
-        
+<%@ include file="../header.jsp" %>
 <!--  ************************* Page Title Starts Here ************************** -->
 <div class="page-nav no-margin row">
     <div class="container">
         <div class="row">
-            <h2>Destination</h2>
+            <h2>Our Packages</h2>
             <ul>
                 <li> <a href="#"><i class="fas fa-home"></i> Home</a></li>
-                <li><i class="fas fa-angle-double-right"></i> Destination</li>
+                <li><i class="fas fa-angle-double-right"></i> Packages</li>
             </ul>
         </div>
     </div>
 </div>
      
-  <!--################### Blog Starts Here #######################--->  
-     
-        <div class="blog container-fluid">
-            <div class="container">
-                
-                <div class="row blog-row">
-                    <div class="col-md-4">
-                        <div class="blogcol">
-                            <img src="assets/images/packages/p1.jpg" alt="">
-                              <span>Oct 12, 2019</span> 
-                              <h4>Journeys Are Best Measured In New Friends</h4> 
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="blogcol">
-                            <img src="assets/images/packages/p2.jpg" alt="">
-                              <span>Oct 12, 2019</span> 
-                              <h4>Morbi sollicitudin nisi id consequat bibendum</h4> 
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="blogcol">
-                            <img src="assets/images/packages/p3.jpg" alt="">
-                              <span>Oct 12, 2019</span> 
-                              <h4>Journeys Are Best Measured In New Friends</h4> 
-                        </div>
-                    </div>
-                     <div class="col-md-4">
-                        <div class="blogcol">
-                            <img src="assets/images/packages/p4.jpg" alt="">
-                              <span>Oct 12, 2019</span> 
-                              <h4>Journeys Are Best Measured In New Friends</h4> 
-                        </div>
-                    </div>
-                     <div class="col-md-4">
-                        <div class="blogcol">
-                            <img src="assets/images/packages/p5.jpg" alt="">
-                              <span>Oct 12, 2019</span> 
-                              <h4>Journeys Are Best Measured In New Friends</h4> 
-                        </div>
-                    </div>
-                     <div class="col-md-4">
-                        <div class="blogcol">
-                            <img src="assets/images/packages/p6.jpg" alt="">
-                              <span>Oct 12, 2019</span> 
-                              <h4>Journeys Are Best Measured In New Friends</h4> 
+ 
+       
+ <!-- ******************** Popular Packages Starts Here ******************* -->
+    
+    <section class="container-fluid popular-pack">
+        <div class="container">
+             
+            <div class="row pack-row">
+                <div class="col-md-4">
+                    <div class="colpack">
+                        <img src="assets/images/packages/p1.jpg" alt="">
+                        <div class="details row no-margin">
+                            <h4>California</h4>
+                            <p>United State of America</p>
+                            <ul class="rat">
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="colpack">
+                        <img src="assets/images/packages/p2.jpg" alt="">
+                        <div class="details row no-margin">
+                            <h4>California</h4>
+                            <p>United State of America</p>
+                            <ul class="rat">
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="colpack">
+                        <img src="assets/images/packages/p3.jpg" alt="">
+                        <div class="details row no-margin">
+                            <h4>California</h4>
+                            <p>United State of America</p>
+                            <ul class="rat">
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="colpack">
+                        <img src="assets/images/packages/p4.jpg" alt="">
+                        <div class="details row no-margin">
+                            <h4>California</h4>
+                            <p>United State of America</p>
+                            <ul class="rat">
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="colpack">
+                        <img src="assets/images/packages/p5.jpg" alt="">
+                        <div class="details row no-margin">
+                            <h4>California</h4>
+                            <p>United State of America</p>
+                            <ul class="rat">
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="colpack">
+                        <img src="assets/images/packages/p6.jpg" alt="">
+                        <div class="details row no-margin">
+                            <h4>California</h4>
+                            <p>United State of America</p>
+                            <ul class="rat">
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
-     
+    </section>
                      
         
    
