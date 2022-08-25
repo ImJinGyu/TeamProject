@@ -123,7 +123,7 @@
    </div>
     <form class="needs-vallidation" action="loginPro" method="get">
      <div class="form-group">
-      <input class="form-control" type="text" name="email" id="email" required placeholder="관리자 아이디">
+      <input class="form-control" type="text" name="user_id" id="email" required placeholder="관리자 아이디">
      </div>
      <div class="form-group">
       <input class="form-control" type="password" name="password" id="password" required placeholder="비밀번호">
