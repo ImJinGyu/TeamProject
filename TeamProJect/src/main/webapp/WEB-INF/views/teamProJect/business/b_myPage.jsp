@@ -81,9 +81,9 @@
 				<div class="col-6 col-lg-4">
 					<div class="box-feature mb-4">
 						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/settings.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold">관리자 페이지</h3>
-						<p class="text-black-50">관리자 페이지로 이동합니다.</p>
-						<p><a href="/admin/index" class="learn-more">페이지 이동</a></p>
+						<h3 class="text-black mb-3 font-weight-bold">사업자 페이지</h3>
+						<p class="text-black-50">사업자 페이지로 이동합니다.</p>
+						<p><a href="${pageContext.request.contextPath }/business/b_index" class="learn-more">페이지 이동</a></p>
 					</div>
 				</div>
 				
