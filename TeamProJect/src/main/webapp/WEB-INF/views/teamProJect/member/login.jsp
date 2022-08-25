@@ -12,6 +12,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/loginSt.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/loginajax.js"></script>
     <script type="text/javascript">
@@ -70,7 +73,7 @@
      <input class="form-control" type="password" name="password" id="password" required placeholder="비밀번호">
      <input type="hidden" id="user_type" name="user_type" value="1">
     </div>
-     <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로그인">
+     <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로 그 인" style="font-size: 27px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
      <span id="loginspan"></span>
     <div class="link_half">
      <div><a href="#"><span>비밀번호 재설정</span></a></div>
@@ -100,7 +103,7 @@
       <input class="form-control" type="password" name="password" id="password" required placeholder="비밀번호">
       <input type="hidden" id="user_type" name="user_type" value="2">
      </div>
-     <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로그인">
+     <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로 그 인" style="font-size: 27px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
      <div class="link_half">
       <div><a href="#"><span>비밀번호 재설정</span></a></div>
       <div><a href="${pageContext.request.contextPath }/member/join"><span>회원가입</span></a></div>
@@ -125,7 +128,7 @@
       <input class="form-control" type="password" name="password" id="password" required placeholder="비밀번호">
       <input type="hidden" id="user_type" name="user_type" value="0">
      </div>
-     <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로그인">
+     <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로 그 인" style="font-size: 27px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
     </form>
   </div>
  </div>

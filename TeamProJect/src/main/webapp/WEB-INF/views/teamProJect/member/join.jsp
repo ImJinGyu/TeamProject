@@ -13,6 +13,9 @@
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/loginSt.css" />
 	<link rel="stylesheet" href="https://www.goodchoice.kr/css/common.css?rand=1660711669">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
 
 
@@ -61,7 +64,7 @@
                 <input type="tel" name="uphone" id="gcuserphone" placeholder="휴대폰 번호를 입력해주세요.">
 				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
             </div>
-            <button type="button" class="btn btn-danger w-100" style="margin-bottom: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 20px;">가입하기</button>
+            <button type="button" class="btn btn-danger w-100" style="margin-bottom: 20px; font-size: 27.7px; font-family: 'Do Hyeon', sans-serif;">가 입 하 기</button>
         </div>
     </form>
 </section>
