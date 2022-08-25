@@ -16,7 +16,15 @@ public class MemberService {
 	@Inject
 	private MemberDAO dao;
 	
+	public void insertMember(MemberDTO mT) {
+		dao.insertMember(mT);
+	}
+	
 	public Map<String, String> userlogin(MemberDTO mT) {
 		return dao.userlogin(mT);
+	}
+	
+	public Map<String, String> iddup(Map<String ,String> dupMap) {
+		return dao.iddup(dupMap);
 	}
 }

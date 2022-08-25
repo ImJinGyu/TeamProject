@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.MemberService;
@@ -25,15 +28,6 @@ public class MemberController {
 
 	@RequestMapping(value = "/member/loginPro", method = RequestMethod.GET)
 	public String loginPro(MemberDTO mT, HttpServletRequest req){
-		
-//		String user_id = req.getParameter("email");
-//		String password = req.getParameter("password");
-//		String user_type = req.getParameter("user_type");
-//
-//		Map<String, String> uMap = new HashMap<String, String>();
-//		uMap.put("user_id", user_id);
-//		uMap.put("password", password);
-//		uMap.put("user_type", user_type);
 		
 		System.out.println(mT.getUser_id());
 		System.out.println(mT.getPassword());
@@ -60,5 +54,24 @@ public class MemberController {
 	public String join() {
 				
 		return "teamProJect/member/join";
+	}
+	
+	
+	@RequestMapping(value = "/member/joinPro", method = RequestMethod.GET)
+	public String joinPro(MemberDTO mT, HttpServletRequest req) {
+		service.insertMember(mT);		
+		return "teamProJect/member/joinPro";
+	}
+//	
+	// 아이디 중복확인
+	@RequestMapping(value = "/member/iddup", method = RequestMethod.GET)
+	@ResponseBody
+	public String iddup(@RequestParam Map<String ,String> dupMap) {
+		String id = dupMap.get("user_id");
+		if(id.equals("")) return "false1";
+		if(!(id.contains("@"))) return "false2";
+		Map<String, String> uMap = service.iddup(dupMap);
+		if(uMap == null) return "true";
+		return "false";
 	}
 }

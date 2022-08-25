@@ -1,6 +1,5 @@
 package com.itwillbs.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -17,8 +16,16 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="com.itwillbs.mappers.memberMapper";
 	
+	public void insertMember(MemberDTO mT) {
+		sqlSession.insert(NAMESPACE + ".InsertMember", mT);
+	}
+	
 	public Map<String, String> userlogin(MemberDTO mT) {
 		
 		return sqlSession.selectOne(NAMESPACE + ".userlogin",mT);
+	}
+	
+	public Map<String, String> iddup(Map<String ,String> dupMap) {
+		return sqlSession.selectOne(NAMESPACE + ".iddup", dupMap);
 	}
 }

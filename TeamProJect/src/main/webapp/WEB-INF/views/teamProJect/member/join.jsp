@@ -17,90 +17,89 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
-    <script type="text/javascript">
-    
-    </script>
-    <style type="text/css">
-    
-    .btn {
-    margin-bottom: 10px;
-    }
-    
-    </style>
+    <script src="${pageContext.request.contextPath}/resources/js/join.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/email_certify_ajax.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/daum_address_api.js"></script>
+
 
 </head>
 <body>
 <div class="layer_fix pop_login pop_mem_reserve fix_disable">
     <section>
-    <form id="joinForm" action="https://www.goodchoice.kr/user/joinProcess" autocomplete="off" method="post" novalidate="novalidate">
+    <form id="joinForm" action="joinPro" method="get" onsubmit="joincheck()">
+
+
     		<div class="logo">
      		<a href="${pageContext.request.contextPath }/search/main"><img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png"></a>
     		</div>
 
+
         <div class="join">
             <strong class="sub_title">회원가입</strong>
-            
-            <b>이메일 &nbsp <button type="button" class="btn btn-danger">중복확인</button></b>
-            <div class="inp_type_2 form-errors" style="margin-bottom: 3px;"><!-- focus / err -->
-                <input type="email" name="uemail" id="gcuseremail" placeholder="이메일 주소를 입력해주세요.">
-				<label id="gcuseremail_msg" class="validate_msg_label" style="color: red;"></label>
-				<input type="hidden" id="user_type" value="1">
-            </div><span id="checkIdResult"><!-- 이메일아이디 일치 여부 표시 영역 --></span><br>
-            <button type="button" class="btn btn-danger" onclick="" disabled="">인증번호 전송</button>
-            
-<!--              <div class="inp_type_2 form-errors" id="emailCheck" style="margin-bottom: 10px;"> -->
-<!--                 <input type="email" name="uemail" id="gcuseremailCheck" placeholder="인증번호를 입력해주세요." disabled=""> -->
-<!-- 				<label id="gcuseremail_msg" class="validate_msg_label" style="color: red;"></label><br> -->
-<!-- 				<input type="hidden" id="user_type" value="1"> -->
-<!--             </div> -->
 
+            <b>아이디(이메일형식) &nbsp <button type="button" class="btn btn-danger" onclick="iddup()">중복확인</button></b>
+            <div class="inp_type_2 form-errors" style="margin-bottom: 3px;"><!-- focus / err -->
+                <input type="email" name="user_id" id="user_id" placeholder="이메일 주소를 입력해주세요.">
+				<label id="gcuseremail_msg" class="validate_msg_label" style="color: red;"></label>
+				<input type="hidden" name="user_type" id="user_type" value="1">
+            </div><span id="checkIdResult"><!-- 이메일아이디 일치 여부 표시 영역 --></span><br>
+            <button type="button" class="btn btn-danger" id="emailbutton" onclick="emailcer()" disabled>인증번호 전송</button>
+            <div class="inp_type_2 form-errors" id="emailcertify" style="margin-bottom: 3px; display:none "><!-- focus / err -->
+                <input type="text" name="uemail" id="emailcerfifytext" placeholder="인증번호" maxlength="6"  onblur='certifycheck()'>
+                <input type="hidden" id="emailcheck" value="false">
+                <input type="hidden" name="user_zipcode" id="user_zipcode" value="0">
+            </div></div><span id="mail-check-warn"><!-- 인증번호 일치여부 --></span><br>
+            
+            
             <b>비밀번호</b>
             <div class="inp_type_2 form-errors form-password-rule">
-                <input type="password" name="upw" placeholder="비밀번호를 입력해주세요." id="new_pw">
+                <input type="password" name="password" placeholder="비밀번호를 입력해주세요." id="password" onkeyup="checkPass(this.value)">
 				<label id="new_pw_msg" class="validate_msg_label"></label>
+				<div id="passmsg"><!-- 패스워드 정규식 조건 만족 여부1 --></div>
             </div>
 
             <b>비밀번호 확인</b><span id="checkRetypePassResult"><!-- 비밀번호 일치 여부 표시 영역 --></span>
             <div class="inp_type_2 form-errors">
-                <input type="password" name="upw_retry" placeholder="비밀번호를 확인해주세요." id="new_pw_re">
+                <input type="password" name="password2" placeholder="비밀번호를 확인해주세요." id="password2" onblur="checkRetypePass(this.value)">
 				<label id="new_pw_re_msg" class="validate_msg_label"></label>
+				<div id="pass2msg"><!-- 패스워드 일치여부 --></div>
             </div>
-            
+
+            <b>이름</b>
+            <div class="inp_type_2 form-errors"><!-- focus / err -->
+                <input type="text" name="user_name" id="user_name" placeholder="이름을 입력해주세요.">
+				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
+            </div>
+
+            <b>주민번호</b>
+            <div class="inp_type_2 form-errors"><!-- focus / err -->
+                <input type="text" name="jumin" id="jumin" placeholder="주민번호를 입력해주세요.">
+				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
+            </div>
             
             <b>휴대폰 번호</b>
             <div class="inp_type_2 form-errors"><!-- focus / err -->
-                <input type="tel" name="uphone" id="gcuserphone" placeholder="휴대폰 번호를 입력해주세요.">
+                <input type="tel" name="user_phonenumber" id="user_phonenumber" placeholder="휴대폰 번호를 입력해주세요.">
 				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
             </div>
-            
-            <b>이름</b>
-            <div class="inp_type_2 form-errors"><!-- focus / err -->
-                <input type="" name="uphone" id="gcuserphone" placeholder="이름을 입력해주세요.">
-				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
-            </div>
-            
-            <b>주민번호</b>
-            <div class="inp_type_2 form-errors"><!-- focus / err -->
-                <input type="tel" name="uphone" id="gcuserphone" placeholder="주민번호를 입력해주세요.">
-				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
-            </div>
-            
+
             <b>주소</b>
-            <button type="button" class="btn btn-danger" id="">검색</button>
-            
+            <button type="button" class="btn btn-danger" id="" onclick="addressSearch()">검색</button>
+
             <div class="inp_type_2 form-errors">
-            <input type="text" name="zipcode" class="" value="" placeholder="우편번호" /> 
+            <input type="text" name="postNum" class="" value="" id="postNum" placeholder="우편번호(검색 버튼 클릭)" readonly/> 
             </div>
-            
+
             <div class="inp_type_2 form-errors">
-            <input type="text" name="zipcode" class="" value="" placeholder="주소" style=""/> 
+            <input type="text" name="user_address" class="" value="" id="user_address" placeholder="주소(검색 버튼 클릭)" style="" readonly/> 
             </div>
 <!--             ada -->
             <div class="inp_type_2 form-errors">
-            <input type="text" name="zipcode" class="" value="" placeholder="상세주소" style=""/> 
+            <input type="text" name="user_address2" class="" value="" id="user_address2" placeholder="상세주소" style=""/> 
             </div>
-            <button type="button" class="btn btn-danger w-100" style="margin-bottom: 20px; font-size: 27.7px; font-family: 'Do Hyeon', sans-serif;">가 입 하 기</button>
+            <button type="submit" class="btn btn-danger w-100" style="margin-bottom: 20px; font-size: 27.7px; font-family: 'Do Hyeon', sans-serif;">가 입 하 기</button>
         </div>
     </form>
 </section>
