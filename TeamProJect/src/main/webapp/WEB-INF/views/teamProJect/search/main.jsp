@@ -212,7 +212,7 @@
 
 		<!-- 메인페이지 검색 창 -->
 		<div class=main_first_box>
-			<form action="${pageContext.request.contextPath}/search/search" name="f" method="get">
+			<form action="${pageContext.request.contextPath}/search/searchP" name="f" method="get">
 				<div class="mtb"></div><br>
 				<div class=main_twice_box>
 					<input type="hidden" name="bu_id" id="bu_id" value="1">
@@ -221,10 +221,10 @@
 							<div role=button>
 								<div class="main_checkinout_buttonbox">
 									<div>
-										<input type='date' id="checkin" min="2022-08-23" value="2022-08-23" class="main_checkin_1" name="checkin" onchange="dateChk()" required><!-- min="${today }" value="${today }" -->
+										<input type='date' id="checkin" min="${today }" value="${today }" class="main_checkin_1" name="checkin" onchange="dateChk()" required><!-- min="${today }" value="${today }" -->
 									</div>
 									<div>
-										<input type='date' id="checkout" min="2022-08-24" value="2022-08-24" class="main_checkout_1" name="checkout" onchange="dateChk()" required><!-- min="${tomorrow }" value="${tomorrow }" -->
+										<input type='date' id="checkout" min="${tomorrow }" value="${tomorrow }" class="main_checkout_1" name="checkout" onchange="dateChk()" required><!-- min="${tomorrow }" value="${tomorrow }" -->
 									</div>
 								</div>
 							</div>
