@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 
@@ -58,7 +59,7 @@
 							</div>
 						</div>
 						<div style="border-left: 1px solid #c8c8c8;">
-							<input type=search class=main_search_text placeholder=지역,숙소명 name="bu_address" required>
+							<input type=search class=main_search_text placeholder=지역,숙소명 name="pen_address" required>
 						</div>
 						<div class="main_search_button_box">
 							<button type=submit style="border: none;" class="btn main_search_button">검 색</button>
@@ -67,51 +68,28 @@
 				</div>
 			</form>
 		</div>
-
-
+		
+		<!-- 메인검색창 끝 -->
+		
+<table border="1">
+<tr><td>펜션 이름</td><td>펜션 주소</td></tr>
+<c:forEach var="PensionDTO" items="${pensionList }">
+<tr>
+	<%-- <td>${PensionDTO.pen_image }</td> --%>
+    <td>${PensionDTO.pen_name }</td>
+    <td>${PensionDTO.pen_address }</td>
+<%--     <td>${PensionDTO.rm_price }</td> --%>  <!-- 방가격중 최저가가 나타나도록 구현 -->
+    <td><!-- 리뷰 갯수  --></td></tr>	<!-- 펜션 리뷰개수 쿼리 -->
+</c:forEach>
+</table>
+	
 
 
 
 </div>
 			<!-- 숙소 리스트 -->
-			<div class="search_list_mainbox">
-				<c:forEach var="p" items="${p_list}">
-					<div class="search_list_box">
-						<form action="${pageContext.request.contextPath}/reservation/detail" class="search_list_abox" method="get">
-							<input type="hidden" name="bu_email" value="${bu.bu_email }">
-							<input type="hidden" name="checkin" value="${checkin }">
-							<input type="hidden" name="checkout" value="${checkout }">
-							<input type="hidden" name="ro_count" value="${ro_count }">
-							<div class="reserve_room" style="width: 690px; margin-top: 0px; padding-left: 385px;">
-								<p class="reserve_pic_view" style="width: 330px;">
-									<img src="${bu.picLocation}" class="rounded" style="width: 330px; height: 226px; object-fit: cover;">
-								</p>
-								<div style="margin: 0 auto"></div>
-								
-								<div class="search_room_title" style="width: 300px; margin-bottom: -2px;">
-									<strong >${bu.bu_title}</strong>
-									<p class="gray_text" style="font-size: 14px; margin-top:10px;">
-										<img src="https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/location_map_marker_pin-2-512.png" style="width: 20px;"> ${bu.bu_address}
-									</p>
-								</div>
-								<div class="reserve_room_price row" style="width: 300px;">
-									<div class="col-sm-6">
-										<strong class="medium_text">가격</strong>
-									</div>
-									<div class="col-sm-6 right_text">
-										<b class="large_text"><fmt:formatNumber value="${bu.minPrice}" pattern="#,###" />원</b>
-									</div>
-								</div>
-								<input type="submit" class="reserve_room_btn default_btn medium_text rounded" value="숙소 살펴보기" style="margin-left: -5px;">
-							</div>
-						</form>
-					</div>
-				</c:forEach>
-			</div>
+
 			<!-- 숙소 리스트 끝 -->
-			
-		</div>
-	</div>
 
 </body>
 </html>

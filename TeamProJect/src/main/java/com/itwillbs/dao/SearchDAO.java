@@ -1,5 +1,6 @@
 package com.itwillbs.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -16,10 +17,11 @@ public class SearchDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="com.itwillbs.mappers.BusinessMapper";
 	
-	public Map<String, String> getSearchList(PensionDTO pensionDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PensionDTO> getPensionList() {
+		
+		return sqlSession.selectList(NAMESPACE+".getPensionList");
 	}
+
 	
 
 }
