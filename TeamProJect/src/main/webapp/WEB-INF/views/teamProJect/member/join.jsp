@@ -28,7 +28,7 @@
 <body>
 <div class="layer_fix pop_login pop_mem_reserve fix_disable">
     <section>
-    <form id="joinForm" action="joinPro" method="get" onsubmit="joincheck()">
+    <form id="joinForm" action="joinPro" method="get" onsubmit="return joincheck()">
 
 
     		<div class="logo">
@@ -38,7 +38,7 @@
 
         <div class="join">
             <strong class="sub_title">회원가입</strong>
-
+            
             <b>아이디(이메일형식) &nbsp <button type="button" class="btn btn-danger" onclick="iddup()">중복확인</button></b>
             <div class="inp_type_2 form-errors" style="margin-bottom: 3px;"><!-- focus / err -->
                 <input type="email" name="user_id" id="user_id" placeholder="이메일 주소를 입력해주세요.">
@@ -51,7 +51,6 @@
                 <input type="hidden" id="emailcheck" value="false">
                 <input type="hidden" name="user_zipcode" id="user_zipcode" value="0">
             </div></div><span id="mail-check-warn"><!-- 인증번호 일치여부 --></span><br>
-            
             
             <b>비밀번호</b>
             <div class="inp_type_2 form-errors form-password-rule">
@@ -75,13 +74,13 @@
 
             <b>주민번호</b>
             <div class="inp_type_2 form-errors"><!-- focus / err -->
-                <input type="text" name="jumin" id="jumin" placeholder="주민번호를 입력해주세요.">
+                <input type="text" name="jumin" id="jumin" placeholder="-(하이픈)없이 숫자만 13자리" maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
 				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
             </div>
             
             <b>휴대폰 번호</b>
             <div class="inp_type_2 form-errors"><!-- focus / err -->
-                <input type="tel" name="user_phonenumber" id="user_phonenumber" placeholder="휴대폰 번호를 입력해주세요.">
+                <input type="tel" name="user_phonenumber" id="user_phonenumber" placeholder="ex)000-0000-0000" maxlength="13" oninput="this.value = this.value.replace(/[^0-9-]/g, '').replace(/(\..*)\./g, '$1');">
 				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
             </div>
 

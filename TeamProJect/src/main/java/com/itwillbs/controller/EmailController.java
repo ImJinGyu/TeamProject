@@ -13,14 +13,8 @@ public class EmailController {
 	
 	@Autowired
 	private MailSendService mailService;
-
-	@RequestMapping(value = "/email", method = RequestMethod.GET)
-	public String email() {
-		return "teamProJect/email";
-	}
 	
-	
-	@RequestMapping(value = "/emailsend", method = RequestMethod.GET)
+	@RequestMapping(value = "member/emailsend", method = RequestMethod.GET)
 	@ResponseBody
 	public String emailsend(String email) {
 		return mailService.joinEmail(email);
