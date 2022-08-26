@@ -16,7 +16,7 @@ public class MailSendService {
 	// MailSender객체 자동 생성
 	@Autowired
 	private JavaMailSenderImpl mailSender;
-
+	private boolean errorcheck;
 	private int authNumber; 
 
 		public void makeRandomNumber() {
@@ -40,6 +40,8 @@ public class MailSendService {
 				    "<br>" + 
 				    "해당 인증번호를 인증번호 확인란에 기입하여 주세요."; //이메일 내용
 			mailSend(setFrom, toMail, title, content);
+			errorcheck = false;
+			if(errorcheck) return "0";
 			return Integer.toString(authNumber);
 		}
 
@@ -55,6 +57,7 @@ public class MailSendService {
 				helper.setText(content,true);
 				mailSender.send(message);
 			} catch (MessagingException e) {
+				errorcheck = true;
 				e.printStackTrace();
 			}
 		}

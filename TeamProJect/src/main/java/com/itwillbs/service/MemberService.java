@@ -27,4 +27,8 @@ public class MemberService {
 	public Map<String, String> iddup(Map<String ,String> dupMap) {
 		return dao.iddup(dupMap);
 	}
+	
+	public void updatePass(MemberDTO mT) {
+		dao.updatePass(mT);
+	}
 }

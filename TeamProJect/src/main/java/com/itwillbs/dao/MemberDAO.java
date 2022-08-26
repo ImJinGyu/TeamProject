@@ -28,4 +28,8 @@ public class MemberDAO {
 	public Map<String, String> iddup(Map<String ,String> dupMap) {
 		return sqlSession.selectOne(NAMESPACE + ".iddup", dupMap);
 	}
+	
+	public void updatePass(MemberDTO mT) {
+		sqlSession.update(NAMESPACE + ".updatePass", mT);
+	}
 }

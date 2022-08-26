@@ -1,11 +1,16 @@
+//document.write('<script src="join.js"></script>');
 var code;
-	
+
 function emailcer(){
 	var email = $('#user_id').val();
 	$.ajax({
 		url:'emailsend?email=' + email,
 		type:'get',
 		success:(data) => {
+			if(data == '0'){
+				alert("이메일이 존재하지 않습니다.");
+				return;
+			}
 			console.log('data : ' + data);
 			$('#mail-check-input').attr('disabled',false);
 			code = data;
@@ -15,8 +20,17 @@ function emailcer(){
 	})	
 }
 
+function emailcer2(){
+	iddup()
+	
+	if(strpasscheck == "false"){
+		emailcer();
+		return;
+	}
+	alert('아이디가 존재하지 않습니다!');
+}
+
 function certifycheck(){
-	debugger;
 	const inputCode = $('#emailcerfifytext').val();
 	const $resultMsg = $('#mail-check-warn');
 	const emailcheck = $('#emailcheck');
@@ -31,4 +45,15 @@ function certifycheck(){
 	}
 	$resultMsg.html(msg);
 	$resultMsg.css('color',color);
+}
+
+function certifycheck2(){
+	certifycheck();
+	const emailcheck = $('#emailcheck').val();
+	const emailbtn = $('#emailbtn');
+	const passbtn = $('#passbtn');
+	if(emailcheck == 'true'){
+		emailbtn.css('display','none');
+		passbtn.css('display','block');
+	}
 }

@@ -1,13 +1,16 @@
 var iddupcheck = false;
 var passcheck = false;
 var passOrpass2check = false;
+var strpasscheck = "";
 
 function iddup(){
 	$.ajax({
 		url:'iddup',
 		data:{'user_id':$('#user_id').val(), 'user_type':$('#user_type').val()},
+		async:false,
 		type:'get',
 		success:(data) => {
+			strpasscheck = data;
 			var result;
 			var color;
 			var emaildisabled;
@@ -95,6 +98,14 @@ function checkRetypePass(pass2) {
 	}
 	pass2msg.html(text);
 	pass2msg.css('color',color); 
+}
+
+function repassfun(){
+	if(passOrpass2check){
+		return true;
+	}
+	alert("패스워드 불일치");
+	return false;
 }
 
 function joincheck() {
