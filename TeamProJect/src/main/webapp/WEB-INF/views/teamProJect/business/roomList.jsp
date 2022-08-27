@@ -7,7 +7,7 @@
 <head>
 	<jsp:include page="b_head.jsp"/>
 
-    <title>여수어때 : 숙소목록</title>
+    <title>부산온나 : 숙소목록</title>
 </head>
 
 <body id="page-top">

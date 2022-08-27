@@ -18,5 +18,14 @@
 		FROM PENSION
 </select>
 
+	<insert id="registerRoom">
+		INSERT INTO ROOM_ATTACH
+		VALUES(#{RM_NAME}, #{RM_IMAGE})
+	</insert>
+	
+<!-- 	<select id="getMaxNum" resultType="java.lang.Integer"> -->
+<!-- 		SELECT MAX(RM_NUM) -->
+<!-- 		  FROM ROOM -->
+<!-- 	</select> -->
 
 </mapper>

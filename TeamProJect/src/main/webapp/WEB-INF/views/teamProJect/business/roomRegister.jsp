@@ -6,7 +6,7 @@
 
     <jsp:include page="b_head.jsp"/>
 
-    <title>여수어때 : 숙소등록</title>
+    <title>부산온나 : 숙소등록</title>
 </head>
 <security:csrfMetaTags/>
 
@@ -26,10 +26,10 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">숙소 등록</h1>
                             </div>
-                            <form class="user" method="post">
+                            <form class="user" method="post" action="${pageContext.request.contextPath }/business/roomRegisterPro" enctype="multipart/form-data">
                                  <div class="form-group">
                                 	<label for="name">숙소 이름</label>
-                                    <input type="text" class="form-control form-control-user" id="name" name="roomName" >
+                                    <input type="text" class="form-control form-control-user" id="name" name="RM_NAME" >
                                 </div>
                                  <div class="form-group">
                                 	<label for="deadline">예약 마감시간</label>
@@ -42,7 +42,7 @@
                                 <hr>
                                 <div class="form-group uploadDiv">
 							   		<label class="btn btn-success btn-sm" for="attach">첨부</label>
-								    <input type="file" class="form-control d-none" placeholder="attach" id="attach" name="attach" multiple>
+								    <input type="file" class="form-control d-none" placeholder="attach" id="attach" name="RM_IMAGE" multiple>
 							    </div>
 								   
 							    <ul class="list-group small container px-1 upload-files">
@@ -102,7 +102,7 @@
 			})
 			$(this).next().html(str);
 		})
-	}) 		
+	});	
 </script>
 <script>
 	var headerName = $("meta[name='_csrf_header']").attr("content")
