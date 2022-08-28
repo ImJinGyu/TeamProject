@@ -2,6 +2,7 @@ package com.itwillbs.domain;
 
 public class BookDTO {
 	
+	
 	private String RES_NUMBER;
 	private String USER_ID; 
 	private String PEN_ID;

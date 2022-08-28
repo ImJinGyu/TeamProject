@@ -11,5 +11,6 @@
 			 , CHECK_OUT
 			 , RES_TIME
 		FROM RESERVATION
+		
 </select>
 </mapper>
