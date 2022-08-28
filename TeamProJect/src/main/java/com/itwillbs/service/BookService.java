@@ -12,7 +12,6 @@ import com.itwillbs.domain.BusinessDTO;
 public class BookService {
 	
 	
-	
 //	@Inject
 //	private BookDAO bookDAO;
 //
