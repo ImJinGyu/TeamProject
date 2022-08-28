@@ -18,33 +18,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/loginajax.js"></script>
-    <script type="text/javascript">
-// 		$(document).ready(() => {
-// 			$('#loginbtn').bind('click', () => {
-// 				$.ajax({
-// 					url:'loginPro',
-// 					data:{'user_id':$('#email').val(), 'password':$('#password').val(), 'user_type':$('#user_type').html()},
-// 					type:'get',
-// 					async:false,
-// 					success:(data) => {
-// 						var result = "";
-// 						if(data == 'true'){
-// 							location.href = 'main';
-// 						}else if(data == 'false2'){
-// 							result = '패스워드가 일치하지 않습니다.';
-// 						}else {
-// 							result = '아이디가 존재하지 않습니다.';
-// 						}
-// 						$('#loginspan').html(result).css('color', 'red');
-// 					}
-// 				})	
-// 			})
-// 		});
-    </script>
-
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-
+	
+	<div id="naver_id_login"></div>
  <div class="login_form_width" style="padding-top:100px; margin-bottom: 100px">
   <!-- 고객 & 사용자 탭 -->
   <ul class="nav nav-tabs nav-justified mt-3" role="tablist" style="width:312px; margin:0 auto;">
@@ -62,8 +41,16 @@
      	<a href="${pageContext.request.contextPath }/search/main"><img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png"></a>
     </div>
    </div>
-    네이버 로그인(예정) <br>
-    카카오톡 로그인(예정)
+<!--     네이버 로그인 -->
+    <div id="naver_id_login_div">
+    <script src="${pageContext.request.contextPath}/resources/js/apilogin/naver_login.js"></script>
+    <div id='naver_id_login1'><img src="${pageContext.request.contextPath}/resources/images/btnG_naver.png" style="width: 325px; height: 45px"></div>
+	</div> 
+	<br>
+	
+    <a href="https://kauth.kakao.com/oauth/authorize?client_id=	47791105334d48d9d0b4bf1ca0cea8ba&redirect_uri=http://localhost:8080/TeamProject/apilogin/kakao_login&response_type=code">
+    <img src="${pageContext.request.contextPath}/resources/images/kakao_login_medium_wide.png" style="width: 325px; height: 45px">
+    </a>
    <p class="space_or">
    <span>또는</span>
    <form class="needs-vallidation" action="loginPro" method="get">
@@ -92,10 +79,8 @@
      	<a href="${pageContext.request.contextPath }/search/main"><img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png"></a>
     </div>
    </div>
-    네이버 로그인(예정) <br>
-    카카오톡 로그인(예정)
+     <br>
     <p class="space_or">
-    <span>또는</span>
     <form class="needs-vallidation" action="loginPro" method="get">
      <div class="form-group">
       <input class="form-control" type="email" name="email" id="email" required placeholder="이메일주소">
