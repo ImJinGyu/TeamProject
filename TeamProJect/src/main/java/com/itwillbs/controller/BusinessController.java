@@ -40,11 +40,7 @@ public class BusinessController {
 		return "teamProJect/business/b_index";
 	}
 	
-	@RequestMapping(value = "/business/checkReservation", method = RequestMethod.GET)
-	public String checkReservation() {
-				
-		return "teamProJect/business/checkReservation";
-	}
+	
 	
 	@RequestMapping(value = "/business/listPayment", method = RequestMethod.GET)
 	public String listPayment() {
@@ -52,11 +48,7 @@ public class BusinessController {
 		return "teamProJect/business/listPayment";
 	}
 	
-	@RequestMapping(value = "/business/listReservation", method = RequestMethod.GET)
-	public String listReservation() {
-				
-		return "teamProJect/business/listReservation";
-	}
+	
 	
 	@RequestMapping(value = "/business/roomList", method = RequestMethod.GET)
 	public String roomList() {
