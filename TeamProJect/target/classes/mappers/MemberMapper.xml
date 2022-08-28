@@ -42,4 +42,11 @@
 		   AND USER_TYPE = #{user_type}
 	</select>
 	
+	<update id="updatePass">
+		UPDATE MEMBER 
+		   SET PASSWORD = #{password}
+		 WHERE USER_ID = #{user_id}
+		   AND USER_TYPE = #{user_type}
+	</update>
+	
 </mapper>

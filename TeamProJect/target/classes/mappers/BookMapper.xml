@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwillbs.mappers.adminMapper">
+	<select id="listReservation" resultType="com.itwillbs.domain.BookDTO">
+		SELECT RES_NUMBER
+			 , USER_ID
+			 , PEN_ID
+			 , CHECK_IN
+			 , CHECK_OUT
+			 , RES_TIME
+		FROM RESERVATION
+</select>
+</mapper>

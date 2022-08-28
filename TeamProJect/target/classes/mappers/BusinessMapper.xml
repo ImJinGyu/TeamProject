@@ -4,4 +4,28 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwillbs.mappers.BusinessMapper">
 
+
+	<!-- 숙소리스트 -->
+<!--  	<select id="getPensionList" resultType="com.itwillbs.domain.PensionDTO"> -->
+<!-- 		SELECT PEN_NAME -->
+<!-- 			 , PEN_ADDRESS -->
+<!-- 		FROM PENSION -->
+<!-- 	</select>  -->
+
+<select id="getPensionList" resultType="com.itwillbs.domain.PensionDTO">
+		SELECT PEN_NAME
+			 , PEN_ADDRESS
+		FROM PENSION
+</select>
+
+	<insert id="registerRoom">
+		INSERT INTO ROOM_ATTACH
+		VALUES(#{RM_NAME}, #{RM_IMAGE})
+	</insert>
+	
+<!-- 	<select id="getMaxNum" resultType="java.lang.Integer"> -->
+<!-- 		SELECT MAX(RM_NUM) -->
+<!-- 		  FROM ROOM -->
+<!-- 	</select> -->
+
 </mapper>
