@@ -23,7 +23,6 @@
 </head>
 <body>
 	
-	<div id="naver_id_login"></div>
  <div class="login_form_width" style="padding-top:100px; margin-bottom: 100px">
   <!-- 고객 & 사용자 탭 -->
   <ul class="nav nav-tabs nav-justified mt-3" role="tablist" style="width:312px; margin:0 auto;">
@@ -42,14 +41,12 @@
     </div>
    </div>
 <!--     네이버 로그인 -->
-    <div id="naver_id_login_div">
+    <div id="naver_id_login_div"  style="margin-bottom: 5px">
     <script src="${pageContext.request.contextPath}/resources/js/apilogin/naver_login.js"></script>
-    <div id='naver_id_login1'><img src="${pageContext.request.contextPath}/resources/images/btnG_naver.png" style="width: 325px; height: 45px"></div>
-	</div> 
-	<br>
-	
+	</div>
+	<!--     카카오 로그인 --> 
     <a href="https://kauth.kakao.com/oauth/authorize?client_id=	47791105334d48d9d0b4bf1ca0cea8ba&redirect_uri=http://localhost:8080/TeamProject/apilogin/kakao_login&response_type=code">
-    <img src="${pageContext.request.contextPath}/resources/images/kakao_login_medium_wide.png" style="width: 325px; height: 45px">
+    <img src="${pageContext.request.contextPath}/resources/images/kakao_login_medium_wide.png" style="width: 100%; height: 45px">
     </a>
    <p class="space_or">
    <span>또는</span>
@@ -80,7 +77,6 @@
     </div>
    </div>
      <br>
-    <p class="space_or">
     <form class="needs-vallidation" action="loginPro" method="get">
      <div class="form-group">
       <input class="form-control" type="email" name="email" id="email" required placeholder="이메일주소">
@@ -106,6 +102,7 @@
      	<a href="${pageContext.request.contextPath }/search/main"><img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png"></a>
     </div>
    </div>
+   <br>
     <form class="needs-vallidation" action="loginPro" method="get">
      <div class="form-group">
       <input class="form-control" type="text" name="user_id" id="email" required placeholder="관리자 아이디">
