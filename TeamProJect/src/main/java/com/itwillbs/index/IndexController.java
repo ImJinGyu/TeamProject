@@ -54,6 +54,19 @@ public class IndexController {
 				
 		return "teamProJect/member/mypage/listInquiry";
 	}
+	
+	
+	@RequestMapping(value = "/business/mypage/listReservation", method = RequestMethod.GET)
+	public String b_listReservation() {
+				
+		return "teamProJect/business/mypage/listReservation";
+	}
+	
+	@RequestMapping(value = "/business/mypage/listInquiry", method = RequestMethod.GET)
+	public String b_listInquiry() {
+				
+		return "teamProJect/business/mypage/listInquiry";
+	}
 
 	
 }
