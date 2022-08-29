@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -30,7 +31,17 @@
                     <ul>
                         <li><a href="${pageContext.request.contextPath }/search/main">부산온나</a></li>
                         <li><a href="${pageContext.request.contextPath }/reservationList/reserveList">예약내역</a></li>
-                        <li><a href="${pageContext.request.contextPath }/member/login">로그인</a></li>
+                        <li>
+                        <c:choose> 
+							<c:when test="${sessionScope.user_id == null}">
+								<li><a href="${pageContext.request.contextPath }/member/login">로그인</a></li>
+								<li><a href="${pageContext.request.contextPath }/member/join">회원가입</a></li>
+							</c:when> 
+							<c:otherwise>
+								<li><a href="${pageContext.request.contextPath }/member/logout">로그아웃</a></li>
+							</c:otherwise> 
+						</c:choose>
+						</li>
 <!--                         <li><a href="contact-us.html">Contact US</a></li> -->
                     </ul>
                 </div>
@@ -39,6 +50,16 @@
 <!--                         <li> --> <!-- 페이스북 --> 
 <!--                             <i class="fab fa-facebook-square"></i> -->
 <!--                         </li> -->
+						<c:if test="${sessionScope.user_id != null}">
+							<c:choose> 
+								<c:when test="${sessionScope.user_id == 'admin'}">
+									<li><a href="${pageContext.request.contextPath }/admin/admin_page">관리자 페이지</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="${pageContext.request.contextPath }/member/m_myPage">My Page</a></li> 
+								</c:otherwise> 
+							</c:choose>
+						</c:if>
                         <li>
                             <i class="fab fa-twitter-square"></i>
                         </li>
