@@ -31,4 +31,12 @@ public class MemberService {
 	public void updatePass(MemberDTO mT) {
 		dao.updatePass(mT);
 	}
+	
+	// 회원 목록 조회
+	public void selectMember(MemberDTO mt) {
+		
+	}
+	
+	
+	
 }

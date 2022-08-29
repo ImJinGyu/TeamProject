@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 	<!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top border-bottom">
@@ -56,13 +55,13 @@
                     </h6>
                     <a class="dropdown-item d-flex align-items-center" href="#">
                         <div class="dropdown-list-image mr-3">
-                            <img class="rounded-circle" src="/resources/assets/admin/img/undraw_profile_2.svg"
+                            <img class="rounded-circle" src="${pageContext.request.contextPath }/resources/assets/admin/img/undraw_profile_2.svg"
                                 alt="...">
                             <div class="status-indicator bg-success"></div>
                         </div>
                         <div class="font-weight-bold">
                             <div class="text-truncate">준비 중입니다!</div>
-                            <div class="small text-gray-500">How about Yeosu?</div>
+                            <div class="small text-gray-500">How about Busan?</div>
                         </div>
                     </a>
                     <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
@@ -78,7 +77,7 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 mt-1 d-none d-lg-inline text-gray-600 small"><sec:authentication property="principal.member.nickName"/></span>
                     <img class="img-profile rounded-circle ml-1"
-                        src="/resources/assets/admin/img/undraw_profile.svg">
+                        src="${pageContext.request.contextPath }/resources/assets/admin/img/undraw_profile.svg">
                 </a>
              </sec:authorize>   
                 <!-- Dropdown - User Information -->

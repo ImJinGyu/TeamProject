@@ -3,7 +3,7 @@
 	<footer class="sticky-footer bg-white">
 	    <div class="container my-auto">
 	        <div class="copyright text-center my-auto">
-	            <span>Copyright &copy; 부산온나 : How about Yeosu? 2022</span>
+	            <span>Copyright &copy; 부산온나 : How about Busan? 2022</span>
 	        </div>
 	    </div>
 	</footer>
