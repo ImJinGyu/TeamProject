@@ -14,6 +14,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/loginSt.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/togglebutton.css" />
 	<link rel="stylesheet" href="https://www.goodchoice.kr/css/common.css?rand=1660711669">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,8 +39,15 @@
 
 
         <div class="join">
-            <strong class="sub_title">회원가입</strong>
-            
+            <strong class="sub_title">회원가입 - <span id="joinkindtext" style="font-size: 20px; color: blue;">회원</span></strong>
+			
+			<div id="togglekind">
+				<input type="checkbox" id="toggle" onchange="joinkind()" hidden>
+					<label for="toggle" class="toggleSwitch"><span class="toggleButton"></span>
+				</label>
+			</div>
+			
+			
             <b>아이디(이메일형식) &nbsp <button type="button" class="btn btn-danger" onclick="iddup()">중복확인</button></b>
             <div class="inp_type_2 form-errors" style="margin-bottom: 3px;"><!-- focus / err -->
                 <input type="email" name="user_id" id="user_id" placeholder="이메일 주소를 입력해주세요.">

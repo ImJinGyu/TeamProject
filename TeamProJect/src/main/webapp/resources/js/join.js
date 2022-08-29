@@ -3,6 +3,18 @@ var passcheck = false;
 var passOrpass2check = false;
 var strpasscheck = "";
 
+function joinkind(){
+	var checked = $('#toggle').is(':checked');
+	if(!checked){
+		$('#user_type').val('1');
+		$('#joinkindtext').html('회원');
+		
+	}else{
+		$('#user_type').val('2');
+		$('#joinkindtext').html('사업자');
+	}
+}
+
 function iddup(){
 	$.ajax({
 		url:'iddup',

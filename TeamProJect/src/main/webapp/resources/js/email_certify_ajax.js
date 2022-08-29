@@ -34,6 +34,8 @@ function certifycheck(){
 	const inputCode = $('#emailcerfifytext').val();
 	const $resultMsg = $('#mail-check-warn');
 	const emailcheck = $('#emailcheck');
+	const togglediv = $('#togglekind');
+	
 	var msg = '인증번호가 불일치 합니다. 다시 확인해주세요!';
 	var color = 'red';
 	
@@ -42,6 +44,7 @@ function certifycheck(){
 		color = 'green';
 		$('#emailcerfifytext').attr('disabled',true);
 		emailcheck.val('true');
+		togglediv.css('display','none');
 	}
 	$resultMsg.html(msg);
 	$resultMsg.css('color',color);
