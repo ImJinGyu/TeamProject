@@ -5,22 +5,57 @@
 <mapper namespace="com.itwillbs.mappers.BusinessMapper">
 
 
-	<!-- 숙소리스트 -->
-<!--  	<select id="getPensionList" resultType="com.itwillbs.domain.PensionDTO"> -->
-<!-- 		SELECT PEN_NAME -->
-<!-- 			 , PEN_ADDRESS -->
-<!-- 		FROM PENSION -->
-<!-- 	</select>  -->
+	<!-- 펜션 리스트 불러오기(수정예정)-->
+	<select id="getPensionList" resultType="com.itwillbs.domain.PensionDTO">
+		SELECT P.PEN_NAME, P.PEN_ADDRESS, A.PEN_IMAGE, COUNT(R.REV_NUMBER) AS RV
+		FROM PENSION P LEFT OUTER JOIN PENSION_ATTACH A
+									ON P.PEN_ID = A.PEN_ID
+					   LEFT OUTER JOIN REVIEW R
+		                			ON A.PEN_ID = R.PEN_ID
+		GROUP BY P.PEN_ID, P.PEN_NAME, A.PEN_IMAGE;
+<!-- 		WHERE PEN_NAME LIKE '%검색%' -->
+	</select>
 
-<select id="getPensionList" resultType="com.itwillbs.domain.PensionDTO">
-		SELECT PEN_NAME
-			 , PEN_ADDRESS
-		FROM PENSION
-</select>
 
+<!-- 	<insert id="registerRoom"> -->
+<!-- 		INSERT INTO ROOM_ATTACH -->
+<!-- 		VALUES(#{RM_NAME}, #{RM_IMAGE}) -->
+<!-- 	</insert> -->
+
+	<insert id="registerPen">
+		INSERT INTO PENSION(
+							PEN_ID,
+		       				USER_ID,
+		       				PEN_NAME,
+		       				PEN_ADDRESS,
+		       				PEN_ZIPCODE,
+		       				PEN_NUMBER
+							)
+		VALUES(
+			   #{PEN_ID},
+		       #{USER_ID},
+		       #{PEN_NAME},
+		       #{PEN_ADDRESS},
+		       #{PEN_ZIPCODE},
+		       #{PEN_NUMBER})
+	</insert>
+	
+	<insert id="pensionAttach">
+		INSERT INTO PENSION_ATTACH(PEN_ID,PEN_IMAGE)
+		VALUES(
+		       #{PEN_ID}, 
+		       #{PEN_IMAGE})
+	</insert>		
+	
 	<insert id="registerRoom">
 		INSERT INTO ROOM_ATTACH
-		VALUES(#{RM_NAME}, #{RM_IMAGE})
+		VALUES(
+		       #{RM_NAME}, 
+<!-- 		       #{checkin},  -->
+<!-- 		       #{checkout},  -->
+<!-- 		       #{people},  -->
+<!-- 		       #{RM_Price},  -->
+		       #{RM_IMAGE})
 	</insert>
 	
 <!-- 	<select id="getMaxNum" resultType="java.lang.Integer"> -->

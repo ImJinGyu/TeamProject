@@ -24,7 +24,9 @@
                 <div class="col-md-3 logo">
                 	<a href="${pageContext.request.contextPath }/search/main"><!-- 로고에 메인페이지 링크 추가 -->
                     	<img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png" alt="">
+                    	
                 	</a>
+                	
                      <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
                 </div>
                 <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">

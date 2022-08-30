@@ -25,6 +25,7 @@
 		     , #{user_address}
 		     , #{user_zipcode})
 	</insert>
+
 	
 	<select id="userlogin" resultType="map">
 		SELECT USER_ID
@@ -49,4 +50,30 @@
 		   AND USER_TYPE = #{user_type}
 	</update>
 	
+	<update id="updateUser">
+		UPDATE MEMBER 
+		   SET USER_NAME = #{user_name}
+		     , PASSWORD = #{password}
+		     , USER_PHONENUMBER = #{user_phonenumber}
+		     , USER_ADDRESS = #{user_address}
+		 WHERE USER_ID = #{user_id}
+		   AND USER_TYPE = #{user_type}
+	</update>
+	
+	<select id="selectUser" resultType="map">
+		SELECT USER_NAME
+		     , PASSWORD
+		     , USER_PHONENUMBER
+		     , USER_ADDRESS
+		  FROM MEMBER
+		 WHERE USER_ID = #{user_id}
+		   AND USER_TYPE = #{user_type}
+	</select>
+	
+	<delete id="deleteUser">
+		DELETE
+		  FROM MEMBER
+		 WHERE USER_ID = #{user_id}
+		   AND USER_TYPE = #{user_type}
+	</delete>
 </mapper>

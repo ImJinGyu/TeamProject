@@ -18,7 +18,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-    
+    <style>
+    .text-center {
+    color: #007bff!important;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 26px;
+    display: block;
+    font-weight: 700;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    text-align: center!important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+	
+    </style>
 </head>
 
 <body>
@@ -303,7 +320,75 @@
     <div class="travel-destination container-fluid">
         <div class="container">
             <div class="session-title">
-                <h2>Popular Destination</h2>
+                <h2>부산 온나 #
+                <a class="text"></a></h2> 
+                <style>
+               		.text {
+					  margin-left: .6rem;
+					  border-right: 2px solid #777;
+					  padding-right: .4rem;
+					  font-size: 2.2rem;
+					  animation: cursor .9s infinite steps(2);
+					}
+					
+					@keyframes cursor {
+					  from { border-right: 2px solid #222; }
+					  to { border-right: 2px solid #777; }
+					}
+                </style>
+                
+                <script>
+                
+                const $text = document.querySelector(".text");
+
+             // 글자 모음
+             const letters = [" 숙소", "펜션", "여행"];
+
+             // 글자 입력 속도
+             const speed = 100;
+             let i = 0;
+
+             // 타이핑 효과
+             const typing = async () => {  
+               const letter = letters[i].split("");
+               
+               while (letter.length) {
+                 await wait(speed);
+                 $text.innerHTML += letter.shift(); 
+               }
+               
+               // 잠시 대기
+               await wait(800);
+               
+               // 지우는 효과
+               if (letters[i + 1]) remove();
+             }
+
+             // 글자 지우는 효과
+             const remove = async () => {
+               const letter = letters[i].split("");
+               
+               while (letter.length) {
+                 await wait(speed);
+                 
+                 letter.pop();
+                 $text.innerHTML = letter.join(""); 
+               }
+               
+               // 다음 순서의 글자로 지정, 타이핑 함수 다시 실행
+               i++;
+               typing();
+             }
+
+             // 딜레이 기능 ( 마이크로초 )
+             function wait(ms) {
+               return new Promise(res => setTimeout(res, ms))
+             }
+
+             // 초기 실행
+             setTimeout(typing, 1500);
+                </script>
+                
                 <p>Suffered alteration in some form, by injected humour or good day randomised booth anim 8-bit hella wolf moon beard words.</p>
             </div>
             <div class="destination-row row">
@@ -610,7 +695,79 @@
 <!--                 </div> -->
 <!--             </div> -->
 <!--         </div> -->
-     
+ 	<!-- 카운트 -->
+ 	<script>
+ 	const counter = ($counter, max) => {
+ 		  let now = max;
+
+ 		  const handle = setInterval(() => {
+ 		    $counter.innerHTML = Math.ceil(max - now);
+ 		  
+ 		    // 목표수치에 도달하면 정지
+ 		    if (now < 1) {
+ 		      clearInterval(handle);
+ 		    }
+ 		    
+ 		    // 증가되는 값이 계속하여 작아짐
+ 		    const step = now / 10;
+ 		    
+ 		    // 값을 적용시키면서 다음 차례에 영향을 끼침
+ 		    now -= step;
+ 		  }, 50);
+ 		}
+
+ 		window.onload = () => {
+ 		  // 카운트를 적용시킬 요소
+ 		  const $counter = document.querySelector(".count");
+ 		  const $counter2 = document.querySelector(".count2");
+ 		  const $counter3 = document.querySelector(".count3");
+ 		  const $counter4 = document.querySelector(".count4");
+ 		  
+ 		  
+ 		  // 목표 수치
+ 		  const max = 359;
+ 		  const max2 = 153;
+ 		  const max3 = 3521;
+ 		  const max4 = 5152;
+ 		  
+ 		  setTimeout(() => counter($counter, max), 2000);
+ 		  setTimeout(() => counter($counter2, max2), 2000);
+ 		  setTimeout(() => counter($counter3, max3), 2000);
+ 		  setTimeout(() => counter($counter4, max4), 2000);
+ 		}
+ 	</script>
+	<div class="text-center">
+		<div class="row section-counter my-5">
+			<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos-delay="300">
+				<div class="counter-wrap mb-5 mb-lg-0">
+					<span class="number"><span class="count">0</span></span>
+					<span class="caption text-black-50"># 전체 펜션 개수</span>
+				</div>
+			</div>
+			<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos-delay="400">
+				<div class="counter-wrap mb-5 mb-lg-0">
+					<span class="number"><span class="count2">0</span></span>
+					<span class="caption text-black-50"># 전체 숙소 개수</span>
+				</div>
+			</div>
+			<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos-delay="500">
+				<div class="counter-wrap mb-5 mb-lg-0">
+					<span class="number"><span class="count3">0</span></span>
+					<span class="caption text-black-50"># 전체 예약 건수</span>
+				</div>
+			</div>
+			<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos-delay="600">
+				<div class="counter-wrap mb-5 mb-lg-0">
+					<span class="number"><span class="count4">0</span></span>
+					<span class="caption text-black-50"># 전체 댓글 개수</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
        <!--  ************************* Footer Start Here ************************** --> 
      
 <footer class="footer">
