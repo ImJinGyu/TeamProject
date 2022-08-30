@@ -31,12 +31,11 @@ public class MemberService {
 	public void updatePass(MemberDTO mT) {
 		dao.updatePass(mT);
 	}
-	
-	// 회원 목록 조회
-	public void selectMember(MemberDTO mt) {
-		
+	public void updateUser(MemberDTO mT) {
+		dao.updateUser(mT);
 	}
 	
-	
-	
+	public Map<String, String> selectUser(MemberDTO mT) {
+		return dao.selectUser(mT);
+	}
 }

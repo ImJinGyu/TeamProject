@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html lang="en">
 
 <head>
@@ -15,7 +17,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
-    
+    <script src="${pageContext.request.contextPath}/resources/js/join.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/daum_address_api.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 
 <body>
@@ -32,74 +37,54 @@
 </div>
 
 <!-- 마이페이지 폼 시작-->
+<form action="updateuser" method="post">
 
  <div class="section bg-light" style="margin-top: 25px;">
 		<div class="container">
 			<div class="row">
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/note.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/listReservation">예약내역 조회</a></h3>
-						<p class="text-black-50">펜션 예약 내역을 조회합니다.</p>
-<!-- 						<p><a href="/member/mypage/listReservation" class="learn-more">페이지 이동</a></p> -->
-					</div>
-				</div>
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/get-money.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/mypagePoint">포인트내역 조회</a></h3>
-						<p class="text-black-50">포인트 내역을 조회합니다.</p>
+			<div class="col-6 col-lg-4">
+				<div class="box-feature mb-4" style="pointer-events: none; margin-top: 50px;">
+					<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px; visibility: hidden;">
+					<h3 class="text-black mb-3 font-weight-bold" style="visibility: hidden;">회원정보 수정</h3>
+					<div class="form-group">
+					 <input class="form-control" type="text" value="이름" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
+					 <c:if test="${not fn:contains(sessionScope.user_id,'APIlogin')}">
+						<input class="form-control" type="text" value="패스워드" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
+					 </c:if>
+					 <input class="form-control" type="text" value="휴대폰 번호" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
+					 <input class="form-control" type="text" value="우편번호" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
+					 <input class="form-control" type="text" value="주소" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
+					 <input class="form-control" type="text" value="상세주소" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
+				    </div>
 <!-- 						<p><a href="#" class="learn-more" id="mypagePoint">페이지 이동</a></p> -->
-					</div>
 				</div>
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/chat.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/mypageReply">내가 쓴 댓글 조회</a></h3>
-						<p class="text-black-50">내가 쓴 댓글을 조회합니다.</p>
-<!-- 						<p><a href="#" class="learn-more" id="mypageReply">페이지 이동</a></p> -->
-					</div>
+			</div>
+			<div class="col-6 col-lg-4">
+				<div class="box-feature mb-4" style="margin-top: 50px;">
+					<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px">
+					<h3 class="text-black mb-3 font-weight-bold">회원정보 수정</h3>
+					<div class="form-group">
+				     <input class="form-control" type="text" name="user_name" id="user_name" required placeholder="이름" value="${MemberDTO.USER_NAME}">
+				      <c:if test="${not fn:contains(sessionScope.user_id,'APIlogin')}">
+						<input class="form-control" type="password" name="password" id="password" required placeholder="패스워드">
+					 </c:if>
+				     <input class="form-control" type="text" name="user_phonenumber" id="user_phonenumber" required placeholder="휴대폰 번호 ex) 000-0000-0000" maxlength="13" value="${MemberDTO.USER_PHONENUMBER}">
+				     <input class="form-control" type="text" name="postNum" id="postNum" required placeholder="우편번호" style="width:30%; display:inline;">
+				     <input class="btn btn-danger" type="button" value="우편번호 검색" onclick="addressSearch()" style="width:50%; display:inline; font-size: 20px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
+				     <input class="form-control" type="text" name="user_address" id="user_address" required placeholder="주소" value="${MemberDTO.USER_ADDRESS}">
+				     <input class="form-control" type="text" name="user_address1" id="user_address1" required placeholder="상세주소">
+				    </div>
 				</div>
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/phone-call.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/listInquiry">1:1 문의내역</a></h3>
-						<p class="text-black-50">1:1 문의내역을 조회합니다.</p>
-<!-- 						<p><a href="/member/mypage/listInquiry" class="learn-more">페이지 이동</a></p> -->
-					</div>
-				</div>	
-
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/passcheck">회원정보 수정</a></h3>
-						<p class="text-black-50">회원정보를 수정합니다.</p>
-<!-- 						<p><a href="/member/modify" class="learn-more">페이지 이동</a></p> -->
-					</div>
-				</div>
-				
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/settings.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/deletecustom">회원 탈퇴</a></h3>
-						<p class="text-black-50">회원을 탈퇴합니다.</p>
-<!-- 						<p><a href="/member/modify" class="learn-more">페이지 이동</a></p> -->
-					</div>
-				</div>
-				
-<!-- 				<div class="col-6 col-lg-4"> -->
-<!-- 					<div class="box-feature mb-4"> -->
-<!-- 						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/settings.png" style="width:50px"> -->
-<!-- 						<h3 class="text-black mb-3 font-weight-bold">관리자 페이지</h3> -->
-<!-- 						<p class="text-black-50">관리자 페이지로 이동합니다.</p> -->
-<!-- 						<p><a href="/admin/index" class="learn-more">페이지 이동</a></p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-				
+			</div>
+			<div class="col-6 col-lg-4"></div>
+			<div class="col-6 col-lg-4"></div>
+			<div class="col-6 col-lg-4" style="margin-bottom: 50px;">
+			<input class="btn btn-danger w-100" id="loginbtn" type="submit" value="입 력" style="font-size: 27px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
+			</div>
 			</div>
 		</div>
 	</div>
-
+</form>
 <!-- 마이페이지 폼 끝-->
 
 <!--  ************************* Footer Start Here ************************** --> 

@@ -1,13 +1,11 @@
 package com.itwillbs.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -115,16 +113,39 @@ public class MemberController {
 		return "false";
 	}
 	
-	@RequestMapping(value = "/member/mypage/listReservation", method = RequestMethod.GET)
-	public String listReservation() {
-				
-		return "teamProJect/member/mypage/listReservation";
+	@RequestMapping(value = "/member/passcheck", method = RequestMethod.GET)
+	public String passcheck() {
+		return "teamProJect/member/passcheck";
+		
 	}
 	
-	@RequestMapping(value = "/member/mypage/listInquiry", method = RequestMethod.GET)
-	public String listInquiry() {
-				
-		return "teamProJect/member/mypage/listInquiry";
+	@RequestMapping(value = "/member/modify", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modify(MemberDTO mT, HttpSession session, HttpServletRequest req, Model model) {
+		mT.setUser_id(session.getAttribute("user_id").toString());
+		mT.setUser_type(session.getAttribute("user_type").toString());
+		System.out.println(mT);
+		Map<String, String> mT2 = service.selectUser(mT);
+		System.out.println(mT2);
+		model.addAttribute("MemberDTO", mT2);
+		if(mT.getPassword() == null) return "teamProJect/member/modify";
+		
+		mT.setUser_id(session.getAttribute("user_id").toString());
+		mT.setUser_type(session.getAttribute("user_type").toString());
+		Map<String, String> userMap = service.userlogin(mT);
+		if(mT.getPassword().equals(userMap.get("PASSWORD").toString())) {
+			return "teamProJect/member/modify";
+		}
+		req.setAttribute("msg", "패스워드가 일치하지 않습니다.");
+		return "teamProJect/member/loginPro";
+		
+	}
+	
+	@RequestMapping(value = "/member/updateuser", method = RequestMethod.POST)
+	public String updateuser(MemberDTO mT, HttpSession session) {
+		mT.setUser_id(session.getAttribute("user_id").toString());
+		mT.setUser_type(session.getAttribute("user_type").toString());
+		service.updateUser(mT);
+		return "redirect:/search/main";
 	}
 }
 

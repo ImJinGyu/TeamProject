@@ -14,7 +14,6 @@ function joinkind(){
 		$('#joinkindtext').html('사업자');
 	}
 }
-
 function iddup(){
 	$.ajax({
 		url:'iddup',
@@ -132,51 +131,60 @@ function joincheck() {
 	var phone = $('#user_phonenumber').val().length;
 	
 	if(id.val().length == 0){
-		alert("아이디를 입력하여 주십시오!");
+		modalalert("아이디","아이디를 입력하여 주십시오!");
+//		alert("아이디를 입력하여 주십시오!");
 		id.focus();
 		id.select();
 		return false;
 	}
 	if(!iddupcheck){
-		alert('아이디 중복체크를 해주십시오!');
+		modalalert("아이디","아이디 중복체크를 해주십시오!");
+//		alert('아이디 중복체크를 해주십시오!');
 		return false;
 	}
 	if(!passcheck){
-		alert('패스워드 형식이 맞지 않습니다.');
+		modalalert("패스워드","패스워드 형식이 맞지 않습니다.");
+//		alert('패스워드 형식이 맞지 않습니다.');
 		pass.focus();
 		pass.select();
 		return false;
 	}
 	if(!passOrpass2check){
-		alert("패스워드가 다릅니다!");
+		modalalert("패스워드","패스워드가 다릅니다");
+//		alert("패스워드가 다릅니다!");
 		document.join.pass2.focus();
 		document.join.pass2.select();
 		return false;
 	}
 	if(name.val().length == 0){
-		alert("이름을 입력하여 주십시오!");
+		modalalert("이름","이름을 입력하여 주십시오!");
+//		alert("이름을 입력하여 주십시오!");
 		name.focus();
 		name.select();
 		return false;
 	}
 	if(emailcheck != 'true'){
-		alert("이메일 인증을 해주십시오!");
+		modalalert("이메일 인증","이메일 인증을 해주십시오!");
+//		alert("이메일 인증을 해주십시오!");
 		return false;
 	}
 	if(address1.val().length == 0 || address2.val().length == 0){
-		alert("주소를 입력하여 주십시오.");
+		modalalert("주소","주소를 입력하여 주십시오!");
+//		alert("주소를 입력하여 주십시오.");
 		address2.focus();
 		address2.select();
 		return false;
 	}
 	if(phone == 0){
-		alert("휴대폰번호를 입력하여 주십시오");
+		modalalert("휴대폰번호","휴대폰번호를 입력하여 주십시오!");
+//		alert("휴대폰번호를 입력하여 주십시오");
 		phone.focus();
 		phone.select();
 		return false;
 	}
 	if(jumin != 13){
-		alert("주민번호 13자리를 입력하여 주십시오");
+		modalalert("주민번호","주민번호 입력하여 주십시오!");
+//		alert("주민번호 13자리를 입력하여 주십시오");
 		jumin.focus();
 		jumin.select();
 		return false;

@@ -58,6 +58,12 @@ public class MemberDTO {
 	public void setUser_zipcode(String user_zipcode) {
 		this.user_zipcode = user_zipcode;
 	}
+	@Override
+	public String toString() {
+		return "MemberDTO [user_id=" + user_id + ", user_type=" + user_type + ", password=" + password + ", user_name="
+				+ user_name + ", jumin=" + jumin + ", user_phonenumber=" + user_phonenumber + ", user_address="
+				+ user_address + ", user_zipcode=" + user_zipcode + "]";
+	}
 	
 	
 	

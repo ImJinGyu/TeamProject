@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html lang="en">
 
 <head>
@@ -15,7 +17,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
+    <c:if test="${fn:contains(sessionScope.user_id,'_naverAPIlogin') || fn:contains(sessionScope.user_id,'_kakaoAPIlogin')}">
+    <script type="text/javascript">
+    	location.href="modify";
+    </script>
     
+    </c:if>
 </head>
 
 <body>
@@ -32,74 +39,31 @@
 </div>
 
 <!-- 마이페이지 폼 시작-->
+<form action="modify" id="fr" method="post">
 
  <div class="section bg-light" style="margin-top: 25px;">
 		<div class="container">
 			<div class="row">
+			<div class="col-6 col-lg-4"></div>
 				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/note.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/listReservation">예약내역 조회</a></h3>
-						<p class="text-black-50">펜션 예약 내역을 조회합니다.</p>
-<!-- 						<p><a href="/member/mypage/listReservation" class="learn-more">페이지 이동</a></p> -->
-					</div>
-				</div>
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/get-money.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/mypagePoint">포인트내역 조회</a></h3>
-						<p class="text-black-50">포인트 내역을 조회합니다.</p>
+					<div class="box-feature mb-4" style="margin-top: 50px;">
+						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px">
+						<h3 class="text-black mb-3 font-weight-bold">패스워드 입력</h3>
+						<div class="form-group">
+					     <input class="form-control" type="password" name="password" id="password" required placeholder="비밀번호">
+					    </div>
 <!-- 						<p><a href="#" class="learn-more" id="mypagePoint">페이지 이동</a></p> -->
 					</div>
 				</div>
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/chat.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/mypageReply">내가 쓴 댓글 조회</a></h3>
-						<p class="text-black-50">내가 쓴 댓글을 조회합니다.</p>
-<!-- 						<p><a href="#" class="learn-more" id="mypageReply">페이지 이동</a></p> -->
-					</div>
-				</div>
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/phone-call.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/listInquiry">1:1 문의내역</a></h3>
-						<p class="text-black-50">1:1 문의내역을 조회합니다.</p>
-<!-- 						<p><a href="/member/mypage/listInquiry" class="learn-more">페이지 이동</a></p> -->
-					</div>
-				</div>	
-
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/passcheck">회원정보 수정</a></h3>
-						<p class="text-black-50">회원정보를 수정합니다.</p>
-<!-- 						<p><a href="/member/modify" class="learn-more">페이지 이동</a></p> -->
-					</div>
-				</div>
-				
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/settings.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/deletecustom">회원 탈퇴</a></h3>
-						<p class="text-black-50">회원을 탈퇴합니다.</p>
-<!-- 						<p><a href="/member/modify" class="learn-more">페이지 이동</a></p> -->
-					</div>
-				</div>
-				
-<!-- 				<div class="col-6 col-lg-4"> -->
-<!-- 					<div class="box-feature mb-4"> -->
-<!-- 						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/settings.png" style="width:50px"> -->
-<!-- 						<h3 class="text-black mb-3 font-weight-bold">관리자 페이지</h3> -->
-<!-- 						<p class="text-black-50">관리자 페이지로 이동합니다.</p> -->
-<!-- 						<p><a href="/admin/index" class="learn-more">페이지 이동</a></p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-				
+			<div class="col-6 col-lg-4"></div>
+			<div class="col-6 col-lg-4"></div>
+			<div class="col-6 col-lg-4" style="margin-bottom: 50px;">
+			<input class="btn btn-danger w-100" id="loginbtn" type="submit" value="입 력" style="font-size: 27px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
+			</div>
 			</div>
 		</div>
 	</div>
-
+</form>
 <!-- 마이페이지 폼 끝-->
 
 <!--  ************************* Footer Start Here ************************** --> 

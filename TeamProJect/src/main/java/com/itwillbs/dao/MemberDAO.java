@@ -32,4 +32,11 @@ public class MemberDAO {
 	public void updatePass(MemberDTO mT) {
 		sqlSession.update(NAMESPACE + ".updatePass", mT);
 	}
+	
+	public void updateUser(MemberDTO mT) {
+		sqlSession.update(NAMESPACE + ".updateUser", mT);
+	}
+	public Map<String, String> selectUser(MemberDTO mT) {
+		return sqlSession.selectOne(NAMESPACE + ".selectUser", mT);
+	}
 }
