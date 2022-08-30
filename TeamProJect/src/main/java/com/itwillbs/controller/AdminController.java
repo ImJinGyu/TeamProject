@@ -41,6 +41,8 @@ public class AdminController {
 		return "teamProJect/admin/a_memberList";
 	}
 	
+	// test
+	
 	
 //	@RequestMapping(value = "/admin/roomList", method = RequestMethod.GET)
 //	public String roomList() {

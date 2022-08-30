@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
+<!-- 	test -->
     <jsp:include page="a_head.jsp"/>
 
     <title>부산온나 : 관리자페이지</title>
