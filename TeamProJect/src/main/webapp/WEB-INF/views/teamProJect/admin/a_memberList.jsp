@@ -4,7 +4,7 @@
 <html lang="ko">
 <!-- test -->
 <head>
-	<jsp:include page="../admin/a_index.jsp"/>
+	<jsp:include page="a_head.jsp"/>
 
     <title>부산온나 : 회원 목록 조회</title>
 </head>
@@ -13,26 +13,26 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-		<jsp:include page="../admin/a_sidebar.jsp"/>
+		<jsp:include page="a_sidebar.jsp"/>
 		
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
-			<jsp:include page="../admin/a_nav.jsp"/>
+			<jsp:include page="a_nav.jsp"/>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 					<%-- ${members} --%>
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-900">회원 목록 조회</h1>
+                    <h1 class="h3 mb-2 text-gray-900">전체 회원 목록</h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
                         	<ul class="list-group text-gray-900">
-                        		<c:forEach items="${members}" var="m" varStatus="stat">
+                        		<c:forEach items="${memberList}" var="m" varStatus="stat">
 								<li class="list-group-item" >
 									<form method="post">
 									
@@ -132,7 +132,7 @@
             </div>
             <!-- End of Main Content -->
 
-            <jsp:include page="../admin/a_footer.jsp"/>
+            <jsp:include page="a_footer.jsp"/>
 
         </div>
         <!-- End of Content Wrapper -->
@@ -167,63 +167,15 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/resources/assets/admin/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/resources/assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/resources/assets/admin/js/sb-admin-2.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/js/sb-admin-2.min.js"></script>
     
-    <script>
-    	// 회원권한수정
-		$(function() {
-			$(".btn-modify").click(function() {
-				event.preventDefault();
-				var str = "";
-				$(this).closest("form").find(":checkbox:checked").each(function(i) {
-					console.log(this.value)
-					str += 
-						$("<input>")
-						.attr("type", "hidden")
-						.attr("name", "auths[" + i + "].auth")
-						.attr("value", this.value).get(0).outerHTML;
-					str += 
-						$("<input>")
-						.attr("type", "hidden")
-						.attr("name", "auths[" + i + "].userId")
-						.attr("value", $(this).closest("form").find("h4").text()).get(0).outerHTML;
-						
-				});
-				console.log(str);
-				$(this).closest("form").append(str);
-				console.log($(this).closest("form").serializeArray());
-				
-				$(this).closest("form").submit();
-			}) 
-			
-			// 주소 팝업 API
- 			$(".btn-addr").click(function() {
- 				var $form = $(this).closest("form");
-				event.preventDefault(); 
-			    new daum.Postcode({
-			        oncomplete: function(data) {
-			            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-			            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-			            /* 
-			            $("form [name='roadAddr']").val(data.roadAddress);
-			            $("form [name='jibunAddr']").val(data.jibunAddress);
-			            $("form [name='zipNo']").val(data.zonecode); */
-			            $form.find("[name='roadAddr']").val(data.roadAddress);
-			            $form.find("[name='jibunAddr']").val(data.jibunAddress);
-			            $form.find("[name='zipNo']").val(data.zonecode); 
-			            
-			        }
-			    }).open()
-			}); 
-		})	
     	
-	</script>
 </body>
 </html>

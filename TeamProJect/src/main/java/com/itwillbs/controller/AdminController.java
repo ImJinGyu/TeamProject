@@ -20,8 +20,8 @@ import com.itwillbs.service.MemberService;
 @Controller
 public class AdminController {
 	
-//	@Inject
-//	private BusinessService businessService;
+	@Inject
+	private MemberService memberService;
 	
 	@RequestMapping(value = "/admin/a_myPage", method = RequestMethod.GET)
 	public String a_myPage() {
