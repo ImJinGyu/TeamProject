@@ -8,6 +8,27 @@ public class PensionDTO {
 	private String pen_address;
 	private String pen_zipcode;
 	private String pen_number;
+	private String pen_image;
+	private String rv;
+	
+
+	//검색필터
+	private String type;
+	private String keyword;
+
+
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	public String getPen_id() {
 		return pen_id;
 	}
@@ -44,7 +65,19 @@ public class PensionDTO {
 	public void setPen_number(String pen_number) {
 		this.pen_number = pen_number;
 	}
-	
+	public String getPen_image() {
+		return pen_image;
+	}
+	public void setPen_image(String pen_image) {
+		this.pen_image = pen_image;
+	}
+
+	public String getRv() {
+		return rv;
+	}
+	public void setRv(String rv) {
+		this.rv = rv;
+	}
 	
 	
 	

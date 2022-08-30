@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.SearchDAO;
 import com.itwillbs.domain.PensionDTO;
+import com.itwillbs.domain.PensionRmDTO;
 
 @Service
 public class SearchService {
@@ -20,8 +21,20 @@ public class SearchService {
 	
 	
 	public List<PensionDTO> getPensionList() {
-		System.out.println("서치서비스 getPensionList");
+//		System.out.println("서치서비스 getPensionList");
 		return searchDAO.getPensionList();
 	}
+
+
+//	public List<PensionRmDTO> getRoomList() {
+//		return searchDAO.getRoomList();
+//	}
+//
+//
+//	public ReviewDTO getReviewCount() {
+//		return searchDAO.getReviewCount();
+//	}
+//
+
 
 }

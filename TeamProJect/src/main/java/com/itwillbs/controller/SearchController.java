@@ -54,8 +54,25 @@ public class SearchController {
 	@RequestMapping(value = "/search/searchP", method = RequestMethod.GET)
 	public String list(HttpServletRequest request, Model model) {
 
-		List<PensionDTO> pensionList= searchService.getPensionList();
+		/* 검색창 날짜 */
+		DateParse dateParse = new DateParse();
+		String today = dateParse.getTodayPlus(0);
+		String tomorrow = dateParse.getTodayPlus(1);
+		request.setAttribute("today", dateParse.strToDate(today));
+		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
+		
+		
+		/* 검색된 펜션 리스트 불러오기 */
+		List<PensionDTO> pensionList = searchService.getPensionList();
 		model.addAttribute("pensionList", pensionList);
+		
+		/* 펜션 방 정보 불러오기 */
+		/*
+		 * List<PensionRmDTO> rmList = searchService.getRoomList();
+		 * model.addAttribute("rmList", rmList);
+		 * 
+		 * ReviewDTO rvDTO = searchService.getReviewCount();
+		 */
 		
 		return "teamProJect/search/searchP";
 		

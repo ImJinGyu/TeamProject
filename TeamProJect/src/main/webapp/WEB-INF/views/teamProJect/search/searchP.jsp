@@ -25,71 +25,96 @@
 <body>
 <%@ include file="../header.jsp" %>
 <!--헤더 -->
-    <div style="background-color: #f5f5f5">
 
-		<!-- 메인페이지 검색 창 -->
-		<div class=main_first_box>
-			<form action="${pageContext.request.contextPath}/search/searchP" name="f" method="get">
-				<div class="mtb"></div><br>
-				<div class=main_twice_box>
-					<input type="hidden" name="bu_id" id="bu_id" value="1">
-					<div class="main_search_all"> <!-- style="padding-top: 10px;" -->
-						<div class=main_checkinout>
-							<div role=button>
-								<div class="main_checkinout_buttonbox">
-									<div>
-										<input type='date' id="checkin" min="${today }" value="${today }" class="main_checkin_1" name="checkin" onchange="dateChk()" required><!-- min="${today }" value="${today }" -->
-									</div>
-									<div>
-										<input type='date' id="checkout" min="${tomorrow }" value="${tomorrow }" class="main_checkout_1" name="checkout" onchange="dateChk()" required><!-- min="${tomorrow }" value="${tomorrow }" -->
-									</div>
-								</div>
-							</div>
+<div style="padding-bottom: 60px;"></div>
+
+		<!-- 검색창 시작 -->
+	<div class="search container-fluid" style="background-color: gainsboro;">
+		<div class="container" style="background-color: white; border-radius: 10px; padding: 2.5px 2.5px 2.5px 2.5px;">
+			<form action="${pageContext.request.contextPath}/search/searchP" name="f" method="get"  style="margin: auto ;border: solid white !important;">
+				<div class="row form-detail" style="margin: auto;">
+					<div class="col-md-2 ffb">
+                            <input type='date' id="checkin" min="${today }" value="${today }" class="main_checkin_1" name="checkin" onchange="dateChk()"
+                            style="width: 99%; margin: 0px 2.25px;" required>
+					</div>
+					<div class="col-md-2 ffb">
+                            <input type='date' id="checkout" min="${tomorrow }" value="${tomorrow }" class="main_checkout_1" name="checkout" onchange="dateChk()"
+                            style="width: 99%; margin: 0px 2.25px; border-left: 0;" required>
+					</div>
+					<div class="col-md-1 ffb">
+<!-- 					<input type="hidden" name="ro_count" value="2"> -->
+						<!-- select 저장용 -->
+						<div>
+                           <select id="select_ro_count" class="form-select form-select-lg" onchange="change_ro_count()"
+                           style="border: none; width: 99%; height: 48px; margin: 0px 2.25px; padding: 13px;">
+                              <option value="1">1 명</option>
+                              <option value="2" selected>2 명</option>
+                              <option value="3">3 명</option>
+                              <option value="4">4 명</option>
+                           </select>
 						</div>
-						<div class=main_count_box>
-							<div role="button" >
-								<input type="hidden" name="ro_count" value="2">
-								<!-- select 저장용 -->
-								<select id="select_ro_count" class="form-select form-select-lg" onchange="change_ro_count()" style="border: none; width: 50px;">
-									<option value="1">1</option>
-									<option value="2" selected>2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-								</select>
-							</div>
-						</div>
-						<div style="border-left: 1px solid #c8c8c8;">
-							<input type=search class=main_search_text placeholder=지역,숙소명 name="pen_address" required>
-						</div>
-						<div class="main_search_button_box">
-							<button type=submit style="border: none;" class="btn main_search_button">검 색</button>
-						</div>
+					</div>
+                 	<div class="col-md-2 ffb">
+						<input type=search class=main_search_text placeholder="지 역" name="bu_address"
+						style="width:99%; height: 48px; margin: 0px 2.25px; padding-left: 0;"><!--  required -->
+					</div>
+					<div class="col-md-2 ffb">
+						<input type=search class=main_search_text placeholder="숙 소 명" name="bu_address"
+						style="width:99%; height: 48px; margin: 0px 2.25px; padding-left: 0;"><!--  required -->
+					</div>
+					<div class="col-md-3 ffb">
+						<button class="btn btn-primary w-100" type=submit
+						style="border: none; border-radius: 10px; height: 48px; font-size: 27px; font-family: 'Do Hyeon', sans-serif;" >검 색</button>
 					</div>
 				</div>
 			</form>
 		</div>
+	</div>
+<!-- 검색창 끝 -->
 		
-		<!-- 메인검색창 끝 -->
-		
-<table border="1">
-<tr><td>펜션 이름</td><td>펜션 주소</td></tr>
-<c:forEach var="PensionDTO" items="${pensionList }">
-<tr>
-	<%-- <td>${PensionDTO.pen_image }</td> --%>
-    <td>${PensionDTO.pen_name }</td>
-    <td>${PensionDTO.pen_address }</td>
-<%--     <td>${PensionDTO.rm_price }</td> --%>  <!-- 방가격중 최저가가 나타나도록 구현 -->
-    <td><!-- 리뷰 갯수  --></td></tr>	<!-- 펜션 리뷰개수 쿼리 -->
-</c:forEach>
-</table>
-	
+
+	 		<!-- 펜션리스트 불러오기 -->
+	 	<div class="section search-result-wrap mt-4">
+			<div class="container">
+				<div class="row posts-entry" style="padding-bottom: 10px;">
+				   <c:forEach var="PensionDTO" items="${pensionList }" varStatus="status">
+					<div class="col-lg-8 pensionlist">
+						<div class="row text-start pt-5 border-top mb-4"></div>
+						<div class="blog-entry d-flex blog-entry-search-item pensions"
+							data-pensionid="6867">
+							<button class="img-link me-4">
+							<a href="/pension/detail?pensionid=6867&amp;startDate=2022/08/28&amp;endDate=2022/08/29"class="bg-white border-0">
+								<img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="Image" class="img-fluid">
+							</a>
+							</button>
+							<div class="pensionInfo">
+								<h2><a href="/pension/detail?pensionid=6867&amp;startDate=2022/08/28&amp;endDate=2022/08/29"class="bg-white border-0">${PensionDTO.pen_name }</a>
+								</h2>
+								<p>${PensionDTO.pen_address }</p>
+								<%-- <p>${rmList[status.index].rm_price }원</p> --%>
+								<p>리뷰 ${PensionDTO.rv }개</p>
+							</div>
+						</div>
+					</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+
+
+     <%@ include file="../footer.jsp" %>
+	 
 
 
 
 </div>
-			<!-- 숙소 리스트 -->
-
-			<!-- 숙소 리스트 끝 -->
-
+    <script src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/plugins/slider/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/script.js"></script>
 </body>
+
+
 </html>
