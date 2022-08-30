@@ -103,8 +103,6 @@ public class MemberController {
 		
 		String id = dupMap.get("user_id");
 		String t = dupMap.get("user_type");
-		System.out.println(id);
-		System.out.println(t);
 		
 		if(id.equals("")) return "false1";
 		if(!(id.contains("@"))) return "false2";
@@ -114,26 +112,51 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/member/passcheck", method = RequestMethod.GET)
-	public String passcheck() {
+	public String passcheck(HttpServletRequest req, Model model) {
+		model.addAttribute("type", req.getParameter("type"));
 		return "teamProJect/member/passcheck";
 		
 	}
 	
-	@RequestMapping(value = "/member/modify", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/member/deletecustom", method = RequestMethod.GET)
+	public String deletecustom(MemberDTO mT, HttpSession session) {
+		String user_id = session.getAttribute("user_id").toString();
+		String user_type = session.getAttribute("user_type").toString();
+		mT.setUser_id(user_id);
+		mT.setUser_type(user_type);
+		service.deleteUser(mT);
+		session.invalidate();
+		return "teamProJect/member/deletecustom";
+	}
+	
+	@RequestMapping(value = "/member/userpasscheck", method = {RequestMethod.GET, RequestMethod.POST})
 	public String modify(MemberDTO mT, HttpSession session, HttpServletRequest req, Model model) {
+		String formtype = req.getParameter("type");
+		
 		mT.setUser_id(session.getAttribute("user_id").toString());
 		mT.setUser_type(session.getAttribute("user_type").toString());
-		System.out.println(mT);
 		Map<String, String> mT2 = service.selectUser(mT);
-		System.out.println(mT2);
 		model.addAttribute("MemberDTO", mT2);
-		if(mT.getPassword() == null) return "teamProJect/member/modify";
+		
+		//API 로그인 회원
+		if(mT.getPassword() == null) {
+			if(formtype.equals("u")) {
+				return "teamProJect/member/modify";
+			}else if(formtype.equals("d")){
+				return "redirect:/member/deletecustom";
+			}
+		}
 		
 		mT.setUser_id(session.getAttribute("user_id").toString());
 		mT.setUser_type(session.getAttribute("user_type").toString());
 		Map<String, String> userMap = service.userlogin(mT);
 		if(mT.getPassword().equals(userMap.get("PASSWORD").toString())) {
-			return "teamProJect/member/modify";
+			if(formtype.equals("u")) {
+				return "teamProJect/member/modify";
+			}else if(formtype.equals("d")){
+				return "redirect:/member/deletecustom";
+			}
+			
 		}
 		req.setAttribute("msg", "패스워드가 일치하지 않습니다.");
 		return "teamProJect/member/loginPro";

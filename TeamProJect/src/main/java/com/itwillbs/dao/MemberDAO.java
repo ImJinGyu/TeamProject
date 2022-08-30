@@ -39,4 +39,7 @@ public class MemberDAO {
 	public Map<String, String> selectUser(MemberDTO mT) {
 		return sqlSession.selectOne(NAMESPACE + ".selectUser", mT);
 	}
+	public void deleteUser(MemberDTO mT) {
+		sqlSession.delete(NAMESPACE + ".deleteUser", mT);
+	}
 }

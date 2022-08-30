@@ -72,7 +72,7 @@
 				<div class="col-6 col-lg-4">
 					<div class="box-feature mb-4">
 						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/passcheck">회원정보 수정</a></h3>
+						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/passcheck?type=u">회원정보 수정</a></h3>
 						<p class="text-black-50">회원정보를 수정합니다.</p>
 <!-- 						<p><a href="/member/modify" class="learn-more">페이지 이동</a></p> -->
 					</div>
@@ -81,7 +81,7 @@
 				<div class="col-6 col-lg-4">
 					<div class="box-feature mb-4">
 						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/settings.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/deletecustom">회원 탈퇴</a></h3>
+						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/passcheck?type=d">회원 탈퇴</a></h3>
 						<p class="text-black-50">회원을 탈퇴합니다.</p>
 <!-- 						<p><a href="/member/modify" class="learn-more">페이지 이동</a></p> -->
 					</div>

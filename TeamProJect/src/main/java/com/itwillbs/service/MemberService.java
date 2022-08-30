@@ -38,4 +38,8 @@ public class MemberService {
 	public Map<String, String> selectUser(MemberDTO mT) {
 		return dao.selectUser(mT);
 	}
+	
+	public void deleteUser(MemberDTO mT) {
+		dao.deleteUser(mT);
+	}
 }

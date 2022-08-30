@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
     <c:if test="${fn:contains(sessionScope.user_id,'_naverAPIlogin') || fn:contains(sessionScope.user_id,'_kakaoAPIlogin')}">
     <script type="text/javascript">
-    	location.href="modify";
+    	location.href="userpasscheck?type=${type}";
     </script>
     
     </c:if>
@@ -39,8 +39,12 @@
 </div>
 
 <!-- 마이페이지 폼 시작-->
-<form action="modify" id="fr" method="post">
-
+<form action="userpasscheck?type=${type}" id="fr" method="post">
+<%-- <c:if test="${type == 'd'}"> --%>
+<!--  <script type="text/javascript"> -->
+<!-- //  	fr.action = "deletecustom" -->
+<!--  </script> -->
+<%-- </c:if> --%>
  <div class="section bg-light" style="margin-top: 25px;">
 		<div class="container">
 			<div class="row">
