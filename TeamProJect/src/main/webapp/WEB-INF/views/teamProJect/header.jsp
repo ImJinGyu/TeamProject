@@ -16,6 +16,29 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
+    
+       <style>
+#menu a {
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+}
+#menu a::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: '';
+  width: 0;
+  height: 1px;
+  background-color: rgb(235,70,70);
+  transition: .3s;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+#menu a:hover::after {
+  width: 100%;
+}
+    </style>
 </head>
 
     <body>
@@ -31,14 +54,15 @@
                 </div>
                 <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
                     <ul>
-                        <li><a href="${pageContext.request.contextPath }/search/main">회원가입</a></li>
-                        <li><a href="${pageContext.request.contextPath }/reservationList/reserveList">로그인</a></li>
+                        <li><a href="${pageContext.request.contextPath }/member/join">회원가입</a></li>
+                        <li><a href="${pageContext.request.contextPath }/member/login">로그인</a></li>
                      <c:choose> 
 						<c:when test="${sessionScope.user_id == null}">
-						<li><a href="${pageContext.request.contextPath }/member/login">예약내역</a></li>
-						<li><a href="${pageContext.request.contextPath }/member/join">부산온나</a></li>
+						<li><a href="${pageContext.request.contextPath }/reservationList/reserveList">예약내역</a></li>
+						<li><a href="${pageContext.request.contextPath }/search/main">부산온나</a></li>
 							</c:when> 
 							<c:otherwise>
+									
 								<li><a href="${pageContext.request.contextPath }/member/logout">로그아웃</a></li>
 							</c:otherwise> 
 						</c:choose>

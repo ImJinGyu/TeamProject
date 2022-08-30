@@ -838,3 +838,22 @@ address {
 	font-weight: 900;
 	margin-bottom: 10px;
 }
+.learn-more {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  color: #007bff; }
+  
+ .learn-more:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    height: 2px;
+    background-color: #005555;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease; }
+ .learn-more:hover:before {
+    width: 0%; }
