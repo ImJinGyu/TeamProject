@@ -18,8 +18,20 @@ public class BusinessDAO {
 	private static final String namespace = "com.itwillbs.mappers.BusinessMapper";
 
 	
-	public void registerRoom(BusinessDTO businessDTO) {
-		sqlSession.insert(namespace+".registerRoom", businessDTO);
+	public void registerRoom(BusinessDTO businessDTO3) {
+		sqlSession.insert(namespace+".registerRoom", businessDTO3);
+	}
+
+
+	public void registerPen(BusinessDTO businessDTO) {
+		sqlSession.insert(namespace+".registerPen", businessDTO);
+		
+	}
+
+
+	public void pensionAttach(BusinessDTO businessDTO2) {
+		sqlSession.insert(namespace+".pensionAttach", businessDTO2);
+		
 	}
 
 	

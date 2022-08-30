@@ -5,13 +5,22 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<!-- 디비연결 -->
+ 	<!-- 팀플 디비연결 --> 
 	<bean id ="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://teamproject.c8ciejik5vsh.us-west-1.rds.amazonaws.com:3306/tpdb?serverTimezone=UTC"></property>
 		<property name="username" value="admin"></property>
 		<property name="password" value="12345678"></property>
 	</bean>
+	
+	<!-- 테스트 디비연결 -->
+<!-- 	1,2단계 디비연결 객체생성 -->
+<!-- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property> -->
+<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/test1?serverTimezone=UTC"></property> -->
+<!-- 		<property name="username" value="root"></property> -->
+<!-- 		<property name="password" value="1234"></property> -->
+<!-- 	</bean> -->
 	<!-- 마이바티스 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 디비연결객체 -->

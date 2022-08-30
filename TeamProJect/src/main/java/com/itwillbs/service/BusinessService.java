@@ -14,7 +14,7 @@ public class BusinessService {
 	private BusinessDAO businessDAO;
 
 	
-	public void registerRoom(BusinessDTO businessDTO) {
+	public void registerRoom(BusinessDTO businessDTO3) {
 		
 //		if(businessDAO.getMaxNum() == null) {
 //			businessDTO.setRoomNum("1");
@@ -23,8 +23,22 @@ public class BusinessService {
 //		}
 		
 		
-		businessDAO.registerRoom(businessDTO);
+		businessDAO.registerRoom(businessDTO3);
 	}
+
+
+	public void registerPen(BusinessDTO businessDTO) {
+		
+		businessDAO.registerPen(businessDTO);
+		
+	}
+
+
+	public void pensionAttach(BusinessDTO businessDTO2) {
+		businessDAO.pensionAttach(businessDTO2);
+		
+	}
+	
 	
 	
 }

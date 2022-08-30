@@ -18,9 +18,45 @@
 		FROM PENSION
 </select>
 
+<!-- 	<insert id="registerRoom"> -->
+<!-- 		INSERT INTO ROOM_ATTACH -->
+<!-- 		VALUES(#{RM_NAME}, #{RM_IMAGE}) -->
+<!-- 	</insert> -->
+
+	<insert id="registerPen">
+		INSERT INTO PENSION(
+							PEN_ID,
+		       				USER_ID,
+		       				PEN_NAME,
+		       				PEN_ADDRESS,
+		       				PEN_ZIPCODE,
+		       				PEN_NUMBER
+							)
+		VALUES(
+			   #{PEN_ID},
+		       #{USER_ID},
+		       #{PEN_NAME},
+		       #{PEN_ADDRESS},
+		       #{PEN_ZIPCODE},
+		       #{PEN_NUMBER})
+	</insert>
+	
+	<insert id="pensionAttach">
+		INSERT INTO PENSION_ATTACH(PEN_ID,PEN_IMAGE)
+		VALUES(
+		       #{PEN_ID}, 
+		       #{PEN_IMAGE})
+	</insert>		
+	
 	<insert id="registerRoom">
 		INSERT INTO ROOM_ATTACH
-		VALUES(#{RM_NAME}, #{RM_IMAGE})
+		VALUES(
+		       #{RM_NAME}, 
+<!-- 		       #{checkin},  -->
+<!-- 		       #{checkout},  -->
+<!-- 		       #{people},  -->
+<!-- 		       #{RM_Price},  -->
+		       #{RM_IMAGE})
 	</insert>
 	
 <!-- 	<select id="getMaxNum" resultType="java.lang.Integer"> -->

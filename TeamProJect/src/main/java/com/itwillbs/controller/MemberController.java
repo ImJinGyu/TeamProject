@@ -114,5 +114,17 @@ public class MemberController {
 		if(uMap == null) return "true";
 		return "false";
 	}
+	
+	@RequestMapping(value = "/member/mypage/listReservation", method = RequestMethod.GET)
+	public String listReservation() {
+				
+		return "teamProJect/member/mypage/listReservation";
+	}
+	
+	@RequestMapping(value = "/member/mypage/listInquiry", method = RequestMethod.GET)
+	public String listInquiry() {
+				
+		return "teamProJect/member/mypage/listInquiry";
+	}
 }
 

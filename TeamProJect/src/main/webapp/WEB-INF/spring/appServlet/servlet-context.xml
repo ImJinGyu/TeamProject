@@ -35,7 +35,11 @@
 	
 <!-- 업로드폴더 경로 src/main/webapp/resources/upload-->
 <beans:bean id="uploadPath" class="java.lang.String">
-	<beans:constructor-arg value="D:\\TeamProject\\TeamProJect\\src\\main\\webapp\\resources\\upload"></beans:constructor-arg>
+	<beans:constructor-arg value="D:\\workspace_sts1\\TeamProject\\TeamProJect\\src\\main\\webapp\\resources\\upload"></beans:constructor-arg>
 </beans:bean>
+
+<!-- <beans:bean id="uploadPath2" class="java.lang.String"> -->
+<!-- 	<beans:constructor-arg value="D:\\TeamProject\\TeamProJect\\src\\main\\webapp\\resources\\upload2"></beans:constructor-arg> -->
+<!-- </beans:bean> -->
 	
 </beans:beans>
