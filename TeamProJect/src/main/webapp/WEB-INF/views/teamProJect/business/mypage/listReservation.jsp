@@ -20,85 +20,56 @@
 
 <body>
 <!--헤더 -->
-<%@ include file="../header.jsp" %>
+<%@ include file="../../header.jsp" %>
  
 <!--  ************************* Page Title Starts Here ************************** -->
 <div class="page-nav no-margin row">
     <div class="container">
         <div class="row">
-            <h2>마이페이지</h2>
+            <h2>예약내역조회</h2>
         </div>
     </div>
 </div>
 
 <!-- 마이페이지 폼 시작-->
+<!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- DataTales Example -->
+                    <div class="card shadow my-5">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">예약내역조회</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>예약번호</th>
+                                            <th>숙소이름</th>
+                                            <th>체크인</th>
+                                            <th>체크아웃</th>
+                                            <th>승인상태</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<c:forEach items="${reservation}" var="r">
+	                                        <tr>
+	                                            <td class="text-center">${r.reservationNum}</td>
+	                                            <td class="text-center"><a href="/pension/detail?pensionid=${r.pensionid}" class="text-dark">${r.roomName}</a></td>
+	                                            <td class="text-center">${r.checkin}</td>
+	                                            <td class="text-center">${r.checkout}</td>
+	                                            <td class="text-center">${r.reservationStatus ? "예약" : "취소"}</td>
+	                                        </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
- <div class="section bg-light" style="margin-top: 25px;">
-		<div class="container">
-			<div class="row">
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/note.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold">예약내역 조회</h3>
-						<p class="text-black-50">펜션 예약 내역을 조회합니다.</p>
-						<p><a href="/business/mypage/listReservation" class="learn-more">페이지 이동</a></p>
-					</div>
-				</div>
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/get-money.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold">포인트내역 조회</h3>
-						<p class="text-black-50">포인트 내역을 조회합니다.</p>
-						<p><a href="#" class="learn-more" id="mypagePoint" onclick="alert1()">페이지 이동</a></p>
-					</div>
-				</div>
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/chat.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold">내가 쓴 댓글 조회</h3>
-						<p class="text-black-50">내가 쓴 댓글을 조회합니다.</p>
-						<p><a href="#" class="learn-more" id="mypageReply" onclick="alert1()">페이지 이동</a></p>
-					</div>
-				</div>
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/phone-call.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold">1:1 문의내역</h3>
-						<p class="text-black-50">1:1 문의내역을 조회합니다.</p>
-						<p><a href="/business/mypage/listInquiry" class="learn-more">페이지 이동</a></p>
-					</div>
-				</div>	
-
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold">회원정보 수정</h3>
-						<p class="text-black-50">회원정보를 수정합니다.</p>
-						<p><a href="/business/modify" class="learn-more">페이지 이동</a></p>
-					</div>
-				</div>
-				
-				<div class="col-6 col-lg-4">
-					<div class="box-feature mb-4">
-						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/settings.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold">사업자 페이지</h3>
-						<p class="text-black-50">사업자 페이지로 이동합니다.</p>
-						<p><a href="${pageContext.request.contextPath }/business/b_index" class="learn-more">페이지 이동</a></p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</div>
 
 <!-- 마이페이지 폼 끝-->
-
-<script type="text/javascript">
-		function alert1() {
-		
-			alert('준비중입니다.');
-		}
-	</script>
 
 <!--  ************************* Footer Start Here ************************** --> 
      
