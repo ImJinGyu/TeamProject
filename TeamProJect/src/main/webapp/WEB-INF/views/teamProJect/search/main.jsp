@@ -28,7 +28,7 @@
     font-size: 26px;
     display: block;
     font-weight: 700;
-    --bs-gutter-x: 1.5rem;
+    --bs-gutter-x: 1.0rem;
     --bs-gutter-y: 0;
     text-align: center!important;
     -webkit-tap-highlight-color: rgba(0,0,0,0);

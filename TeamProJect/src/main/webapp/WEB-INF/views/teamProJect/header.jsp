@@ -31,19 +31,17 @@
                 </div>
                 <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
                     <ul>
-                        <li><a href="${pageContext.request.contextPath }/search/main">부산온나</a></li>
-                        <li><a href="${pageContext.request.contextPath }/reservationList/reserveList">예약내역</a></li>
-                        <li>
-                        <c:choose> 
-							<c:when test="${sessionScope.user_id == null}">
-								<li><a href="${pageContext.request.contextPath }/member/login">로그인</a></li>
-								<li><a href="${pageContext.request.contextPath }/member/join">회원가입</a></li>
+                        <li><a href="${pageContext.request.contextPath }/search/main">회원가입</a></li>
+                        <li><a href="${pageContext.request.contextPath }/reservationList/reserveList">로그인</a></li>
+                     <c:choose> 
+						<c:when test="${sessionScope.user_id == null}">
+						<li><a href="${pageContext.request.contextPath }/member/login">예약내역</a></li>
+						<li><a href="${pageContext.request.contextPath }/member/join">부산온나</a></li>
 							</c:when> 
 							<c:otherwise>
 								<li><a href="${pageContext.request.contextPath }/member/logout">로그아웃</a></li>
 							</c:otherwise> 
 						</c:choose>
-						</li>
 <!--                         <li><a href="contact-us.html">Contact US</a></li> -->
                     </ul>
                 </div>
