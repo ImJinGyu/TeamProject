@@ -21,13 +21,18 @@
     <script src="${pageContext.request.contextPath}/resources/js/join.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/email_certify_ajax.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/daum_address_api.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 </head>
 <body>
+<script>
+AOS.init({duration: 1000});
+</script>
 
  <div class="login_form_width" style="padding-top:100px; margin-bottom: 100px">
 
 <!-- 고객 로그인 폼 -->
- <div id="member-login" class="container tab-pane active">		
+ <div id="member-login" class="container tab-pane active" data-aos="flip-left" data-aos-anchor-placement="top-bottom" >		
   <div class="login">
     
    <form class="needs-vallidation" action="repassPro?user_id=${memberDTO.user_id}&user_type=${memberDTO.user_type}" method="post" onsubmit="return repassfun()">
