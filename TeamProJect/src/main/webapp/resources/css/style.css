@@ -857,3 +857,17 @@ address {
     transition: .3s all ease; }
  .learn-more:hover:before {
     width: 0%; }
+
+ /* searchP 페이지 */    
+ /* 숙소 이미지 크기 */
+.img-link {
+	max-width: 300px;
+}
+
+.pensionInfo {
+	padding-left: 20px;
+}
+
+.pensionInfo p {
+	padding-bottom: 10px;
+} 

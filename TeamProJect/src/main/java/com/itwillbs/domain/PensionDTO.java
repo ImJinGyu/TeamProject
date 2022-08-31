@@ -10,6 +10,7 @@ public class PensionDTO {
 	private String pen_number;
 	private String pen_image;
 	private String rv;
+	private String rm_price;
 	
 
 	//검색필터
@@ -77,6 +78,12 @@ public class PensionDTO {
 	}
 	public void setRv(String rv) {
 		this.rv = rv;
+	}
+	public String getRm_price() {
+		return rm_price;
+	}
+	public void setRm_price(String rm_price) {
+		this.rm_price = rm_price;
 	}
 	
 	
