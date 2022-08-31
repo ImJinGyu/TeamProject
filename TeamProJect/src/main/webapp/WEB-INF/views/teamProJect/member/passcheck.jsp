@@ -23,9 +23,6 @@
     </script>
     
     </c:if>
-    <!-- AOS 라이브러리 불러오기-->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 </head>
 
 <body>
@@ -48,11 +45,8 @@
 <!-- //  	fr.action = "deletecustom" -->
 <!--  </script> -->
 <%-- </c:if> --%>
-<script> 
-AOS.init({duration: 1000});// 자바스크립트로 init()을 해야 동작한다.
-        </script>
  <div class="section bg-light" style="margin-top: 25px;">
-		<div class="container" data-aos="flip-left" data-aos-anchor-placement="top-center">
+		<div class="container">
 			<div class="row">
 			<div class="col-6 col-lg-4"></div>
 				<div class="col-6 col-lg-4">

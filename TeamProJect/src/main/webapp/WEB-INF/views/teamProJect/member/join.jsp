@@ -28,23 +28,15 @@
  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/modal.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/join.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 
 
 </head>
 <body>
-<script>
-AOS.init({
-	  duration: 1000
-	});
-
-</script>
 <div class="layer_fix pop_login pop_mem_reserve fix_disable">
     <section>
     <form id="joinForm" action="joinPro" method="get" onsubmit="return joincheck()">
 
-		<div  data-aos="fade-down" data-aos-easing="ease-out-cubic" data-aos-duration="1500" id ="id-finish">
+
     		<div class="logo">
      		<a href="${pageContext.request.contextPath }/search/main"><img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png"></a>
     		</div>
@@ -66,70 +58,60 @@ AOS.init({
 				<label id="gcuseremail_msg" class="validate_msg_label" style="color: red;"></label>
 				<input type="hidden" name="user_type" id="user_type" value="1">
             </div><span id="checkIdResult"><!-- 이메일아이디 일치 여부 표시 영역 --></span><br>
-            <button type="button" class="btn btn-danger" id="emailbutton" onclick="emailcer()" disabled>인증번호 전송</button>  
+            <button type="button" class="btn btn-danger" id="emailbutton" onclick="emailcer()" disabled>인증번호 전송</button>
             <div class="inp_type_2 form-errors" id="emailcertify" style="margin-bottom: 3px; display:none "><!-- focus / err -->
                 <input type="text" name="uemail" id="emailcerfifytext" placeholder="인증번호" maxlength="6"  onblur='certifycheck()'>
                 <input type="hidden" id="emailcheck" value="false">
                 <input type="hidden" name="user_zipcode" id="user_zipcode" value="0">
             </div></div><span id="mail-check-warn"><!-- 인증번호 일치여부 --></span><br>
+            
+            <b>비밀번호</b>
+            <div class="inp_type_2 form-errors form-password-rule">
+                <input type="password" name="password" placeholder="비밀번호를 입력해주세요." id="password" onkeyup="checkPass(this.value)">
+				<label id="new_pw_msg" class="validate_msg_label"></label>
+				<div id="passmsg"><!-- 패스워드 정규식 조건 만족 여부1 --></div>
             </div>
-            <div data-aos="fade-right"  data-aos-delay="1500" data-aos-duration="1000">
-	            <b>비밀번호</b>
-	            <div class="inp_type_2 form-errors form-password-rule" >
-	                <input type="password" name="password" placeholder="비밀번호를 입력해주세요." id="password" onkeyup="checkPass(this.value)">
-					<label id="new_pw_msg" class="validate_msg_label"></label>
-					<div id="passmsg"><!-- 패스워드 정규식 조건 만족 여부1 --></div>
-	            </div>
-			</div>	            
-			<div data-aos="fade-right"  data-aos-delay="1700" data-aos-duration="1000">
-	            <b>비밀번호 확인</b><span id="checkRetypePassResult"><!-- 비밀번호 일치 여부 표시 영역 --></span>
-	            <div class="inp_type_2 form-errors">
-	                <input type="password" name="password2" placeholder="비밀번호를 확인해주세요." id="password2" onblur="checkRetypePass(this.value)">
-					<label id="new_pw_re_msg" class="validate_msg_label"></label>
-					<div id="pass2msg"><!-- 패스워드 일치여부 --></div>
-	            </div>
-	        </div>
-				<div data-aos="fade-right"  data-aos-delay="1900" data-aos-duration="1000">
-	            <b>이름</b>
-	            <div class="inp_type_2 form-errors"><!-- focus / err -->
-	                <input type="text" name="user_name" id="user_name" placeholder="이름을 입력해주세요.">
-					<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
-	            </div>
-			</div>
-			
-			<div data-aos="fade-right"  data-aos-delay="2100" data-aos-duration="1000">
-	            <b>주민번호</b>
-	            <div class="inp_type_2 form-errors"><!-- focus / err -->
-	                <input type="text" name="jumin" id="jumin" placeholder="-(하이픈)없이 숫자만 13자리" maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-					<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
-	            </div>
+
+            <b>비밀번호 확인</b><span id="checkRetypePassResult"><!-- 비밀번호 일치 여부 표시 영역 --></span>
+            <div class="inp_type_2 form-errors">
+                <input type="password" name="password2" placeholder="비밀번호를 확인해주세요." id="password2" onblur="checkRetypePass(this.value)">
+				<label id="new_pw_re_msg" class="validate_msg_label"></label>
+				<div id="pass2msg"><!-- 패스워드 일치여부 --></div>
+            </div>
+
+            <b>이름</b>
+            <div class="inp_type_2 form-errors"><!-- focus / err -->
+                <input type="text" name="user_name" id="user_name" placeholder="이름을 입력해주세요.">
+				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
+            </div>
+
+            <b>주민번호</b>
+            <div class="inp_type_2 form-errors"><!-- focus / err -->
+                <input type="text" name="jumin" id="jumin" placeholder="-(하이픈)없이 숫자만 13자리" maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
             </div>
             
-            <div data-aos="fade-right"  data-aos-anchor-placement="top-bottom" data-aos-delay="2300">
-	            <b>휴대폰 번호</b>
-	            <div class="inp_type_2 form-errors"><!-- focus / err -->
-	                <input type="tel" name="user_phonenumber" id="user_phonenumber" placeholder="ex)000-0000-0000" maxlength="13" oninput="this.value = this.value.replace(/[^0-9-]/g, '').replace(/(\..*)\./g, '$1');">
-					<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
-	            </div>
+            <b>휴대폰 번호</b>
+            <div class="inp_type_2 form-errors"><!-- focus / err -->
+                <input type="tel" name="user_phonenumber" id="user_phonenumber" placeholder="ex)000-0000-0000" maxlength="13" oninput="this.value = this.value.replace(/[^0-9-]/g, '').replace(/(\..*)\./g, '$1');">
+				<label id="gcusertel_msg" class="validate_msg_label" style="color: red;"></label>
             </div>
-            
-			<div data-aos="fade-up" data-aos-anchor="#logo" data-aos-delay="2900">
-	            <b>주소</b>
-	            <button type="button" class="btn btn-danger" id="" onclick="addressSearch()">검색</button>
-	
-	            <div class="inp_type_2 form-errors">
-	            <input type="text" name="postNum" class="" value="" id="postNum" placeholder="우편번호(검색 버튼 클릭)" readonly/> 
-	            </div>
-	
-	            <div class="inp_type_2 form-errors">
-	            <input type="text" name="user_address" class="" value="" id="user_address" placeholder="주소(검색 버튼 클릭)" style="" readonly/> 
-	            </div>
-	<!--             ada -->
-	            <div class="inp_type_2 form-errors">
-	            <input type="text" name="user_address2" class="" value="" id="user_address2" placeholder="상세주소" style=""/> 
-	            </div>
-	            <button type="submit" class="btn btn-danger w-100" style="margin-bottom: 20px; font-size: 27.7px; font-family: 'Do Hyeon', sans-serif;">가 입 하 기</button>
+
+            <b>주소</b>
+            <button type="button" class="btn btn-danger" id="" onclick="addressSearch()">검색</button>
+
+            <div class="inp_type_2 form-errors">
+            <input type="text" name="postNum" class="" value="" id="postNum" placeholder="우편번호(검색 버튼 클릭)" readonly/> 
             </div>
+
+            <div class="inp_type_2 form-errors">
+            <input type="text" name="user_address" class="" value="" id="user_address" placeholder="주소(검색 버튼 클릭)" style="" readonly/> 
+            </div>
+<!--             ada -->
+            <div class="inp_type_2 form-errors">
+            <input type="text" name="user_address2" class="" value="" id="user_address2" placeholder="상세주소" style=""/> 
+            </div>
+            <button type="submit" class="btn btn-danger w-100" style="margin-bottom: 20px; font-size: 27.7px; font-family: 'Do Hyeon', sans-serif;">가 입 하 기</button>
         </div>
     </form>
 </section>
