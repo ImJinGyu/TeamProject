@@ -21,8 +21,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/daum_address_api.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 </head>
 
 <body>
@@ -37,9 +35,7 @@
         </div>
     </div>
 </div>
-<script>
-AOS.init({duration: 1000});
-</script>
+
 <!-- 마이페이지 폼 시작-->
 <form action="updateuser" method="post">
 
@@ -51,20 +47,20 @@ AOS.init({duration: 1000});
 					<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px; visibility: hidden;">
 					<h3 class="text-black mb-3 font-weight-bold" style="visibility: hidden;">회원정보 수정</h3>
 					<div class="form-group">
-					 <input class="form-control" type="text" value="이름" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;"data-aos="fade-right" data-aos-delay="100">
+					 <input class="form-control" type="text" value="이름" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
 					 <c:if test="${not fn:contains(sessionScope.user_id,'APIlogin')}">
-						<input class="form-control" type="text" value="패스워드" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;"data-aos="fade-right" data-aos-delay="200">
+						<input class="form-control" type="text" value="패스워드" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
 					 </c:if>
-					 <input class="form-control" type="text" value="휴대폰 번호" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;"data-aos="fade-right" data-aos-delay="300">
-					 <input class="form-control" type="text" value="우편번호" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;"data-aos="fade-right" data-aos-delay="400">
-					 <input class="form-control" type="text" value="주소" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;"data-aos="fade-right" data-aos-delay="500">
-					 <input class="form-control" type="text" value="상세주소" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;"data-aos="fade-right"data-aos-delay="600"> 
+					 <input class="form-control" type="text" value="휴대폰 번호" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
+					 <input class="form-control" type="text" value="우편번호" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
+					 <input class="form-control" type="text" value="주소" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
+					 <input class="form-control" type="text" value="상세주소" style="text-align: right; color: black; border:none; font-size: 17px; font-weight: bold; text-shadow: -1px 0 aqua, 0 1px aqua, 1px 0 aqua, 0 -1px aqua;">
 				    </div>
 <!-- 						<p><a href="#" class="learn-more" id="mypagePoint">페이지 이동</a></p> -->
 				</div>
 			</div>
 			<div class="col-6 col-lg-4">
-				<div class="box-feature mb-4" style="margin-top: 50px;" data-aos="flip-left" data-aos-anchor-placement="top-bottom">
+				<div class="box-feature mb-4" style="margin-top: 50px;">
 					<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/man.png" style="width:50px">
 					<h3 class="text-black mb-3 font-weight-bold">회원정보 수정</h3>
 					<div class="form-group">
