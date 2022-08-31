@@ -68,21 +68,25 @@
 		                                    			</c:choose>
 				                                    		<td>${qna.title }</td>
 				                                            <td></td>
-				                                            <td>2022-01-01</td>
+				                                            <td>${qna.time }</td>
 			                                        	</tr>
 				                                        <tr class="rep${qna.count}" style="display: none;">
-				                                        	<td colspan="4" style="height: 200px;">${qna.content}</td>
+				                                        	<td colspan="4" style="height: 200px; text-align: center;"><span style="font-size: 25px; color: blue;">
+				                                        	&lt;문의 내용&gt;
+				                                        	</span><br>${qna.content}</td>
 				                                        </tr>
 				                                        
 		                                    			<c:if test="${qna.reply == 'Y'}">
 				                                    		<tr class="rep${qna.count}" style="display: none;">
 				                                    		<td><span class="badge badge-warning p-2">부산어때의 답변</span></td>
-				                                    		<td>관리자 답변 : ${qna.title }</td>
+				                                    		<td>Q & A : ${qna.title }</td>
 				                                            <td>${qna.writer}</td>
-				                                            <td>2022-01-01</td>
+				                                            <td>${qna.answer_time}</td>
 				                                            </tr>
 				                                            <tr class="rep${qna.count}" style="display: none;">
-					                                        	<td colspan="4" style="height: 200px">${qna.answer}</td>
+					                                        	<td colspan="4" style="height: 200px; text-align: center;"><span style="font-size: 25px; color:green;">
+					                                        	&lt;답변 내용&gt;
+					                                        	</span><br>${qna.answer}</td>
 					                                        </tr>
 				                                        </c:if>
                                     	</c:forEach>

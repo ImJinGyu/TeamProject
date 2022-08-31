@@ -112,7 +112,6 @@ public class MemberMyPageController {
 		qT.setTime(new FunctionClass().nowTime("yyyy-MM-dd HH:mm"));
 		qT.setReply("N");
 		service.selectQnaMaxCount(qT);
-		System.out.println(qT);
 		service.insertqna(qT);
 		return "redirect:/member/mypage/listInquiry";
 	}

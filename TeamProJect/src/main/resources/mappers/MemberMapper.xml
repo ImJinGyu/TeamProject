@@ -90,9 +90,7 @@
 			 , TITLE
 			 , CONTENT
 		     , REPLY
-		     , TIME
-		     , WRITER
-			 , ANSWER) 
+		     , TIME) 
 		VALUES
 			 ( (SELECT IFNULL(MAX(COUNT + 1), 1) AS COUNT
 	 	  		  FROM QNA_INQUIRE COUNT)
@@ -101,9 +99,7 @@
 			 , #{title}
 			 , #{content}
 		     , #{reply}
-		     , #{time}
-		     , #{writer}
-		     , #{answer})
+		     , #{time})
 	</insert>
 	
 	<select id="selectQnaList" resultType="com.itwillbs.domain.QnaDTO">
@@ -114,8 +110,10 @@
 		     , TIME
 		     , WRITER
 			 , ANSWER
+			 , ANSWER_TIME
 		  FROM QNA_INQUIRE
 		 WHERE USER_ID = #{user_id}
 		   AND USER_TYPE = #{user_type}
+		 ORDER BY COUNT DESC;
 	</select>
 </mapper>

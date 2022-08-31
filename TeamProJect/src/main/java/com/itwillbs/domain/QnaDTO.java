@@ -11,7 +11,9 @@ public class QnaDTO {
 	private String time;
 	private String writer;
 	private String answer;
+	private String answer_time;
 	
+
 	public int getCount() {
 		return count;
 	}
@@ -67,12 +69,20 @@ public class QnaDTO {
 		this.answer = answer;
 	}
 	
+	public String getAnswer_time() {
+		return answer_time;
+	}
+	public void setAnswer_time(String answer_time) {
+		this.answer_time = answer_time;
+	}
+	
 	@Override
 	public String toString() {
 		return "QnaDTO [count=" + count + ", user_id=" + user_id + ", user_type=" + user_type + ", title=" + title
 				+ ", content=" + content + ", reply=" + reply + ", time=" + time + ", writer=" + writer + ", answer="
-				+ answer + "]";
+				+ answer + ", answer_time=" + answer_time + "]";
 	}
+	
 	
 	
 	
