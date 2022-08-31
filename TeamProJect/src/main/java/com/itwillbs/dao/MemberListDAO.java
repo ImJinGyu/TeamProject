@@ -17,9 +17,10 @@ public class MemberListDAO {
 	private static final String NAMESPACE="com.itwillbs.mappers.MemberListMapper";
 	
 	// 전체 회원 목록 조회
-	public List<MemberDTO> getmemberList() {
-		return sqlSession.selectList(NAMESPACE + "memberList"); 
+	public List<MemberDTO> getmemberList(MemberDTO memberDTO) {
+		return sqlSession.selectList(NAMESPACE + ".getmemberList", memberDTO); 
 	}
 
 
 }
+

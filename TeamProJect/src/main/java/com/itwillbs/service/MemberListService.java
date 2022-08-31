@@ -16,9 +16,11 @@ public class MemberListService {
 	@Inject
 	private MemberListDAO memberListDAO;
 	
-	public List<MemberDTO> getMemberList() {
+//	int pageSize = 15;
+	
+	public List<MemberDTO> getMemberList(MemberDTO memberDTO) {
 		System.out.println("getmemberList");
-		return memberListDAO.getmemberList();
+		return memberListDAO.getmemberList(memberDTO);
 	}
 	
 }

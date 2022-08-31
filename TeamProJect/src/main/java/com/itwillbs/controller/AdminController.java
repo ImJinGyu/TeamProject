@@ -1,27 +1,34 @@
 package com.itwillbs.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tomcat.util.log.UserDataHelper.Mode;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.BusinessDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.BusinessService;
+import com.itwillbs.service.MemberListService;
 import com.itwillbs.service.MemberService;
+
 
 @Controller
 public class AdminController {
 	
 	@Inject
-	private MemberService memberService;
+	private MemberListService memberListService;
 	
 	@RequestMapping(value = "/admin/a_myPage", method = RequestMethod.GET)
 	public String a_myPage() {
@@ -35,14 +42,21 @@ public class AdminController {
 		return "teamProJect/admin/a_index";
 	}
 	
-	@RequestMapping(value = "/admin/a_memberList", method = RequestMethod.GET)
-	public String listPayment() {
-				
+	@RequestMapping(value ="/admin/a_memberList", method = RequestMethod.GET)
+	public String a_memberList(Model model , HttpServletRequest req, MemberDTO MemberDTO) {
+		
+		// 전체 회원 목록 조회
+		List<MemberDTO> memberList = memberListService.getMemberList(MemberDTO);
+		model.addAttribute("mList", memberList);
+		System.out.println(memberList.get(0).getUser_id());
+//		memberList.get(0).getUser_id();
+		
 		return "teamProJect/admin/a_memberList";
 	}
-	
-	// test
-	
+		
+}	
+		
+
 	
 //	@RequestMapping(value = "/admin/roomList", method = RequestMethod.GET)
 //	public String roomList() {
@@ -86,5 +100,5 @@ public class AdminController {
 	
 	
 	
-}
+
 
