@@ -335,7 +335,7 @@
 					  from { border-right: 2px solid #222; }
 					  to { border-right: 2px solid #777; }
 					}
-                </style>
+                </style> 
                 
                 <script>
                 
