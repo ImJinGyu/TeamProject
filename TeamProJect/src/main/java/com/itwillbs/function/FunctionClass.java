@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class FunctionClass {
 	
-	//¼÷¹Ú¾÷Ã¼ Ææ¼ÇÄÚµå »ı¼º
+	// íŒ¬ì…˜ ê³ ìœ ë²ˆí˜¸ ìƒì„±
 	public String simplePenSionCreateCode() {
 		StringBuilder sb = new StringBuilder();
 		Random r = new Random();
@@ -17,8 +17,8 @@ public class FunctionClass {
 		return sb.toString();
 	}
 	
-	//ÇöÀç½Ã°£
-	public String nowTime() {
-		return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+	// í˜„ì¬ì‹œê°„
+	public String nowTime(String pattern) {
+		return LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
 	}
 }

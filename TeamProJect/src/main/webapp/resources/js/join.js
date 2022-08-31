@@ -120,16 +120,16 @@ function repassfun(){
 }
 
 function joincheck() {
-	
 	var id = $('#user_id');
 	var name = $('#user_name');
 	var pass = $('#password');
+	var pass2 = $('#password2');
 	var emailcheck = $('#emailcheck').val();
-	var jumin = $('#jumin').val().length;
+	var jumin = $('#jumin');
 	var address1 = $('#user_address');
 	var address2 = $('#user_address2');
-	var phone = $('#user_phonenumber').val().length;
-	
+	var phone = $('#user_phonenumber');
+	debugger;
 	if(id.val().length == 0){
 		modalalert("아이디","아이디를 입력하여 주십시오!");
 //		alert("아이디를 입력하여 주십시오!");
@@ -152,8 +152,8 @@ function joincheck() {
 	if(!passOrpass2check){
 		modalalert("패스워드","패스워드가 다릅니다");
 //		alert("패스워드가 다릅니다!");
-		document.join.pass2.focus();
-		document.join.pass2.select();
+		pass2.focus();
+		pass2.select();
 		return false;
 	}
 	if(name.val().length == 0){
@@ -175,14 +175,14 @@ function joincheck() {
 		address2.select();
 		return false;
 	}
-	if(phone == 0){
+	if(phone.val().length == 0){
 		modalalert("휴대폰번호","휴대폰번호를 입력하여 주십시오!");
 //		alert("휴대폰번호를 입력하여 주십시오");
 		phone.focus();
 		phone.select();
 		return false;
 	}
-	if(jumin != 13){
+	if(jumin.val().length != 13){
 		modalalert("주민번호","주민번호 입력하여 주십시오!");
 //		alert("주민번호 13자리를 입력하여 주십시오");
 		jumin.focus();

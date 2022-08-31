@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.QnaDTO;
 
 @Service
 public class MemberService {
@@ -41,5 +42,14 @@ public class MemberService {
 	
 	public void deleteUser(MemberDTO mT) {
 		dao.deleteUser(mT);
+	}
+	public void insertqna(QnaDTO qT) {
+		dao.insertqna(qT);
+	}
+	public int selectQnaMaxCount(QnaDTO qT) {
+		return dao.selectQnaMaxCount(qT);
+	}
+	public List<QnaDTO> selectqnalist(MemberDTO mT) {
+		return dao.selectqnalist(mT);
 	}
 }

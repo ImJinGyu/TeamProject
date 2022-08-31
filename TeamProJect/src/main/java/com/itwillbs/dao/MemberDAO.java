@@ -1,5 +1,6 @@
 package com.itwillbs.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.QnaDTO;
 
 @Repository
 public class MemberDAO {
@@ -41,5 +43,17 @@ public class MemberDAO {
 	}
 	public void deleteUser(MemberDTO mT) {
 		sqlSession.delete(NAMESPACE + ".deleteUser", mT);
+	}
+	
+	public int selectQnaMaxCount(QnaDTO qT) {
+		return sqlSession.selectOne(NAMESPACE + ".selectQnaMaxCount");
+	}
+	
+	public void insertqna(QnaDTO qT) {
+		sqlSession.insert(NAMESPACE + ".insertQna",qT);
+	}
+	
+	public List<QnaDTO> selectqnalist(MemberDTO mT) {
+		return sqlSession.selectList(NAMESPACE + ".selectQnaList", mT);
 	}
 }

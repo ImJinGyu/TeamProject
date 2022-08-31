@@ -1,0 +1,79 @@
+package com.itwillbs.domain;
+
+public class QnaDTO {
+	
+	private int count;
+	private String user_id;
+	private String user_type;
+	private String title;
+	private String content;
+	private String reply;
+	private String time;
+	private String writer;
+	private String answer;
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getUser_type() {
+		return user_type;
+	}
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+	
+	@Override
+	public String toString() {
+		return "QnaDTO [count=" + count + ", user_id=" + user_id + ", user_type=" + user_type + ", title=" + title
+				+ ", content=" + content + ", reply=" + reply + ", time=" + time + ", writer=" + writer + ", answer="
+				+ answer + "]";
+	}
+	
+	
+	
+}

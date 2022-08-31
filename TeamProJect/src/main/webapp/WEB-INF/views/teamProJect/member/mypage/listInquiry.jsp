@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -15,6 +17,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/memberMyPage/qna.js"></script>
+    
     
 </head>
 
@@ -35,7 +40,7 @@
 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- DataTales Example -->
-                    <div class="card shadow my-5">
+                    <div class="card shadow my-5" style="margin: 15px">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">부산온나 고객센터</h6>
                         </div>
@@ -51,74 +56,46 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<%-- <c:forEach items="${list}" var="qna">
-                                        
-                                        <tr data-toggle="collapse" data-target="#rep${qna.bno}">
-                                        	<c:choose>
-                                        	<c:when test="${qna.bno != qna.groupno}">
-                                        	<td class="pl-5"><span class="badge badge-warning p-2">여수어때의 답변</span></td>
-                                        	</c:when>
-                                        	<c:when test="${!qna.reply}">
-                                        	<td><span class="badge badge-info p-2">처리 완료</span></td>
-                                        	</c:when>
-                                        	<c:when test="${qna.bno == qna.groupno}">
-                                        	<td><span class="badge badge-danger p-2">미답변 </span></td>
-                                        	</c:when>
-                                        	</c:choose>
-                                            <td>${qna.title }</td>
-                                            <td>${qna.writer}</td>
-                                            <td><fmt:formatDate value="${qna.regDate}" pattern="yyyy-MM-dd"/></td>
-                                        </tr>
-                                        <tr class="collapse" id="rep${qna.bno}">
-                                        	<td colspan="4">
-                                        	${qna.content}
-                                        	</td>
-                                        </tr>
-                                    	
-                                    	</c:forEach> --%>
-                                    	
                                     	<c:forEach items="${list}" var="qna">
-                                    		<c:choose>
-                                    		<c:when test="${qna.bno == qna.groupno}">
-                                    		<tr style="cursor: pointer;" data-toggle="collapse" data-target="#rep${qna.bno}">
-                                    			<c:choose>
-                                    			<c:when test="${!qna.reply}">
-	                                        	<td><span class="badge badge-info p-2">처리 완료</span></td>
-	                                        	</c:when>
-	                                        	<c:when test="${qna.bno == qna.groupno}">
-	                                        	<td><span class="badge badge-danger p-2">미답변 </span></td>
-	                                        	</c:when>
-                                    			</c:choose>
-	                                    		<td>${qna.title }</td>
-	                                            <td></td>
-	                                            <td><fmt:formatDate value="${qna.regDate}" pattern="yyyy-MM-dd"/></td>
-	                                        </tr>
-	                                        <tr class="collapse" id="rep${qna.groupno}">
-	                                        	<td colspan="4" style="height: 200px">${qna.content}</td>
-	                                        </tr>
-                                    		</c:when>
-                                    		<c:otherwise>
-                                    		<tr class="collapse" id="rep${qna.groupno}">
-                                    		<td><span class="badge badge-warning p-2">여수어때의 답변</span></td>
-                                    		<td>${qna.title }</td>
-                                            <td>${qna.writer}</td>
-                                            <td><fmt:formatDate value="${qna.regDate}" pattern="yyyy-MM-dd"/></td>
-                                            </tr>
-                                            <tr class="collapse" id="rep${qna.groupno}">
-	                                        	<td colspan="4" style="height: 200px">${qna.content}</td>
-	                                        </tr>
-                                    		</c:otherwise>
-                                    		</c:choose>
+		                                    		<tr style="cursor: pointer;" id="rep${qna.count}" onclick="showQna(this.id)">
+		                                    			<c:choose>
+			                                    			<c:when test="${qna.reply == 'Y'}">
+				                                        	<td><span class="badge badge-info p-2">처리 완료</span></td>
+				                                        	</c:when>
+				                                        	<c:when test="${qna.reply == 'N'}">
+				                                        	<td><span class="badge badge-danger p-2">미답변 </span></td>
+				                                        	</c:when>
+		                                    			</c:choose>
+				                                    		<td>${qna.title }</td>
+				                                            <td></td>
+				                                            <td>2022-01-01</td>
+			                                        	</tr>
+				                                        <tr class="rep${qna.count}" style="display: none;">
+				                                        	<td colspan="4" style="height: 200px;">${qna.content}</td>
+				                                        </tr>
+				                                        
+		                                    			<c:if test="${qna.reply == 'Y'}">
+				                                    		<tr class="rep${qna.count}" style="display: none;">
+				                                    		<td><span class="badge badge-warning p-2">부산어때의 답변</span></td>
+				                                    		<td>관리자 답변 : ${qna.title }</td>
+				                                            <td>${qna.writer}</td>
+				                                            <td>2022-01-01</td>
+				                                            </tr>
+				                                            <tr class="rep${qna.count}" style="display: none;">
+					                                        	<td colspan="4" style="height: 200px">${qna.answer}</td>
+					                                        </tr>
+				                                        </c:if>
                                     	</c:forEach>
                                     </tbody>
                                 </table>
+                                
                                 <hr>
                                 <sec:authorize access="!hasAnyRole('ROLE_ADMIN')">
-                                <form method="post" class="col-8 mx-auto">
-                                <input type="text" class="form-control" name="title" placeholder="문의 제목을 입력하세요">
-                                <textarea class="form-control" name="content" placeholder="문의 내용을 입력하세요" style="min-height: 400px; resize: none;"></textarea>
-                                <button class="btn btn-primary btn-block">1:1문의 등록</button>
-                                <input type="hidden" name="writer" value='<sec:authentication property="principal.username"/>'>
+                                <form action="qnainput" method="get" class="col-8 mx-auto" onsubmit="return lenc()">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="문의 제목을 입력하세요">
+                                <textarea class="form-control" name="content" id="content" placeholder="문의 내용을 입력하세요" style="min-height: 400px; resize: none;"></textarea>
+                                <input type="submit" class="btn btn-primary btn-block" value="1:1문의 등록">
+<%--                                 <input type="hidden" name="writer" value='<sec:authentication property="principal.username"/>'> --%>
                                 <sec:csrfInput/>
                                 </form>
                                 </sec:authorize>
@@ -126,7 +103,6 @@
                         </div>
                     </div>
                 </div>
-
 <!-- 마이페이지 폼 끝-->
 
 <!--  ************************* Footer Start Here ************************** --> 

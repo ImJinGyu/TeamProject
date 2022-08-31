@@ -69,11 +69,6 @@ public class MemberController {
 		return "teamProJect/member/joinPro";
 	}
 	
-	@RequestMapping(value = "/member/m_myPage", method = RequestMethod.GET)
-	public String m_myPage() {
-		return "teamProJect/member/m_myPage";
-	}
-	
 	@RequestMapping(value = "/member/passSearch", method = RequestMethod.GET)
 	public String passSearch(HttpServletRequest req, Model model) {
 		model.addAttribute("user_type", req.getParameter("user_type"));
@@ -111,64 +106,5 @@ public class MemberController {
 		return "false";
 	}
 	
-	@RequestMapping(value = "/member/passcheck", method = RequestMethod.GET)
-	public String passcheck(HttpServletRequest req, Model model) {
-		model.addAttribute("type", req.getParameter("type"));
-		return "teamProJect/member/passcheck";
-		
-	}
-	
-	@RequestMapping(value = "/member/deletecustom", method = RequestMethod.GET)
-	public String deletecustom(MemberDTO mT, HttpSession session) {
-		String user_id = session.getAttribute("user_id").toString();
-		String user_type = session.getAttribute("user_type").toString();
-		mT.setUser_id(user_id);
-		mT.setUser_type(user_type);
-		service.deleteUser(mT);
-		session.invalidate();
-		return "teamProJect/member/deletecustom";
-	}
-	
-	@RequestMapping(value = "/member/userpasscheck", method = {RequestMethod.GET, RequestMethod.POST})
-	public String modify(MemberDTO mT, HttpSession session, HttpServletRequest req, Model model) {
-		String formtype = req.getParameter("type");
-		
-		mT.setUser_id(session.getAttribute("user_id").toString());
-		mT.setUser_type(session.getAttribute("user_type").toString());
-		Map<String, String> mT2 = service.selectUser(mT);
-		model.addAttribute("MemberDTO", mT2);
-		
-		//API 로그인 회원
-		if(mT.getPassword() == null) {
-			if(formtype.equals("u")) {
-				return "teamProJect/member/modify";
-			}else if(formtype.equals("d")){
-				return "redirect:/member/deletecustom";
-			}
-		}
-		
-		mT.setUser_id(session.getAttribute("user_id").toString());
-		mT.setUser_type(session.getAttribute("user_type").toString());
-		Map<String, String> userMap = service.userlogin(mT);
-		if(mT.getPassword().equals(userMap.get("PASSWORD").toString())) {
-			if(formtype.equals("u")) {
-				return "teamProJect/member/modify";
-			}else if(formtype.equals("d")){
-				return "redirect:/member/deletecustom";
-			}
-			
-		}
-		req.setAttribute("msg", "패스워드가 일치하지 않습니다.");
-		return "teamProJect/member/loginPro";
-		
-	}
-	
-	@RequestMapping(value = "/member/updateuser", method = RequestMethod.POST)
-	public String updateuser(MemberDTO mT, HttpSession session) {
-		mT.setUser_id(session.getAttribute("user_id").toString());
-		mT.setUser_type(session.getAttribute("user_type").toString());
-		service.updateUser(mT);
-		return "redirect:/search/main";
-	}
 }
 
