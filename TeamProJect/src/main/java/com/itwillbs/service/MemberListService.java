@@ -16,8 +16,6 @@ public class MemberListService {
 	@Inject
 	private MemberListDAO memberListDAO;
 	
-//	int pageSize = 15;
-	
 	public List<MemberDTO> getMemberList(MemberDTO memberDTO) {
 		System.out.println("getmemberList");
 		return memberListDAO.getmemberList(memberDTO);

@@ -37,10 +37,12 @@
                                     <thead>
                                         <tr>
                                             <th>아이디</th>
-                                            <th>펜션이름</th>
-                                            <th>펜션주소</th>
-                                            <th>평균별점</th>
-                                            <th>총 리뷰수</th>
+                                            <th>유저 타입</th>
+                                            <th>비밀번호</th>
+                                            <th>이름</th>
+                                            <th>주민등록번호</th>
+                                            <th>휴대폰 번호</th>
+                                            <th>집 주소</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,6 +52,9 @@
 	                                            <td>${memberDTO.user_type}</td>
 	                                            <td>${memberDTO.password}</td>
 	                                            <td>${memberDTO.user_name}</td>
+	                                            <td>${memberDTO.jumin}</td>
+	                                            <td>${memberDTO.user_phonenumber}</td>
+	                                            <td>${memberDTO.user_address}</td>
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>
