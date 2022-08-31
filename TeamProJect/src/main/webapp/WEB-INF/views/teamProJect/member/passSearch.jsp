@@ -26,7 +26,7 @@
 
  <div class="login_form_width" style="padding-top:100px; margin-bottom: 100px">
 
- <div id="member-login" class="container tab-pane active">		
+ <div id="member-login" class="container tab-pane active" data-aos="flip-left" data-aos-anchor-placement="top-center">		
   <div class="login">
     <div class="fix_title">
 	    <div class="logo">
