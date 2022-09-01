@@ -13,19 +13,17 @@ import com.itwillbs.domain.PensionRmDTO;
 
 @Service
 public class SearchService {
-//	@Inject
-//	private SearchDAO searchDAO;
 
 	@Inject
 	private SearchDAO searchDAO;
 	
 	
-	public List<PensionDTO> getPensionList() {
-//		System.out.println("서치서비스 getPensionList");
-		return searchDAO.getPensionList();
+	/* 검색된 펜션리스트 가져오기 */
+	public List<PensionDTO> getPensionList(Map map) {
+		return searchDAO.getPensionList(map);
 	}
 
-
+	/* 삭제해도 되는 코드 추후 삭제예정 (지연) */
 //	public List<PensionRmDTO> getRoomList() {
 //		return searchDAO.getRoomList();
 //	}
@@ -34,7 +32,7 @@ public class SearchService {
 //	public ReviewDTO getReviewCount() {
 //		return searchDAO.getReviewCount();
 //	}
-//
+
 
 
 }

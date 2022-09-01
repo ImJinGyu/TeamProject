@@ -5,7 +5,7 @@
 <mapper namespace="com.itwillbs.mappers.BusinessMapper">
 
 
-	<!-- 펜션 리스트 불러오기(수정예정)-->
+	<!-- 펜션 리스트 불러오기(검색된 값)-->
 	<select id="getPensionList" resultType="com.itwillbs.domain.PensionDTO">
 		SELECT P.PEN_ID
 			 , P.PEN_NAME
@@ -17,13 +17,19 @@
 				 WHERE PEN_ID = P.PEN_ID) AS RM_PRICE
 		        
 		 FROM PENSION P LEFT OUTER JOIN PENSION_ATTACH A
-									   ON P.PEN_ID = A.PEN_ID
+									    ON P.PEN_ID = A.PEN_ID
 			  		    LEFT OUTER JOIN REVIEW R
-		                               ON A.PEN_ID = R.PEN_ID
-
-	 GROUP BY P.PEN_ID, P.PEN_NAME, A.PEN_IMAGE;
-	</select>
-
+		                                ON A.PEN_ID = R.PEN_ID
+		WHERE 1=1
+		<if test="pen_name != null and !pen_name.equals('')">
+		  AND PEN_NAME LIKE '%${pen_name}%'
+ 		</if>
+		<if test="pen_address != null and !pen_address.equals('')">
+		  AND PEN_ADDRESS LIKE '%${pen_address}%'
+		</if> 
+	 	GROUP BY P.PEN_ID, P.PEN_NAME, A.PEN_IMAGE;
+	</select> 
+	
 	<!-- PENSION Table(팬션 정보) 입력 SQL구문 -->
 	<insert id="registerPen">
 		INSERT INTO PENSION(

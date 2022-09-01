@@ -862,6 +862,11 @@ address {
  /* 숙소 이미지 크기 */
 .img-link {
 	max-width: 300px;
+	border-color: gainsboro;
+}
+
+.img-link img {
+	min-width: 100px;
 }
 
 .pensionInfo {
@@ -870,4 +875,8 @@ address {
 
 .pensionInfo p {
 	padding-bottom: 10px;
-} 
+}
+
+.pensionInfo a {
+	color: #ff4a52;
+}

@@ -34,32 +34,33 @@
 			<form action="${pageContext.request.contextPath}/search/searchP" name="f" method="get"  style="margin: auto ;border: solid white !important;">
 				<div class="row form-detail" style="margin: auto;">
 					<div class="col-md-2 ffb">
-                            <input type='date' id="checkin" min="${today }" value="${today }" class="main_checkin_1" name="checkin" onchange="dateChk()"
+                            <input type='date' id="checkin" min="${today }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin" onchange="dateChk()"
                             style="width: 99%; margin: 0px 2.25px;" required>
 					</div>
 					<div class="col-md-2 ffb">
-                            <input type='date' id="checkout" min="${tomorrow }" value="${tomorrow }" class="main_checkout_1" name="checkout" onchange="dateChk()"
+                            <input type='date' id="checkout" min="${tomorrow }" value="${rm_checkout }" class="main_checkout_1" name="rm_checkout" onchange="dateChk()"
                             style="width: 99%; margin: 0px 2.25px; border-left: 0;" required>
 					</div>
 					<div class="col-md-1 ffb">
 <!-- 					<input type="hidden" name="ro_count" value="2"> -->
 						<!-- select 저장용 -->
 						<div>
-                           <select id="select_ro_count" class="form-select form-select-lg" onchange="change_ro_count()"
+							<input type="hidden" name="rm_resable_num" value="${rm_resable_num}">
+                           <select id="select_ro_count" class="form-select form-select-lg" onchange="change_ro_count()" name="rm_resable_num" value="${rm_resable_num }"
                            style="border: none; width: 99%; height: 48px; margin: 0px 2.25px; padding: 13px;">
-                              <option value="1">1 명</option>
-                              <option value="2" selected>2 명</option>
-                              <option value="3">3 명</option>
-                              <option value="4">4 명</option>
+                              <option value="1" <c:if test="${rm_resable_num == 1}">selected</c:if>>1</option>
+                              <option value="2" <c:if test="${rm_resable_num == 2}">selected</c:if>>2</option>
+                              <option value="3" <c:if test="${rm_resable_num == 3}">selected</c:if>>3</option>
+                              <option value="4" <c:if test="${rm_resable_num == 4}">selected</c:if>>4</option>
                            </select>
 						</div>
 					</div>
                  	<div class="col-md-2 ffb">
-						<input type=search class=main_search_text placeholder="지 역" name="bu_address"
+						<input type=search class=main_search_text placeholder="지 역" name="pen_address" value="${pen_address }"
 						style="width:99%; height: 48px; margin: 0px 2.25px; padding-left: 0;"><!--  required -->
 					</div>
 					<div class="col-md-2 ffb">
-						<input type=search class=main_search_text placeholder="숙 소 명" name="bu_address"
+						<input type=search class=main_search_text placeholder="숙 소 명" name="pen_name" value="${pen_name }"
 						style="width:99%; height: 48px; margin: 0px 2.25px; padding-left: 0;"><!--  required -->
 					</div>
 					<div class="col-md-3 ffb">

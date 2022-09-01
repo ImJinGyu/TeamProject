@@ -13,23 +13,6 @@ public class PensionDTO {
 	private String rm_price;
 	
 
-	//검색필터
-	private String type;
-	private String keyword;
-
-
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getKeyword() {
-		return keyword;
-	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
 	public String getPen_id() {
 		return pen_id;
 	}

@@ -18,9 +18,9 @@ public class SearchDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="com.itwillbs.mappers.BusinessMapper";
 	
-	public List<PensionDTO> getPensionList() {
-		
-		return sqlSession.selectList(NAMESPACE+".getPensionList");
+	/* 검색된 펜션 리스트 가져오기 */
+	public List<PensionDTO> getPensionList(Map map) {
+		return sqlSession.selectList(NAMESPACE+".getPensionList", map);
 	}
 
 //	public List<PensionRmDTO> getRoomList() {
