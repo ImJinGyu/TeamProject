@@ -25,7 +25,7 @@
 	            <div class="bg-white py-2 collapse-inner rounded">
 	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/a_memberList">- 회원 목록 조회</a>
 	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 예약 내역 조회</a>
-	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 1:1 문의내역 조회</a>
+	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/a_listInquiry">- 1:1 문의내역 조회</a>
 	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 회원 삭제 하기</a>
 	            </div>
 	        </div>

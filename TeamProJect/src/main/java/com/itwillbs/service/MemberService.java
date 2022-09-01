@@ -46,8 +46,8 @@ public class MemberService {
 	public void insertqna(QnaDTO qT) {
 		dao.insertqna(qT);
 	}
-	public int selectQnaMaxCount(QnaDTO qT) {
-		return dao.selectQnaMaxCount(qT);
+	public int selectQnaMaxCount() {
+		return dao.selectQnaMaxCount();
 	}
 	public List<QnaDTO> selectqnalist(MemberDTO mT) {
 		return dao.selectqnalist(mT);

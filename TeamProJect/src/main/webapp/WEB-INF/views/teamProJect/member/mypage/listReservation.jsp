@@ -52,15 +52,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${reservation}" var="r">
+<%--                                     	<c:forEach items="${reservation}" var="r"> --%>
+<!-- 	                                        <tr> -->
+<%-- 	                                            <td class="text-center">${r.reservationNum}</td> --%>
+<%-- 	                                            <td class="text-center"><a href="/pension/detail?pensionid=${r.pensionid}" class="text-dark">${r.roomName}</a></td> --%>
+<%-- 	                                            <td class="text-center">${r.checkin}</td> --%>
+<%-- 	                                            <td class="text-center">${r.checkout}</td> --%>
+<%-- 	                                            <td class="text-center">${r.reservationStatus ? "예약" : "취소"}</td> --%>
+<!-- 	                                        </tr> -->
 	                                        <tr>
-	                                            <td class="text-center">${r.reservationNum}</td>
+	                                            <td class="text-center">1</td>
 	                                            <td class="text-center"><a href="/pension/detail?pensionid=${r.pensionid}" class="text-dark">${r.roomName}</a></td>
-	                                            <td class="text-center">${r.checkin}</td>
-	                                            <td class="text-center">${r.checkout}</td>
-	                                            <td class="text-center">${r.reservationStatus ? "예약" : "취소"}</td>
+	                                            <td class="text-center">1</td>
+	                                            <td class="text-center">1</td>
+	                                            <td class="text-center">1</td>
 	                                        </tr>
-                                        </c:forEach>
+<%--                                         </c:forEach> --%>
                                     </tbody>
                                 </table>
                             </div>

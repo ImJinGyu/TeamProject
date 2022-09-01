@@ -1,7 +1,9 @@
 package com.itwillbs.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -19,6 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.PagingDTO;
+import com.itwillbs.domain.QnaDTO;
+import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.BusinessService;
 import com.itwillbs.service.MemberListService;
 import com.itwillbs.service.MemberService;
@@ -29,6 +34,7 @@ public class AdminController {
 	
 	@Inject
 	private MemberListService memberListService;
+	
 	
 	@RequestMapping(value = "/admin/a_myPage", method = RequestMethod.GET)
 	public String a_myPage() {
@@ -42,9 +48,35 @@ public class AdminController {
 		return "teamProJect/admin/a_index";
 	}
 	
+	@RequestMapping(value = "/admin/a_listInquiry", method = RequestMethod.GET)
+	public String a_listInquiry(HttpServletRequest req, Model model) {
+		int totalCount = memberListService.qnaCount();
+		String spageNum = req.getParameter("pageNum");
+		int ipageNum;
+		if(spageNum == null) {
+			ipageNum = 1;
+		}else {
+			ipageNum = Integer.parseInt(req.getParameter("pageNum"));
+		}
+		PagingDTO pT = new PagingDTO(ipageNum, totalCount);
+		model.addAttribute("page", pT);
+		
+		int index = (pT.getPageNum() - 1) * pT.getAmount();
+		int amount = pT.getAmount();
+		Map<String, Integer> para = new HashMap<String, Integer>();
+		para.put("index", index);
+		para.put("amount", amount);
+		
+		List<QnaDTO> qList =  memberListService.selectQna(para);
+		System.out.println(qList);
+		model.addAttribute("list",qList);
+		return "teamProJect/admin/a_listInquiry";
+	}
+	
 	@RequestMapping(value ="/admin/a_memberList", method = RequestMethod.GET)
 	public String a_memberList(Model model , HttpServletRequest req, MemberDTO MemberDTO) {
 		
+
 		// 전체 회원 목록 조회
 		List<MemberDTO> memberList = memberListService.getMemberList(MemberDTO);
 		for (MemberDTO mT2 : memberList) {
@@ -57,11 +89,19 @@ public class AdminController {
 			}
 			mT2.setUser_type(type);
 		}
-//		d
 		model.addAttribute("mList", memberList);
 		System.out.println(memberList);
 		
 		return "teamProJect/admin/a_memberList";
+	}
+	
+	@RequestMapping(value = "/admin/a_listInquiryPro", method = RequestMethod.POST)
+	public String a_listInquiry(QnaDTO qT) {
+		qT.setAnswer_time(new FunctionClass().nowTime("yyyy-MM-dd HH:mm"));
+		qT.setReply("Y");
+		System.out.println(qT);
+		memberListService.updateAnwser(qT);
+		return "redirect:/admin/a_listInquiry";
 	}
 		
 }	

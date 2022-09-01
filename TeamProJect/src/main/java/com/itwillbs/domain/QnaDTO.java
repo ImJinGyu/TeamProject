@@ -5,6 +5,7 @@ public class QnaDTO {
 	private int count;
 	private String user_id;
 	private String user_type;
+	private String user_name;
 	private String title;
 	private String content;
 	private String reply;
@@ -31,6 +32,12 @@ public class QnaDTO {
 	}
 	public void setUser_type(String user_type) {
 		this.user_type = user_type;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 	public String getTitle() {
 		return title;
@@ -78,10 +85,12 @@ public class QnaDTO {
 	
 	@Override
 	public String toString() {
-		return "QnaDTO [count=" + count + ", user_id=" + user_id + ", user_type=" + user_type + ", title=" + title
-				+ ", content=" + content + ", reply=" + reply + ", time=" + time + ", writer=" + writer + ", answer="
-				+ answer + ", answer_time=" + answer_time + "]";
+		return "QnaDTO [count=" + count + ", user_id=" + user_id + ", user_type=" + user_type + ", user_name="
+				+ user_name + ", title=" + title + ", content=" + content + ", reply=" + reply + ", time=" + time
+				+ ", writer=" + writer + ", answer=" + answer + ", answer_time=" + answer_time + "]";
 	}
+	
+	
 	
 	
 	

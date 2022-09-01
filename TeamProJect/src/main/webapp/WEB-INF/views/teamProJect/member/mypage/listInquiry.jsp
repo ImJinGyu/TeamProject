@@ -35,7 +35,6 @@
         </div>
     </div>
 </div>
-
 <!-- 마이페이지 폼 시작-->
 <!-- Begin Page Content -->
                 <div class="container-fluid">

@@ -1,4 +1,5 @@
 function showQna(id){
+	debugger;
 	$(document).ready(function(){
 		var disc = $('.'+id+'');
 		if(disc.css('display') == 'none'){
@@ -11,7 +12,6 @@ function showQna(id){
 }
 
 function lenc(){
-	debugger;
 	var title = $('#title');
 	var content = $('#content');
 	
@@ -20,6 +20,17 @@ function lenc(){
 		return false;
 	}
 	if(content.val().length > 500){
+		alert("내용은 500자 이내로 기입하여 주십시오.");
+		return false;
+	}
+	
+	return true;
+}
+
+function lenc(){
+	var anwser = $('#anwser');
+	
+	if(anwser.val().length > 500){
 		alert("내용은 500자 이내로 기입하여 주십시오.");
 		return false;
 	}

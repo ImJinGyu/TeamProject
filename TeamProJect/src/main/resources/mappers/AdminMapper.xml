@@ -3,5 +3,36 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwillbs.mappers.adminMapper">
-
+	<select id="selectQna" resultType="com.itwillbs.domain.QnaDTO">
+		SELECT COUNT
+			 , A.USER_ID
+			 , A.USER_TYPE
+			 , B.USER_NAME
+			 , A.TITLE
+			 , A.CONTENT
+		     , A.REPLY
+		     , A.TIME
+		     , A.WRITER
+			 , A.ANSWER
+			 , A.ANSWER_TIME
+		  FROM QNA_INQUIRE A JOIN MEMBER B
+		    ON A.USER_ID = B.USER_ID
+		   AND A.USER_TYPE = B.USER_TYPE
+		 ORDER BY COUNT DESC
+		 LIMIT ${index}
+		     , ${amount}
+	</select>
+	
+	<update id="updateAnwser">
+		UPDATE QNA_INQUIRE
+		   SET ANSWER = #{answer}
+		     , ANSWER_TIME = #{answer_time}
+		     , REPLY = #{reply}
+		 WHERE COUNT =  #{count}
+	</update>
+	
+	<select id="qnaCount" resultType="int">
+		SELECT COUNT(USER_ID)
+		  FROM QNA_INQUIRE
+	</select>
 </mapper>

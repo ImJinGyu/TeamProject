@@ -45,7 +45,7 @@ public class MemberDAO {
 		sqlSession.delete(NAMESPACE + ".deleteUser", mT);
 	}
 	
-	public int selectQnaMaxCount(QnaDTO qT) {
+	public int selectQnaMaxCount() {
 		return sqlSession.selectOne(NAMESPACE + ".selectQnaMaxCount");
 	}
 	
