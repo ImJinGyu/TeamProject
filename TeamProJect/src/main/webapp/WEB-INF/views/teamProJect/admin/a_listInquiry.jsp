@@ -72,6 +72,7 @@
 				                                <textarea class="form-control mb-4" name="answer" placeholder="답변 내용을 입력하세요" style="min-height: 400px; resize: none;"></textarea>
 				                                <button class="btn btn-primary btn-block">답변글 등록</button>
 				                                <input type="hidden" name="count" value="${qna.count}">
+				                                <input type="hidden" name="writer" value="관리자">
 <%-- 				                                <input type="hidden" name="writer" value='<sec:authentication property="principal.username"/>'> --%>
 				                                </form>
 	                                        	</td>
@@ -81,7 +82,7 @@
 	                                        	<tr class="rep${qna.count}" style="display: none;">
                                     		<td><span class="badge badge-warning p-2">답변글</span></td>
                                     		<td>Q & A : ${qna.title }</td>
-                                            <td>관리자</td>
+                                            <td>${qna.writer}</td>
                                             <td>${qna.answer_time}</td>
                                             </tr>
                                             <tr class="rep${qna.count}" style="display: none;">
@@ -136,7 +137,22 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/resources/assets/admin/js/sb-admin-2.min.js"></script>
+    
+	<script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

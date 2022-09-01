@@ -68,7 +68,6 @@ public class AdminController {
 		para.put("amount", amount);
 		
 		List<QnaDTO> qList =  memberListService.selectQna(para);
-		System.out.println(qList);
 		model.addAttribute("list",qList);
 		return "teamProJect/admin/a_listInquiry";
 	}
@@ -90,7 +89,6 @@ public class AdminController {
 			mT2.setUser_type(type);
 		}
 		model.addAttribute("mList", memberList);
-		System.out.println(memberList);
 		
 		return "teamProJect/admin/a_memberList";
 	}

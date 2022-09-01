@@ -24,7 +24,8 @@
 	</select>
 	<update id="updateAnwser">
 		UPDATE QNA_INQUIRE
-		   SET ANSWER = #{answer}
+		   SET WRITER = #{writer}
+		     , ANSWER = #{answer}
 		     , ANSWER_TIME = #{answer_time}
 		     , REPLY = #{reply}
 		 WHERE COUNT =  #{count}

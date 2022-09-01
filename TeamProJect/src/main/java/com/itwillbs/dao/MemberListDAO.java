@@ -29,6 +29,7 @@ public class MemberListDAO {
 	}
 	
 	public void updateAnwser(QnaDTO qT) {
+		System.out.println(qT);
 		sqlSession.update(NAMESPACE2 + ".updateAnwser", qT);
 	}
 	

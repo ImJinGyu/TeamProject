@@ -77,7 +77,7 @@
 						<c:if test="${sessionScope.user_id != null}">
 							<c:choose> 
 								<c:when test="${sessionScope.user_id == 'admin'}">
-									<li><a href="${pageContext.request.contextPath }/admin/admin_page">관리자 페이지</a></li>
+									<li><a href="${pageContext.request.contextPath }/admin/a_index">관리자 페이지</a></li>
 								</c:when>
 								<c:otherwise>
 									<li><a href="${pageContext.request.contextPath }/member/m_myPage">My Page</a></li> 
