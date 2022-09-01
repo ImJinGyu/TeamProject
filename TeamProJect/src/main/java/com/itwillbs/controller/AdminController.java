@@ -34,6 +34,7 @@ public class AdminController {
 	
 	@Inject
 	private MemberListService memberListService;
+//	ㄴ
 	
 	@RequestMapping(value = "/admin/a_myPage", method = RequestMethod.GET)
 	public String a_myPage() {
