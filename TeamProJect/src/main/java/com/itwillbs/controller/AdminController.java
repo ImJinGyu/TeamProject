@@ -57,6 +57,7 @@ public class AdminController {
 			}
 			mT2.setUser_type(type);
 		}
+//		d
 		model.addAttribute("mList", memberList);
 		System.out.println(memberList);
 		

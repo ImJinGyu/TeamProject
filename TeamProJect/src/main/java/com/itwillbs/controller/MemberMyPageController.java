@@ -45,6 +45,7 @@ public class MemberMyPageController {
 		service.deleteUser(mT);
 		session.invalidate();
 		return "teamProJect/member/deletecustom";
+//		d
 	}
 	
 	@RequestMapping(value = "/member/userpasscheck", method = {RequestMethod.GET, RequestMethod.POST})
