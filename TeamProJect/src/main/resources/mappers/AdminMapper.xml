@@ -35,4 +35,11 @@
 		SELECT COUNT(USER_ID)
 		  FROM QNA_INQUIRE
 	</select>
+	
+<!-- 	<select id = ""> -->
+	
+	
+<!-- 	</select> -->
+	
+	
 </mapper>
