@@ -44,7 +44,7 @@ AOS.init({
     <section>
     <form id="joinForm" action="joinPro" method="get" onsubmit="return joincheck()">
 
-		<div  data-aos="fade-down" data-aos-easing="ease-out-cubic" data-aos-duration="1500" id ="id-finish">
+		<div  data-aos="fade-down" data-aos-easing="ease-out-cubic" data-aos-duration="1500" id ="id-finish" data-aos-once="true">
     		<div class="logo">
      		<a href="${pageContext.request.contextPath }/search/main"><img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png"></a>
     		</div>
@@ -73,7 +73,7 @@ AOS.init({
                 <input type="hidden" name="user_zipcode" id="user_zipcode" value="0">
             </div></div><span id="mail-check-warn"><!-- 인증번호 일치여부 --></span><br>
             </div>
-            <div data-aos="fade-right"  data-aos-delay="1500" data-aos-duration="1000">
+            <div data-aos="fade-right"  data-aos-delay="1500" data-aos-anchor="#logo" >
 	            <b>비밀번호</b>
 	            <div class="inp_type_2 form-errors form-password-rule" >
 	                <input type="password" name="password" placeholder="비밀번호를 입력해주세요." id="password" onkeyup="checkPass(this.value)">
@@ -81,7 +81,7 @@ AOS.init({
 					<div id="passmsg"><!-- 패스워드 정규식 조건 만족 여부1 --></div>
 	            </div>
 			</div>	            
-			<div data-aos="fade-right"  data-aos-delay="1700" data-aos-duration="1000">
+			 <div data-aos="fade-right"  data-aos-anchor="#logo" data-aos-delay="1700">
 	            <b>비밀번호 확인</b><span id="checkRetypePassResult"><!-- 비밀번호 일치 여부 표시 영역 --></span>
 	            <div class="inp_type_2 form-errors">
 	                <input type="password" name="password2" placeholder="비밀번호를 확인해주세요." id="password2" onblur="checkRetypePass(this.value)">
@@ -89,7 +89,7 @@ AOS.init({
 					<div id="pass2msg"><!-- 패스워드 일치여부 --></div>
 	            </div>
 	        </div>
-				<div data-aos="fade-right"  data-aos-delay="1900" data-aos-duration="1000">
+				<div data-aos="fade-right"  data-aos-anchor="#logo" data-aos-delay="1900">
 	            <b>이름</b>
 	            <div class="inp_type_2 form-errors"><!-- focus / err -->
 	                <input type="text" name="user_name" id="user_name" placeholder="이름을 입력해주세요.">
@@ -97,7 +97,7 @@ AOS.init({
 	            </div>
 			</div>
 			
-			<div data-aos="fade-right"  data-aos-delay="2100" data-aos-duration="1000">
+			<div data-aos="fade-right"  data-aos-anchor="#logo" data-aos-delay="2100">
 	            <b>주민번호</b>
 	            <div class="inp_type_2 form-errors"><!-- focus / err -->
 	                <input type="text" name="jumin" id="jumin" placeholder="-(하이픈)없이 숫자만 13자리" maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
@@ -105,7 +105,7 @@ AOS.init({
 	            </div>
             </div>
             
-            <div data-aos="fade-right"  data-aos-anchor-placement="top-bottom" data-aos-delay="2300">
+            <div data-aos="fade-right"  data-aos-anchor="#logo" data-aos-delay="2300">
 	            <b>휴대폰 번호</b>
 	            <div class="inp_type_2 form-errors"><!-- focus / err -->
 	                <input type="tel" name="user_phonenumber" id="user_phonenumber" placeholder="ex)000-0000-0000" maxlength="13" oninput="this.value = this.value.replace(/[^0-9-]/g, '').replace(/(\..*)\./g, '$1');">
@@ -113,7 +113,7 @@ AOS.init({
 	            </div>
             </div>
             
-			<div data-aos="fade-up" data-aos-anchor="#logo" data-aos-delay="2900">
+			<div data-aos="fade-up" data-aos-anchor="#logo" data-aos-delay="2500">
 	            <b>주소</b>
 	            <button type="button" class="btn btn-danger" id="" onclick="addressSearch()">검색</button>
 	

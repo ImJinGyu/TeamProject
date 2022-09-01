@@ -2,14 +2,22 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwillbs.mappers.adminMapper">
-	<select id="listReservation" resultType="com.itwillbs.domain.BookDTO">
-		SELECT RES_NUMBER
-			 , USER_ID
-			 , PEN_ID
-			 , CHECK_IN
-			 , CHECK_OUT
-			 , RES_TIME
-		FROM RESERVATION
+<mapper namespace="com.itwillbs.mappers.BookMapper">
+
+<select id="listReservation" resultType="com.itwillbs.domain.BookDTO">
+		SELECT 		
+		  R.RES_NUMBER
+		 ,P.PEN_NAME
+         ,PR.RM_NAME
+		 ,M.USER_NAME
+		 ,R.CHECK_IN_D, R.CHECK_IN_T
+		 ,R.CHECK_OUT_D, R.CHECK_OUT_T
+		 ,R.RES_TIME
+		FROM RESERVATION  AS R
+		JOIN MEMBER AS M ON M.USER_ID = R.USER_ID
+		JOIN PENSION AS P ON R.PEN_ID = P.PEN_ID
+		JOIN PENSION_ROOM PR ON P.PEN_ID = PR.PEN_ID
+<!-- 		where M.USER_ID = #{USER_ID}	 -->
 </select>
 </mapper>
+

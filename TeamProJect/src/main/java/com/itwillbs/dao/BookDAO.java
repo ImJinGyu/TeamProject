@@ -5,20 +5,32 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.BookDTO;
-
+import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.PensionDTO;
+import com.itwillbs.domain.PensionRmDTO;
+@Repository
 public class BookDAO {
-//	@Inject
-//	private SqlSession sqlSession;
-//	
-//	// memberMapper파일에 정의된 전체 이름을 변수에 저장
-//	private static final String namespace = "com.itwillbs.mappers.BookMapper";
+	@Inject
+	private SqlSession sqlSession;
 	
+	private static final String namespace = "com.itwillbs.mappers.BookMapper";
+	
+	
+	public List<BookDTO> listReservation(BookDTO bookDTO) {
+		return sqlSession.selectList(namespace+".listReservation",bookDTO);
+	}
 
-//	public List<BookDTO> listReservation(String num) {
-//		return sqlSession.selectList(namespace+".listReservation",num);
+
+//	public List<BookDTO> listReservation(MemberDTO memberDTO, MemberDTO memberDTO2, PensionDTO pensionDTO,
+//			PensionRmDTO pensionRmDTO,BookDTO bookDTO) {
+//		return sqlSession.selectList(namespace+".listReservation",memberDTO ,memberDTO2,pensionDTO,pensionRmDTO,bookDTO);
 //	}
+	
+	
+	
 
 //
 //	public List<BookDTO> listReservation(String num) {

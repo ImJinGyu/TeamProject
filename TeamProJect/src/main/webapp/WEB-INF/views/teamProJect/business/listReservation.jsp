@@ -40,18 +40,18 @@
                                             <th>예약자</th>
                                             <th>체크인</th>
                                             <th>체크아웃</th>
-                                            <th>승인상태</th>
+                                            <th>등록시간</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${reservation}" var="r">
+                                    	<c:forEach items="${listReservation}" var="r">
 	                                        <tr>
-	                                            <td class="text-center">${r.reservationNum}</td>
-	                                            <td class="text-center  text-truncate">${r.roomName}</td>
-	                                            <td class="text-center">${r.userid}</td>
-	                                            <td class="text-center">${r.checkin}</td>
-	                                            <td class="text-center">${r.checkout}</td>
-	                                            <td class="text-center">${r.reservationStatus ? "예약" : "취소"}</td>
+	                                            <td class="text-center">${r.RES_NUMBER}</td>
+	                                            <td class="text-center">${r.PEN_NAME}(${r.RM_NAME}) </td>
+	                                            <td class="text-center">${r.USER_NAME}</td>
+	                                            <td class="text-center">${r.CHECK_IN_D} : ${r.CHECK_IN_T}</td>
+	                                            <td class="text-center">${r.CHECK_OUT_D} : ${r.CHECK_OUT_T}</td>
+	                                            <td class="text-center">${r.RES_TIME }</td>
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>
