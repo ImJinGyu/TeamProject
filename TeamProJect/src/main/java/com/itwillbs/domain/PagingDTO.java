@@ -1,7 +1,7 @@
 package com.itwillbs.domain;
 
 public class PagingDTO {
-	
+//	ㄴ
 	private int startPage, endPage;
 	private boolean prev, next;
 	

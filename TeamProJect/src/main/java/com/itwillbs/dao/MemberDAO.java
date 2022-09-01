@@ -13,7 +13,7 @@ import com.itwillbs.domain.QnaDTO;
 
 @Repository
 public class MemberDAO {
-	
+//	ㄴ
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="com.itwillbs.mappers.memberMapper";

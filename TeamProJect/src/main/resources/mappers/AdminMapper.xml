@@ -22,7 +22,6 @@
 		 LIMIT ${index}
 		     , ${amount}
 	</select>
-	
 	<update id="updateAnwser">
 		UPDATE QNA_INQUIRE
 		   SET ANSWER = #{answer}

@@ -10,7 +10,7 @@ function showQna(id){
 		
 	});	
 }
-
+ 
 function lenc(){
 	var title = $('#title');
 	var content = $('#content');

@@ -13,7 +13,7 @@
 
      <!-- Page Wrapper -->
 	 <div id="wrapper">
-
+ 
 		<jsp:include page="a_sidebar.jsp"/>
 		
         <!-- Content Wrapper -->

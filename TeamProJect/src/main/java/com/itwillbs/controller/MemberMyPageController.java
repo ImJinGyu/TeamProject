@@ -23,7 +23,7 @@ public class MemberMyPageController {
 	@Inject
 	private MemberService service;
 	
-	
+//	ㄴ
 	@RequestMapping(value = "/member/m_myPage", method = RequestMethod.GET)
 	public String m_myPage() {
 		return "teamProJect/member/m_myPage";

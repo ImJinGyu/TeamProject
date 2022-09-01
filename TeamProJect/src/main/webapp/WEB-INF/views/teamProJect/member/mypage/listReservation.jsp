@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
-    
+     
 </head>
 
 <body>

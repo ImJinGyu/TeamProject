@@ -9,7 +9,7 @@
 	        </div>
 	        <div class="sidebar-brand-text mx-3">관리자페이지</div>
 	    </a>
-	
+	 
 	    <!-- Divider -->
 	    <sec:authorize access="!hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
 	    <hr class="sidebar-divider">

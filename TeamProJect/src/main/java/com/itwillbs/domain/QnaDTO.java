@@ -1,7 +1,7 @@
 package com.itwillbs.domain;
 
 public class QnaDTO {
-	
+//	ㄴ
 	private int count;
 	private String user_id;
 	private String user_type;

@@ -13,7 +13,7 @@ import com.itwillbs.domain.QnaDTO;
 
 @Service
 public class MemberService {
-	
+//	ㄴ
 	@Inject
 	private MemberDAO dao;
 	

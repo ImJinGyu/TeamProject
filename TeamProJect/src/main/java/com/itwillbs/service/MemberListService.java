@@ -14,7 +14,7 @@ import com.itwillbs.domain.QnaDTO;
 
 @Service
 public class MemberListService {
-	
+//	ㄴ
 	@Inject
 	private MemberListDAO memberListDAO;
 	
