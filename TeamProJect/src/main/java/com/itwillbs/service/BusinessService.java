@@ -1,5 +1,7 @@
 package com.itwillbs.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ public class BusinessService {
 	private BusinessDAO businessDAO;
 
 	
-	public void registerRoom(BusinessDTO businessDTO3) {
+	public void registerRoom(Map<String, Object> registerRoom) {
 		
 //		if(businessDAO.getMaxNum() == null) {
 //			businessDTO.setRoomNum("1");
@@ -23,7 +25,7 @@ public class BusinessService {
 //		}
 		
 		
-		businessDAO.registerRoom(businessDTO3);
+		businessDAO.registerRoom(registerRoom);
 	}
 
 
@@ -36,6 +38,12 @@ public class BusinessService {
 
 	public void pensionAttach(BusinessDTO businessDTO2) {
 		businessDAO.pensionAttach(businessDTO2);
+		
+	}
+
+
+	public void pensionRoom(Map<String, Object> pensionRoom) {
+		businessDAO.pensionRoom(pensionRoom);
 		
 	}
 	

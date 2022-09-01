@@ -24,12 +24,7 @@
 	 GROUP BY P.PEN_ID, P.PEN_NAME, A.PEN_IMAGE;
 	</select>
 
-
-<!-- 	<insert id="registerRoom"> -->
-<!-- 		INSERT INTO ROOM_ATTACH -->
-<!-- 		VALUES(#{RM_NAME}, #{RM_IMAGE}) -->
-<!-- 	</insert> -->
-
+	<!-- PENSION Table(팬션 정보) 입력 SQL구문 -->
 	<insert id="registerPen">
 		INSERT INTO PENSION(
 							PEN_ID,
@@ -48,23 +43,49 @@
 		       #{PEN_NUMBER})
 	</insert>
 	
+	<!-- PENSION_ATTACH Table(팬션 사진 테이블) 입력 SQL구문 -->
 	<insert id="pensionAttach">
 		INSERT INTO PENSION_ATTACH(PEN_ID,PEN_IMAGE)
 		VALUES(
 		       #{PEN_ID}, 
 		       #{PEN_IMAGE})
+	</insert>
+	
+	<!-- PENSION_ROOM Table(객실 정보 테이블) 입력 SQL구문 -->
+	<!-- 여러 값들을 다중 입력을 위해 foreach 구문 사용 -->
+	<insert id="pensionRoom" parameterType="java.util.Map">
+		INSERT INTO PENSION_ROOM(
+								 PEN_ID,
+								 RM_NAME, 
+			 					 RM_CHECKIN,
+								 RM_CHECKOUT,
+			 					 RM_PRICE,
+								 RM_RESABLE_NUM,
+								 RES_STATUS
+								)
+		VALUES
+		<foreach collection="room" item="item" separator=",">
+			(#{item.PEN_ID},
+			 #{item.RM_NAME}, 
+			 #{item.RM_CHECKIN},
+			 #{item.RM_CHECKOUT},
+			 #{item.RM_PRICE},
+			 #{item.RM_RESABLE_NUM},
+			 #{item.RES_STATUS})
+		</foreach>
 	</insert>		
 	
-	<insert id="registerRoom">
-		INSERT INTO ROOM_ATTACH
-		VALUES(
-		       #{RM_NAME}, 
-<!-- 		       #{checkin},  -->
-<!-- 		       #{checkout},  -->
-<!-- 		       #{people},  -->
-<!-- 		       #{RM_Price},  -->
-		       #{RM_IMAGE})
+	<!-- ROOM_ATTACH Table(객실 사진 테이블) 입력 SQL구문 -->
+	<!-- 여러 값들을 다중 입력을 위해 foreach 구문 사용 -->
+	<insert id="registerRoom" parameterType="java.util.Map">
+		INSERT INTO ROOM_ATTACH(RM_NAME,RM_IMAGE)
+		VALUES
+		<foreach collection="roomAttach" item="item" separator=",">
+			(#{item.RM_NAME}, #{item.RM_IMAGE})
+		</foreach>
 	</insert>
+	
+	
 	
 <!-- 	<select id="getMaxNum" resultType="java.lang.Integer"> -->
 <!-- 		SELECT MAX(RM_NUM) -->

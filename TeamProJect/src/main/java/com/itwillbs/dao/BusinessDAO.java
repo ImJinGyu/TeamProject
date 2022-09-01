@@ -1,5 +1,7 @@
 package com.itwillbs.dao;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,8 +20,8 @@ public class BusinessDAO {
 	private static final String namespace = "com.itwillbs.mappers.BusinessMapper";
 
 	
-	public void registerRoom(BusinessDTO businessDTO3) {
-		sqlSession.insert(namespace+".registerRoom", businessDTO3);
+	public void registerRoom(Map<String, Object> registerRoom) {
+		sqlSession.insert(namespace+".registerRoom", registerRoom);
 	}
 
 
@@ -31,6 +33,12 @@ public class BusinessDAO {
 
 	public void pensionAttach(BusinessDTO businessDTO2) {
 		sqlSession.insert(namespace+".pensionAttach", businessDTO2);
+		
+	}
+
+
+	public void pensionRoom(Map<String, Object> pensionRoom) {
+		sqlSession.insert(namespace+".pensionRoom", pensionRoom);
 		
 	}
 
