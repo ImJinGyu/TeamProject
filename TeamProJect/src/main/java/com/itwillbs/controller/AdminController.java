@@ -47,9 +47,18 @@ public class AdminController {
 		
 		// 전체 회원 목록 조회
 		List<MemberDTO> memberList = memberListService.getMemberList(MemberDTO);
+		for (MemberDTO mT2 : memberList) {
+			String user_type = mT2.getUser_type();
+			String type = "";
+			switch (user_type) {
+			case "0": type = "관리자"; break;
+			case "1": type = "일반회원"; break;
+			case "2": type = "업체회원"; break;
+			}
+			mT2.setUser_type(type);
+		}
 		model.addAttribute("mList", memberList);
-		System.out.println(memberList.get(0).getUser_id());
-//		memberList.get(0).getUser_id();
+		System.out.println(memberList);
 		
 		return "teamProJect/admin/a_memberList";
 	}

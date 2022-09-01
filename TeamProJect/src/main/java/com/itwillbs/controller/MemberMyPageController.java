@@ -111,7 +111,6 @@ public class MemberMyPageController {
 		qT.setUser_type(session.getAttribute("user_type").toString());
 		qT.setTime(new FunctionClass().nowTime("yyyy-MM-dd HH:mm"));
 		qT.setReply("N");
-		service.selectQnaMaxCount(qT);
 		service.insertqna(qT);
 		return "redirect:/member/mypage/listInquiry";
 	}
