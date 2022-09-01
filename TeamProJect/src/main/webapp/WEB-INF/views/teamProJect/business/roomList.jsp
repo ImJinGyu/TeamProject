@@ -29,7 +29,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">숙소관리</h1>
-
+						
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
@@ -39,23 +39,24 @@
                                         <tr>
                                             <th style="width: 12%">펜션번호</th>
                                             <th style="width: 22%">숙소명</th>
-                                            <th style="width: 15%">예약시작시간</th>
-                                            <th style="width: 15%">마감시간</th>
+                                            <th style="width: 15%">체크인시간</th>
+                                            <th style="width: 15%">체크아웃시간</th>
+                                            <th style="width: 12%">객실이용가능인원</th>
                                             <th style="width: 12%">가격</th>
                                             <th style="width: 12%">예약상태</th>
-                                            <th style="width: 12%">객실번호</th>
                                         </tr>
                                     </thead>
 	                                    <tbody>
-	                                    	<c:forEach items="${roomList}" var="r">
+	                                    	<c:forEach items="${rList}" var="businessDTO">
 		                                    <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle room1">
-			                                    <td>${r.pensionid}</td>
-			                                    <td>${r.roomName}</td>
-			                                    <td>${r.startTime}</td>
-			                                    <td>${r.deadline}</td>
-			                                    <td>${r.price}</td>
-			                                    <td>${r.reservationStatus}</td>
-			                                    <td>${r.roomNum}</td>
+			                                    <td>${businessDTO.PEN_ID}</td>
+			                                    <td>${businessDTO.RM_NAME}</td>
+			                                    <td>${businessDTO.RM_CHECKIN}</td>
+			                                    <td>${businessDTO.RM_CHECKOUT}</td>
+			                                    <td>${businessDTO.RM_RESABLE_NUM}</td>
+			                                    <td>${businessDTO.RM_PRICE}</td>
+			                                    <td>${businessDTO.RES_STATUS}</td>
+			                                    
                                             </tr>
 		                                    </c:forEach>
 	                                     </tbody>
@@ -65,7 +66,7 @@
                       <thead>
                         <tr class="info">
 													<th>숙소명</th>
-													<th>마감시간(년/월/일)</th>
+													<th>체크아웃시간</th>
 													<th>가격</th>		
 												</tr>
 											</thead>
@@ -82,7 +83,7 @@
                                     <input type="text" class="form-control form-control-user" id="price" name="price" >
                                     </td>
                                 <hr>
-		                		<input type="hidden" name="roomNum" value="${r.roomNum}">
+		                		<input type="hidden" name="RM_NAME" value="${businessDTO.RM_NAME}">
                                 <button class="btn btn-primary btn-user btn-block" id="btnReg">
                                     숙소 수정하기
                                 </button>

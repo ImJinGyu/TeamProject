@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,10 +61,15 @@ public class BusinessController {
 	
 	
 	@RequestMapping(value = "/business/roomList", method = RequestMethod.GET)
-	public String roomList() {
+	public String roomList(Model model, BusinessDTO businessDTO) {
 				
+		List<BusinessDTO> roomList = businessService.getRoomList(businessDTO);
+		
+		model.addAttribute("rList", roomList);
+		
 		return "teamProJect/business/roomList";
 	}
+
 	
 	@RequestMapping(value = "/business/roomRegister", method = RequestMethod.GET)
 	public String roomRegister() {

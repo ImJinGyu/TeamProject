@@ -1,5 +1,6 @@
 package com.itwillbs.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.BusinessDAO;
 import com.itwillbs.domain.BusinessDTO;
+import com.itwillbs.domain.MemberDTO;
 
 @Service
 public class BusinessService {
@@ -45,6 +47,12 @@ public class BusinessService {
 	public void pensionRoom(Map<String, Object> pensionRoom) {
 		businessDAO.pensionRoom(pensionRoom);
 		
+	}
+
+
+	public List<BusinessDTO> getRoomList(BusinessDTO businessDTO) {
+		
+		return businessDAO.getRoomList(businessDTO);
 	}
 	
 	
