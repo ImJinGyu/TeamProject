@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="en">
@@ -55,53 +56,64 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${list}" var="qna">
-		                                    		<tr style="cursor: pointer;" id="rep${qna.count}" onclick="showQna(this.id)">
-		                                    			<c:choose>
-			                                    			<c:when test="${qna.reply == 'Y'}">
-				                                        	<td><span class="badge badge-info p-2">처리 완료</span></td>
-				                                        	</c:when>
-				                                        	<c:when test="${qna.reply == 'N'}">
-				                                        	<td><span class="badge badge-danger p-2">미답변 </span></td>
-				                                        	</c:when>
-		                                    			</c:choose>
-				                                    		<td>${qna.title }</td>
-				                                            <td></td>
-				                                            <td>${qna.time }</td>
-			                                        	</tr>
-				                                        <tr class="rep${qna.count}" style="display: none;">
-				                                        	<td colspan="4" style="height: 200px; text-align: center;"><span style="font-size: 25px; color: blue;">
-				                                        	&lt;문의 내용&gt;
-				                                        	</span><br>${qna.content}</td>
+                                    <c:choose>
+                                    	<c:when test="${fn:length(list) eq 0}">
+	                                    	<tr>
+		                                       	<td colspan="4" style="height: 50px; text-align: center;"><span style="font-size: 25px; color: Green;">
+		                                       	<b>문의 내역이 없습니다.</b>
+		                                       	</span></td>
+	                                     	</tr>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${list}" var="qna">
+	                                    		<tr style="cursor: pointer;" id="rep${qna.count}" onclick="showQna(this.id)">
+	                                    			<c:choose>
+		                                    			<c:when test="${qna.reply == 'Y'}">
+			                                        	<td><span class="badge badge-info p-2">처리 완료</span></td>
+			                                        	</c:when>
+			                                        	<c:when test="${qna.reply == 'N'}">
+			                                        	<td><span class="badge badge-danger p-2">미답변 </span></td>
+			                                        	</c:when>
+	                                    			</c:choose>
+			                                    		<td>${qna.title }</td>
+			                                            <td></td>
+			                                            <td>${qna.time }</td>
+		                                        	</tr>
+			                                        <tr class="rep${qna.count}" style="display: none;">
+			                                        	<td colspan="4" style="height: 200px; text-align: center;"><span style="font-size: 25px; color: blue;">
+			                                        	&lt;문의 내용&gt;
+			                                        	</span><br>${qna.content}</td>
+			                                        </tr>
+	                                    			<c:if test="${qna.reply == 'Y'}">
+			                                    		<tr class="rep${qna.count}" style="display: none;">
+			                                    		<td><span class="badge badge-warning p-2">부산어때의 답변</span></td>
+			                                    		<td>Q & A : ${qna.title }</td>
+			                                            <td>${qna.writer}</td>
+			                                            <td>${qna.answer_time}</td>
+			                                            </tr>
+			                                            <tr class="rep${qna.count}" style="display: none;">
+				                                        	<td colspan="4" style="height: 200px; text-align: center;"><span style="font-size: 25px; color:green;">
+				                                        	&lt;답변 내용&gt;
+				                                        	</span><br>${qna.answer}</td>
 				                                        </tr>
-				                                        
-		                                    			<c:if test="${qna.reply == 'Y'}">
-				                                    		<tr class="rep${qna.count}" style="display: none;">
-				                                    		<td><span class="badge badge-warning p-2">부산어때의 답변</span></td>
-				                                    		<td>Q & A : ${qna.title }</td>
-				                                            <td>${qna.writer}</td>
-				                                            <td>${qna.answer_time}</td>
-				                                            </tr>
-				                                            <tr class="rep${qna.count}" style="display: none;">
-					                                        	<td colspan="4" style="height: 200px; text-align: center;"><span style="font-size: 25px; color:green;">
-					                                        	&lt;답변 내용&gt;
-					                                        	</span><br>${qna.answer}</td>
-					                                        </tr>
-				                                        </c:if>
-                                    	</c:forEach>
+			                                        </c:if>
+	                                    	</c:forEach>
+										</c:otherwise>
+                                    </c:choose>
+                                    
+                                    	
                                     </tbody>
                                 </table>
                                 
                                 <hr>
-                                <sec:authorize access="!hasAnyRole('ROLE_ADMIN')">
+                                <div style="width:100%; text-align: center;">
+                                <span style="font-size: 30px; color: navy;"><b>문의 작성</b></span>
+                                </div><br>
                                 <form action="qnainput" method="get" class="col-8 mx-auto" onsubmit="return lenc()">
                                 <input type="text" class="form-control" name="title" id="title" placeholder="문의 제목을 입력하세요">
                                 <textarea class="form-control" name="content" id="content" placeholder="문의 내용을 입력하세요" style="min-height: 400px; resize: none;"></textarea>
                                 <input type="submit" class="btn btn-primary btn-block" value="1:1문의 등록">
-<%--                                 <input type="hidden" name="writer" value='<sec:authentication property="principal.username"/>'> --%>
-                                <sec:csrfInput/>
                                 </form>
-                                </sec:authorize>
                             </div>
                         </div>
                     </div>
