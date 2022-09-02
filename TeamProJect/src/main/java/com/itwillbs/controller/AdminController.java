@@ -34,23 +34,26 @@ public class AdminController {
 	
 	@Inject
 	private MemberListService memberListService;
-//	ㄴ
 	
 	@RequestMapping(value = "/admin/a_myPage", method = RequestMethod.GET)
 	public String a_myPage() {
-				
 		return "teamProJect/admin/a_myPage";
 	}
 	
 	@RequestMapping(value = "/admin/a_index", method = RequestMethod.GET)
-	public String a_index() {
-				
+	public String a_index(QnaDTO qT, Model model) {
+		qT.setReply("N");
+		int Nqna = memberListService.qnaCount(qT);
+		Map<String ,Object> sMap = memberListService.customCount();
+		sMap.put("NQNA", Nqna);
+		model.addAttribute("Map",sMap);
 		return "teamProJect/admin/a_index";
 	}
 	
 	@RequestMapping(value = "/admin/a_listInquiry", method = RequestMethod.GET)
-	public String a_listInquiry(HttpServletRequest req, Model model) {
-		int totalCount = memberListService.qnaCount();
+	public String a_listInquiry(QnaDTO qT, HttpServletRequest req, Model model) {
+		
+		int totalCount = memberListService.qnaCount(qT);
 		String spageNum = req.getParameter("pageNum");
 		int ipageNum;
 		if(spageNum == null) {

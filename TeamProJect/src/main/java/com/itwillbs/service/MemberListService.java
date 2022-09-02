@@ -30,7 +30,11 @@ public class MemberListService {
 		memberListDAO.updateAnwser(qT);
 	}
 	
-	public int qnaCount() {
-		return memberListDAO.qnaCount();
+	public int qnaCount(QnaDTO qT) {
+		return memberListDAO.qnaCount(qT);
+	}
+	
+	public Map<String ,Object> customCount() {
+		return memberListDAO.customCount();
 	}
 }

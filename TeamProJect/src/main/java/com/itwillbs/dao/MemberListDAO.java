@@ -33,8 +33,13 @@ public class MemberListDAO {
 		sqlSession.update(NAMESPACE2 + ".updateAnwser", qT);
 	}
 	
-	public int qnaCount() {
-		return sqlSession.selectOne(NAMESPACE2 + ".qnaCount");
+	public int qnaCount(QnaDTO qT) {
+		return sqlSession.selectOne(NAMESPACE2 + ".qnaCount", qT);
 	}
+	
+	public Map<String ,Object> customCount() {
+		return sqlSession.selectOne(NAMESPACE2 + ".customCount");
+	}
+
 }
 

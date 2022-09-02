@@ -32,7 +32,19 @@
 	</update>
 	
 	<select id="qnaCount" resultType="int">
-		SELECT COUNT(USER_ID)
+		SELECT COUNT(COUNT)
 		  FROM QNA_INQUIRE
+		  WHERE 1=1
+		  AND REPLY = #{reply}
+<!-- 		  <if test = "!reply.equals('') and reply != null"> -->
+<!-- 		  AND REPLY = #{reply} -->
+<!-- 		  </if> -->
+	</select>
+	
+	<select id="customCount" resultType="map">
+	  	SELECT SUM(IF(USER_TYPE = '0', 1, 0)) 'ADMIN'
+	 		 , SUM(IF(USER_TYPE = '1', 1, 0)) 'USER'
+     		 , SUM(IF(USER_TYPE = '2', 1, 0)) 'BUSINESS'
+		  FROM MEMBER;
 	</select>
 </mapper>
