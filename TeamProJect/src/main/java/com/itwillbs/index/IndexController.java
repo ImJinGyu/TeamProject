@@ -23,6 +23,11 @@ public class IndexController {
 				
 		return "teamProJect/reservationList/reserveList";
 	}
+	
+	@RequestMapping(value = "/map", method = RequestMethod.GET)
+	public String map() {
+		return "teamProJect/map";
+	}
 
 	
 }

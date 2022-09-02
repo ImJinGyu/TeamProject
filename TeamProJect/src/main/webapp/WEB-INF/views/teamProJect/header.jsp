@@ -67,6 +67,7 @@
 						</c:otherwise> 
 					</c:choose>
 <!--                         <li><a href="contact-us.html">Contact US</a></li> -->
+<li><a href="${pageContext.request.contextPath }/map">지도</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 d-none d-lg-block socila-link">
