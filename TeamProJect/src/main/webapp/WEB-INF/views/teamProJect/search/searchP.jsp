@@ -104,6 +104,7 @@
 								<h2><a href="/pension/detail?pensionid=6867&amp;startDate=2022/08/28&amp;endDate=2022/08/29"class="bg-white border-0">${PensionDTO.pen_name }</a>
 								</h2>
 								<p>${PensionDTO.pen_address }</p>
+
 								<!-- 가격 쉼표 자동 생성 -->
 								<p><fmt:formatNumber type="number" maxFractionDigits="3" value="${PensionDTO.rm_price }" /> 원</p>
 								<p>별점 4.1<p>
