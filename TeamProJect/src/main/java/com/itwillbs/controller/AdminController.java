@@ -104,6 +104,12 @@ public class AdminController {
 		memberListService.updateAnwser(qT);
 		return "redirect:/admin/a_listInquiry";
 	}
+	
+	@RequestMapping(value = "/admin/a_listReservationAll", method = RequestMethod.GET)
+	public String a_listReservationAll() {
+		
+		return "teamProJect/admin/a_listReservationAll";
+	}
 		
 }	
 		

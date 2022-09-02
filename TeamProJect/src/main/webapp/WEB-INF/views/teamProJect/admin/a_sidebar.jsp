@@ -39,8 +39,8 @@
 	        </a>
 	        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages2" data-parent="#accordionSidebar">
 	            <div class="bg-white py-2 collapse-inner rounded">
-	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 펜션 목록 조회</a>
-	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/listReservationAll">- 전체 매출 조회</a>
+	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 전체 펜션 목록</a>
+	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/a_listReservationAll">- 전체 예약 조회</a>
 	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/pensionAdStatus">- 펜션 광고 승인</a>
 	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/pensionListWithAd">- 광고 목록 조회</a>
 	            </div>
