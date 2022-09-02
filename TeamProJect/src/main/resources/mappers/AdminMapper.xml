@@ -18,7 +18,7 @@
 		  FROM QNA_INQUIRE A JOIN MEMBER B
 		    ON A.USER_ID = B.USER_ID
 		   AND A.USER_TYPE = B.USER_TYPE
-		 ORDER BY COUNT DESC
+		 ORDER BY REPLY, COUNT DESC
 		 LIMIT ${index}
 		     , ${amount}
 	</select>
@@ -35,10 +35,9 @@
 		SELECT COUNT(COUNT)
 		  FROM QNA_INQUIRE
 		  WHERE 1=1
+		  <if test = "!''.equals(reply) and reply != null">
 		  AND REPLY = #{reply}
-<!-- 		  <if test = "!reply.equals('') and reply != null"> -->
-<!-- 		  AND REPLY = #{reply} -->
-<!-- 		  </if> -->
+		  </if>
 	</select>
 	
 	<select id="customCount" resultType="map">
