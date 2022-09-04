@@ -33,21 +33,13 @@ public class API_loginContrller {
 	
 	@RequestMapping(value = "/apilogin/naverlogin", method = RequestMethod.GET)
 	public String naverlogin(HttpServletRequest req, HttpSession session) {
-		
 		String user_id = req.getParameter("user_id").concat(_naver);
 		String user_name = req.getParameter("user_name");
 		String user_type = req.getParameter("user_type");
 		
-		
 		Map<String, String> userMap = new HashMap<String, String>();
-		userMap.put("user_id", user_id);
-		userMap.put("user_name", user_name);
-		userMap.put("user_type", user_type);
-		MemberDTO mT = newMemberDTO(user_id, user_name, user_type);
+		sessionSet(session, userMap, user_id, user_name, user_type);
 		
-		Map<String, String> uMap = service.iddup(userMap);
-		if(uMap == null) service.insertMember(mT);
-		sessionSet(session, user_id, user_type);
 		return "redirect:/search/main";
 	}
 	
@@ -61,22 +53,36 @@ public class API_loginContrller {
 		String user_name = kakaoMap.get("user_name");
 		String user_type = kakaoMap.get("user_type");
 		
-		kakaoMap.put("user_id", user_id);
 		
-		Map<String, String> uMap = service.iddup(kakaoMap);
-		MemberDTO mT = newMemberDTO(user_id, user_name, user_type);
+		sessionSet(session, kakaoMap, user_id, user_name, user_type);
 		
-		if(uMap == null) service.insertMember(mT);
-		sessionSet(session, user_id, user_type);
 		return "redirect:/search/main";
 	}
 	
-	private void sessionSet(HttpSession session, String user_id, String user_type) {
-		session.setAttribute("user_id", user_id);
-		session.setAttribute("user_type", user_type);
+	private void sessionSet(HttpSession session, Map<String, String> uMap, String user_id, String user_name, String user_type) {
+		uMap.put("user_id", user_id);
+		uMap.put("user_name", user_name);
+		uMap.put("user_type", user_type);
+		MemberDTO mT = newMemberDTO(user_id, user_name, user_type);
+		Map<String, String> userMap = service.iddup(uMap);
+		if(userMap == null) {
+			service.insertMember(mT);
+			userMap = new HashMap<String, String>();
+			userMap.put("USER_ID", user_id);
+			userMap.put("USER_TYPE", user_type);
+			userMap.put("USER_NAME", user_name);
+		}
+		System.out.println(userMap);
+		session.setAttribute("user_id", userMap.get("USER_ID"));
+		session.setAttribute("user_type", userMap.get("USER_TYPE"));
+		session.setAttribute("user_name", userMap.get("USER_NAME"));
 	}
 	private MemberDTO newMemberDTO(String user_id, String user_name, String user_type) {
+		
 		MemberDTO mT = new MemberDTO();
+		if(user_name == null || "".equals(user_name)) {
+			user_name = "넌 이름이 없니?";
+		}
 		mT.setUser_id(user_id);
 		mT.setUser_name(user_name);
 		mT.setUser_type(user_type);

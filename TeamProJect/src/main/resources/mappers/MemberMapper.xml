@@ -31,6 +31,7 @@
 		SELECT USER_ID
 			 , USER_TYPE
 		     , PASSWORD
+		     , USER_NAME
 		  FROM MEMBER
 		 WHERE USER_ID = #{user_id}
 		   AND USER_TYPE = #{user_type}
@@ -38,6 +39,8 @@
 	
 	<select id="iddup" resultType="map">
 		SELECT USER_ID
+		     , USER_TYPE
+		     , USER_NAME
 		  FROM MEMBER
 		 WHERE USER_ID = #{user_id}
 		   AND USER_TYPE = #{user_type}

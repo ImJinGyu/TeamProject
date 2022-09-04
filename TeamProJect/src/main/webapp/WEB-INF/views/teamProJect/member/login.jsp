@@ -87,8 +87,8 @@
      </div>
      <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로 그 인" style="font-size: 27px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
      <div class="link_half">
-      <div><a href="#"><span>비밀번호 찾기</span></a></div>
-      <div><a href="${pageContext.request.contextPath }/member/passSearch?user_type=2"><span>회원가입</span></a></div>
+      <div><a href="${pageContext.request.contextPath }/member/passSearch?user_type=2"><span>비밀번호 찾기</span></a></div>
+      <div><a href="${pageContext.request.contextPath }/member/join"><span>회원가입</span></a></div>
      </div>
     </form>
   </div>

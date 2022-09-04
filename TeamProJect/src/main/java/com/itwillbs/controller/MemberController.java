@@ -33,6 +33,7 @@ public class MemberController {
 		System.out.println(mT.getUser_id());
 		System.out.println(mT.getPassword());
 		System.out.println(mT.getUser_type());
+		
 		Map<String, String> userMap = service.userlogin(mT);
 		System.out.println(userMap);
 		if(userMap == null) {
@@ -43,6 +44,11 @@ public class MemberController {
 			HttpSession session = req.getSession();
 			session.setAttribute("user_id", mT.getUser_id());
 			session.setAttribute("user_type", userMap.get("USER_TYPE"));
+			String user_name = userMap.get("USER_NAME");
+			if(user_name == null || "".equals(user_name)) {
+				user_name = "넌 이름이 없니?";
+			}
+			session.setAttribute("user_name", user_name);
 			return "redirect:/search/main";
 		}
 		req.setAttribute("msg", "패스워드가 일치하지 않습니다.");

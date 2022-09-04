@@ -83,7 +83,7 @@
 	<%@ include file="header.jsp" %>
 	<div style="margin-bottom: 100px">2</div>
 <!--   	<div id="map" style="width:1280px;height:700px;margin:0 auto; border:1px solid;"></div> -->
-<!-- 	<!-- 메인페이지 필터 --> -->
+<!-- 	<!-- 메인페이지 필터 -->
 	<div class="map_wrap" style="width:1280px;height:700px;margin:100px auto; border:1px solid;">
 	<div id="map" style="width:1280px;height:700px;margin:0 auto; border:1px solid;"></div>
 <!--     <div id="map" style="width:1280px;height:700px;position:relative;overflow:hidden;"></div> -->
