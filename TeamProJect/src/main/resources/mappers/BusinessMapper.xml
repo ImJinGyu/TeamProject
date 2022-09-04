@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwillbs.mappers.BusinessMapper">
 
+	<select id="pensionCount" resultType="int">
+		SELECT COUNT(PEN_ID) AS COUNT
+		FROM PENSION
+	</select>
+
 
 	<!-- 펜션 리스트 불러오기(검색된 값)-->
 	<select id="getPensionList" resultType="com.itwillbs.domain.PensionDTO">

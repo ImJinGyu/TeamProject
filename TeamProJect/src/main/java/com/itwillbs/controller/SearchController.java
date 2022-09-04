@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +14,13 @@ import org.aspectj.lang.annotation.SuppressAjWarnings;
 import org.springframework.format.datetime.joda.LocalDateParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.dao.SearchDAO;
+import com.itwillbs.domain.PagingDTO;
 import com.itwillbs.domain.PensionDTO;
 import com.itwillbs.service.SearchService;
 
@@ -33,7 +37,7 @@ public class SearchController {
 	private SearchDAO searchDAO;
 	
 	
-	// main 주소 맵핑 + 메인 검색창 날짜 설정
+	// 메인 검색창 날짜 설정
 	@RequestMapping(value = "/search/main", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, HttpServletResponse response) {
 		DateParse dateParse = new DateParse();
@@ -48,10 +52,24 @@ public class SearchController {
 		return "teamProJect/search/main";
 	}
 	
-	/* 숙소리스트 불러오기 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search/searchP", method = RequestMethod.GET)
-	public String list(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String list(PensionDTO pensionDTO, HttpServletRequest request, Model model) {
+		
+		int totalCount = searchService.pensionCount(pensionDTO);
+		String spageNum = request.getParameter("pageNum");
+		int ipageNum;
+		if(spageNum == null) {
+			ipageNum = 1;
+		} else {
+			ipageNum = Integer.parseInt(request.getParameter("pageNum"));
+		}
+		PagingDTO pT = new PagingDTO(ipageNum, totalCount);
+		model.addAttribute("page", pT);
+		
+		int index = (pT.getPageNum() - 1) * pT.getAmount();
+		int amount = pT.getAmount();
+		
 
 		/* 검색창 조건 컬럼 */
 		String pen_address = request.getParameter("pen_address");
@@ -64,10 +82,14 @@ public class SearchController {
 		map.put("pen_address", pen_address == null ? "" : pen_address);
 		map.put("pen_name", pen_name);
 		map.put("rm_resable_num", rm_resable_num);
+		map.put("index", index);
+		map.put("amount", amount);
+		
 		
 		/* 펜션 리스트 불러오기 */
 		System.out.println(map);
 		List<PensionDTO> pensionList = searchService.getPensionList(map);
+		model.addAttribute("pensionList", pensionList);
 
 		/* 기존 검색창 날짜 오늘, 내일 날짜로 설정 */
 		DateParse dateParse = new DateParse();
@@ -82,7 +104,7 @@ public class SearchController {
 		if(rm_checkin == null) rm_checkin = today;
 		if(rm_checkout == null) rm_checkout = tomorrow;
 		
-		request.setAttribute("pensionList", pensionList);
+//		request.setAttribute("pensionList", pensionList);
 		request.setAttribute("pen_address", pen_address);
 		request.setAttribute("pen_name", pen_name);
 		request.setAttribute("rm_checkin", rm_checkin);
@@ -92,12 +114,26 @@ public class SearchController {
 		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
 		
 		
-
-		
-		
 		return "teamProJect/search/searchP";
 		
 	}
+	
+	
+	/* (여수어때참고) 카테고리 기능(미정) 추가 시 구현 */
+//	@RequestMapping(value = {"/search/searchP/{lastPensionid}", "/search/searchP/{lastPensionid}/amount"}, method = RequestMethod.GET)
+//	@ResponseBody
+//	public List<PensionDTO> getList(
+//			@PathVariable() Optional<Long> lastPensionid,
+//			@PathVariable() Optional<Integer> amount,
+//			PensionDTO pT) {
+//		
+//		CriteriaPension cri = new CriteriaPension();
+//		cri.setLastPensionid(lastPensionid.orElse(cri.getLastPensionid()));
+//		cri.setAmount(amount.orElse(cri.getAmount()));
+//		
+//		return searchService.getListWithFilter(cri, pT);
+//		
+//	}
 	
 
 }

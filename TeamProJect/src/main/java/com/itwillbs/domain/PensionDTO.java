@@ -2,6 +2,7 @@ package com.itwillbs.domain;
 
 public class PensionDTO {
 	
+	private int count; 
 	private String pen_id;
 	private String user_id; 
 	private String pen_name;
@@ -67,6 +68,12 @@ public class PensionDTO {
 	}
 	public void setRm_price(String rm_price) {
 		this.rm_price = rm_price;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 	

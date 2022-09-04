@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.SearchDAO;
 import com.itwillbs.domain.PensionDTO;
-import com.itwillbs.domain.PensionRmDTO;
+
 
 @Service
 public class SearchService {
@@ -18,20 +18,26 @@ public class SearchService {
 	private SearchDAO searchDAO;
 	
 	
-	/* 검색된 펜션리스트 가져오기 */
+	/* 펜션리스트 가져오기 */
 	public List<PensionDTO> getPensionList(Map map) {
 		return searchDAO.getPensionList(map);
 	}
 
-	/* 삭제해도 되는 코드 추후 삭제예정 (지연) */
-//	public List<PensionRmDTO> getRoomList() {
-//		return searchDAO.getRoomList();
+	/* 페이징 */
+	public int pensionCount(PensionDTO pensionDTO) {
+		return searchDAO.pensionCount(pensionDTO);
+	}
+
+
+	
+	/* (여수어때참고) 카테고리 기능(미정) 추가 시 구현 */
+//	public List<PensionDTO> getListWithFilter(CriteriaPension cri, PensionDTO pT) {
+//		List<PensionDTO> list = searchDAO.getListWithFilter(cri, pT);
+//		
+//		return list;
 //	}
-//
-//
-//	public ReviewDTO getReviewCount() {
-//		return searchDAO.getReviewCount();
-//	}
+
+
 
 
 
