@@ -23,10 +23,12 @@ import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PagingDTO;
 import com.itwillbs.domain.QnaDTO;
+import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.BusinessService;
 import com.itwillbs.service.MemberListService;
 import com.itwillbs.service.MemberService;
+import com.itwillbs.service.ReservationService;
 
 
 @Controller
@@ -34,6 +36,8 @@ public class AdminController {
 	
 	@Inject
 	private MemberListService memberListService;
+	private ReservationDTO ReservationDTO;
+	private ReservationService reservationService;
 	
 	@RequestMapping(value = "/admin/a_myPage", method = RequestMethod.GET)
 	public String a_myPage() {
@@ -106,7 +110,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/a_listReservationAll", method = RequestMethod.GET)
-	public String a_listReservationAll() {
+	public String a_listReservationAll(Model model, ReservationDTO reservationDTO) {
+		
+//		List<ReservationDTO> listReservationAll = reservationService.listReservationAll(ReservationDTO);
+//		model.addAttribute("listReservationAll", listReservationAll);
 		
 		return "teamProJect/admin/a_listReservationAll";
 	}

@@ -1,0 +1,25 @@
+package com.itwillbs.dao;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.itwillbs.domain.ReservationDTO;
+
+@Repository
+public class ReservationDAO {
+
+	@Inject
+	private SqlSession sqlSession;
+	private static final String NAMESPACE ="com.itwillbs.mappers.adminMapper";
+	
+	// 전체 예약 내역 조회
+	public List<ReservationDTO> listReservationAll(ReservationDTO reservationDTO){
+		System.out.println("전체 예약 내역 조회 출력");
+		return sqlSession.selectList(NAMESPACE + ".listReservationAll", reservationDTO);
+	}
+	
+}

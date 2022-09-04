@@ -28,7 +28,7 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">전체 예약조회</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">전체 예약 목록</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -37,19 +37,21 @@
                                         <tr class="text-center">
                                             <th>예약번호</th>
                                             <th>숙소이름</th>
+                                            <th>예약자 성함</th>
                                             <th>체크인</th>
                                             <th>체크아웃</th>
-                                            <th>승인상태</th>
+                                            <th>예약 확정 시간</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${reservation}" var="r">
+                                    	<c:forEach items="" var="ReservationDTO">
 	                                        <tr>
 	                                            <td class="text-center">${r.reservationNum}</td>
-	                                            <td class="text-center text-truncate">${r.roomName}</td>
+	                                            <td class="text-center">${r.roomName}</td>
+	                                            <td class="text-center">${r.roomName}</td>
 	                                            <td class="text-center">${r.checkin}</td>
 	                                            <td class="text-center">${r.checkout}</td>
-	                                            <td class="text-center"></td>
+	                                            <td class="text-center">${r.checkout}</td>
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>

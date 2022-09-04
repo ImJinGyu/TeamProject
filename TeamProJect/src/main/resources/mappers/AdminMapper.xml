@@ -22,6 +22,7 @@
 		 LIMIT ${index}
 		     , ${amount}
 	</select>
+	
 	<update id="updateAnwser">
 		UPDATE QNA_INQUIRE
 		   SET WRITER = #{writer}
@@ -46,4 +47,22 @@
      		 , SUM(IF(USER_TYPE = '2', 1, 0)) 'BUSINESS'
 		  FROM MEMBER;
 	</select>
+	
+	<!-- 전체 예약 내역 조회 -->
+	<select id="listReservationAll" resultType="com.itwillbs.domain.ReservationDTO">
+		SELECT RES_NUMBER
+			 , PEN_NAME
+			 , USER_NAME
+			 , CHECK_IN_T
+			 , CHECK_OUT_T
+			 , RES_TIME
+		  FROM RESERVATION
+	</select>
+	
+
+	
+	
+	
+	
+	
 </mapper>
