@@ -36,22 +36,22 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>예약번호</th>
-                                            <th>숙소이름</th>
-                                            <th>예약자 성함</th>
+                                            <th>숙소이름(방이름)</th>
+                                            <th>예약자</th>
                                             <th>체크인</th>
                                             <th>체크아웃</th>
                                             <th>예약 확정 시간</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="" var="ReservationDTO">
+                                    	<c:forEach items="${listReservationAll}" var="reservationDTO">
 	                                        <tr>
-	                                            <td class="text-center">${r.reservationNum}</td>
-	                                            <td class="text-center">${r.roomName}</td>
-	                                            <td class="text-center">${r.roomName}</td>
-	                                            <td class="text-center">${r.checkin}</td>
-	                                            <td class="text-center">${r.checkout}</td>
-	                                            <td class="text-center">${r.checkout}</td>
+	                                            <td class="text-center">${reservationDTO.res_number}</td>
+	                                            <td class="text-center">${reservationDTO.pen_name} (${reservationDTO.rm_name})</td>
+	                                            <td class="text-center">${reservationDTO.user_name} (${reservationDTO.user_id})</td>
+	                                            <td class="text-center">${reservationDTO.check_in_d} ${reservationDTO.check_in_t}</td>
+	                                            <td class="text-center">${reservationDTO.check_out_d} ${reservationDTO.check_out_t}</td>
+	                                            <td class="text-center">${reservationDTO.res_time}</td>
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>

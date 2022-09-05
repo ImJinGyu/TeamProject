@@ -36,7 +36,8 @@ public class AdminController {
 	
 	@Inject
 	private MemberListService memberListService;
-	private ReservationDTO ReservationDTO;
+	
+	@Inject
 	private ReservationService reservationService;
 	
 	@RequestMapping(value = "/admin/a_myPage", method = RequestMethod.GET)
@@ -112,8 +113,8 @@ public class AdminController {
 	@RequestMapping(value = "/admin/a_listReservationAll", method = RequestMethod.GET)
 	public String a_listReservationAll(Model model, ReservationDTO reservationDTO) {
 		
-//		List<ReservationDTO> listReservationAll = reservationService.listReservationAll(ReservationDTO);
-//		model.addAttribute("listReservationAll", listReservationAll);
+		List<ReservationDTO> listReservationAll = reservationService.listReservationAll(reservationDTO);
+		model.addAttribute("listReservationAll", listReservationAll);
 		
 		return "teamProJect/admin/a_listReservationAll";
 	}
