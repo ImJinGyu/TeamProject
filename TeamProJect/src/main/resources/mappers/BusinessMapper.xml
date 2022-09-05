@@ -32,7 +32,10 @@
 		<if test="pen_address != null and !pen_address.equals('')">
 		  AND PEN_ADDRESS LIKE '%${pen_address}%'
 		</if> 
-	 	GROUP BY P.PEN_ID, P.PEN_NAME, A.PEN_IMAGE;
+	 	GROUP BY P.PEN_ID, P.PEN_NAME, A.PEN_IMAGE
+		 LIMIT ${index}
+		     , ${amount}
+	 
 	</select> 
 	
 	<!-- PENSION Table(팬션 정보) 입력 SQL구문 -->

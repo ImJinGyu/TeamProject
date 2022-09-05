@@ -28,16 +28,6 @@ public class SearchService {
 	public int pensionCount(PensionDTO pensionDTO) {
 		return searchDAO.pensionCount(pensionDTO);
 	}
-
-
-	
-	/* (여수어때참고) 카테고리 기능(미정) 추가 시 구현 */
-//	public List<PensionDTO> getListWithFilter(CriteriaPension cri, PensionDTO pT) {
-//		List<PensionDTO> list = searchDAO.getListWithFilter(cri, pT);
-//		
-//		return list;
-//	}
-
 	
 	/* pen_name에 해당하는 펜션 정보 가져오기 (지원) */
 	public PensionDTO getPensionDetail(String pen_name) {

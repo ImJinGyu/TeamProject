@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.nio.file.spi.FileSystemProvider;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -15,8 +16,10 @@ import org.springframework.format.datetime.joda.LocalDateParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.dao.SearchDAO;
@@ -65,11 +68,14 @@ public class SearchController {
 		} else {
 			ipageNum = Integer.parseInt(request.getParameter("pageNum"));
 		}
+//		System.out.println(ipageNum );
+//		System.out.println(ipageNum );
 		PagingDTO pT = new PagingDTO(ipageNum, totalCount);
 		model.addAttribute("page", pT);
 		
 		int index = (pT.getPageNum() - 1) * pT.getAmount();
-		int amount = pT.getAmount();
+//		int amount = pT.getAmount();
+		int amount = 10;
 		
 
 		/* 검색창 조건 컬럼 */
@@ -88,9 +94,11 @@ public class SearchController {
 		
 		
 		/* 펜션 리스트 불러오기 */
-		System.out.println(map);
 		List<PensionDTO> pensionList = searchService.getPensionList(map);
 		model.addAttribute("pensionList", pensionList);
+		System.out.println(pensionList.size());
+		model.addAttribute("page", map);
+//		System.out.println(pensionList);
 
 		/* 기존 검색창 날짜 오늘, 내일 날짜로 설정 */
 		DateParse dateParse = new DateParse();
@@ -118,24 +126,83 @@ public class SearchController {
 		return "teamProJect/search/searchP";
 		
 	}
-	
-	
-	/* (여수어때참고) 카테고리 기능(미정) 추가 시 구현 */
-//	@RequestMapping(value = {"/search/searchP/{lastPensionid}", "/search/searchP/{lastPensionid}/amount"}, method = RequestMethod.GET)
-//	@ResponseBody
-//	public List<PensionDTO> getList(
-//			@PathVariable() Optional<Long> lastPensionid,
-//			@PathVariable() Optional<Integer> amount,
-//			PensionDTO pT) {
-//		
-//		CriteriaPension cri = new CriteriaPension();
-//		cri.setLastPensionid(lastPensionid.orElse(cri.getLastPensionid()));
-//		cri.setAmount(amount.orElse(cri.getAmount()));
-//		
-//		return searchService.getListWithFilter(cri, pT);
-//		
-//	}
-	
+	public void listajax2() {
+		
+	}
+	@ResponseBody
+	@RequestMapping(value = "/search/searchPajax", method = RequestMethod.GET)
+	public List<PensionDTO> listajax(@RequestParam String count, String index2, PensionDTO pensionDTO, HttpServletRequest request, Model model) {
+		System.out.println(count + "-count");
+		
+		int amount = Integer.parseInt(count.toString());
+		int totalCount = searchService.pensionCount(pensionDTO);
+		String spageNum = request.getParameter("pageNum");
+		int ipageNum;
+		if(spageNum == null) {
+			ipageNum = 1;
+		} else {
+			ipageNum = Integer.parseInt(request.getParameter("pageNum"));
+		}
+//		System.out.println(ipageNum );
+//		System.out.println(ipageNum );
+		PagingDTO pT = new PagingDTO(ipageNum, totalCount);
+		model.addAttribute("page", pT);
+		
+		int index = (Integer.parseInt(index2) - 1) * pT.getAmount();
+		
+		System.out.println(index + "-index");
+		/* 검색창 조건 컬럼 */
+		String pen_address = request.getParameter("pen_address");
+		String pen_name = request.getParameter("pen_name");
+		String rm_checkin = request.getParameter("rm_checkin");
+		String rm_checkout = request.getParameter("rm_checkout");
+		String rm_resable_num = request.getParameter("rm_resable_num");
+		
+		Map map = new HashMap();
+		map.put("pen_address", pen_address == null ? "" : pen_address);
+		map.put("pen_name", pen_name);
+		map.put("rm_resable_num", rm_resable_num);
+		map.put("index", index);
+		map.put("amount", amount);
+		
+		
+		/* 펜션 리스트 불러오기 */
+		List<PensionDTO> pensionList = searchService.getPensionList(map);
+		for (PensionDTO dto : pensionList) {
+			dto.setRm_price(dto.getRm_price().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","));
+		}
+		System.out.println(pensionList.size() + " - list");
+		model.addAttribute("pensionList", pensionList);
+		model.addAttribute("page", map);
+		System.out.println(pensionList);
+		
+
+		/* 기존 검색창 날짜 오늘, 내일 날짜로 설정 */
+		DateParse dateParse = new DateParse();
+		String today = dateParse.getTodayPlus(0);
+		String tomorrow = dateParse.getTodayPlus(1);
+		
+		// yyyyMMdd -> yyyy-MM-dd
+		today = dateParse.strToDate(today);
+		tomorrow = dateParse.strToDate(tomorrow);
+		
+		/* 카테고리 별 검색 시 현재 날짜로 날짜 설정 */
+		if(rm_checkin == null) rm_checkin = today;
+		if(rm_checkout == null) rm_checkout = tomorrow;
+		
+//		request.setAttribute("pensionList", pensionList);
+		request.setAttribute("pen_address", pen_address);
+		request.setAttribute("pen_name", pen_name);
+		request.setAttribute("rm_checkin", rm_checkin);
+		request.setAttribute("rm_checkout", rm_checkout);
+		request.setAttribute("rm_resable_num", rm_resable_num);
+		request.setAttribute("today", dateParse.strToDate(today));
+		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
+		
+		return pensionList;
+	}
+
+
 	
 	
 	

@@ -20,6 +20,7 @@ public class SearchDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="com.itwillbs.mappers.BusinessMapper";
+	private static final String NAMESPACE2="com.itwillbs.mappers.PensionMapper";
 	
 	/* 검색된 펜션 리스트 가져오기 */
 	public List<PensionDTO> getPensionList(Map map) {
@@ -30,11 +31,6 @@ public class SearchDAO {
 	public int pensionCount(PensionDTO pensionDTO) {
 		return sqlSession.selectOne(NAMESPACE + ".pensionCount", pensionDTO);
 	}
-
-	/* (여수어때참고) 카테고리 기능(미정) 추가 시 구현 */
-//	public List<PensionDTO> getListWithFilter(@Param("cri") CriteriaPension cri, @Param("pension") PensionDTO pT) {
-//		return sqlSession.selectList(NAMESPACE+".getListWithFilter");
-//	}
 	
 	/* pen_name에 해당하는 펜션 정보 가져오기 (지원) */
 	public PensionDTO getPensionDetail(String pen_name) {

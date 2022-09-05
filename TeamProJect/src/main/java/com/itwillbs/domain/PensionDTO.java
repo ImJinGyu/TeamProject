@@ -69,6 +69,7 @@ public class PensionDTO {
 	public void setRm_price(String rm_price) {
 		this.rm_price = rm_price;
 	}
+	
 	public int getCount() {
 		return count;
 	}
@@ -76,7 +77,12 @@ public class PensionDTO {
 		this.count = count;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "PensionDTO [count=" + count + ", pen_id=" + pen_id + ", user_id=" + user_id + ", pen_name=" + pen_name
+				+ ", pen_address=" + pen_address + ", pen_zipcode=" + pen_zipcode + ", pen_number=" + pen_number
+				+ ", pen_image=" + pen_image + ", rv=" + rv + ", rm_price=" + rm_price + "]";
+	}
 	
 	
 
