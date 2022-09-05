@@ -40,39 +40,44 @@
 /* } */
 
 .title_color:hover {
-	color:blue;
+	color:#007bff;
+	transition: all .3s;
 }
 .navbar-nav > li > .dropdown-menu {
     margin-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     display: block;
-    transform: scale(0);
+    opacity: 0;
     transition: ease-out 0.3s;
 }
 /* .dropdown-menu > li{ */
 /*     font-size: 50px; */
 /* } */
+.dropdown-menu1 {
+min-width: 8rem;
+}
 .dropdown:hover .dropdown-menu > li{
 	width:100%;
-    font-size: 15px;
+    font-size: 1rem;
 }
 .dropdown:hover .dropdown-menu > li:hover{
-	text-align:center;
+	text-align:left;
 	background-color: gray;
-    font-style: italic;
+	transition: all .5s;
+/*     font-style: italic; */
 }
 .dropdown:hover .dropdown-menu > li:hover > a{
 	color:white;
 }
 .dropdown:hover .dropdown-menu {
-    transform: scale(1);
+     opacity:1;
 }
 .dropdown-menu1
 {
 	border:none;
 	display: block;
-    transform: scale(1)!important;
+  	opacity:1;
 	height: 0px;
 	overflow: hidden;
 	padding: 0px;
@@ -81,16 +86,14 @@
 }
 .dropdown:hover .dropdown-menu1
 {
-	display: block;
+	display:block;
 	top: 70%;
 	height: inherit;
 }
 
 
-
 header .navs ul li ul li {
-	margin:0px;
-    padding: 20px;
+    padding: 10px;
 
 }
     </style>
@@ -100,7 +103,7 @@ header .navs ul li ul li {
     <body>
         <header id="menu-jk" class="container-fluid">
             <div class="row">
-                <div class="col-md-3 logo">
+                <div class="col logo">
                 	<a href="${pageContext.request.contextPath }/search/main"><!-- 로고에 메인페이지 링크 추가 -->
                     	<img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png" alt="">
                     	
@@ -108,12 +111,12 @@ header .navs ul li ul li {
                 	
                      <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-md-none  small-menu fa-bars"></i></a>
                 </div>
-                <div class="col-sm-3"></div>
+                <div class="col-md-auto"></div>
                 <div id="menu" class="col-lg-6 col-md-6	 d-none d-md-block navs ">
                     <ul>
-                        <li><input type="text" style="visibility: hidden;"></li>
+<!--                         <li><input type="text" style="visibility: hidden;"></li> -->
                         <li class="dropdown">
-				          <a href="#" class="dropdown-toggle title_color" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">더보기<span class="caret"></span></a>
+				           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">	더보기<span class="caret"></span></a>
 				        	<ul class="dropdown-menu dropdown-menu1">
 				            	<li><a href="#" onclick="alert('준비중이다')">공지사항</a></li>
 				            	<li><a href="#" onclick="alert('준비중이다')">이벤트</a></li>
@@ -127,7 +130,7 @@ header .navs ul li ul li {
 						</c:when> 
 						<c:otherwise>
 							<li class="dropdown">
-							   <a href="#" class="dropdown-toggle title_color" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.user_name }<span class="caret"></span></a>
+							   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.user_name }<span class="caret"></span></a>
 							   <ul class="dropdown-menu dropdown-menu1">
 							   	  <c:choose>
 							   	  	<c:when test="${sessionScope.user_type == '0'}">
@@ -149,7 +152,7 @@ header .navs ul li ul li {
 <!--                         <li><a href="contact-us.html">Contact US</a></li> -->
                     </ul>
                 </div>
-                <div class="col-md-3 d-none d-lg-block socila-link">
+                <div class="col-sm-1">
                     <ul>
 <!--                         <li> --> <!-- 페이스북 --> 
 <!--                             <i class="fab fa-facebook-square"></i> -->
@@ -166,6 +169,7 @@ header .navs ul li ul li {
 <%-- 							</c:if> --%>
                     </ul>
                 </div>
+            </div>
             </div>
         </header>
         

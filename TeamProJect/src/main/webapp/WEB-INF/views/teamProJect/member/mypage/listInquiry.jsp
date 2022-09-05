@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/memberMyPage/qna.js"></script>
+     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
     
      
 </head>
@@ -40,7 +42,7 @@
 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- DataTales Example -->
-                    <div class="card shadow my-5" style="margin: 15px">
+                    <div class="card shadow my-5" style="margin: 15px" data-aos="zoom-in-up">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">부산온나 고객센터</h6>
                         </div>
@@ -106,6 +108,7 @@
                                 </table>
                                 
                                 <hr>
+                                <div data-aos="flip-left" data-aos-delay="1000">
                                 <div style="width:100%; text-align: center;">
                                 <span style="font-size: 30px; color: navy;"><b>문의 작성</b></span>
                                 </div><br>
@@ -114,6 +117,7 @@
                                 <textarea class="form-control" name="content" id="content" placeholder="문의 내용을 입력하세요" style="min-height: 400px; resize: none;"></textarea>
                                 <input type="submit" class="btn btn-primary btn-block" value="1:1문의 등록">
                                 </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -182,4 +186,8 @@
     <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="assets/plugins/slider/js/owl.carousel.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>AOS.init({
+    	  duration: 1000
+    });</script>
+    
 </html>

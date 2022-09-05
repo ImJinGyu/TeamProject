@@ -20,10 +20,17 @@
     <script src="${pageContext.request.contextPath }/resources/js/loginajax.js"></script>
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+   <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    
 </head>
+
 <body>
-	
- <div class="login_form_width" style="padding-top:100px; margin-bottom: 100px">
+
+	<div class="animate__animated animate__fadeInUp" >
+ <div class="login_form_width" style="padding-top:100px; margin-bottom: 100px" >
   <!-- 고객 & 사용자 탭 -->
   <ul class="nav nav-tabs nav-justified mt-3" role="tablist" style="width:312px; margin:0 auto;">
    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" style="color:black;" href="#member-login">고객 로그인</a></li>
@@ -115,6 +122,8 @@
     </form>
   </div>
  </div>
-
+ </div>
+ </div>
+ </div>
 </body>
 </html>
