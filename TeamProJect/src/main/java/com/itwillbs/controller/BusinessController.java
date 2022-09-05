@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.itwillbs.dao.BusinessDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.BusinessService;
@@ -28,6 +29,9 @@ public class BusinessController {
 	
 	@Inject
 	private BusinessService businessService;
+	
+	@Inject
+	private BusinessDAO businessDAO;
 	
 	// 업로드 경로
 //		Resource(name = "servlet-context.xml에 있는 업로드 경로의 id값")
@@ -68,6 +72,28 @@ public class BusinessController {
 		model.addAttribute("rList", roomList);
 		
 		return "teamProJect/business/roomList";
+	}
+	
+//	가상주소 시작점 http://localhost:8080/myweb2/board/updatePro
+	@RequestMapping(value = "/business/roomListPro", method = RequestMethod.POST)
+	public String roomListPro(BusinessDTO businessDTO) {
+			
+			
+			businessService.updateRoomList(businessDTO);
+			// 주소변경하면서 이동
+			return "redirect:/business/roomList";
+	}
+	
+//	가상주소 시작점 http://localhost:8080/myweb2/business/remove
+	@RequestMapping(value = "/business/remove", method = RequestMethod.POST)
+	public String remove(BusinessDTO businessDTO, Model model) {
+			
+			List<BusinessDTO> roomList = businessService.getRoomList(businessDTO);
+			model.addAttribute("rList", roomList);
+			
+			businessService.deleteRoomList(businessDTO);
+			// 주소변경하면서 이동
+			return "redirect:/business/roomList";
 	}
 
 	
@@ -127,6 +153,7 @@ public class BusinessController {
 		String[] CHECKOUT = request.getParameterValues("checkout");
 		String[] RESABLE_NUM = request.getParameterValues("people");
 		String[] PRICE = request.getParameterValues("RM_Price");
+		
 		
 		String PEN_ID = request.getParameter("PEN_ID");
 		String RM_NAME = "";

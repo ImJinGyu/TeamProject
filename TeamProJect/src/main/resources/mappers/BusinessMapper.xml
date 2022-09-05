@@ -101,6 +101,18 @@
 		  FROM PENSION_ROOM
 	</select>
 	
+	<update id="updateRoomList">
+		UPDATE PENSION_ROOM SET 
+		       RM_NAME = #{RM_NAME}
+			  ,RM_CHECKOUT = #{RM_CHECKOUT}
+			  ,RM_PRICE = #{RM_PRICE}
+	  	 WHERE ROOM_ID = #{RM_NUM}
+	</update>
+	
+	<delete id="deleteRoomList">
+		DELETE FROM PENSION_ROOM
+		 WHERE ROOM_ID = #{RM_NUM}
+	</delete>
 	
 <!-- 	<select id="getMaxNum" resultType="java.lang.Integer"> -->
 <!-- 		SELECT MAX(RM_NUM) -->

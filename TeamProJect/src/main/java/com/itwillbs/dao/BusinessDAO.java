@@ -50,6 +50,20 @@ public class BusinessDAO {
 		return sqlSession.selectList(namespace+".getRoomList", businessDTO);
 	}
 
+
+
+	public void updateRoomList(BusinessDTO businessDTO) {
+		sqlSession.update(namespace+".updateRoomList", businessDTO);
+		
+	}
+
+
+	public void deleteRoomList(BusinessDTO businessDTO) {
+		sqlSession.delete(namespace+".deleteRoomList", businessDTO);
+		
+	}
+
+
 	
 //	public Integer getMaxNum() {
 //		return sqlSession.selectOne(namespace+".getMaxNum");

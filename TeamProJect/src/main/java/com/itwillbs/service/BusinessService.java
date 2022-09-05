@@ -54,6 +54,19 @@ public class BusinessService {
 		
 		return businessDAO.getRoomList(businessDTO);
 	}
+
+
+
+	public void updateRoomList(BusinessDTO businessDTO) {
+		businessDAO.updateRoomList(businessDTO);
+		
+	}
+
+
+	public void deleteRoomList(BusinessDTO businessDTO) {
+		businessDAO.deleteRoomList(businessDTO);
+		
+	}
 	
 	
 	

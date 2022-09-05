@@ -20,8 +20,22 @@ public class BusinessDTO {
 	private String RM_PRICE;
 	private String RM_IMAGE;
 	private String RES_STATUS;
+	private String RM_NUM;
+	private String ROOM_ID;
 	
 	
+	public String getRM_NUM() {
+		return RM_NUM;
+	}
+	public void setRM_NUM(String rM_NUM) {
+		RM_NUM = rM_NUM;
+	}
+	public String getROOM_ID() {
+		return ROOM_ID;
+	}
+	public void setROOM_ID(String rOOM_ID) {
+		ROOM_ID = rOOM_ID;
+	}
 	public String getPEN_ID() {
 		return PEN_ID;
 	}
