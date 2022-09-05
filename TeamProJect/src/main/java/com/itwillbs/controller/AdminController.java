@@ -66,15 +66,7 @@ public class AdminController {
 		}else {
 			ipageNum = Integer.parseInt(req.getParameter("pageNum"));
 		}
-		PagingDTO pT = new PagingDTO(ipageNum, totalCount);
-		model.addAttribute("page", pT);
-		
-		int index = (pT.getPageNum() - 1) * pT.getAmount();
-		int amount = pT.getAmount();
-		Map<String, Integer> para = new HashMap<String, Integer>();
-		para.put("index", index);
-		para.put("amount", amount);
-		
+		Map<String, Integer> para = new FunctionClass().pagingFunction(ipageNum, totalCount, model);
 		List<QnaDTO> qList =  memberListService.selectQna(para);
 		model.addAttribute("list",qList);
 		return "teamProJect/admin/a_listInquiry";
