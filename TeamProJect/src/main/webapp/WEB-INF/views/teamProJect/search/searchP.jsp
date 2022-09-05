@@ -202,12 +202,12 @@
 						<div class="blog-entry d-flex blog-entry-search-item pensions"
 							data-pensionid="6867">
 							<button class="img-link me-4">
-							<a href="#"class="bg-white border-0">
+							<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }"class="bg-white border-0">
 								<img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="Image" class="img-fluid">
 							</a>
 							</button>
 							<div class="pensionInfo">
-								<h2><a href="/pension/detail?pensionid=6867&amp;startDate=2022/08/28&amp;endDate=2022/08/29"class="bg-white border-0">${PensionDTO.pen_name }</a>
+								<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }"class="bg-white border-0">${PensionDTO.pen_name }</a>
 								</h2>
 								<p>${PensionDTO.pen_address }</p>
 								<p>가격 <fmt:formatNumber type="number" maxFractionDigits="3" value="${PensionDTO.rm_price }" /> 원</p>

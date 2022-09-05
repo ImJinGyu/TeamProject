@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.dao.SearchDAO;
+import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PagingDTO;
 import com.itwillbs.domain.PensionDTO;
 import com.itwillbs.service.SearchService;
@@ -134,6 +135,81 @@ public class SearchController {
 //		return searchService.getListWithFilter(cri, pT);
 //		
 //	}
+	
+	
+	
+	
+	/* 아직 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원) */
+	@RequestMapping(value = "/search/pensionDetail", method = RequestMethod.GET)
+	public String pensionDetail(HttpServletRequest request, Model model) {
+		
+		/* 파라미터 값(펜션 이름) 저장 */
+		String pen_name = request.getParameter("pen_name");
+		String rm_checkin = request.getParameter("rm_checkin");
+		String rm_checkout = request.getParameter("rm_checkout");
+		
+		System.out.println("펜션 이름 : " + pen_name);
+		System.out.println("checkin : " + rm_checkin + " / checkout : " + rm_checkout);
+		
+		/* 해당 펜션 정보, 방 리스트 불러오기 */
+		PensionDTO pensionDTO = searchService.getPensionDetail(pen_name);
+		List<BusinessDTO> searchRoomList = searchService.getSearchRoomList(pen_name);
+
+		/* 기존 검색창 날짜 오늘, 내일 날짜로 설정 */
+		DateParse dateParse = new DateParse();
+		String today = dateParse.getTodayPlus(0);
+		String tomorrow = dateParse.getTodayPlus(1);
+		
+		// yyyyMMdd -> yyyy-MM-dd
+		today = dateParse.strToDate(today);
+		tomorrow = dateParse.strToDate(tomorrow);
+		
+		/* 카테고리 별 검색 시 현재 날짜로 날짜 설정 */
+		if(rm_checkin == null) rm_checkin = today;
+		if(rm_checkout == null) rm_checkout = tomorrow;
+		
+
+		request.setAttribute("rm_checkin", rm_checkin);
+		request.setAttribute("rm_checkout", rm_checkout);
+		request.setAttribute("today", dateParse.strToDate(today));
+		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
+		
+		/* model에 펜션 정보, 방 리스트 저장 */
+		model.addAttribute("pensionDTO", pensionDTO);
+		model.addAttribute("searchRoomList", searchRoomList);
+		model.addAttribute("rm_checkin", rm_checkin);
+		model.addAttribute("rm_checkout", rm_checkout);
+		model.addAttribute("today", today);
+		model.addAttribute("tomorrow", tomorrow);
+		
+		return "teamProJect/search/pensionDetail";
+		
+	}
+	
+	/* 손 거의 안댐 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원) */
+	@RequestMapping(value = "/search/reserve", method = RequestMethod.GET)
+	public String reserve(HttpServletRequest request, Model model) {
+		
+		String pen_name = request.getParameter("pen_name");
+		String rm_checkin = request.getParameter("rm_checkin");
+		String rm_checkout = request.getParameter("rm_checkout");
+		
+		System.out.println("펜션 이름 : " + pen_name);
+		System.out.println("checkin : " + rm_checkin + " / checkout : " + rm_checkout);
+		
+		PensionDTO pensionDTO = searchService.getPensionDetail(pen_name);
+		
+		request.setAttribute("rm_checkin", rm_checkin);
+		request.setAttribute("rm_checkout", rm_checkout);
+		
+		model.addAttribute("pensionDTO", pensionDTO);
+		model.addAttribute("rm_checkin", rm_checkin);
+		model.addAttribute("rm_checkout", rm_checkout);
+		
+		return "teamProJect/search/reserve";
+		
+	}
+	
 	
 
 }

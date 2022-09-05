@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PensionDTO;
 
 
@@ -34,6 +35,18 @@ public class SearchDAO {
 //	public List<PensionDTO> getListWithFilter(@Param("cri") CriteriaPension cri, @Param("pension") PensionDTO pT) {
 //		return sqlSession.selectList(NAMESPACE+".getListWithFilter");
 //	}
+	
+	/* pen_name에 해당하는 펜션 정보 가져오기 (지원) */
+	public PensionDTO getPensionDetail(String pen_name) {
+		System.out.println("SearchDAO getPensionDetail()");
+		return sqlSession.selectOne(NAMESPACE + ".getPensionDetail", pen_name);
+	}
+	
+	/* pen_name에 해당하는 방 리스트 가져오기 (지원) */
+	public List<BusinessDTO> getSearchRoomList(String pen_name) {
+		System.out.println("SearchDAO getSearchRoomList()");
+		return sqlSession.selectList(NAMESPACE + ".getSearchRoomList", pen_name);
+	}
 
 
 
