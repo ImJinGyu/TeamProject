@@ -53,8 +53,8 @@
                         <div class="row">
                             <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                                 <div class="animated bounceInDown slider-captions">
-                                    <h1 class="slider-title">Most Stylish Free Travel Website</h1>
-                                    <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<!--                                     <h1 class="slider-title">Most Stylish Free Travel Website</h1> -->
+<!--                                     <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
                                     
                                 </div>
                             </div>
@@ -68,8 +68,8 @@
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider-captions ">
-                                <h1 class="slider-title">It's time for better help.</h1>
-                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<!--                                 <h1 class="slider-title">It's time for better help.</h1> -->
+<!--                                 <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
                                 
                             </div>
                         </div>
@@ -82,8 +82,8 @@
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider-captions ">
-                                <h1 class="slider-title">Most Attractive Travel Template</h1>
-                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<!--                                 <h1 class="slider-title">Most Attractive Travel Template</h1> -->
+<!--                                 <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
                                
                             </div>
                         </div>
@@ -96,8 +96,8 @@
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider-captions ">
-                                <h1 class="slider-title">Most Attractive Travel Template</h1>
-                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<!--                                 <h1 class="slider-title">Most Attractive Travel Template</h1> -->
+<!--                                 <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
                                
                             </div>
                         </div>
@@ -110,8 +110,8 @@
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider-captions ">
-                                <h1 class="slider-title">Most Attractive Travel Template</h1>
-                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<!--                                 <h1 class="slider-title">Most Attractive Travel Template</h1> -->
+<!--                                 <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
                                
                             </div>
                         </div>
@@ -124,8 +124,8 @@
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider-captions ">
-                                <h1 class="slider-title">Most Attractive Travel Template</h1>
-                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<!--                                 <h1 class="slider-title">Most Attractive Travel Template</h1> -->
+<!--                                 <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
                                
                             </div>
                         </div>
@@ -138,8 +138,8 @@
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider-captions ">
-                                <h1 class="slider-title">Most Attractive Travel Template</h1>
-                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<!--                                 <h1 class="slider-title">Most Attractive Travel Template</h1> -->
+<!--                                 <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
                                
                             </div>
                         </div>
@@ -166,8 +166,8 @@
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider-captions ">
-                                <h1 class="slider-title">Most Attractive Travel Template</h1>
-                                <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<!--                                 <h1 class="slider-title">Most Attractive Travel Template</h1> -->
+<!--                                 <p class="slider-text hidden-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
                                
                             </div>
                         </div>

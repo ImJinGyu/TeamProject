@@ -858,29 +858,73 @@ address {
  .learn-more:hover:before {
     width: 0%; }
 
- /* searchP 페이지 */    
- /* 숙소 이미지 크기 */
-.img-link {
-	max-width: 300px;
-	border-color: gainsboro;
+
+/* searchP 페이지 (지연) */
+
+.pensions {
+	width: 100%;
+	margin: 10px auto;
+	position: relative;
+
 }
 
-.img-link img {
-	min-width: 100px;
+.container img {
+	width: 100%;
+	height: auto;
+	vertical-align: middle;
+	filter: brightness(50%);
 }
 
 .pensionInfo {
-	padding-left: 20px;
-}
-
-.pensionInfo p {
-	padding-bottom: 10px;
+	position: absolute;
+ 	top: 10%;
+	left: 10%;
+	width: 100%;
+/* 	transform: translate( -50%, -50% ); */
+	
+	/* padding-left: 20px; */
 }
 
 .pensionInfo a {
 	color: #ff4a52;
+	font-weight: bold;
 }
 
+/* .pensionInfo h2 {
+	background-color: rgba( 255, 255, 255, 0.5 );
+}
+ */
+.pensionInfo p {
+	max-width: 240px;
+	padding-bottom: 10px;
+	font-weight: bold;
+	color: white;
+	background-color: rgba( 255, 255, 255, 0.5 );
+}
+
+.pensions .container {
+  width: 800px;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.container > img-fluid {
+  position: absolute;
+  width: 100%;
+  /* height: 100%; */
+  top: 50%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+}
+
+
+@media (min-width: 1024px) {
+	.pensionlist {
+		width: 1024px;
+		margin: 12px auto 0 auto;
+	}
+}
 
 
 

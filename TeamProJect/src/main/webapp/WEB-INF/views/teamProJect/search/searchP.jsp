@@ -8,25 +8,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Come to Busan - 부산온나</title><!-- Free Tour and Travel Website Tempalte | Smarteyeapps.com -->
-    <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/fav.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/fav.jpg">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/all.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/animate.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <title>${pensionDTO.pen_name } | 부산온나</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
 </head>
 <body>
 <%@ include file="../header.jsp" %>
 <!--헤더 -->
 
-<div style="padding-bottom: 60px;"></div>
+<div style="padding-bottom: 85px;"></div>
 
 		<!-- 검색창 시작 -->
 	<div class="search container-fluid" style="background-color: gainsboro;">
@@ -87,43 +79,32 @@
 			</div>
 		</div>
 	</div> -->
+	
+
+	
 				<!-- 숙소 리스트 기존 방식 -->
 				<div id="penlist123123">
   				   <c:forEach items="${pensionList }" var="PensionDTO">
 					<div class="col-lg-8 pensionlist">
-						<div class="row text-start pt-5 border-top mb-4"></div>
-						<div class="blog-entry d-flex blog-entry-search-item pensions"
-							data-pensionid="6867">
-							<button class="img-link me-4">
+<!-- 						<div class="row text-start pt-5 border-top mb-4"></div> -->
+						<div class="pensions" data-pensionid="${PensionDTO.pen_id}">
+						  <div class="container">
 							<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }" class="bg-white border-0">
 								<img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="Image" class="img-fluid">
 							</a>
-							</button>
+						  </div>
 							<div class="pensionInfo">
 								<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }"class="bg-white border-0">${PensionDTO.pen_name }</a>
 								</h2>
 								<p>${PensionDTO.pen_address }</p>
 								<p>가격 <fmt:formatNumber type="number" maxFractionDigits="3" value="${PensionDTO.rm_price }" /> 원</p>
-								<p>별점 4.1<p>
+								<p>별점 4.1</p>
 								<p>리뷰 ${PensionDTO.rv }개</p>
 							</div>
 						</div>
 					</div>
 					</c:forEach>
-					</div>  
-<!-- 	            <ul class="pagination justify-content-center" > -->
-<%-- 				<c:if test="${page.prev}"> --%>
-<%-- 					<li class="page-item"><a class="page-link" href="searchP?pageNum=${page.startPage-1}" >이전</a></li> --%>
-<%-- 				</c:if> --%>
-<%-- 				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="p"> --%>
-<%-- 					<li class="page-item ${page.pageNum == p ? 'active' : ''}"><a class="page-link" href="searchP?pageNum=${p}">${p}</a></li> --%>
-<%-- 				</c:forEach> --%>
-<%-- 				<c:if test="${page.next}"> --%>
-<%-- 					<li class="page-item"><a class="page-link" href="searchP?&pageNum=${page.endPage+1}">다음</a></li> --%>
-<%-- 				</c:if> --%>
-<!-- 				</ul> -->
-
-
+				</div>  
 </body>
 <script type="text/javascript">
 var index = 2;
@@ -146,20 +127,17 @@ window.addEventListener('scroll', () => {
 				}
 	   			$.each(data, function (index, PensionDTO) {
 		   			$('#penlist123123').append('<div class="col-lg-8 pensionlist">' + 
-								'<div class="row text-start pt-5 border-top mb-4"></div>' +
-								'<div class="blog-entry d-flex blog-entry-search-item pensions"'+
-									'data-pensionid="6867">'+
-									'<button class="img-link me-4">'+
-									'<a href="#"class="bg-white border-0">'+
+									'<div class="pensions" data-pensionid="'+PensionDTO.pen_id+'">'+
+									'<div class="container">'+
+									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+rm_checkin+'&rm_checkout='+rm_checkout+'" class="bg-white border-0">'+
 										'<img src="${pageContext.request.contextPath }/resources/upload/'+PensionDTO.pen_image+'" alt="Image" class="img-fluid">'+
 									'</a>'+
-									'</button>'+
 									'<div class="pensionInfo">'+
-										'<h2><a href="/pension/detail?pensionid=6867&amp;startDate=2022/08/28&amp;endDate=2022/08/29"class="bg-white border-0">'+PensionDTO.pen_name+'</a>'+
+									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+rm_checkin+'&rm_checkout='+rm_checkout+'"class="bg-white border-0">'+PensionDTO.pen_name+'</a>'+
 										'</h2>'+
 										'<p>'+PensionDTO.pen_address+'</p>'+
 										'<p>가격 '+PensionDTO.rm_price+'원</p>'+
-										'<p>별점 4.1<p>'+
+										'<p>별점 4.1</p>'+
 										'<p>리뷰 '+PensionDTO.rv+'개</p>'+
 									'</div>'+
 								'</div>'+
@@ -169,6 +147,7 @@ window.addEventListener('scroll', () => {
 			}
 	    });
 	}
+
 // 	   $(function() {
 // 	 	  $("#btnSearchFilter").click(function() {
 // 	 		  event.preventDefault();
