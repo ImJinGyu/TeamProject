@@ -34,6 +34,9 @@ import util.DateParse;
 @Controller
 public class SearchController {
 	
+//	// 결제 api 연동 (정우)
+//	private IamportClient api;
+	
 	@Inject
 	private SearchService searchService;
 	
@@ -277,6 +280,12 @@ public class SearchController {
 		
 	}
 	
-	
+	// 결제 api (정우)
+//	public HomeController() {
+//		
+//		// REST API 키와 REST API secret 을 아래처럼 순서대로 입력
+//		this.api = new IamportClient("3157873113568822", "8Nt0l6CyajA08fjZvXoh2i5q4Y1yA8IvKoy8mEDxUpJCpkzT6klss5rDe4W4TqXiPDGC6NejJPvriujx");
+//	}
+//	
 
 }

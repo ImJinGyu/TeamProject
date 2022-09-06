@@ -85,6 +85,97 @@
 <!--footer -->
 <%@ include file="../footer.jsp" %>
 
+
+<!--  결제 api 연동 스크립트 수정 전_0906kjw -->
+<!-- 	<script> -->
+<!--  		var headerName = $("meta[name='_csrf_header']").attr("content")  -->
+<!-- // 		var token = $("meta[name='_csrf']").attr("content") -->
+		
+<!-- // 		$(document).ajaxSend(function(e, xhr) { -->
+<!-- // 			xhr.setRequestHeader(headerName, token); -->
+<!-- // 		}) -->
+		
+<!-- // 		function iamport(){ -->
+<%-- // 			var amount =  '${prePayment}' - $('#usePoint').val(); --%>
+<!-- // 			//가맹점 식별코드 -->
+<!-- // 			IMP.init('imp20015195'); -->
+<!-- // 			IMP.request_pay({ -->
+<!-- // 			    pg : 'html5_inicis', -->
+<!-- // 			    pay_method : 'card', -->
+<%-- // 			    merchant_uid : '${room.roomNum}' + new Date().getTime(), --%>
+<!-- // 			    name : '(주)여수어때' , //결제창에서 보여질 이름 -->
+<!-- // 			    amount : amount, //실제 결제되는 가격 -->
+<%-- // 			    buyer_email : '${user.email}', --%>
+<%-- // 			    buyer_name : '${user.name}', --%>
+<%-- // 			    buyer_tel : '${user.phone}', --%>
+<%-- // 			    buyer_addr : '${user.roadAddr}', --%>
+<%-- // 			    buyer_postcode : '${user.zipNo}' --%>
+<!-- // 			}, function(rsp) { -->
+<!-- // 				console.log(rsp); -->
+				
+<!-- // 		        var reservation = { -->
+<!-- // 	        		reservationNum: rsp.merchant_uid, -->
+<%-- //                     checkin: '${date1}', --%>
+<%-- //                     checkout: '${date2}', --%>
+<%-- // 					paymentPrice: '${prePayment}', --%>
+<%-- //                     roomNum: '${room.roomNum}', --%>
+<%-- //                     userid: '${user.userId}', --%>
+<%-- //                     pensionid: '${pension.pensionid}' --%>
+<!-- //        	   	 	}; -->
+       	   	 	
+<!-- // 			    if (rsp.success) { -->
+<!-- // 			        var msg = '결제가 완료되었습니다.'; -->
+<!-- // 			        console.log(reservation); -->
+<!-- // 			        alert(msg); -->
+			      
+<!-- // 			        $.ajax({ -->
+<!-- // 			         	url: "/verifyIamport/" + rsp.imp_uid, -->
+<!-- // 			        	type: "POST", -->
+<!-- // 			        	headers: { "Content-Type": "application/json" }, -->
+<!-- // 			        	data: JSON.stringify(reservation), -->
+<!-- // 			        	dataType:"json", -->
+<!-- // 			            contentType:"application/json; charset=utf-8" -->
+<!-- // 			        }) -->
+			      
+<%-- // 			        location.href = '${pageContext.request.contextPath}/member/mypage'; --%>
+<!-- // 			    } else { -->
+<!-- // 			      var msg = rsp.error_msg; -->
+<!-- // 			      alert(msg); -->
+<!-- // 			    } -->
+<!-- // 			}); -->
+<!-- // 		} -->
+<!-- <!-- 	</script> --> -->
+<!-- <!-- 	<script> --> -->
+<%-- // 		var point = '${user.point}'; --%>
+<%-- // 		var prePayment = '${prePayment}'; --%>
+<!-- // 		$(function() { -->
+<!-- // 			$('#point').val((point * 1).toLocaleString()); -->
+<!-- // 			$('#usePoint').keyup(function() { -->
+<!-- // 				if($('#usePoint').val() - $('#point').val() > 0) { -->
+<!-- // 					alert('사용 가능 포인트를 초과하였습니다.') -->
+<!-- // 					$('#point').val(point.toLocaleString()); -->
+<!-- // 					$('#usePoint').val(0); -->
+<!-- // 					$('#discount').html('0 원'); -->
+<!-- // 					$('#payment').text(prePayment + ' 원'); -->
+<!-- // 				} -->
+<!-- // 				else { -->
+<!-- // 					if(prePayment - $('#usePoint').val() < 1000) { -->
+<!-- // 						alert('최소 결제 금액은 1,000입니다.') -->
+<!-- // 						$('#usePoint').val((prePayment - 1000)); -->
+<!-- // 						$('#point').val((point - prePayment - 1000).toLocaleString()); -->
+<!-- // 						$('#discount').html('- ' + (prePayment -1000 * 1).toLocaleString() + ' 원'); -->
+<!-- // 						$('#payment').text('1,000 원'); -->
+<!-- // 					} -->
+<!-- // 					else { -->
+<!-- // 						$('#point').val((point - $('#usePoint').val()).toLocaleString()); -->
+<!-- // 						$('#discount').html('- ' + $('#usePoint').val() + ' 원'); -->
+<!-- // 						$('#payment').text((prePayment - $('#usePoint').val()).toLocaleString() + ' 원'); -->
+<!-- // 					} -->
+<!-- // 				} -->
+<!-- // 			}) -->
+<!-- // 		}) -->
+<!-- 	</script> -->
+
     <script src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/popper.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
