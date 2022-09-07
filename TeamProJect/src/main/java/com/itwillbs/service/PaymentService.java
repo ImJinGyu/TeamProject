@@ -2,14 +2,12 @@ package com.itwillbs.service;
 
 import javax.inject.Inject;
 
-import org.springframework.stereotype.Service;
+//
+//
+//@Service
+//public class PaymentService {
 
-import com.itwillbs.dao.PaymentDAO;
-
-@Service
-public class PaymentService {
-
-	@Inject
-	private PaymentDAO paymentdao;
+//	@Inject
+//	private PaymentDAO paymentdao;
 	
-}
+//}
