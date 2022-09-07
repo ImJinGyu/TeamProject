@@ -10,6 +10,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +23,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.itwillbs.dao.BusinessDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.BusinessService;
 
 @Controller
-public class BusinessController {
+public class BusinessController extends FunctionClass {
 	
 	@Inject
 	private BusinessService businessService;
@@ -98,13 +100,24 @@ public class BusinessController {
 
 	
 	@RequestMapping(value = "/business/roomRegister", method = RequestMethod.GET)
-	public String roomRegister() {
-				
+	public String roomRegister(Model model) {
+		
+		// 팬션 고유번호 
+		String pen_id = simplePenSionCreateCode();
+		
+		// 팬션 고유번호값이 넘어 오는지 확인
+//		System.out.println(pen_id);
+		
+		// 팬션 고유번호를 model로 받아 view에 전달
+		model.addAttribute("pen_id", pen_id);
+		
+		
+		
 		return "teamProJect/business/roomRegister";
 	}
 	
 	@RequestMapping(value = "/business/roomRegisterPro", method = RequestMethod.POST)
-	public String roomRegisterPro(MemberDTO memberDTO, HttpServletRequest request, MultipartHttpServletRequest RM_IMAGE, MultipartFile PEN_IMAGE) throws Exception {
+	public String roomRegisterPro(MemberDTO memberDTO, HttpServletRequest request, MultipartHttpServletRequest RM_IMAGE, MultipartFile PEN_IMAGE,HttpSession session) throws Exception {
 			
 		
 		// PENSION
@@ -121,6 +134,10 @@ public class BusinessController {
 		
 		// rommRegister.jsp의 Form에서 Parameter값을 받아오기 위한 DTO 객체 생성
 		BusinessDTO businessDTO = new BusinessDTO();
+		
+		// session에서 id값을 가져와서 DTO에 담기위한 코드
+//		String user_id = (String)session.getAttribute("user_id");
+		
 		// address 주소 부분이 기본 주소 와 상세주소로 나뉘어 2개의 파라미터값을 받아올 String변수 생성
 		String address = request.getParameter("user_address") +" "+request.getParameter("user_address2");
 		

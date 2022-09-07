@@ -30,7 +30,7 @@
                             <form class="user" method="post" action="${pageContext.request.contextPath }/business/roomRegisterPro" enctype="multipart/form-data">
                             	<div class="form-group">
                                 	<label for="penNum">팬션 번호</label>
-                                    <input type="text" class="form-control form-control-user" id="penNum" name="PEN_ID" >
+                                    <input type="text" class="form-control form-control-user" id="penNum" name="PEN_ID" value="${pen_id}" readonly>
                                 </div>
                             	<div class="form-group">
                                 	<label for="penname">팬션 이름</label>
