@@ -89,12 +89,12 @@
 <!-- 						<div class="row text-start pt-5 border-top mb-4"></div> -->
 						<div class="pensions" data-pensionid="${PensionDTO.pen_id}">
 						  <div class="container">
-							<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }" class="bg-white border-0">
+							<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }" >
 								<img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="Image" class="img-fluid">
 							</a>
 						  </div>
 							<div class="pensionInfo">
-								<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }"class="bg-white border-0">${PensionDTO.pen_name }</a>
+								<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }">${PensionDTO.pen_name }</a>
 								</h2>
 								<p>${PensionDTO.pen_address }</p>
 								<p>가격 <fmt:formatNumber type="number" maxFractionDigits="3" value="${PensionDTO.rm_price }" /> 원</p>
@@ -127,13 +127,13 @@ window.addEventListener('scroll', () => {
 				}
 	   			$.each(data, function (index, PensionDTO) {
 		   			$('#penlist123123').append('<div class="col-lg-8 pensionlist">' + 
-									'<div class="pensions" data-pensionid="'+PensionDTO.pen_id+'">'+
+									'<div class="pensions" data-pensionid='+PensionDTO.pen_id+'">'+
 									'<div class="container">'+
-									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+rm_checkin+'&rm_checkout='+rm_checkout+'" class="bg-white border-0">'+
+									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+rm_checkin+'&rm_checkout='+rm_checkout+'">'+
 										'<img src="${pageContext.request.contextPath }/resources/upload/'+PensionDTO.pen_image+'" alt="Image" class="img-fluid">'+
 									'</a>'+
 									'<div class="pensionInfo">'+
-									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+rm_checkin+'&rm_checkout='+rm_checkout+'"class="bg-white border-0">'+PensionDTO.pen_name+'</a>'+
+									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+rm_checkin+'&rm_checkout='+rm_checkout+'">'+PensionDTO.pen_name+'</a>'+
 										'</h2>'+
 										'<p>'+PensionDTO.pen_address+'</p>'+
 										'<p>가격 '+PensionDTO.rm_price+'원</p>'+
