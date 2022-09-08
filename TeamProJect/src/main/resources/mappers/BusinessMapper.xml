@@ -10,7 +10,7 @@
 	</select>
 
 
-	<!-- 펜션 리스트 불러오기(검색된 값)-->
+	<!-- 펜션 리스트 불러오기(검색된 값) 리뷰 평점 추가-->
 	<select id="getPensionList" resultType="com.itwillbs.domain.PensionDTO">
 		SELECT P.PEN_ID
 			 , P.PEN_NAME
