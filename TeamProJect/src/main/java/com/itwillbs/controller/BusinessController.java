@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.itwillbs.dao.BusinessDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.BusinessService;
 
@@ -51,8 +52,18 @@ public class BusinessController extends FunctionClass {
 	
 	
 	@RequestMapping(value = "/business/b_index", method = RequestMethod.GET)
-	public String b_index() {
-				
+	public String b_index(HttpSession session, Model model) {
+		// 사업자페이지 로그인아이디 화면단 표시 구현
+		String user_id = (String)session.getAttribute("user_id");
+		model.addAttribute("user_id", user_id);
+		
+		// 사업자페이지 초기화면 데이터 표시 구현
+		System.out.println(user_id);
+		int count = businessService.reservationCount(user_id);
+		System.out.println(count);
+		model.addAttribute("rCount",count);
+		
+		
 		return "teamProJect/business/b_index";
 	}
 	
@@ -67,8 +78,12 @@ public class BusinessController extends FunctionClass {
 	
 	
 	@RequestMapping(value = "/business/roomList", method = RequestMethod.GET)
-	public String roomList(Model model, BusinessDTO businessDTO) {
-				
+	public String roomList(Model model, BusinessDTO businessDTO, HttpSession session) {
+		
+		String user_id = (String)session.getAttribute("user_id");
+		
+		businessDTO.setUSER_ID(user_id);
+		
 		List<BusinessDTO> roomList = businessService.getRoomList(businessDTO);
 		
 		model.addAttribute("rList", roomList);

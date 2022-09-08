@@ -118,6 +118,16 @@
 		 WHERE ROOM_ID = #{RM_NUM}
 	</delete>
 	
+	<select id="reservationCount" resultType="int">
+		SELECT Count(P.PEN_ID) 'RCOUNT'
+  	 	  FROM RESERVATION R LEFT JOIN PENSION P
+		    ON (P.PEN_ID = R.PEN_ID)
+		  LEFT JOIN MEMBER M
+			ON (M.USER_ID = R.USER_ID)
+		 WHERE P.USER_ID = #{USER_ID}
+	</select>
+	
+	
 <!-- 	<select id="getMaxNum" resultType="java.lang.Integer"> -->
 <!-- 		SELECT MAX(RM_NUM) -->
 <!-- 		  FROM ROOM -->

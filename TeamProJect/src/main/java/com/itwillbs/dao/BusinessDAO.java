@@ -64,6 +64,11 @@ public class BusinessDAO {
 	}
 
 
+	public int reservationCount(String user_id) {
+		return sqlSession.selectOne(namespace+".reservationCount", user_id);
+	}
+
+
 	
 //	public Integer getMaxNum() {
 //		return sqlSession.selectOne(namespace+".getMaxNum");

@@ -67,6 +67,12 @@ public class BusinessService {
 		businessDAO.deleteRoomList(businessDTO);
 		
 	}
+
+
+	public int reservationCount(String user_id) {
+		
+		return businessDAO.reservationCount(user_id);
+	}
 	
 	
 	
