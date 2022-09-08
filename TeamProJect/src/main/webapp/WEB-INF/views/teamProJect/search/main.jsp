@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 
@@ -314,12 +315,13 @@
 <!-- 			</form> -->
 <!-- 		</div> -->
     
-    <!-- ******************** Travel Destination Starts Here ******************* -->
+
+    <!-- ******************** Popular Packages Starts Here ******************* -->
     
-    <div class="travel-destination container-fluid">
+    <section class="container-fluid popular-pack">
         <div class="container">
-            <div class="session-title">
-                <h2>부산 온나 #
+             <div class="session-title row">
+              <h2>부산 온나 #
                 <a class="text"></a></h2> 
                 <style>
                		.text {
@@ -341,7 +343,7 @@
                 const $text = document.querySelector(".text");
 
              // 글자 모음
-             const letters = [" 숙소", "펜션", "여행"];
+             const letters = ["TOP 6", "펜션", "TOP 6"];
 
              // 글자 입력 속도
              const speed = 100;
@@ -387,81 +389,18 @@
              // 초기 실행
              setTimeout(typing, 1500);
                 </script>
-                
-                <p>Suffered alteration in some form, by injected humour or good day randomised booth anim 8-bit hella wolf moon beard words.</p>
-            </div>
-            <div class="destination-row row">
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="${pageContext.request.contextPath }/resources/images/destination/d1.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Brazil <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="${pageContext.request.contextPath }/resources/images/destination/d2.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Malaysia <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="${pageContext.request.contextPath }/resources/images/destination/d3.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Sri Lanka <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="${pageContext.request.contextPath }/resources/images/destination/d4.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Canada <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="${pageContext.request.contextPath }/resources/images/destination/d3.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Vietnam <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-                <div class="col-md-4 descol">
-                   <div class="destcol">
-                       <img src="${pageContext.request.contextPath }/resources/images/destination/d2.jpg" alt="">
-                       <div class="layycover">
-                           <h4>Thailand <span class="badge badge-info">5 Places</span></h4>
-                       </div>
-                   </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    
-    <!-- ******************** Popular Packages Starts Here ******************* -->
-    
-    <section class="container-fluid popular-pack">
-        <div class="container">
-             <div class="session-title row">
-                <h2>Popular Packages</h2>
-                <p>Suffered alteration in some form, by injected humour or good day randomised booth anim 8-bit hella wolf moon beard words.</p>
             </div>
             <div class="row pack-row">
+             <c:forEach items="${TopList }" var="PensionDTO" begin="0" end="5">
                 <div class="col-md-4">
                     <div class="colpack">
-                        <img src="${pageContext.request.contextPath }/resources/images/packages/p1.jpg" alt="">
+                    	<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}">
+                        <img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="">
+                        </a>
                         <div class="details row no-margin">
-                            <h4>California</h4>
-                            <p>United State of America</p>
+                            <h4>${PensionDTO.pen_name}</h4>
+                            <p>${PensionDTO.pen_address }</p>
+                            <p>리뷰 ${PensionDTO.star }</p>
                             <ul class="rat">
                                 <li><i class="fa fa-star"></i></li>
                                 <li><i class="fa fa-star"></i></li>
@@ -473,98 +412,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="colpack">
-                        <img src="${pageContext.request.contextPath }/resources/images/packages/p2.jpg" alt="">
-                        <div class="details row no-margin">
-                            <h4>California</h4>
-                            <p>United State of America</p>
-                            <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="colpack">
-                        <img src="${pageContext.request.contextPath }/resources/images/packages/p3.jpg" alt="">
-                        <div class="details row no-margin">
-                            <h4>California</h4>
-                            <p>United State of America</p>
-                            <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="colpack">
-                        <img src="${pageContext.request.contextPath }/resources/images/packages/p4.jpg" alt="">
-                        <div class="details row no-margin">
-                            <h4>California</h4>
-                            <p>United State of America</p>
-                            <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="colpack">
-                        <img src="${pageContext.request.contextPath }/resources/images/packages/p5.jpg" alt="">
-                        <div class="details row no-margin">
-                            <h4>California</h4>
-                            <p>United State of America</p>
-                            <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="colpack">
-                        <img src="${pageContext.request.contextPath }/resources/images/packages/p6.jpg" alt="">
-                        <div class="details row no-margin">
-                            <h4>California</h4>
-                            <p>United State of America</p>
-                            <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-                
+                </c:forEach>
             </div>
         </div>
     </section>
+
     
     
   <!--################### Tour Review Starts Here #######################--->   
@@ -695,131 +547,11 @@
 <!--             </div> -->
 <!--         </div> -->
  	<!-- 카운트 -->
- 	<script>
- 	const counter = ($counter, max) => {
- 		  let now = max;
-
- 		  const handle = setInterval(() => {
- 		    $counter.innerHTML = Math.ceil(max - now);
- 		  
- 		    // 목표수치에 도달하면 정지
- 		    if (now < 1) {
- 		      clearInterval(handle);
- 		    }
- 		    
- 		    // 증가되는 값이 계속하여 작아짐
- 		    const step = now / 10;
- 		    
- 		    // 값을 적용시키면서 다음 차례에 영향을 끼침
- 		    now -= step;
- 		  }, 50);
- 		}
-
- 		window.onload = () => {
- 		  // 카운트를 적용시킬 요소
- 		  const $counter = document.querySelector(".count");
- 		  const $counter2 = document.querySelector(".count2");
- 		  const $counter3 = document.querySelector(".count3");
- 		  const $counter4 = document.querySelector(".count4");
- 		  
- 		  
- 		  // 목표 수치
- 		  const max = 359;
- 		  const max2 = 153;
- 		  const max3 = 3521;
- 		  const max4 = 5152;
- 		  
- 		  setTimeout(() => counter($counter, max), 2000);
- 		  setTimeout(() => counter($counter2, max2), 2000);
- 		  setTimeout(() => counter($counter3, max3), 2000);
- 		  setTimeout(() => counter($counter4, max4), 2000);
- 		}
- 	</script>
-	<div class="text-center">
-		<div class="row section-counter my-5">
-			<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos-delay="300">
-				<div class="counter-wrap mb-5 mb-lg-0">
-					<span class="number"><span class="count">0</span></span>
-					<span class="caption text-black-50"># 전체 펜션 개수</span>
-				</div>
-			</div>
-			<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos-delay="400">
-				<div class="counter-wrap mb-5 mb-lg-0">
-					<span class="number"><span class="count2">0</span></span>
-					<span class="caption text-black-50"># 전체 숙소 개수</span>
-				</div>
-			</div>
-			<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos-delay="500">
-				<div class="counter-wrap mb-5 mb-lg-0">
-					<span class="number"><span class="count3">0</span></span>
-					<span class="caption text-black-50"># 전체 예약 건수</span>
-				</div>
-			</div>
-			<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos-delay="600">
-				<div class="counter-wrap mb-5 mb-lg-0">
-					<span class="number"><span class="count4">0</span></span>
-					<span class="caption text-black-50"># 전체 댓글 개수</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-
 
 
        <!--  ************************* Footer Start Here ************************** --> 
-     
-<footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-12">
-                    <h2>About Us</h2>
-                    <p>
-                        Smart Eye is a leading provider of information technology, consulting, and business process services. Our dedicated employees offer strategic insights, technological expertise and industry experience.
-                    </p>
-                    <p>We focus on technologies that promise to reduce costs, streamline processes and speed time-to-market, Backed by our strong quality processes and rich experience managing global... </p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h2>Useful Links</h2>
-                    <ul class="list-unstyled link-list">
-                        <li><a ui-sref="about" href="#/about">About us</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="portfolio" href="#/portfolio">Portfolio</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="products" href="#/products">Latest jobs</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="gallery" href="#/gallery">Pricing</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="contact" href="#/contact">Contact us</a><i class="fa fa-angle-right"></i></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-sm-12 map-img">
-                    <h2>Contact Us</h2>
-                    <address class="md-margin-bottom-40">
-                        BlueDart Hosting <br>
-                       765th Boulevard, <br>
-                        Rochester, CA <br>
-                        Phone: +1 831 143 556 <br>
-                        Email: <a href="mailto:info@bluedart.com" class="">info@bluedart.in</a><br>
-                        Web: <a href="https://smarteyeapps.com/" class="">www.bluedart.in</a>
-                    </address>
+     <%@ include file="../footer.jsp" %>
 
-                </div>
-            </div>
-        </div>
-        
-
-    </footer>
-    <div class="copy">
-            <div class="container">
-                <a href="https://www.smarteyeapps.com/">2019 &copy; All Rights Reserved | Designed and Developed by Smarteyeapps</a>
-                
-                <span>
-                <a><i class="fab fa-github"></i></a>
-                <a><i class="fab fa-google-plus-g"></i></a>
-                <a><i class="fab fa-pinterest-p"></i></a>
-                <a><i class="fab fa-twitter"></i></a>
-                <a><i class="fab fa-facebook-f"></i></a>
-        </span>
-            </div>
-
-        </div> 
 
     </body>
 

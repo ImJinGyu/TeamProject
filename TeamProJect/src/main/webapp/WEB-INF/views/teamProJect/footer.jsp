@@ -20,35 +20,36 @@
 
 <body>
 
-<footer class="footer">
+<footer class="footer" >
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-12">
-                    <h2>About Us</h2>
+                    <h2>부산(釜山)</h2>
                     <p>
-                        Smart Eye is a leading provider of information technology, consulting, and business process services. Our dedicated employees offer strategic insights, technological expertise and industry experience.
+                       부산부산설명설명 부산의 유명관광지 어쩌구저쩌구 부산은 이러이러함
+                       부산부산설명설명 부산으로 오이소 맛보이소
                     </p>
-                    <p>We focus on technologies that promise to reduce costs, streamline processes and speed time-to-market, Backed by our strong quality processes and rich experience managing global... </p>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <h2>Useful Links</h2>
+                    <h2>팀원</h2>
                     <ul class="list-unstyled link-list">
-                        <li><a ui-sref="about" href="#/about">About us</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="portfolio" href="#/portfolio">Portfolio</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="products" href="#/products">Latest jobs</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="gallery" href="#/gallery">Pricing</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="contact" href="#/contact">Contact us</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="about" href="#/about">임진규(조장)</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="portfolio" href="#/portfolio">남기석</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="products" href="#/products">박성빈</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="gallery" href="#/gallery">김정우</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="contact" href="#/contact">이지원</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="contact" href="#/contact">박지연</a><i class="fa fa-angle-right"></i></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 map-img">
                     <h2>Contact Us</h2>
                     <address class="md-margin-bottom-40">
-                        BlueDart Hosting <br>
-                       765th Boulevard, <br>
-                        Rochester, CA <br>
-                        Phone: +1 831 143 556 <br>
-                        Email: <a href="mailto:info@bluedart.com" class="">info@bluedart.in</a><br>
-                        Web: <a href="https://smarteyeapps.com/" class="">www.bluedart.in</a>
+                        부산광역시 부산진구 <br>
+                        동천로 109  <br>
+                        삼한골든게이트빌딩 7층 <br>
+                        TEL : 051-803-0909 <br>
+                        Email: <a href="#" class="">class@itwillbs.co.kr</a><br>
+                        Web: <a href="https://www.itwillbs.co.kr/" class="">www.itwillbs.co.kr</a>
                     </address>
 
                 </div>
@@ -59,14 +60,14 @@
     </footer>
     <div class="copy">
             <div class="container">
-                <a href="https://www.smarteyeapps.com/">2019 &copy; All Rights Reserved | Designed and Developed by Smarteyeapps</a>
+                <a href="https://www.smarteyeapps.com/">2022 &copy; 부산온나 | come to Busan</a>
                 
                 <span>
                 <a><i class="fab fa-github"></i></a>
-                <a><i class="fab fa-google-plus-g"></i></a>
-                <a><i class="fab fa-pinterest-p"></i></a>
-                <a><i class="fab fa-twitter"></i></a>
-                <a><i class="fab fa-facebook-f"></i></a>
+                <!-- <a><i class="fab fa-google-plus-g"></i></a> -->
+               <!-- <a><i class="fab fa-pinterest-p"></i></a> -->
+				<!-- <a><i class="fab fa-twitter"></i></a> -->
+                <!-- <a><i class="fab fa-facebook-f"></i></a> -->
         </span>
             </div>
 

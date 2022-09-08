@@ -13,6 +13,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <title>${pensionDTO.pen_name } | 부산온나</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"> -->
 </head>
 <body>
 <%@ include file="../header.jsp" %>
@@ -66,45 +69,37 @@
 <!-- 검색창 끝 -->
 		
 
-			<!-- 여수어때 스크롤 방식 적용 테스트 -->
-<!-- 	 <div class="section search-result-wrap mt-4">
-		<div class="container">
-			<div class="row posts-entry">
-				<div class="col-lg-8 pensionlist">
-					<div class="row text-start pt-5 border-top mb-4">
-					
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</div> -->
-	
-
-	
 				<!-- 숙소 리스트 기존 방식 -->
 				<div id="penlist123123">
   				   <c:forEach items="${pensionList }" var="PensionDTO">
-					<div class="col-lg-8 pensionlist">
-<!-- 						<div class="row text-start pt-5 border-top mb-4"></div> -->
+					<div class="row form-detail  pensionlist">
 						<div class="pensions" data-pensionid="${PensionDTO.pen_id}">
 						  <div class="container">
 							<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }" >
 								<img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="Image" class="img-fluid">
 							</a>
-						  </div>
 							<div class="pensionInfo">
+							  <div class="infoBox1">
 								<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }">${PensionDTO.pen_name }</a>
 								</h2>
 								<p>${PensionDTO.pen_address }</p>
+							  </div>
+							  
+							  <div class="infoBox2">
 								<p>가격 <fmt:formatNumber type="number" maxFractionDigits="3" value="${PensionDTO.rm_price }" /> 원</p>
-								<p>별점 4.1</p>
+							  </div>
+							  
+							  <div class="infoBox3">
+								<p>별점 ${PensionDTO.star }</p>
 								<p>리뷰 ${PensionDTO.rv }개</p>
+							  </div>
 							</div>
+						  </div>
 						</div>
 					</div>
 					</c:forEach>
 				</div>  
+				<%@ include file="../footer.jsp" %>
 </body>
 <script type="text/javascript">
 var index = 2;
@@ -124,23 +119,31 @@ window.addEventListener('scroll', () => {
 				if(data.length == 0){
 					index--;
 					return;
-				}
+				} 
+				
 	   			$.each(data, function (index, PensionDTO) {
 		   			$('#penlist123123').append('<div class="col-lg-8 pensionlist">' + 
 									'<div class="pensions" data-pensionid='+PensionDTO.pen_id+'">'+
 									'<div class="container">'+
-									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+rm_checkin+'&rm_checkout='+rm_checkout+'">'+
+									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+PensionDTO.rm_checkin+'&rm_checkout='+PensionDTO.rm_checkout+'">'+
 										'<img src="${pageContext.request.contextPath }/resources/upload/'+PensionDTO.pen_image+'" alt="Image" class="img-fluid">'+
 									'</a>'+
 									'<div class="pensionInfo">'+
-									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+rm_checkin+'&rm_checkout='+rm_checkout+'">'+PensionDTO.pen_name+'</a>'+
+									'<div class="infoBox1">'+
+									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+PensionDTO.rm_checkin+'&rm_checkout='+PensionDTO.rm_checkout+'">'+PensionDTO.pen_name+'</a>'+
 										'</h2>'+
 										'<p>'+PensionDTO.pen_address+'</p>'+
+										'</div>'+
+										'<div class="infoBox2">'+
 										'<p>가격 '+PensionDTO.rm_price+'원</p>'+
-										'<p>별점 4.1</p>'+
+										'</div>'+
+										'<div class="infoBox3">'+
+										'<p>별점 '+PensionDTO.star+'</p>'+
 										'<p>리뷰 '+PensionDTO.rv+'개</p>'+
+										'</div>'+
 									'</div>'+
-								'</div>'+
+								  '</div>'+
+								'</div>'+ 
 							'</div>');
 	   			})
 	   			index++;

@@ -44,6 +44,11 @@ public class SearchDAO {
 		return sqlSession.selectList(NAMESPACE + ".getSearchRoomList", pen_name);
 	}
 
+	public List<PensionDTO> getTopList(PensionDTO pensionDTO) {
+		System.out.println("SearchDAO getTopList");
+		return sqlSession.selectList(NAMESPACE + ".getTopList", pensionDTO);
+	}
+
 
 
 	

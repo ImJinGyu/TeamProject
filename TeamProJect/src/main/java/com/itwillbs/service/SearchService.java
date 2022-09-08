@@ -41,6 +41,12 @@ public class SearchService {
 		return searchDAO.getSearchRoomList(pen_name);
 	}
 
+	public List<PensionDTO> getTopList(PensionDTO pensionDTO) {
+		return searchDAO.getTopList(pensionDTO);
+	}
+	
+	
+
 
 
 

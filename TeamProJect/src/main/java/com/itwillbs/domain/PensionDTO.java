@@ -10,9 +10,9 @@ public class PensionDTO {
 	private String pen_zipcode;
 	private String pen_number;
 	private String pen_image;
+	private String star;
 	private String rv;
 	private String rm_price;
-	
 
 	public String getPen_id() {
 		return pen_id;
@@ -57,6 +57,13 @@ public class PensionDTO {
 		this.pen_image = pen_image;
 	}
 
+	public String getStar() {
+		return star;
+	}
+	public void setStar(String star) {
+		this.star = star;
+	}
+	
 	public String getRv() {
 		return rv;
 	}
@@ -81,9 +88,9 @@ public class PensionDTO {
 	public String toString() {
 		return "PensionDTO [count=" + count + ", pen_id=" + pen_id + ", user_id=" + user_id + ", pen_name=" + pen_name
 				+ ", pen_address=" + pen_address + ", pen_zipcode=" + pen_zipcode + ", pen_number=" + pen_number
-				+ ", pen_image=" + pen_image + ", rv=" + rv + ", rm_price=" + rm_price + "]";
+				+ ", pen_image=" + pen_image + ", star=" + star + ", rv=" + rv + ", rm_price=" + rm_price + "]";
 	}
 	
-	
+
 
 }

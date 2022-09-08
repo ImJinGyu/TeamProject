@@ -44,14 +44,20 @@ public class SearchController {
 	private SearchDAO searchDAO;
 	
 	
-	// 메인 검색창 날짜 설정
+	/* 메인 검색창 날짜 설정 + 인기숙소 리스트 */
 	@RequestMapping(value = "/search/main", method = RequestMethod.GET)
-	public String home(HttpServletRequest request, HttpServletResponse response) {
+	public String home(PensionDTO pensionDTO, HttpServletRequest request, Model model ) {
+		
+		/* 검색창 날짜 지정 */
 		DateParse dateParse = new DateParse();
 		String today = dateParse.getTodayPlus(0);
 		String tomorrow = dateParse.getTodayPlus(1);
 		request.setAttribute("today", dateParse.strToDate(today));
 		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
+		
+		/* 인기숙소 불러오기 */
+		List<PensionDTO> TopList = searchService.getTopList(pensionDTO);
+		model.addAttribute("TopList",TopList);
 		
 		
 		
@@ -59,6 +65,7 @@ public class SearchController {
 		return "teamProJect/search/main";
 	}
 	
+	/* 펜션리스트 불러오기 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search/searchP", method = RequestMethod.GET)
 	public String list(PensionDTO pensionDTO, HttpServletRequest request, Model model) {
@@ -132,6 +139,8 @@ public class SearchController {
 	public void listajax2() {
 		
 	}
+	
+	/* 펜션리스트 무한스크롤 */
 	@ResponseBody
 	@RequestMapping(value = "/search/searchPajax", method = RequestMethod.GET)
 	public List<PensionDTO> listajax(@RequestParam String count, String index2, PensionDTO pensionDTO, HttpServletRequest request, Model model) {
@@ -205,8 +214,6 @@ public class SearchController {
 		return pensionList;
 	}
 
-
-	
 	
 	
 	/* 아직 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원) */
