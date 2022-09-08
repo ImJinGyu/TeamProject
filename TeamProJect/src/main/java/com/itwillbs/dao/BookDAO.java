@@ -11,17 +11,20 @@ import com.itwillbs.domain.BookDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PensionDTO;
 import com.itwillbs.domain.PensionRmDTO;
+import com.itwillbs.domain.ReservationDTO;
 @Repository
 public class BookDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String namespace = "com.itwillbs.mappers.BookMapper";
+	private static final String namespace = "com.itwillbs.mappers.BusinessMapper";
 	
 	
-	public List<BookDTO> listReservation(BookDTO bookDTO) {
-		return sqlSession.selectList(namespace+".listReservation",bookDTO);
+	public List<BookDTO> listReservation(ReservationDTO reservationDTO) {
+		return sqlSession.selectList(namespace+".listReservation",reservationDTO);
 	}
+
+
 
 
 //	public List<BookDTO> listReservation(MemberDTO memberDTO, MemberDTO memberDTO2, PensionDTO pensionDTO,

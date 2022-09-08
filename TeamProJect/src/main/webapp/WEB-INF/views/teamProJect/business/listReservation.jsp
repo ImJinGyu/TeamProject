@@ -46,12 +46,12 @@
                                     <tbody>
                                     	<c:forEach items="${listReservation}" var="r">
 	                                        <tr>
-	                                            <td class="text-center">${r.RES_NUMBER}</td>
-	                                            <td class="text-center">${r.PEN_NAME}(${r.RM_NAME}) </td>
-	                                            <td class="text-center">${r.USER_NAME}</td>
-	                                            <td class="text-center">${r.CHECK_IN_D} : ${r.CHECK_IN_T}</td>
-	                                            <td class="text-center">${r.CHECK_OUT_D} : ${r.CHECK_OUT_T}</td>
-	                                            <td class="text-center">${r.RES_TIME }</td>
+	                                            <td class="text-center">${r.res_number}</td>
+	                                            <td class="text-center">${r.pen_name}(${r.rm_name}) </td>
+	                                            <td class="text-center">${r.user_id}</td>
+	                                            <td class="text-center">${r.check_in_d}  ${r.check_in_t}</td>
+	                                            <td class="text-center">${r.check_out_d}  ${r.check_out_t}</td>
+	                                            <td class="text-center">${r.res_time }</td>
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>
