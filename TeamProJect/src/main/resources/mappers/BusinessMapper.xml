@@ -39,6 +39,21 @@
 	 
 	</select> 
 	
+	<!--메인페이지 top6 숙소 -->
+	<!-- 다시 커밋 -->
+	<select id="getTopList" resultType="com.itwillbs.domain.PensionDTO">
+		SELECT A.PEN_IMAGE
+			,  P.PEN_NAME
+	        ,  P.PEN_ADDRESS
+		    ,  IFNULL(ROUND(AVG(R.REV_STAR),1), ' ') AS STAR
+		FROM PENSION P LEFT OUTER JOIN PENSION_ATTACH A
+									ON P.PEN_ID = A.PEN_ID
+					   LEFT OUTER JOIN REVIEW R
+					                ON A.PEN_ID = R.PEN_ID
+		GROUP BY P.PEN_ID, A.PEN_IMAGE
+		ORDER BY AVG(R.REV_STAR) DESC
+	</select>
+	
 	<!-- PENSION Table(팬션 정보) 입력 SQL구문 -->
 	<insert id="registerPen">
 		INSERT INTO PENSION(
