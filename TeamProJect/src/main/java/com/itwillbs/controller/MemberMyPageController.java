@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.QnaDTO;
+import com.itwillbs.domain.ReviewDTO;
 import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.MemberService;
 
@@ -45,7 +46,6 @@ public class MemberMyPageController {
 		service.deleteUser(mT);
 		session.invalidate();
 		return "teamProJect/member/deletecustom";
-//		d
 	}
 	
 	@RequestMapping(value = "/member/userpasscheck", method = {RequestMethod.GET, RequestMethod.POST})
@@ -93,6 +93,17 @@ public class MemberMyPageController {
 	@RequestMapping(value = "/member/mypage/listReservation", method = RequestMethod.GET)
 	public String listReservation() {
 		return "teamProJect/member/mypage/listReservation";
+	}
+	
+	@RequestMapping(value = "/member/mypage/myreview", method = RequestMethod.GET)
+	public String myreview(ReviewDTO rT, HttpSession session, Model model) {
+		rT.setUser_id(session.getAttribute("user_id").toString());
+		rT.setUser_type(session.getAttribute("user_type").toString());
+		System.out.println(rT.getUser_id());
+		List<ReviewDTO> reviewlist = service.selectmemberreview(rT);
+		System.out.println(reviewlist);
+		model.addAttribute("list", reviewlist);
+		return "teamProJect/member/mypage/myreview";
 	}
 	
 	@RequestMapping(value = "/member/mypage/listInquiry", method = RequestMethod.GET)

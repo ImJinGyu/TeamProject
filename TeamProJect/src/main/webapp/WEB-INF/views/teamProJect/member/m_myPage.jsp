@@ -55,8 +55,8 @@
 				<div class="col-6 col-lg-4">
 					<div class="box-feature mb-4">
 						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/chat.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/mypageReply">내가 쓴 댓글 조회</a></h3>
-						<p class="text-black-50">내가 쓴 댓글을 조회합니다.</p>
+						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/mypage/myreview">내가 쓴 리뷰 조회</a></h3>
+						<p class="text-black-50">내가 쓴 리뷰를 조회합니다.</p>
 <!-- 						<p><a href="#" class="learn-more" id="mypageReply">페이지 이동</a></p> -->
 					</div>
 				</div>
@@ -112,58 +112,8 @@
 <!-- 마이페이지 폼 끝-->
 
 <!--  ************************* Footer Start Here ************************** --> 
-     
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-12">
-                    <h2>About Us</h2>
-                    <p>
-                        Smart Eye is a leading provider of information technology, consulting, and business process services. Our dedicated employees offer strategic insights, technological expertise and industry experience.
-                    </p>
-                    <p>We focus on technologies that promise to reduce costs, streamline processes and speed time-to-market, Backed by our strong quality processes and rich experience managing global... </p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h2>Useful Links</h2>
-                    <ul class="list-unstyled link-list">
-                        <li><a ui-sref="about" href="#/about">About us</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="portfolio" href="#/portfolio">Portfolio</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="products" href="#/products">Latest jobs</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="gallery" href="#/gallery">Pricing</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="contact" href="#/contact">Contact us</a><i class="fa fa-angle-right"></i></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-sm-12 map-img">
-                    <h2>Contact Us</h2>
-                    <address class="md-margin-bottom-40">
-                        BlueDart Hosting <br>
-                       765th Boulevard, <br>
-                        Rochester, CA <br>
-                        Phone: +1 831 143 556 <br>
-                        Email: <a href="mailto:info@bluedart.com" class="">info@bluedart.in</a><br>
-                        Web: <a href="https://smarteyeapps.com/" class="">www.bluedart.in</a>
-                    </address>
-
-                </div>
-            </div>
-        </div>
-        
-
-    </footer>
-    <div class="copy">
-            <div class="container">
-                <a href="https://www.smarteyeapps.com/">2019 &copy; All Rights Reserved | Designed and Developed by Smarteyeapps</a>
-                
-                <span>
-                <a><i class="fab fa-github"></i></a>
-                <a><i class="fab fa-google-plus-g"></i></a>
-                <a><i class="fab fa-pinterest-p"></i></a>
-                <a><i class="fab fa-twitter"></i></a>
-                <a><i class="fab fa-facebook-f"></i></a>
-        </span>
-            </div>
-
-        </div> 
+     <%@ include file="../footer.jsp" %>
+    
 
     </body>
 

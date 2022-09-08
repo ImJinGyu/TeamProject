@@ -10,10 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.QnaDTO;
+import com.itwillbs.domain.ReviewDTO;
 
 @Repository
 public class MemberDAO {
-//	ㄴ
+	
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="com.itwillbs.mappers.memberMapper";
@@ -55,5 +56,9 @@ public class MemberDAO {
 	
 	public List<QnaDTO> selectqnalist(MemberDTO mT) {
 		return sqlSession.selectList(NAMESPACE + ".selectQnaList", mT);
+	}
+	
+	public List<ReviewDTO> memberReview(ReviewDTO rT){
+		return sqlSession.selectList(NAMESPACE + ".memberReview", rT);
 	}
 }

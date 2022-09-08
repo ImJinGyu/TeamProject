@@ -119,4 +119,26 @@
 		   AND USER_TYPE = #{user_type}
 		 ORDER BY COUNT DESC;
 	</select>
+	
+		
+	<select id="memberReview" resultType="com.itwillbs.domain.ReviewDTO">
+		SELECT A.REV_NUM
+		     , A.PEN_ID
+		     , B.PEN_NAME
+		     , A.USER_ID
+		     , A.USER_TYPE
+		     , A.REV_TITLE
+		     , A.REV_CONTENT
+		     , A.REV_STAR
+		     , A.REV_DATE
+		     , A.REPLY
+		     , A.ANS_CONTENT
+		     , A.ANS_DATE
+		  FROM REVIEW A JOIN PENSION B
+		    ON A.PEN_ID = B.PEN_ID
+		 WHERE A.USER_ID = #{user_id}
+		   AND A.USER_TYPE = #{user_type}
+		 ORDER BY REV_DATE DESC
+	</select>
+	
 </mapper>

@@ -23,9 +23,12 @@
      <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
     
-     
+<style>
+#pensionSearch :hover{
+	color:blue;
+}
+</style>
 </head>
-
 <body>
 <!--헤더 -->
 <%@ include file="../../header.jsp" %>
@@ -34,7 +37,7 @@
 <div class="page-nav no-margin row">
     <div class="container">
         <div class="row">
-            <h2>1:1문의내역</h2>
+            <h2>ReView</h2>
         </div>
     </div>
 </div>
@@ -44,17 +47,18 @@
                     <!-- DataTales Example -->
                     <div class="card shadow my-5" style="margin: 15px" data-aos="zoom-in-up">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">부산온나 고객센터</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">숙박시설 리뷰</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        	<th style="width: 15%"></th>
+                                        	<th style="width: 10%"></th>
                                             <th>제목</th>
-                                            <th style="width: 25%">답변자</th>
-                                            <th style="width: 20%">문의시간</th>
+                                            <th style="width: 40%; text-align: center;">별점</th>
+                                            <th style="width: 25%">숙박시설 상호명</th>
+                                            <th style="width: 10%">리뷰 작성시간</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,62 +66,70 @@
                                     	<c:when test="${fn:length(list) eq 0}">
 	                                    	<tr>
 		                                       	<td colspan="4" style="height: 50px; text-align: center;"><span style="font-size: 25px; color: Green;">
-		                                       	<b>문의 내역이 없습니다.</b>
+		                                       	<b>리뷰 내역이 없습니다.</b>
 		                                       	</span></td>
 	                                     	</tr>
 										</c:when>
 										<c:otherwise>
-											<c:forEach items="${list}" var="qna">
-	                                    		<tr style="cursor: pointer;" id="rep${qna.count}" onclick="showQna(this.id)">
+											<c:forEach items="${list}" var="review">
+	                                    		<tr style="cursor: pointer;" id="rep${review.rev_num}" onclick="showQna(this.id)">
 	                                    			<c:choose>
-		                                    			<c:when test="${qna.reply == 'Y'}">
+		                                    			<c:when test="${review.reply == 'Y'}">
 			                                        	<td><span class="badge badge-info p-2">처리 완료</span></td>
 			                                        	</c:when>
-			                                        	<c:when test="${qna.reply == 'N'}">
-			                                        	<td><span class="badge badge-danger p-2">미답변 </span></td>
+			                                        	<c:when test="${review.reply == 'N'}">
+			                                        	<td ><span class="badge badge-danger p-2">미답변</span></td>
 			                                        	</c:when>
 	                                    			</c:choose>
-			                                    		<td>${qna.title }</td>
-			                                            <td></td>
-			                                            <td>${qna.time }</td>
+			                                    		<td>${review.rev_title }</td>
+			                                            <td style="text-align: center;">
+			                                            	<ul class="ret">
+			                                            		<li>
+			                                            		<c:forEach var="i" begin="1" end="5">
+			                                            			<c:choose>
+			                                            			<c:when test="${i <= review.rev_star}">
+			                                            			<i class="fa fa-star" style="color: #fdae5c"></i>
+			                                            			</c:when>
+			                                            			<c:otherwise>
+			                                            			<i class="fa fa-star" style="color: #fdae5c; font-weight: 100;"></i>
+			                                            			</c:otherwise>
+			                                            			</c:choose>
+			                                            		</c:forEach>
+			                                            		<span style="margin-left: 5px; font-weight: bolder;">${review.rev_star } 점</span>
+			                                            		</li>
+			                                            	</ul>
+			                                            </td>
+			                                            <td onclick="event.stopPropagation()">
+				                                            <a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${review.pen_name }&pen_id=${review.pen_id }" 
+				                                            id="pensionSearch" style="font-size: 18px; color: fuchsia;">
+				                                            	<b>${review.pen_name }</b>
+				                                            </a>
+			                                            </td>
+			                                            <td>${review.rev_date }</td>
 		                                        	</tr>
-			                                        <tr class="rep${qna.count}" style="display: none;">
-			                                        	<td colspan="4" style="height: 200px; text-align: center;"><span style="font-size: 25px; color: blue;">
-			                                        	&lt;문의 내용&gt;
-			                                        	</span><br>${qna.content}</td>
+			                                        <tr class="rep${review.rev_num}" style="display: none;">
+			                                        	<td colspan="5" style="height: 200px; text-align: center;"><span style="font-size: 25px; color: blue;">
+			                                        	&lt;리뷰 본문&gt;
+			                                        	</span><br>${review.rev_content}</td>
 			                                        </tr>
-	                                    			<c:if test="${qna.reply == 'Y'}">
-			                                    		<tr class="rep${qna.count}" style="display: none;">
-			                                    		<td><span class="badge badge-warning p-2">부산온나의 답변</span></td>
-			                                    		<td>Q & A : ${qna.title }</td>
-			                                            <td>${qna.writer}</td>
-			                                            <td>${qna.answer_time}</td>
+	                                    			<c:if test="${review.reply == 'Y'}">
+			                                    		<tr class="rep${review.rev_num}" style="display: none;">
+			                                    		<td><span class="badge badge-warning p-2">팬션 답변</span></td>
+			                                    		<td colspan="3" style="text-align: center; font-size: 18px;"><b>정성 스러운 리뷰 감사드립니다.</b></td>
+			                                            <td>${review.ans_date}</td>
 			                                            </tr>
-			                                            <tr class="rep${qna.count}" style="display: none;">
-				                                        	<td colspan="4" style="height: 200px; text-align: center;"><span style="font-size: 25px; color:green;">
-				                                        	&lt;답변 내용&gt;
-				                                        	</span><br>${qna.answer}</td>
+			                                            <tr class="rep${review.rev_num}" style="display: none;">
+				                                        	<td colspan="5" style="height: 200px; text-align: center;"><span style="font-size: 25px; color:green;">
+				                                        	&lt;답변 본문&gt;
+				                                        	</span><br>${review.ans_content}</td>
 				                                        </tr>
 			                                        </c:if>
 	                                    	</c:forEach>
 										</c:otherwise>
                                     </c:choose>
-                                    
-                                    	
                                     </tbody>
                                 </table>
-                                
                                 <hr>
-                                <div data-aos="flip-left" data-aos-delay="1000">
-                                <div style="width:100%; text-align: center;">
-                                <span style="font-size: 30px; color: navy;"><b>문의 작성</b></span>
-                                </div><br>
-                                <form action="qnainput" method="get" class="col-8 mx-auto" onsubmit="return lenc()">
-                                <input type="text" class="form-control" name="title" id="title" placeholder="문의 제목을 입력하세요">
-                                <textarea class="form-control" name="content" id="content" placeholder="문의 내용을 입력하세요" style="min-height: 400px; resize: none;"></textarea>
-                                <input type="submit" class="btn btn-primary btn-block" value="1:1문의 등록">
-                                </form>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -127,6 +139,7 @@
 <!--  ************************* Footer Start Here ************************** --> 
      
     <%@ include file="../../footer.jsp" %>
+
     </body>
 
     <script src="assets/js/jquery-3.2.1.min.js"></script>

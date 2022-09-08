@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.QnaDTO;
+import com.itwillbs.domain.ReviewDTO;
 
 @Service
 public class MemberService {
-//	ㄴ
+
 	@Inject
 	private MemberDAO dao;
 	
@@ -51,5 +52,9 @@ public class MemberService {
 	}
 	public List<QnaDTO> selectqnalist(MemberDTO mT) {
 		return dao.selectqnalist(mT);
+	}
+	
+	public List<ReviewDTO> selectmemberreview(ReviewDTO rT){
+		return dao.memberReview(rT);
 	}
 }
