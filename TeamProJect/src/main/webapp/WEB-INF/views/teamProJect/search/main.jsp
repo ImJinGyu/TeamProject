@@ -317,8 +317,7 @@
     
 
     <!-- ******************** Popular Packages Starts Here ******************* -->
-    
-    <section class="container-fluid popular-pack">
+  <section class="container-fluid popular-pack">
         <div class="container">
              <div class="session-title row">
               <h2>부산 온나 #
@@ -341,14 +340,11 @@
                 <script>
                 
                 const $text = document.querySelector(".text");
-
              // 글자 모음
              const letters = ["TOP 6", "펜션", "TOP 6"];
-
              // 글자 입력 속도
              const speed = 100;
              let i = 0;
-
              // 타이핑 효과
              const typing = async () => {  
                const letter = letters[i].split("");
@@ -364,7 +360,6 @@
                // 지우는 효과
                if (letters[i + 1]) remove();
              }
-
              // 글자 지우는 효과
              const remove = async () => {
                const letter = letters[i].split("");
@@ -380,16 +375,15 @@
                i++;
                typing();
              }
-
              // 딜레이 기능 ( 마이크로초 )
              function wait(ms) {
                return new Promise(res => setTimeout(res, ms))
              }
-
              // 초기 실행
              setTimeout(typing, 1500);
                 </script>
             </div>
+            
             <div class="row pack-row">
              <c:forEach items="${TopList }" var="PensionDTO" begin="0" end="5">
                 <div class="col-md-4">
@@ -400,7 +394,7 @@
                         <div class="details row no-margin">
                             <h4>${PensionDTO.pen_name}</h4>
                             <p>${PensionDTO.pen_address }</p>
-                            <p>리뷰 ${PensionDTO.star }</p>
+                            <p>평점 ${PensionDTO.star }</p>
                             <ul class="rat">
                                 <li><i class="fa fa-star"></i></li>
                                 <li><i class="fa fa-star"></i></li>
