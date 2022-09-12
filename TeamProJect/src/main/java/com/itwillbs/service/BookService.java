@@ -26,6 +26,11 @@ public class BookService {
 		return bookDAO.listReservation(reservationDTO);
 	}
 
+
+	public ReservationDTO getMember(String user_id) {
+		return bookDAO.getMember(user_id);
+	}
+
 //	public List<BookDTO> listReservation(MemberDTO memberDTO, MemberDTO memberDTO2, PensionDTO pensionDTO,
 //			PensionRmDTO pensionRmDTO, BookDTO bookDTO) {
 //		return bookDAO.listReservation(memberDTO ,memberDTO2,pensionDTO,pensionRmDTO,bookDTO);

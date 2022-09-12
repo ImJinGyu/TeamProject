@@ -1,6 +1,9 @@
 package com.itwillbs.controller;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.BookDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.service.BookService;
+
 
 
 @Controller
@@ -37,29 +42,23 @@ public class ReservationController {
 		return "teamProJect/business/listReservation";
 	}
 	
-//	@RequestMapping(value = "/business/checkReservation", method = RequestMethod.GET)
-//	public String checkReservation(ReservationDTO reservationDTO  , Model model, HttpSession session,String date1, String date2) throws ParseException{
-//		String user_id = (String)session.getAttribute("user_id");
-//		
-//		List<BookDTO> listReservation2 = bookService.listReservation(reservationDTO);
-//		
-//		model.addAttribute("listReservation", listReservation2);
-//		model.addAttribute("date1", date1);
-//		model.addAttribute("date2", date2);
-//		
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-//		Date startDate = new Date(dateFormat.parse(date1).getTime());
-//		Date endDate = new Date(dateFormat.parse(date2).getTime());
-//		
-//		long calculate = endDate.getTime() - startDate.getTime();
-//		int days = (int)(calculate / (1000 * 60 * 60 *24));
-//		
-//		model.addAttribute("days", days);
-//		
-//		return "teamProJect/business/checkReservation";
-//				
-//				
-//	}
+	@RequestMapping(value = "/business/checkReservation", method = RequestMethod.GET)
+	public String checkReservation(ReservationDTO reservationDTO, Model model, HttpSession session) throws ParseException{
+		String user_id = (String)session.getAttribute("user_id");
+		ReservationDTO reservationDTO2 = bookService.getMember(user_id);
+		System.out.println(reservationDTO2.getPen_id().toString());
+		System.out.println(reservationDTO2.getCheck_in_d());
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		Date beginDate = formatter.parse(reservationDTO2.getCheck_in_d()); 
+		Date endDate = formatter.parse(reservationDTO2.getCheck_out_d()); 
+		long diff = endDate.getTime() - beginDate.getTime();
+		System.out.println(beginDate);
+		System.out.println(endDate);
+		return "teamProJect/business/checkReservation";
+				
+				
+	}
 	
 	
 }

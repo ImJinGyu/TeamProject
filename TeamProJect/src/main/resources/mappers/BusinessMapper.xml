@@ -188,4 +188,9 @@
 						ON (M.USER_ID = R.USER_ID)
 	 WHERE P.USER_ID = #{user_id}					
  	</select>
+ 	
+ 	<select id="getMember" resultType="com.itwillbs.domain.ReservationDTO">
+		SELECT * FROM RESERVATION
+		WHERE USER_ID = #{user_id}
+	</select>
 </mapper>

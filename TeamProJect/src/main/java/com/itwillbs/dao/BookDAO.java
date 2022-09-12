@@ -25,6 +25,12 @@ public class BookDAO {
 	}
 
 
+	public ReservationDTO getMember(String user_id) {
+		return sqlSession.selectOne(namespace+".getMember", user_id);
+	}
+	
+
+
 
 
 //	public List<BookDTO> listReservation(MemberDTO memberDTO, MemberDTO memberDTO2, PensionDTO pensionDTO,
