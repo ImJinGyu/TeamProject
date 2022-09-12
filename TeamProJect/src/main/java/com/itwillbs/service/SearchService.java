@@ -45,8 +45,6 @@ public class SearchService {
 		return searchDAO.getTopList(pensionDTO);
 	}
 	
-	
-
 
 
 

@@ -26,6 +26,7 @@ import com.itwillbs.dao.SearchDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PagingDTO;
 import com.itwillbs.domain.PensionDTO;
+import com.itwillbs.domain.PensionRmDTO;
 import com.itwillbs.service.SearchService;
 
 
@@ -271,6 +272,7 @@ public class SearchController {
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
 		
+		
 		System.out.println("펜션 이름 : " + pen_name);
 		System.out.println("checkin : " + rm_checkin + " / checkout : " + rm_checkout);
 		
@@ -287,12 +289,5 @@ public class SearchController {
 		
 	}
 	
-	// 결제 api (정우)
-//	public HomeController() {
-//		
-//		// REST API 키와 REST API secret 을 아래처럼 순서대로 입력
-//		this.api = new IamportClient("3157873113568822", "8Nt0l6CyajA08fjZvXoh2i5q4Y1yA8IvKoy8mEDxUpJCpkzT6klss5rDe4W4TqXiPDGC6NejJPvriujx");
-//	}
-//	
 
 }

@@ -2,9 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
-<html lang="en">
+<html lang="ko">
+<!-- <html lang="en"> -->
 
 <head>
+	
+	<!-- iamport.payment.js -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Come to Busan - 부산온나</title>
@@ -38,7 +43,7 @@
 				</p>
 				<p class="rName">
 					<strong class="rStrong">객실타입 / 기간</strong>
-					<%-- ${.rm_name } /  --%> A301호 / 1박
+					${BusinessDTO.rm_name }
 				</p>
 				<p class="rName">
 					<strong class="rStrong">체크인</strong>
@@ -56,7 +61,7 @@
 						(VAT포함)
 					</strong>
 					<span class="in_price">
-						<!-- {.rm_price}원 -->99,000원
+						${rm_price}원<!-- 99,000원 -->
 					</span>
 				</p>
 				<ul>
@@ -65,7 +70,8 @@
 				</ul>
 			</section>
 			<button class="btn btn-primary w-100"
-				style="border-radius:10px; font-size: 30px; font-family: 'Do Hyeon', sans-serif;">결 제 하 기</button>
+				style="border-radius:10px; font-size: 30px; font-family: 'Do Hyeon', sans-serif;" onclick="iamport()">결 제 하 기
+			</button>
 		</div>
 		<div class="rLeft">
 			<div>
@@ -85,95 +91,94 @@
 <!--footer -->
 <%@ include file="../footer.jsp" %>
 
-
-<!--  결제 api 연동 스크립트 수정 전_0906kjw -->
-<!-- 	<script> -->
-<!--  		var headerName = $("meta[name='_csrf_header']").attr("content")  -->
-<!-- // 		var token = $("meta[name='_csrf']").attr("content") -->
+<script>
+// 		var headerName = $("meta[name='_csrf_header']").attr("content")
+// 		var token = $("meta[name='_csrf']").attr("content")
 		
-<!-- // 		$(document).ajaxSend(function(e, xhr) { -->
-<!-- // 			xhr.setRequestHeader(headerName, token); -->
-<!-- // 		}) -->
+// 		$(document).ajaxSend(function(e, xhr) {
+// 			xhr.setRequestHeader(headerName, token);
+// 		})
 		
-<!-- // 		function iamport(){ -->
-<%-- // 			var amount =  '${prePayment}' - $('#usePoint').val(); --%>
-<!-- // 			//가맹점 식별코드 -->
-<!-- // 			IMP.init('imp20015195'); -->
-<!-- // 			IMP.request_pay({ -->
-<!-- // 			    pg : 'html5_inicis', -->
-<!-- // 			    pay_method : 'card', -->
-<%-- // 			    merchant_uid : '${room.roomNum}' + new Date().getTime(), --%>
-<!-- // 			    name : '(주)여수어때' , //결제창에서 보여질 이름 -->
-<!-- // 			    amount : amount, //실제 결제되는 가격 -->
-<%-- // 			    buyer_email : '${user.email}', --%>
-<%-- // 			    buyer_name : '${user.name}', --%>
-<%-- // 			    buyer_tel : '${user.phone}', --%>
-<%-- // 			    buyer_addr : '${user.roadAddr}', --%>
-<%-- // 			    buyer_postcode : '${user.zipNo}' --%>
-<!-- // 			}, function(rsp) { -->
-<!-- // 				console.log(rsp); -->
+		function iamport(){
+			var amount =  '${rm_price}'; <!-- $('#usePoint').val();-->
+			//가맹점 식별코드
+			IMP.init('imp84747824');
+			IMP.request_pay({
+			    pg : 'html5_inicis',
+			    pay_method : 'card',
+			    merchant_uid : '${room.roomNum}' + new Date().getTime(),
+			    name : '(주)부산온나' , 	//결제창에서 보여질 이름
+			    amount : amount, 		//실제 결제되는 가격
+			    buyer_email : '${user.email}',
+			    buyer_name : '${user.name}',
+			    buyer_tel : '${user.phone}',
+			    buyer_addr : '${user.roadAddr}',
+			    buyer_postcode : '${user.zipNo}'
+			}, function(rsp) {
+				console.log(rsp);
 				
-<!-- // 		        var reservation = { -->
-<!-- // 	        		reservationNum: rsp.merchant_uid, -->
-<%-- //                     checkin: '${date1}', --%>
-<%-- //                     checkout: '${date2}', --%>
-<%-- // 					paymentPrice: '${prePayment}', --%>
-<%-- //                     roomNum: '${room.roomNum}', --%>
-<%-- //                     userid: '${user.userId}', --%>
-<%-- //                     pensionid: '${pension.pensionid}' --%>
-<!-- //        	   	 	}; -->
+		        var reservation = {
+	        		reservationNum: rsp.merchant_uid,
+                    checkin: '${date1}',
+                    checkout: '${date2}',
+					paymentPrice: '${prePayment}',
+                    roomNum: '${room.roomNum}',
+                    userid: '${user.userId}',
+                    pensionid: '${pension.pensionid}'
+       	   	 	};
        	   	 	
-<!-- // 			    if (rsp.success) { -->
-<!-- // 			        var msg = '결제가 완료되었습니다.'; -->
-<!-- // 			        console.log(reservation); -->
-<!-- // 			        alert(msg); -->
+			    if (rsp.success) {
+			        var msg = '결제가 완료되었습니다.';
+			        console.log(reservation);
+			        alert(msg);
 			      
-<!-- // 			        $.ajax({ -->
-<!-- // 			         	url: "/verifyIamport/" + rsp.imp_uid, -->
-<!-- // 			        	type: "POST", -->
-<!-- // 			        	headers: { "Content-Type": "application/json" }, -->
-<!-- // 			        	data: JSON.stringify(reservation), -->
-<!-- // 			        	dataType:"json", -->
-<!-- // 			            contentType:"application/json; charset=utf-8" -->
-<!-- // 			        }) -->
+			        $.ajax({
+			         	url: "/verifyIamport/" + rsp.imp_uid,
+			        	type: "POST",
+			        	headers: { "Content-Type": "application/json" },
+			        	data: JSON.stringify(reservation),
+			        	dataType:"json",
+			            contentType:"application/json; charset=utf-8"
+			        })
 			      
-<%-- // 			        location.href = '${pageContext.request.contextPath}/member/mypage'; --%>
-<!-- // 			    } else { -->
-<!-- // 			      var msg = rsp.error_msg; -->
-<!-- // 			      alert(msg); -->
-<!-- // 			    } -->
-<!-- // 			}); -->
-<!-- // 		} -->
-<!-- <!-- 	</script> --> -->
-<!-- <!-- 	<script> --> -->
-<%-- // 		var point = '${user.point}'; --%>
-<%-- // 		var prePayment = '${prePayment}'; --%>
-<!-- // 		$(function() { -->
-<!-- // 			$('#point').val((point * 1).toLocaleString()); -->
-<!-- // 			$('#usePoint').keyup(function() { -->
-<!-- // 				if($('#usePoint').val() - $('#point').val() > 0) { -->
-<!-- // 					alert('사용 가능 포인트를 초과하였습니다.') -->
-<!-- // 					$('#point').val(point.toLocaleString()); -->
-<!-- // 					$('#usePoint').val(0); -->
-<!-- // 					$('#discount').html('0 원'); -->
-<!-- // 					$('#payment').text(prePayment + ' 원'); -->
-<!-- // 				} -->
-<!-- // 				else { -->
-<!-- // 					if(prePayment - $('#usePoint').val() < 1000) { -->
-<!-- // 						alert('최소 결제 금액은 1,000입니다.') -->
-<!-- // 						$('#usePoint').val((prePayment - 1000)); -->
-<!-- // 						$('#point').val((point - prePayment - 1000).toLocaleString()); -->
-<!-- // 						$('#discount').html('- ' + (prePayment -1000 * 1).toLocaleString() + ' 원'); -->
-<!-- // 						$('#payment').text('1,000 원'); -->
-<!-- // 					} -->
-<!-- // 					else { -->
-<!-- // 						$('#point').val((point - $('#usePoint').val()).toLocaleString()); -->
-<!-- // 						$('#discount').html('- ' + $('#usePoint').val() + ' 원'); -->
-<!-- // 						$('#payment').text((prePayment - $('#usePoint').val()).toLocaleString() + ' 원'); -->
-<!-- // 					} -->
-<!-- // 				} -->
-<!-- // 			}) -->
-<!-- // 		}) -->
+			        location.href = '${pageContext.request.contextPath}/member/mypage';
+			    } else {
+			      var msg = rsp.error_msg;
+			      alert(msg);
+			    }
+			});
+		}
+	</script>
+	
+<!-- 	<script> -->
+// 		var point = '${user.point}';
+// 		var prePayment = '${prePayment}';
+// 		$(function() {
+// 			$('#point').val((point * 1).toLocaleString());
+// 			$('#usePoint').keyup(function() {
+// 				if($('#usePoint').val() - $('#point').val() > 0) {
+// 					alert('사용 가능 포인트를 초과하였습니다.')
+// 					$('#point').val(point.toLocaleString());
+// 					$('#usePoint').val(0);
+// 					$('#discount').html('0 원');
+// 					$('#payment').text(prePayment + ' 원');
+// 				}
+// 				else {
+// 					if(prePayment - $('#usePoint').val() < 1000) {
+// 						alert('최소 결제 금액은 1,000입니다.')
+// 						$('#usePoint').val((prePayment - 1000));
+// 						$('#point').val((point - prePayment - 1000).toLocaleString());
+// 						$('#discount').html('- ' + (prePayment -1000 * 1).toLocaleString() + ' 원');
+// 						$('#payment').text('1,000 원');
+// 					}
+// 					else {
+// 						$('#point').val((point - $('#usePoint').val()).toLocaleString());
+// 						$('#discount').html('- ' + $('#usePoint').val() + ' 원');
+// 						$('#payment').text((prePayment - $('#usePoint').val()).toLocaleString() + ' 원');
+// 					}
+// 				}
+// 			})
+// 		})
 <!-- 	</script> -->
 
     <script src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
@@ -182,5 +187,6 @@
     <script src="${pageContext.request.contextPath }/resources/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/plugins/slider/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/script.js"></script>
+    
 </body>
 </html>

@@ -48,7 +48,8 @@ public class SearchDAO {
 		System.out.println("SearchDAO getTopList");
 		return sqlSession.selectList(NAMESPACE + ".getTopList", pensionDTO);
 	}
-
+	
+	
 
 
 	
