@@ -46,7 +46,7 @@
                         <h6 class="m-0 font-weight-bold text-primary float-left">이용 후기</h6>
                      </div>
                      <div class="card-body">
-                     <form action="reviewPro" method="post" onsubmit="return fileupload()">
+                     <form action="reviewPro?pen_name=${param.pen_name}&rm_checkin=${param.rm_checkin }&rm_checkout=${param.rm_checkout }" method="post" onsubmit="return fileupload()">
                         <div class="form-group row">
                            <div class="col-7">
                               <label for="pensionid">이용 펜션</label>
@@ -117,7 +117,19 @@
                 <div class="score_wrap_sm">
                <div class="score_star star_50">
                </div> 
-           	<div class="num">별점 : ${review.rev_star}점</div>
+           	<div class="num">별점 : 
+           	<c:forEach var="i" begin="1" end="5">
+               <c:choose>
+               <c:when test="${i <= review.rev_star}">
+                 <i class="fa fa-star" style="color: #fdae5c"></i>
+                 </c:when>
+                <c:otherwise>
+               <i class="fa fa-star" style="color: #fdae5c; font-weight: 100;"></i>
+               </c:otherwise>
+              </c:choose> 
+           </c:forEach>
+           ${review.rev_star}점
+           	</div>
            	</div> 
         	 <div class="name"><b>팬션이름 객실 이용 - ${review.user_name}</b></div> 
 		         <div class="txt"  id="content">${review.rev_content}</div> 

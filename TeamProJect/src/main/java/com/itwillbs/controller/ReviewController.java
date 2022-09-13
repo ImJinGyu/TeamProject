@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
@@ -49,14 +51,16 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/search/reviewPro", method = RequestMethod.POST)
-	public String reviewPro(ReviewDTO rT) {
-		System.out.println(123);
+	public String reviewPro(ReviewDTO rT, HttpServletRequest req) throws Exception{
+		String pen_name = req.getParameter("pen_name");
+		String rm_checkin = req.getParameter("rm_checkin");
+		String rm_checkout = req.getParameter("rm_checkout");
 		int count = service.reviewcount();
 		rT.setRev_num(count);
 		rT.setRev_date(new FunctionClass().nowTime("yyyy-MM-dd"));
-		System.out.println(rT);
 		service.insertreview(rT);
-		return "redirect:/search/main";
+		String rpen_name = URLEncoder.encode(pen_name, "UTF-8");
+		return "redirect:/search/pensionDetail?pen_id="+rT.getPen_id()+"&pen_name="+rpen_name+"&rm_checkin="+rm_checkin+"&rm_checkout="+rm_checkout+"";
 	}
 	
 //	@RequestMapping(value = "/review", method = RequestMethod.GET)
