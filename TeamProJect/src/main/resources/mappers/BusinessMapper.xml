@@ -161,7 +161,8 @@
 	
 	<!-- 이지원 -->
  	<select id="getSearchRoomList" resultType="com.itwillbs.domain.BusinessDTO">
-		SELECT R.RM_PRICE
+		SELECT R.ROOM_ID
+		     , R.RM_PRICE
 		     , R.RM_CHECKIN
 		     , R.RM_CHECKOUT
 		     , RA.RM_NAME
@@ -174,6 +175,20 @@
 		 WHERE P.PEN_NAME = #{PEN_NAME}
 		 ORDER BY CONVERT(R.RM_PRICE, SIGNED);		<!-- convert : 문자형을 숫자형으로 변환 -->
 	</select>
+	
+	<!-- 이지원 -->
+	<select id="getRoomDetail" resultType="com.itwillbs.domain.BusinessDTO">
+		SELECT P.PEN_NAME
+		     , PR.RM_NAME
+			 , PR.RM_CHECKIN
+		     , PR.RM_CHECKOUT
+		     , PR.RM_PRICE
+		  FROM PENSION P
+		  JOIN PENSION_ROOM PR
+		    ON P.PEN_ID = PR.PEN_ID
+		 WHERE PR.ROOM_ID = #{ROOM_ID}
+	</select>
+	
 	<!-- 박성빈 -->
 	<select id="listReservation" resultType="com.itwillbs.domain.ReservationDTO">
 	SELECT R.RES_NUMBER

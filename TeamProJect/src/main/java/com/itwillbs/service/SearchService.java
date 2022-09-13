@@ -44,6 +44,10 @@ public class SearchService {
 	public List<PensionDTO> getTopList(PensionDTO pensionDTO) {
 		return searchDAO.getTopList(pensionDTO);
 	}
+
+	public BusinessDTO getRoomDetail(int room_id) {
+		return searchDAO.getRoomDetail(room_id);
+	}
 	
 
 

@@ -1148,9 +1148,10 @@ address {
 	.penTitle {
 		display: block;
 		height: 30px;
-		padding: 0 0 0 25px;
+/* 		padding: 0 0 0 25px; */
+		padding: 10px 0 0 25px;
 		font-size: 30px;
-		font-weight: bold;
+/* 		font-weight: bold; */
 		line-height: 1;
 		color: black;
 	}
@@ -1161,6 +1162,13 @@ address {
 		overflow: hidden;
 		margin: 0;
 		min-height: 188px;
+	}
+}
+
+@media (min-width: 1024px) {
+	.sCheckIO {
+		margin: 100px 0 5px 25px;
+		font-size: 13px;
 	}
 }
 
@@ -1177,7 +1185,8 @@ address {
 @media (min-width: 1024px) {
 	.srPrice {
 		display: block;
-		padding: 41px 0 0 25px;
+		padding: 0 0 0 25px;
+/* 		padding: 41px 0 0 25px; */
 		/* border-bottom: 1px solid gainsboro; */
 		height: 76px;
 		font-size: 20px;
@@ -1188,7 +1197,8 @@ address {
 
 @media (min-width: 1024px) {
 	.rButton {
-		padding: 122px 0 0 25px;
+		padding: 5px 0 0 25px;
+/* 		padding: 122px 0 0 25px; */
 	}
 }
 
@@ -1201,7 +1211,8 @@ address {
 	.rRight {
 		float: right;
 		width: 310px;
-		margin: 40px 31px 0 0;
+		margin: 40px 450px 0 0;
+/* 		margin: 40px 31px 0 0; */
 		background: #f2f2f2;
 	}
 }

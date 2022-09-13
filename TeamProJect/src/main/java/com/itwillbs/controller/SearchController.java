@@ -305,36 +305,42 @@ public class SearchController {
 		System.out.println(rList);
 		model.addAttribute("List", rList);
 	}
+	
 	/* 손 거의 안댐 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원) */
 	@RequestMapping(value = "/search/reserve", method = RequestMethod.GET)
 	public String reserve(HttpServletRequest request, Model model) {
 		
-		String pen_name = request.getParameter("pen_name");
+//		String pen_name = request.getParameter("pen_name");
+		int room_id = Integer.parseInt(request.getParameter("room_id"));
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
-		// 정우 테스트
-		String rm_price = request.getParameter("rm_price");
-		System.out.println(rm_price);
 		
-		System.out.println("펜션 이름 : " + pen_name);
+		// 정우 테스트
+//		String rm_price = request.getParameter("rm_price");
+//		System.out.println(rm_price);
+		
+//		System.out.println("펜션 이름 : " + pen_name);
+		System.out.println("방 번호 : " + room_id);
 		System.out.println("checkin : " + rm_checkin + " / checkout : " + rm_checkout);
 		
-		PensionDTO pensionDTO = searchService.getPensionDetail(pen_name);
+//		PensionDTO pensionDTO = searchService.getPensionDetail(pen_name);
+		BusinessDTO businessDTO = searchService.getRoomDetail(room_id);
+		
 		// 정우 테스트
-		List<BusinessDTO> businessDTO = searchService.getSearchRoomList(pen_name);
+//		List<BusinessDTO> businessDTO = searchService.getSearchRoomList(pen_name);
 		
 		request.setAttribute("rm_checkin", rm_checkin);
 		request.setAttribute("rm_checkout", rm_checkout);
 		// 정우 테스트
-		request.setAttribute("rm_price", rm_price);
+//		request.setAttribute("rm_price", rm_price);
 		
-		model.addAttribute("pensionDTO", pensionDTO);
+//		model.addAttribute("pensionDTO", pensionDTO);
 		// 정우 테스트
 		model.addAttribute("businessDTO", businessDTO);
 		model.addAttribute("rm_checkin", rm_checkin);
 		model.addAttribute("rm_checkout", rm_checkout);
 		// 정우 테스트
-		model.addAttribute("rm_price", rm_price);
+//		model.addAttribute("rm_price", rm_price);
 		
 		return "teamProJect/search/reserve";
 		

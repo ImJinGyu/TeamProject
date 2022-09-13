@@ -48,6 +48,10 @@ public class SearchDAO {
 		System.out.println("SearchDAO getTopList");
 		return sqlSession.selectList(NAMESPACE + ".getTopList", pensionDTO);
 	}
+
+	public BusinessDTO getRoomDetail(int room_id) {
+		return sqlSession.selectOne(NAMESPACE + ".getRoomDetail", room_id);
+	}
 	
 	
 

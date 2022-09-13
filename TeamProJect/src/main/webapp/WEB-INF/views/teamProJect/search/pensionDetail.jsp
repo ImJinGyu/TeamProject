@@ -77,32 +77,34 @@
          </li>
       </ul>
 	</div>
+	<div class="roomInfo">
+		<div style="padding: 2.5px 2.5px 2.5px 2.5px;">
+			<div class="row form-detail" style="margin: auto; border: 1px solid gainsboro; border-radius: 10px; width: auto; background: white;">
+				<div class="col-md-2 ffb">
+	               	<input type='date' id="checkin" min="${today }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin" onchange="dateChk()"
+	               		style="width: 99%; margin: 0px 2.25px; padding: 0;" required>
+				</div>
+				<div class="col-md-2 ffb">
+	               	<input type='date' id="checkout" min="${tomorrow }" value="${rm_checkout }" class="main_checkout_1" name="rm_checkout" onchange="dateChk()"
+						style="width: 99%; margin: 0px 2.25px; padding: 0; border-left: 0;" required>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- //tab -->
 	<div class="tab-content">
 	<div id="tabhome" class="container tab-pane fade active show">
-	<form action="${pageContext.request.contextPath }/search/reserve?pen_name=${pensionDTO.pen_name }&rm_checkin=${rm_checkin}&rm_checkout=${rm_checkout}" method="get" data-sel-date="" data-sel-date2=""
+	<c:forEach var="businessDTO" items="${searchRoomList }">
+	<form action="${pageContext.request.contextPath }/search/reserve?room_id=${businessDTO.ROOM_ID }&rm_checkin=${rm_checkin}&rm_checkout=${rm_checkout}" method="get" data-sel-date="" data-sel-date2=""
 		style="margin: 15px 0; padding: 0; border: 0; box-sizing: border-box;">
-		<input id="" type="hidden" name="pen_name" value="${pensionDTO.pen_name }">
-		<input id="" type="hidden" name="" value="">
-		<input id="" type="hidden" name="" value="">
-		<input id="" type="hidden" name="" value="">
+<%-- 		<input id="" type="hidden" name="pen_name" value="${pensionDTO.pen_name }"> --%>
+		<input id="" type="hidden" name="room_id" value="${businessDTO.ROOM_ID }">
+		<input id="" type="hidden" name="rm_checkin" value="${rm_checkin}">
+		<input id="" type="hidden" name="rm_checkout" value="${rm_checkout}">
 		<!-- 객실안내/예약 -->
 		<article class="roomInfo">
-			<div style="padding: 2.5px 2.5px 2.5px 2.5px;">
-				<div class="row form-detail" style="margin: auto; border: 1px solid gainsboro; border-radius: 10px; width: auto; background: white;">
-					<div class="col-md-2 ffb">
-	                	<input type='date' id="checkin" min="${today }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin" onchange="dateChk()"
-	                		style="width: 99%; margin: 0px 2.25px; padding: 0;" required>
-						</div>
-					<div class="col-md-2 ffb">
-	                	<input type='date' id="checkout" min="${tomorrow }" value="${rm_checkout }" class="main_checkout_1" name="rm_checkout" onchange="dateChk()"
-							style="width: 99%; margin: 0px 2.25px; padding: 0; border-left: 0;" required>
-					</div>
-				</div>
-			</div>
 		 	<div><!--  style="border: 1px solid red; margin: 10px 25%;" -->
 				<div style="padding: 15px 2.5px;">
-				 <c:forEach var="businessDTO" items="${searchRoomList }">
 				 	<div class="room">
 					 	<p class="pic_view"><img class="pensionPic" src="${pageContext.request.contextPath }/resources/upload/${businessDTO.RM_IMAGE }"
 					 		style="display: inline-block;"></p>
@@ -110,6 +112,16 @@
 						<strong class="penTitle">${businessDTO.RM_NAME }</strong>
 						
 						<div><!--  class="roomInfo" -->
+						
+							<div class="roomCheckIO">
+								<div class="sCheckIO">
+									체크인 / 체크아웃
+									<span style="float: right;">
+										${businessDTO.RM_CHECKIN } / ${businessDTO.RM_CHECKOUT }
+									</span>
+								</div>
+							</div>
+									
 							<div class="roomPrice">
 								<div class="srPrice">
 									
@@ -142,11 +154,11 @@
 					 	</div>
 					 	<div style="margin: 0 0 25px 0;"></div>
 				 	</div>
-				 </c:forEach>
 				</div>
 			</div>
 		</article>
 	</form>
+	</c:forEach>
 	</div>
 <%@ include file="review.jsp" %>
 	</div>

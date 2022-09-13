@@ -39,19 +39,19 @@
 			<section class="rInfo">
 				<p class="rName">
 					<strong class="rStrong">숙소이름</strong>
-					${pensionDTO.pen_name }<!-- 기장 비치하임펜션 -->
+					${businessDTO.PEN_NAME }<!-- 기장 비치하임펜션 -->
 				</p>
 				<p class="rName">
 					<strong class="rStrong">객실타입 / 기간</strong>
-					${BusinessDTO.rm_name }
+					${businessDTO.RM_NAME }
 				</p>
 				<p class="rName">
 					<strong class="rStrong">체크인</strong>
-					${rm_checkin} <%--${.check_in_t } 09.13 월 --%>15:00
+					${rm_checkin} ${businessDTO.RM_CHECKIN } <%--${.check_in_t } 09.13 월 15:00 --%>
 				</p>
 				<p class="rName">
 					<strong class="rStrong">체크아웃</strong>
-					${rm_checkout} <%-- ${.check_out_t } 09.14 화 --%>11:00
+					${rm_checkout} ${businessDTO.RM_CHECKOUT }<%-- ${.check_out_t } 09.14 화 11:00--%>
 				</p>
 			</section>
 			<section class="total_price">
@@ -61,7 +61,7 @@
 						(VAT포함)
 					</strong>
 					<span class="in_price">
-						${rm_price }원<!-- 99,000원 -->
+						<fmt:formatNumber type="number" maxFractionDigits="3" value="${businessDTO.RM_PRICE }"/> 원<!-- 99,000원 -->
 					</span>
 				</p>
 				<ul>
@@ -81,6 +81,21 @@
 					<p class="inp_wrap">
 						<input type="text" name="userName" placeholder="체크인시 필요한 정보입니다." maxlength="20">
 					</p>
+					<p class="alert_txt">
+						<!-- 한글, 영문, 숫자만 입력 가능. (문자 사이 공백은 1칸만 입력 가능) -->
+					</p>
+					
+					<div style="padding-bottom: 50px;"></div>
+					
+					<div>
+						<strong>휴대폰 번호</strong>
+						<span>개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span>
+						<div>
+							<div class="inp_wrap">
+								<input type="tel" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="" class="">
+							</div>
+						</div>
+					</div>
 				</section>
 			</div>
 		</div>
