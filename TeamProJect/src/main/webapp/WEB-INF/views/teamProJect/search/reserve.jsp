@@ -61,7 +61,7 @@
 						(VAT포함)
 					</strong>
 					<span class="in_price">
-						${rm_price}원<!-- 99,000원 -->
+						${rm_price }원<!-- 99,000원 -->
 					</span>
 				</p>
 				<ul>
@@ -100,7 +100,7 @@
 // 		})
 		
 		function iamport(){
-			var amount =  '${rm_price}'; <!-- $('#usePoint').val();-->
+			var amount = '${rm_price }';
 			//가맹점 식별코드
 			IMP.init('imp84747824');
 			IMP.request_pay({
@@ -141,7 +141,7 @@
 			            contentType:"application/json; charset=utf-8"
 			        })
 			      
-			        location.href = '${pageContext.request.contextPath}/member/mypage';
+			        location.href = '${pageContext.request.contextPath}/member/mypage/listReservation';
 			    } else {
 			      var msg = rsp.error_msg;
 			      alert(msg);

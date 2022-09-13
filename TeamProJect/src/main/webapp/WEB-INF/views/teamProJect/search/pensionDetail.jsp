@@ -69,8 +69,8 @@
 			</button>
 	</div>
 	<!-- //tab -->
-	
-	<form action="${pageContext.request.contextPath }/search/reserve?pen_name=${pensionDTO.pen_name }&rm_checkin=${rm_checkin}&rm_checkout=${rm_checkout}" method="get" data-sel-date="" data-sel-date2=""
+	<c:forEach var="businessDTO" items="${searchRoomList }">
+	<form action="${pageContext.request.contextPath }/search/reserve?pen_name=${pensionDTO.pen_name }&rm_checkin=${rm_checkin}&rm_checkout=${rm_checkout} method="get" data-sel-date="" data-sel-date2=""
 		style="margin: 15px 0; padding: 0; border: 0; box-sizing: border-box;">
 		<input id="" type="hidden" name="pen_name" value="${pensionDTO.pen_name }">
 		<input id="" type="hidden" name="" value="">
@@ -92,7 +92,7 @@
 			</div>
 		 	<div><!--  style="border: 1px solid red; margin: 10px 25%;" -->
 				<div style="padding: 15px 2.5px;">
-				 <c:forEach var="businessDTO" items="${searchRoomList }">
+				 
 				 	<div class="room">
 					 	<p class="pic_view"><img class="pensionPic" src="${pageContext.request.contextPath }/resources/upload/${businessDTO.RM_IMAGE }"
 					 		style="display: inline-block;"></p>
@@ -110,6 +110,7 @@
 										<p style="color: black; font-size: 30px; border-bottom: 1px solid gainsboro; padding-bottom:5px; overflow: hidden; ">
 										 <b style="float: left; font-size: 27px; color: #8c8c8c;">가격</b>
 										<span style="float: right;"><b><fmt:formatNumber type="number" maxFractionDigits="3" value="${businessDTO.RM_PRICE }"/> 원</b></span></p>
+										<input type="hidden" id="rm_price" name="rm_price" value="${businessDTO.RM_PRICE }">
 									</div>
 								</div>
 								
@@ -132,12 +133,12 @@
 					 	</div>
 					 	<div style="margin: 0 0 25px 0;"></div>
 				 	</div>
-				 </c:forEach>
+				 
 				</div>
 			</div>
 		</article>
 	</form>
-	
+	</c:forEach>
 	<div>
 	</div>
 	

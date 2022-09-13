@@ -271,19 +271,29 @@ public class SearchController {
 		String pen_name = request.getParameter("pen_name");
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
-		
+		// 정우 테스트
+		String rm_price = request.getParameter("rm_price");
+		System.out.println(rm_price);
 		
 		System.out.println("펜션 이름 : " + pen_name);
 		System.out.println("checkin : " + rm_checkin + " / checkout : " + rm_checkout);
 		
 		PensionDTO pensionDTO = searchService.getPensionDetail(pen_name);
+		// 정우 테스트
+		List<BusinessDTO> businessDTO = searchService.getSearchRoomList(pen_name);
 		
 		request.setAttribute("rm_checkin", rm_checkin);
 		request.setAttribute("rm_checkout", rm_checkout);
+		// 정우 테스트
+		request.setAttribute("rm_price", rm_price);
 		
 		model.addAttribute("pensionDTO", pensionDTO);
+		// 정우 테스트
+		model.addAttribute("businessDTO", businessDTO);
 		model.addAttribute("rm_checkin", rm_checkin);
 		model.addAttribute("rm_checkout", rm_checkout);
+		// 정우 테스트
+		model.addAttribute("rm_price", rm_price);
 		
 		return "teamProJect/search/reserve";
 		
