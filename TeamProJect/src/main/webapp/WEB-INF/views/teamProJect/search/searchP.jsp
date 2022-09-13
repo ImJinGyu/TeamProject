@@ -75,7 +75,7 @@
 					<div class="row form-detail  pensionlist">
 						<div class="pensions" data-pensionid="${PensionDTO.pen_id}">
 						  <div class="container">
-							<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }" >
+							<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id=${PensionDTO.pen_id}&pen_name=${PensionDTO.pen_name}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }" >
 								<img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="Image" class="img-fluid">
 							</a>
 							<div class="pensionInfo">

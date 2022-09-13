@@ -1,7 +1,9 @@
 package com.itwillbs.controller;
 
 import java.nio.file.spi.FileSystemProvider;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,9 @@ import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PagingDTO;
 import com.itwillbs.domain.PensionDTO;
 import com.itwillbs.domain.PensionRmDTO;
+import com.itwillbs.domain.ReviewDTO;
+import com.itwillbs.function.FunctionClass;
+import com.itwillbs.service.ReviewService;
 import com.itwillbs.service.SearchService;
 
 
@@ -40,7 +45,8 @@ public class SearchController {
 	
 	@Inject
 	private SearchService searchService;
-	
+	@Inject
+	private ReviewService service;
 	@Inject
 	private SearchDAO searchDAO;
 	
@@ -219,7 +225,7 @@ public class SearchController {
 	
 	/* 아직 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원) */
 	@RequestMapping(value = "/search/pensionDetail", method = RequestMethod.GET)
-	public String pensionDetail(HttpServletRequest request, Model model) {
+	public String pensionDetail(HttpServletRequest request, Model model) throws Exception{
 		
 		/* 파라미터 값(펜션 이름) 저장 */
 		String pen_name = request.getParameter("pen_name");
@@ -259,11 +265,46 @@ public class SearchController {
 		model.addAttribute("rm_checkout", rm_checkout);
 		model.addAttribute("today", today);
 		model.addAttribute("tomorrow", tomorrow);
-		
+		reviewtest(model, request);
 		return "teamProJect/search/pensionDetail";
 		
 	}
-	
+	public void reviewtest(Model model, HttpServletRequest req) throws Exception{
+		String pen_id = req.getParameter("pen_id");
+		Map<String, Object> avg = service.staravg(pen_id);
+		model.addAttribute("avg", avg);
+		
+		List<ReviewDTO> rList = service.selectreviewlist(pen_id);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		for (ReviewDTO dto : rList) {
+			Date nowdate = formatter.parse(new FunctionClass().nowTime("yyyy-MM-dd"));
+			int stamp = 24*60*60*1000;
+			
+			
+			if(dto.getRev_date() != null && !("".equals(dto.getRev_date()))) {
+				Date rdate = formatter.parse(dto.getRev_date());
+				Long rt = (nowdate.getTime() - rdate.getTime())  / stamp;
+				if(rt == 0) {
+					dto.setRev_date("ToDay ReView");
+				}else {
+					dto.setRev_date(rt.toString() + "일 전");
+				}
+			}
+			
+			if(dto.getAns_date() != null && !("".equals(dto.getAns_date()))) {
+				Date adate = formatter.parse(dto.getAns_date());
+				Long at = (nowdate.getTime() - adate.getTime())  / stamp;
+				if(at == 0) {
+					dto.setAns_date("ToDay Answer");
+				}else {
+					dto.setAns_date(at.toString() + "일 전");
+				}
+			}
+			
+		}
+		System.out.println(rList);
+		model.addAttribute("List", rList);
+	}
 	/* 손 거의 안댐 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원) */
 	@RequestMapping(value = "/search/reserve", method = RequestMethod.GET)
 	public String reserve(HttpServletRequest request, Model model) {

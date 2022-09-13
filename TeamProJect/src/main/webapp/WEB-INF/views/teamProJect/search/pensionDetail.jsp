@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html lang="en">
 
@@ -10,8 +11,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
     <title>${pensionDTO.pen_name } | 부산온나</title>
-    
+
 </head>
 
 
@@ -58,19 +65,22 @@
 	</div>
 	
 	<div class="pdTab" style="border-bottom: 1px solid gainsboro;"><!-- style="margin: 0 auto; padding: 0 16px; margin-top: 38px;" -->
-			<button class="tButton">
-				<span>객실안내/예약</span>
-			</button>
-			<button class="tButton">
-				<span>숙소정보</span>
-			</button>
-			<button class="tButton">
-				<span>리뷰</span>
-			</button>
+			<ul class="nav nav-tabs">
+         <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#tabhome">객실안내/예약</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#">숙박정보</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tabmenu">리뷰</a>
+         </li>
+      </ul>
 	</div>
 	<!-- //tab -->
-	<c:forEach var="businessDTO" items="${searchRoomList }">
-	<form action="${pageContext.request.contextPath }/search/reserve?pen_name=${pensionDTO.pen_name }&rm_checkin=${rm_checkin}&rm_checkout=${rm_checkout} method="get" data-sel-date="" data-sel-date2=""
+	<div class="tab-content">
+	<div id="tabhome" class="container tab-pane fade active show">
+	<form action="${pageContext.request.contextPath }/search/reserve?pen_name=${pensionDTO.pen_name }&rm_checkin=${rm_checkin}&rm_checkout=${rm_checkout}" method="get" data-sel-date="" data-sel-date2=""
 		style="margin: 15px 0; padding: 0; border: 0; box-sizing: border-box;">
 		<input id="" type="hidden" name="pen_name" value="${pensionDTO.pen_name }">
 		<input id="" type="hidden" name="" value="">
@@ -92,7 +102,7 @@
 			</div>
 		 	<div><!--  style="border: 1px solid red; margin: 10px 25%;" -->
 				<div style="padding: 15px 2.5px;">
-				 
+				 <c:forEach var="businessDTO" items="${searchRoomList }">
 				 	<div class="room">
 					 	<p class="pic_view"><img class="pensionPic" src="${pageContext.request.contextPath }/resources/upload/${businessDTO.RM_IMAGE }"
 					 		style="display: inline-block;"></p>
@@ -110,7 +120,6 @@
 										<p style="color: black; font-size: 30px; border-bottom: 1px solid gainsboro; padding-bottom:5px; overflow: hidden; ">
 										 <b style="float: left; font-size: 27px; color: #8c8c8c;">가격</b>
 										<span style="float: right;"><b><fmt:formatNumber type="number" maxFractionDigits="3" value="${businessDTO.RM_PRICE }"/> 원</b></span></p>
-										<input type="hidden" id="rm_price" name="rm_price" value="${businessDTO.RM_PRICE }">
 									</div>
 								</div>
 								
@@ -133,14 +142,15 @@
 					 	</div>
 					 	<div style="margin: 0 0 25px 0;"></div>
 				 	</div>
-				 
+				 </c:forEach>
 				</div>
 			</div>
 		</article>
 	</form>
-	</c:forEach>
-	<div>
 	</div>
+<%@ include file="review.jsp" %>
+	</div>
+
 	
 
 	
@@ -176,4 +186,26 @@
     <script src="${pageContext.request.contextPath }/resources/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/plugins/slider/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/script.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/detailReplyStyle.css">
+    <style>
+
+.pic > img {
+	filter: brightness(100%);
+}
+.card-body > ul > li{
+	border: 1px solid rgba(0,0,0,0.08);
+	text-align: center;
+	font-size: 17px;
+}
+</style> 
+<script type="text/javascript">
+	var btn = $('#replyForm'); 
+	$('#replyEvent').click(() => {
+		if(btn.css('display') == 'none'){
+			btn.css('display', 'block');
+			return;
+		}
+		btn.css('display', 'none');
+	})
+</script>
 </html>
