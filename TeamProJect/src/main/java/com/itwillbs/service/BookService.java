@@ -22,7 +22,7 @@ public class BookService {
 	private BookDAO bookDAO;
 	
 
-	public List<BookDTO> listReservation(ReservationDTO reservationDTO) {
+	public List<ReservationDTO> listReservation(ReservationDTO reservationDTO) {
 		return bookDAO.listReservation(reservationDTO);
 	}
 
@@ -30,6 +30,28 @@ public class BookService {
 	public ReservationDTO getMember(String user_id) {
 		return bookDAO.getMember(user_id);
 	}
+
+
+	public ReservationDTO listReservation2(ReservationDTO reservationDTO) {
+		return bookDAO.listReservation2(reservationDTO);
+	}
+
+
+	public List<ReservationDTO> getListCheckReservation(ReservationDTO reservationDTO) {
+		return bookDAO.getListCheckReservation(reservationDTO);
+	}
+
+
+//	public void cancelReservation(String res_number) {
+//		bookDAO.cancelReservation(res_number);
+//		
+//	}
+//	public boolean cancelReservation(Long reservationNum) {
+//		roomMapper.checkoutRoom(mapper.read(reservationNum).getRoomNum());
+//		paymentMapper.updateStatus(reservationNum);
+//		boolean result = mapper.updateStatus(reservationNum) > 0;
+//		return result;
+
 
 //	public List<BookDTO> listReservation(MemberDTO memberDTO, MemberDTO memberDTO2, PensionDTO pensionDTO,
 //			PensionRmDTO pensionRmDTO, BookDTO bookDTO) {

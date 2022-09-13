@@ -7,10 +7,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.itwillbs.domain.BookDTO;
-import com.itwillbs.domain.MemberDTO;
-import com.itwillbs.domain.PensionDTO;
-import com.itwillbs.domain.PensionRmDTO;
 import com.itwillbs.domain.ReservationDTO;
 @Repository
 public class BookDAO {
@@ -20,15 +16,38 @@ public class BookDAO {
 	private static final String namespace = "com.itwillbs.mappers.BusinessMapper";
 	
 	
-	public List<BookDTO> listReservation(ReservationDTO reservationDTO) {
+	public List<ReservationDTO> listReservation(ReservationDTO reservationDTO) {
 		return sqlSession.selectList(namespace+".listReservation",reservationDTO);
 	}
-
+	
+	public List<ReservationDTO> getListCheckReservation(ReservationDTO reservationDTO) {
+		return sqlSession.selectList(namespace+".getListCheckReservation",reservationDTO);
+	}
 
 	public ReservationDTO getMember(String user_id) {
 		return sqlSession.selectOne(namespace+".getMember", user_id);
 	}
+
+
+
+
+
+
+	public ReservationDTO listReservation2(ReservationDTO reservationDTO) {
+		return sqlSession.selectOne(namespace+".listReservation2",reservationDTO);
+	}
+
+//	public void cancelReservation(String res_number) {
+//		 sqlSession.delete(namespace+".cancelReservation",res_number);
+//	}
+
+
 	
+
+
+
+
+
 
 
 

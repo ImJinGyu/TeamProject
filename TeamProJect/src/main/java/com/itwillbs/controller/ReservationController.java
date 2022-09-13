@@ -2,8 +2,6 @@ package com.itwillbs.controller;
 
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.BookDTO;
-import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.service.BookService;
+
 
 
 
@@ -36,29 +34,43 @@ public class ReservationController {
 		
 		reservationDTO.setUser_id(user_id);
 		
-		List<BookDTO> listReservation = bookService.listReservation(reservationDTO);
+		List<ReservationDTO> listReservation = bookService.listReservation(reservationDTO);
 		
 		model.addAttribute("listReservation", listReservation);
 		return "teamProJect/business/listReservation";
 	}
 	
 	@RequestMapping(value = "/business/checkReservation", method = RequestMethod.GET)
-	public String checkReservation(ReservationDTO reservationDTO, Model model, HttpSession session) throws ParseException{
+	public String checkReservation(ReservationDTO reservationDTO, Model model, HttpSession session){
 		String user_id = (String)session.getAttribute("user_id");
-		ReservationDTO reservationDTO2 = bookService.getMember(user_id);
-		System.out.println(reservationDTO2.getPen_id().toString());
-		System.out.println(reservationDTO2.getCheck_in_d());
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		Date beginDate = formatter.parse(reservationDTO2.getCheck_in_d()); 
-		Date endDate = formatter.parse(reservationDTO2.getCheck_out_d()); 
-		long diff = endDate.getTime() - beginDate.getTime();
-		System.out.println(beginDate);
-		System.out.println(endDate);
-		return "teamProJect/business/checkReservation";
-				
-				
+		reservationDTO.setUser_id(user_id);;
+		
+		System.out.println(reservationDTO.toString());
+		
+		List<ReservationDTO> listReservation2 = bookService.listReservation(reservationDTO);
+		System.out.println(listReservation2.toString());
+		List<ReservationDTO> listReservation3 = bookService.getListCheckReservation(reservationDTO);
+		System.out.println(listReservation3.toString());
+		if(listReservation3.size() > 0) {
+			model.addAttribute("reservation2",listReservation3 );
+			return "teamProJect/business/checkReservation";
+		} else {
+			return "redirect:/business/b_index";
+		}
 	}
+	
+//	@RequestMapping(value = "/business/cancelReservation", method = RequestMethod.GET)
+//	public String cancelReservation(String res_number) {
+//		bookService.cancelReservation(res_number);
+//		return "teamProJect/business/checkReservation";
+//	}
+		
+//		System.out.println(reservationDTO2.getPen_id().toString());
+		
+		
+				
+				
 	
 	
 }

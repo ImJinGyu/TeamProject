@@ -13,7 +13,14 @@ public class ReservationDTO {
 	private String res_time;
 	private String rm_name;
 	private String user_name;
+	private String res_status;
 	
+	public String getRes_status() {
+		return res_status;
+	}
+	public void setRes_status(String res_status) {
+		this.res_status = res_status;
+	}
 	public String getRes_number() {
 		return res_number;
 	}

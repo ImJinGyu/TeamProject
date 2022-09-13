@@ -181,7 +181,7 @@
 	 	 , M.USER_NAME, R.USER_ID
 	  	 , R.CHECK_IN_D, R.CHECK_IN_T
 	 	 , R.CHECK_OUT_D, R.CHECK_OUT_T
-		 , R.RES_TIME
+		 , R.RES_TIME,R.PEN_ID
   	 FROM RESERVATION R LEFT JOIN PENSION P
 						ON (P.PEN_ID = R.PEN_ID)
 						LEFT JOIN MEMBER M
@@ -193,4 +193,33 @@
 		SELECT * FROM RESERVATION
 		WHERE USER_ID = #{user_id}
 	</select>
+	
+	<select id="getListCheckReservation" resultType="com.itwillbs.domain.ReservationDTO">
+	 SELECT  R.RES_NUMBER
+	 , P.PEN_NAME, R.RM_NAME,PR.RES_STATUS
+	 , M.USER_NAME, R.USER_ID
+	 ,DATE_FORMAT(R.CHECK_IN_D, '%Y-%m-%d') AS CHECK_IN_D
+	 ,DATE_FORMAT(R.CHECK_OUT_D, '%Y-%m-%d') AS CHECK_OUT_D
+	 , R.RES_TIME
+  	 FROM RESERVATION R LEFT JOIN PENSION P
+						ON (P.PEN_ID = R.PEN_ID)
+						LEFT JOIN MEMBER M
+						ON (M.USER_ID = R.USER_ID)
+                        LEFT JOIN PENSION_ROOM PR
+						ON (PR.PEN_ID = R.PEN_ID)
+	 WHERE
+	 R.USER_ID = #{user_id}
+	 AND DATE_FORMAT(R.CHECK_IN_D, '%Y-%m-%d') > SYSDATE()
+	 AND PR.RES_STATUS = '1'
+ 	</select>
+ 	
+	<select id="listReservation2" resultType="com.itwillbs.domain.ReservationDTO">
+		 select*
+        FROM RESERVATION
+        WHERE USER_ID = #{user_id}
+	</select>
+	<delete id="delete">
+ 		DELETE RESERVATION WHERE RES_NUMBER = #{RES_NUMBER}
+ 	</delete>
+	
 </mapper>
