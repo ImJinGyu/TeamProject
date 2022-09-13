@@ -15,6 +15,7 @@ public class ReviewDTO {
 	private String reply;
 	private String ans_content;
 	private String ans_date;
+	private String image;
 	
 	public int getRev_num() {
 		return rev_num;
@@ -95,13 +96,20 @@ public class ReviewDTO {
 		this.ans_date = ans_date;
 	}
 	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	@Override
 	public String toString() {
 		return "ReviewDTO [rev_num=" + rev_num + ", pen_id=" + pen_id + ", pen_name=" + pen_name + ", user_id="
 				+ user_id + ", user_type=" + user_type + ", user_name=" + user_name + ", rev_title=" + rev_title
 				+ ", rev_content=" + rev_content + ", rev_star=" + rev_star + ", rev_date=" + rev_date + ", reply="
-				+ reply + ", ans_content=" + ans_content + ", ans_date=" + ans_date + "]";
+				+ reply + ", ans_content=" + ans_content + ", ans_date=" + ans_date + ", image=" + image + "]";
 	}
+
 	
 	
 	

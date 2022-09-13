@@ -10,6 +10,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
     <title>${pensionDTO.pen_name } | 부산온나</title>
     
 </head>
@@ -140,6 +146,7 @@
 	</form>
 	</c:forEach>
 	<div>
+	<%@ include file="review.jsp" %>
 	</div>
 	
 
@@ -176,4 +183,24 @@
     <script src="${pageContext.request.contextPath }/resources/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/plugins/slider/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/script.js"></script>
+<style> 
+    .pic > img {
+	filter: brightness(100%);
+}
+.card-body > ul > li{
+	border: 1px solid rgba(0,0,0,0.08);
+	text-align: center;
+	font-size: 17px;
+}
+</style> 
+<script type="text/javascript">
+	var btn = $('#replyForm'); 
+	$('#replyEvent').click(() => {
+		if(btn.css('display') == 'none'){
+			btn.css('display', 'block');
+			return;
+		}
+		btn.css('display', 'none');
+	})
+</script>
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!doctype html>
 <html lang="en">
 
@@ -396,11 +398,18 @@
                             <p>${PensionDTO.pen_address }</p>
                             <p>평점 ${PensionDTO.star }</p>
                             <ul class="rat">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
+                                <li>
+<%--                                 <c:forEach var="i" begin="1" end="5" step="1"> --%>
+<%-- 			                    	<c:choose> --%>
+<%-- 			                    		<c:when test="${i <= PensionDTO.star}"> --%>
+<!-- 			                    			<i class="fas fa-star"></i> -->
+<%-- 			                    		</c:when> --%>
+<%-- 			                    		<c:otherwise> --%>
+<!-- 			                    			<i class="far fa-star"></i> -->
+<%-- 			                    		</c:otherwise> --%>
+<%-- 			                    	</c:choose> --%>
+<%-- 			                    </c:forEach> --%>
+                                </li>
                             </ul>
                             
                         </div>
