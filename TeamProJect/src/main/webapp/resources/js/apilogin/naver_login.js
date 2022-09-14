@@ -5,4 +5,4 @@ naver_id_login.setButton("green", 3,45);
 naver_id_login.setDomain("http://localhost:8080/");
 naver_id_login.setState(state);
 naver_id_login.init_naver_id_login();
-$(a).find('img').width('100%');   
+$(a).find('img').width('300px');   
