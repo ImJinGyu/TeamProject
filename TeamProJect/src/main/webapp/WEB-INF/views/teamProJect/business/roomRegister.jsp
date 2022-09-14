@@ -113,7 +113,7 @@
           	  </div>
 					 <label>
 					    <p class="label-txt">대표이미지</p>
-					    <input type="file" name="RM_IMAGE" class="input" multiple="multiple" required>
+					    <input type="file" name="RM_IMAGE" class="input" required>
 					    <div class="line-box">
 					      <div class="line"></div>
 					    </div>
