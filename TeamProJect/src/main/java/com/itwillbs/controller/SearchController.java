@@ -271,10 +271,16 @@ public class SearchController {
 	}
 	public void reviewtest(Model model, HttpServletRequest req) throws Exception{
 		String pen_id = req.getParameter("pen_id");
+		int index = 0;
+		int amount = 10;
+		Map<String, Object> sMap = new HashMap<String, Object>();
+		sMap.put("pen_id", pen_id);
+		sMap.put("index", index);
+		sMap.put("amount", amount);
 		Map<String, Object> avg = service.staravg(pen_id);
 		model.addAttribute("avg", avg);
 		
-		List<ReviewDTO> rList = service.selectreviewlist(pen_id);
+		List<ReviewDTO> rList = service.selectreviewlist(sMap);
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		for (ReviewDTO dto : rList) {
 			Date nowdate = formatter.parse(new FunctionClass().nowTime("yyyy-MM-dd"));

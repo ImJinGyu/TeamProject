@@ -63,6 +63,42 @@ public class ReviewController {
 		return "redirect:/search/pensionDetail?pen_id="+rT.getPen_id()+"&pen_name="+rpen_name+"&rm_checkin="+rm_checkin+"&rm_checkout="+rm_checkout+"";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/search/reviewajax", method = RequestMethod.GET)
+	public List<ReviewDTO> reviewajax(@RequestParam Map<String, Object> sMap) throws Exception{
+		System.out.println(sMap);
+		List<ReviewDTO> rList = service.selectreviewlist(sMap);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		for (ReviewDTO dto : rList) {
+			Date nowdate = formatter.parse(new FunctionClass().nowTime("yyyy-MM-dd"));
+			int stamp = 24*60*60*1000;
+			
+			
+			if(dto.getRev_date() != null && !("".equals(dto.getRev_date()))) {
+				Date rdate = formatter.parse(dto.getRev_date());
+				Long rt = (nowdate.getTime() - rdate.getTime())  / stamp;
+				if(rt == 0) {
+					dto.setRev_date("ToDay ReView");
+				}else {
+					dto.setRev_date(rt.toString() + "일 전");
+				}
+			}
+			
+			if(dto.getAns_date() != null && !("".equals(dto.getAns_date()))) {
+				Date adate = formatter.parse(dto.getAns_date());
+				Long at = (nowdate.getTime() - adate.getTime())  / stamp;
+				if(at == 0) {
+					dto.setAns_date("ToDay Answer");
+				}else {
+					dto.setAns_date(at.toString() + "일 전");
+				}
+			}
+			
+		}
+		System.out.println(rList);
+		return rList;
+	}
+	
 //	@RequestMapping(value = "/review", method = RequestMethod.GET)
 //	public String test(Model model) throws Exception{
 //		String pen_id = "1";

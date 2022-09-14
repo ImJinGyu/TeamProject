@@ -33,7 +33,7 @@ public class ReviewService {
 		return reviewDAO.staravg(pen_id);
 	}
 	
-	public List<ReviewDTO> selectreviewlist(String pen_id){
-		return reviewDAO.selectreviewlist(pen_id);
+	public List<ReviewDTO> selectreviewlist(Map<String, Object> sMap){
+		return reviewDAO.selectreviewlist(sMap);
 	}
 }

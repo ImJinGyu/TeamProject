@@ -32,7 +32,7 @@ public class ReviewDAO {
 		return sqlSession.selectOne(NAMESPACE + ".avgStar", pen_id);
 	}
 	
-	public List<ReviewDTO> selectreviewlist(String pen_id){
-		return sqlSession.selectList(NAMESPACE + ".selectReview", pen_id);
+	public List<ReviewDTO> selectreviewlist(Map<String, Object> sMap){
+		return sqlSession.selectList(NAMESPACE + ".selectReview", sMap);
 	}
 }
