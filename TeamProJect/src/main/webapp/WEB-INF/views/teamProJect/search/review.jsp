@@ -104,7 +104,7 @@
                  </div>
                </c:if>
             <!-- 댓글 들어가는 곳 -->
-		<div class="chat">
+		<div class="chat" id="chat">
 		<c:forEach items="${List}" var="review">
          <ul>
          	<li>
@@ -161,7 +161,6 @@
 		                     <img src="//image.goodchoice.kr/profile/ico/ico_owner.png" alt="제휴점 답변">
 		                  </p> <strong>제휴점 답변</strong> 
 		                  <div class="txt">${review.ans_content}
-<!-- 		                     리뷰 사용자 이름님 안녕하세요.고객님 소중한 이용 후기 감사드립니다!<br>즐겁고 만족한 여행이 되신 것 같아 다행입니다.<br>저희 숙소는 앞으로도 고객님의 입장에서 먼저 생각하고 친절과 배려하는 서비스가 제공될 수 있도록 노력하겠습니다.<br>즐거운 추억만 가져가셨길 바라며 다음에도 함께하길 바라겠습니다.'; -->
 		                  </div> 
 		                  <span class="date">${review.ans_date}</span>
 			            </div>
@@ -171,10 +170,100 @@
 		         </c:forEach>
             </div>
             <div class="p-3">
-               <button class="btn btn-info btn-block btn-more">더보기</button>
+               <button class="btn btn-info btn-block btn-more" id="more_btn" onclick="moreReview()">더보기</button>
             </div>
          <!-- Reply area End -->
          <hr>
              </article>
          </div>
-     
+<script type="text/javascript">
+var index = 0;
+var check = true;
+function moreReview(){
+	$(document).ready(() => {
+		debugger;
+		if(!check){
+			return;
+		}
+		index += 10;
+		check = false;
+	    $.ajax({
+	        url : 'reviewajax',
+	        type : "get",
+	        data : {'amount': 10, 'index' : index, 'pen_id' : '${param.pen_id}'},
+	   		success:(data) => {
+				if(data.length == 0){
+					index -= 10;
+					check = true;
+					return;
+				} 
+    			$.each(data, function (index, review) {
+    				var result = "";
+    				result += ('<ul>'+
+ 	    	            	'<li>'+
+ 	    	               '<div class="guest">'+
+ 	    	                    '<p class="pic" style="margin-top: 0;"><img src="//image.goodchoice.kr/profile/ico/ico_22.png" alt="image"></p>'+
+ 	    	               '<div>'+
+ 	    	                 '<span class="best_review">베스트 리뷰</span> '+
+ 	    	                  '<strong>'+review.rev_num+'</strong> '+
+ 	    	                 '<strong id="title">'+review.rev_title+'</strong> '+
+ 	    	                 '<div class="score_wrap_sm">'+
+ 	    	                '<div class="score_star star_50">'+
+ 	    	                '</div> '+
+ 	    	            	'<div class="num">별점 : ');
+ 	    	            	for(i = 1; i < 6; i++){
+ 	       					if(i <= review.rev_star){
+ 	       						result += ('<i class="fa fa-star" style="color: #fdae5c"></i> ')
+ 	       					}else{
+ 	       						result += ('<i class="fa fa-star" style="color: #fdae5c; font-weight: 100;"></i> ')
+ 	       					}
+ 	       				}
+ 	    	           		result += (''+review.rev_star+'점'+
+ 	    	            	'</div>'+
+ 	    	            	'</div> '+
+ 	   	 	         	 '<div class="name"><b>팬션이름 객실 이용 - '+review.user_name+'</b></div> '+
+ 	   	 	 		         '<div class="txt"  id="content">'+review.rev_content+'</div> '+
+ 	   	 	       		'</div>	'+
+ 	   	
+ 	   	 	 			'<div class="gallery_re">'+
+ 	   	 	 	    		'<div class="swiper-container swiper-type-3 swiper-container-horizontal" style="cursor: grab;">'+
+ 	   	 	 	                  '<ul class="swiper-wrapper">');
+ 	    	            	if(review.image != null){
+ 	    	            		var image = review.image.split(',');
+ 	    	            		for(i = 0; i < image.length; i++){
+ 	    	            			result += (
+ 	    	            					'<li class="swiper-slide swiper-slide-active" style="max-width: 350px; max-height:250px; overflow:hidden">'+
+ 	    	 	 				       		'	<img src="${pageContext.request.contextPath }/resources/images/reviewimage/'+image[i]+'" alt="Image" class="img-fluid"  style="filter: brightness(100%);">'+
+ 	    	 	 	 				        '  </li>   ');
+ 	    	            		}
+ 	    	            	}
+ 	    	           		result += (
+ 	    	 				   '   </ul>'+
+ 	    	 				 '<div class="swiper-button-next">'+
+ 	    	 				 '        </div> '+
+ 	    	 				 '    <div class="swiper-button-prev swiper-button-disabled">'+
+ 	    	 				 '        </div>'+
+ 	    	 				 ' </div>'+
+ 	    	 				 ' </div> '+
+ 	    	                 '  <span class="date">'+review.rev_date+'</span>'+
+ 	    	               	 '</div> ');
+ 	    	            	if(review.reply == 'Y'){
+ 	    	            		result += ( '<div class="boss">'+
+ 	       		 	 		          '        <p class="pic" style="margin-top: 0;">'+
+ 	       		 	 		           '          <img src="//image.goodchoice.kr/profile/ico/ico_owner.png" alt="제휴점 답변">'+
+ 	       		 	 		            '      </p> <strong>제휴점 답변</strong> '+
+ 	       		 	 		             '     <div class="txt">'+review.ans_content+''+
+ 	       		 	 		                '  </div> '+
+ 	       		 	 		                '  <span class="date">'+review.ans_date+'</span>'+
+ 	       		 	 			            '</div>');
+ 	       					}
+ 	    	           		result += ('</li></ul>');
+ 	    	           		$('#chat').append(result);
+ 	   	   				});
+	   				check = true;
+	    		}
+		})
+
+	});
+}
+</script>
