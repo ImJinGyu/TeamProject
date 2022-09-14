@@ -193,6 +193,7 @@ function moreReview(){
 	        data : {'amount': 10, 'index' : index, 'pen_id' : '${param.pen_id}'},
 	   		success:(data) => {
 				if(data.length == 0){
+					alert('마지막 리뷰입니다.');
 					index -= 10;
 					check = true;
 					return;

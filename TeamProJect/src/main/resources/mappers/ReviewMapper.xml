@@ -24,6 +24,7 @@
 		    ON A.USER_ID = C.USER_ID
 		   AND A.USER_TYPE = C.USER_TYPE
 		 WHERE A.PEN_ID = #{pen_id}
+		 ORDER BY A.REV_NUM DESC
 		 LIMIT ${index}, ${amount};
 	</select>
 	
