@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
@@ -21,18 +21,105 @@
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
+    <style>
+
+
+h1 {
+  text-align: center;
+}
+
+.animation {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 50px;
+  letter-spacing: 1px;
+  color: #ff333d;
+  display: inline-block;
+  animation: fadeIn 1.5s forwards;
+  opacity: 0;
+  transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.first {
+  display: inline-block;
+  animation: firstSpan 1.5s forwards cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  
+  z-index: 1;
+  position: relative;
+}
+
+.oh {
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.second {
+  animation: secondSpan 1.5s forwards cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  font-weight: 100;
+  z-index: -1;
+  display: inline-block;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  } 
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes firstSpan {
+  0% {
+    transform: translateX(50%);
+  }
+  60% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes secondSpan {
+  0% {
+    transform: translateX(-100%);
+  }
+  60% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(-0%);
+  }
+}
+    </style>
 </head>
 
 <body>
-
-	<div class="animate__animated animate__fadeInUp" >
+    
+	
  <div class="login_form_width" style="padding-top:100px; margin-bottom: 100px" >
+ <div class="animate__animated animate__fadeInUp" >
+	<h1>
+      <div class="animation">
+        <span class="first">Log</span> 
+        <span class="oh">
+          <span class="second">in</span>
+        </span>
+      </div>
+    </h1>
   <!-- 고객 & 사용자 탭 -->
   <ul class="nav nav-tabs nav-justified mt-3" role="tablist" style="width:312px; margin:0 auto;">
-   <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" style="color:black;" href="#member-login">고객 로그인</a></li>
-   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" style="color:black;" href="#business-login">사업자 로그인</a></li>
-   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" style="color:black;" href="#admin-login">관리자 로그인</a></li>
+   <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" style="color:black;" href="#member-login">고객</a></li>
+   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" style="color:black;" href="#business-login">사업자</a></li>
+   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" style="color:black;" href="#admin-login">관리자</a></li>
   </ul>
  <div class="tab-content">
 
@@ -50,7 +137,7 @@
 	</div>
 	<!--     카카오 로그인 --> 
     <a href="https://kauth.kakao.com/oauth/authorize?client_id=	47791105334d48d9d0b4bf1ca0cea8ba&redirect_uri=http://localhost:8080/TeamProject/apilogin/kakao_login&response_type=code">
-    <img src="${pageContext.request.contextPath}/resources/images/kakao_login_medium_wide.png" style="width: 100%; height: 45px">
+    <img src="${pageContext.request.contextPath}/resources/images/kakao_login_medium_wide.png" style="width: 300px; height: 45px">
     </a>
    <p class="space_or">
    <span>또는</span>
