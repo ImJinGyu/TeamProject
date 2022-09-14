@@ -258,7 +258,8 @@ public class BusinessController extends FunctionClass {
 			
 			result = RM_NAMES[i];
 			filename = uuid.toString()+"_"+fileList.get(i).getOriginalFilename();
-			
+			File uploadFile = new File(uploadPath,filename);
+			FileCopyUtils.copy(fileList.get(i).getBytes(), uploadFile);
 			// filename 값들이 잘넘어오는지 확인하기위한 println 코드
 			// 확인 후 주석 처리
 			// System.out.println(filename);

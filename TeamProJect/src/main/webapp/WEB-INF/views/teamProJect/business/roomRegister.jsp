@@ -34,11 +34,11 @@
                                 </div>
                             	<div class="form-group">
                                 	<label for="penname">팬션 이름</label>
-                                    <input type="text" class="form-control form-control-user" id="penname" name="PEN_NAME" >
+                                    <input type="text" class="form-control form-control-user" id="penname" name="PEN_NAME" required>
                                 </div>
                                 <div class="form-group">
                                 	<label for="penTel">팬션 전화번호</label>
-                                    <input type="text" class="form-control form-control-user" id="penTel" name="PEN_TEL" >
+                                    <input type="text" class="form-control form-control-user" id="penTel" name="PEN_TEL" required>
                                 </div>
                                 <div class="form-group">
                                 	<div style="margin-bottom: 10px">
@@ -47,13 +47,13 @@
                                 	</div>
                                     <input type="text" class="form-control form-control-user" id="postNum" name="postNum" placeholder="우편번호(검색 버튼 클릭)" readonly style="width: 200px; margin-bottom: 10px;">
                                     <input type="text" class="form-control form-control-user" id="user_address" name="user_address" placeholder="주소(검색 버튼 클릭)" readonly style="margin-bottom: 10px;">
-                                    <input type="text" class="form-control form-control-user" id="user_address2" name="user_address2" placeholder="상세주소" >
+                                    <input type="text" class="form-control form-control-user" id="user_address2" name="user_address2" placeholder="상세주소" required>
                                 </div>
                                 
                                 <hr>
                                 <div class="form-group uploadDiv">
 							   		<label class="btn btn-success btn-sm" for="attach">팬션 사진첨부</label>
-								    <input type="file" class="form-control d-none" placeholder="attach" id="attach" name="PEN_IMAGE" multiple>
+								    <input type="file" class="form-control d-none" placeholder="attach" id="attach" name="PEN_IMAGE" multiple required>
 							    </div>
 							    
 							    <ul class="list-group small container px-1 upload-files">
@@ -70,7 +70,7 @@
 
 								<div id="roomInfoadd"></div>
 								<hr>
-								<input type="button" onclick="roomInfoAdd()" value="객실세부정보 추가" class="btn btn-danger" style="margin-bottom: 10px;">
+								<input type="button" id="my-btn" onclick="roomInfoAdd()" value="객실세부정보 추가" class="btn btn-danger" style="margin-bottom: 10px;">
 
 		<script>
 	  var cnt = 0;
@@ -88,7 +88,7 @@
 		      </a>
 			<div class="form-group">
             	<label for="rm_name">객실 이름</label>
-                <input type="text" class="form-control form-control-user" id="rm_name" name="RM_NAME" >
+                <input type="text" class="form-control form-control-user" id="rm_name" name="RM_NAME" required>
             </div>
 		    
 		</div>
@@ -97,23 +97,23 @@
 		      
 		      <div class="form-group" style="width: 200px; float: left; margin-right: 5px;">
           		<label for="checkIn">체크인 시간</label>
-                <input type="time" class="form-control form-control-user" id="checkIn" name="checkin" >
+                <input type="time" class="form-control form-control-user" id="checkIn" name="checkin" required>
           	  </div>
           	  <div class="form-group" style="width: 200px; float: left; margin-right: 5px;">
       			<label for="checkOut">체크아웃 시간</label>
-          		<input type="time" class="form-control form-control-user" id="checkOut" name="checkout" >
+          		<input type="time" class="form-control form-control-user" id="checkOut" name="checkout" required>
      	      </div>
      	      <div class="form-group" style="width: 200px; float: left;">
    		    	<label for="people">객실이용 가능인원</label>
-       	    	<input type="text" class="form-control form-control-user" id="people" name="people" >
+       	    	<input type="text" class="form-control form-control-user" id="people" name="people" required>
    	  	  	  </div>
           	  <div class="form-group" style="clear: both;">
           		<label for="price">객실 가격</label>
-              	<input type="text" class="form-control form-control-user" id="price" name="RM_Price" >
+              	<input type="text" class="form-control form-control-user" id="price" name="RM_Price" required>
           	  </div>
 					 <label>
 					    <p class="label-txt">대표이미지</p>
-					    <input type="file" name="RM_IMAGE" class="input" multiple="multiple">
+					    <input type="file" name="RM_IMAGE" class="input" multiple="multiple" required>
 					    <div class="line-box">
 					      <div class="line"></div>
 					    </div>
@@ -180,6 +180,11 @@
 
     <!-- Page level custom scripts -->
     <script src="${pageContext.request.contextPath }/resources/assets/admin/js/demo/datatables-demo.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		document.getElementById("my-btn").click();
+	});
+</script>
 <script>
 	$(function() {
 		$("#attach").change(function() {
