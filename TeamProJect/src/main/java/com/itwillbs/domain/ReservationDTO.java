@@ -3,7 +3,8 @@ package com.itwillbs.domain;
 public class ReservationDTO {
 	
 	private String res_number;
-	private String user_id; 
+	private String user_id;
+	private String user_type;
 	private String pen_id;
 	private String pen_name;
 	private String check_in_d;
@@ -32,6 +33,13 @@ public class ReservationDTO {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	
+	public String getUser_type() {
+		return user_type;
+	}
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
 	}
 	public String getPen_id() {
 		return pen_id;
@@ -87,13 +95,16 @@ public class ReservationDTO {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	
 	@Override
 	public String toString() {
-		return "ReservationDTO [res_number=" + res_number + ", user_id=" + user_id + ", pen_id=" + pen_id
-				+ ", pen_name=" + pen_name + ", check_in_d=" + check_in_d + ", check_out_d=" + check_out_d
-				+ ", check_in_t=" + check_in_t + ", check_out_t=" + check_out_t + ", res_time=" + res_time
-				+ ", rm_name=" + rm_name + ", user_name=" + user_name + ", toString()=" + super.toString() + "]";
+		return "ReservationDTO [res_number=" + res_number + ", user_id=" + user_id + ", user_type=" + user_type
+				+ ", pen_id=" + pen_id + ", pen_name=" + pen_name + ", check_in_d=" + check_in_d + ", check_out_d="
+				+ check_out_d + ", check_in_t=" + check_in_t + ", check_out_t=" + check_out_t + ", res_time=" + res_time
+				+ ", rm_name=" + rm_name + ", user_name=" + user_name + ", res_status=" + res_status + "]";
 	}
+	
+	
+	
+	
 	
 }

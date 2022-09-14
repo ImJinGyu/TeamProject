@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.QnaDTO;
+import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.domain.ReviewDTO;
 
 @Service
@@ -56,5 +57,9 @@ public class MemberService {
 	
 	public List<ReviewDTO> selectmemberreview(ReviewDTO rT){
 		return dao.memberReview(rT);
+	}
+	
+	public List<ReservationDTO> reservationlist(MemberDTO mT){
+		return dao.reservationlist(mT);
 	}
 }

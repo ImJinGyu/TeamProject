@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.QnaDTO;
+import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.domain.ReviewDTO;
 import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.MemberService;
@@ -91,7 +92,12 @@ public class MemberMyPageController {
 	}
 	
 	@RequestMapping(value = "/member/mypage/listReservation", method = RequestMethod.GET)
-	public String listReservation() {
+	public String listReservation(MemberDTO mT, HttpSession session, Model model) {
+		mT.setUser_id(session.getAttribute("user_id").toString());
+		mT.setUser_type(session.getAttribute("user_type").toString());
+		List<ReservationDTO> reslist = service.reservationlist(mT);
+		System.out.println(reslist);
+		model.addAttribute("list", reslist);
 		return "teamProJect/member/mypage/listReservation";
 	}
 	

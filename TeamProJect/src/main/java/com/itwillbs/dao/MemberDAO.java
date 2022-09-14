@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.QnaDTO;
+import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.domain.ReviewDTO;
 
 @Repository
@@ -60,5 +61,8 @@ public class MemberDAO {
 	
 	public List<ReviewDTO> memberReview(ReviewDTO rT){
 		return sqlSession.selectList(NAMESPACE + ".memberReview", rT);
+	}
+	public List<ReservationDTO> reservationlist(MemberDTO mT){
+		return sqlSession.selectList(NAMESPACE + ".reservationlist", mT);
 	}
 }

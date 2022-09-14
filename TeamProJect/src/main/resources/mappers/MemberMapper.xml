@@ -140,5 +140,17 @@
 		   AND A.USER_TYPE = #{user_type}
 		 ORDER BY REV_DATE DESC
 	</select>
-	
+	<select id="reservationlist" resultType="com.itwillbs.domain.ReservationDTO">
+		 SELECT A.RES_NUMBER
+		 	  , A.PEN_ID
+		 	  , B.PEN_NAME
+		 	  , A.RM_NAME
+		 	  , CONCAT(A.CHECK_IN_D,' ', A.CHECK_IN_T) AS 'CHECK_IN_D'
+		 	  , CONCAT(A.CHECK_OUT_D, ' ', A.CHECK_OUT_T) AS 'CHECK_OUT_D'
+		 	  , A.RES_STATUS
+		   FROM RESERVATION A JOIN PENSION B
+             ON A.PEN_ID = B.PEN_ID
+          WHERE A.USER_ID = #{user_id}
+		    AND A.USER_TYPE = #{user_type}
+	</select>
 </mapper>

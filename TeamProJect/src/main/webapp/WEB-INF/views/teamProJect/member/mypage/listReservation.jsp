@@ -17,7 +17,14 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
      
 </head>
-
+<style>
+a > b{
+font-size: 19px;
+}
+a > b:hover{
+color:blue;
+}
+</style>
 <body>
 <!--헤더 -->
 <%@ include file="../../header.jsp" %>
@@ -45,29 +52,34 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>예약번호</th>
-                                            <th>숙소이름</th>
+                                            <th style="width: 20%">숙소이름</th>
+                                            <th style="width: 20%">방 이름</th>
                                             <th>체크인</th>
                                             <th>체크아웃</th>
                                             <th>승인상태</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-<%--                                     	<c:forEach items="${reservation}" var="r"> --%>
-<!-- 	                                        <tr> -->
-<%-- 	                                            <td class="text-center">${r.reservationNum}</td> --%>
-<%-- 	                                            <td class="text-center"><a href="/pension/detail?pensionid=${r.pensionid}" class="text-dark">${r.roomName}</a></td> --%>
-<%-- 	                                            <td class="text-center">${r.checkin}</td> --%>
-<%-- 	                                            <td class="text-center">${r.checkout}</td> --%>
-<%-- 	                                            <td class="text-center">${r.reservationStatus ? "예약" : "취소"}</td> --%>
-<!-- 	                                        </tr> -->
+                                    	<c:forEach items="${list}" var="r">
 	                                        <tr>
-	                                            <td class="text-center">1</td>
-	                                            <td class="text-center"><a href="/pension/detail?pensionid=${r.pensionid}" class="text-dark">${r.roomName}</a></td>
-	                                            <td class="text-center">1</td>
-	                                            <td class="text-center">1</td>
-	                                            <td class="text-center">1</td>
+	                                            <td class="text-center">${r.res_number}</td>
+	                                            <td class="text-center"><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id=${r.pen_id}&pen_name=${r.pen_name}"><b>${r.pen_name}</b></a></td>
+	                                            <td class="text-center">${r.rm_name}</td>
+	                                            <td class="text-center">${r.check_in_d}</td>
+	                                            <td class="text-center">${r.check_out_d}</td>
+	                                            <td class="text-center">
+	                                            <c:choose>
+	                                            <c:when test="${r.res_status == '1'}">
+	                                            <b style="color: purple;">예약</b>
+	                                            </c:when>
+	                                            <c:otherwise>
+	                                            <b style="color: red;">취소</b>
+	                                            </c:otherwise>
+	                                            </c:choose>
+	                                            
+	                                            </td>
 	                                        </tr>
-<%--                                         </c:forEach> --%>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
