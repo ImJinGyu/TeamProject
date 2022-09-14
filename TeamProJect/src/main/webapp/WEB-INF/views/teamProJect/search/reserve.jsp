@@ -114,8 +114,67 @@
 // 			xhr.setRequestHeader(headerName, token);
 // 		})
 		
+// 		function iamport(){
+// 			var amount = '${businessDTO.RM_PRICE }';
+// 			//가맹점 식별코드
+// 			IMP.init('imp84747824');
+// 			IMP.request_pay({
+// 			    pg : 'html5_inicis',
+// 			    pay_method : 'card',
+// 			    merchant_uid : '${businessDTO.PEN_ID}' + '${businessDTO.RM_NUM}' + new Date().getTime(),
+// 			    name : '(주)부산온나' , 	//결제창에서 보여질 이름
+// 			    amount : amount, 		//실제 결제되는 가격
+// 			    buyer_email : '${user.email}',
+// 			    buyer_id : '${businessDTO.USER_ID}',
+// 			    buyer_tel : '${user.phone}'
+// 			    buyer_addr : '${user.roadAddr}',
+// 			    buyer_postcode : '${user.zipNo}'
+// 			}, function(rsp) {
+// 				console.log(rsp);
+				
+// 		        var reservation = {
+// 	        		res_number: rsp.merchant_uid,
+//                     checkin: '${rm_checkin}' '${businessDTO.RM_CHECKIN }',
+//                     checkout: '${rm_checkout}' '${businessDTO.RM_CHECKOUT }',
+// 					paymentPrice: '${businessDTO.RM_PRICE }',
+//                     roomNum: '${room.roomNum}',
+//                     userid: '${businessDTO.USER_ID }',
+//                     pensionid: '${businessDTO.PEN_ID}'
+//        	   	 	};
+       	   	 	
+// 			    if (rsp.success) {
+// 			        var msg = '결제가 완료되었습니다.';
+// 			        console.log(reservation);
+// 			        alert(msg);
+			      
+// 			        $.ajax({
+// 			         	url: "/verifyIamport/" + rsp.imp_uid,
+// 			        	type: "POST",
+// 			        	headers: { "Content-Type": "application/json" },
+// 			        	data: JSON.stringify(reservation),
+// 			        	dataType:"json",
+// 			            contentType:"application/json; charset=utf-8"
+// 			        })
+			      
+// 			        location.href = '${pageContext.request.contextPath}/member/mypage/listReservation';
+// 			    } else {
+// 			      var msg = rsp.error_msg;
+// 			      alert(msg);
+// 			    }
+// 			});
+// 		}
+<!-- 	</script> -->
+	
+	<script>
+// 		var headerName = $("meta[name='_csrf_header']").attr("content")
+// 		var token = $("meta[name='_csrf']").attr("content")
+		
+// 		$(document).ajaxSend(function(e, xhr) {
+// 			xhr.setRequestHeader(headerName, token);
+// 		})
+		
 		function iamport(){
-			var amount = '${rm_price }';
+			var amount = '${businessDTO.RM_PRICE }';
 			//가맹점 식별코드
 			IMP.init('imp84747824');
 			IMP.request_pay({
@@ -124,7 +183,7 @@
 			    merchant_uid : '${room.roomNum}' + new Date().getTime(),
 			    name : '(주)부산온나' , 	//결제창에서 보여질 이름
 			    amount : amount, 		//실제 결제되는 가격
-			    buyer_email : '${user.email}',
+// 			    buyer_email : '${user.email}',
 			    buyer_name : '${user.name}',
 			    buyer_tel : '${user.phone}',
 			    buyer_addr : '${user.roadAddr}',
