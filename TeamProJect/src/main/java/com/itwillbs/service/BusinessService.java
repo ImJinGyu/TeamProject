@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.BusinessDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ReviewDTO;
 
 @Service
 public class BusinessService {
@@ -74,6 +75,24 @@ public class BusinessService {
 		return businessDAO.reservationCount(user_id);
 	}
 	
+	/* 사업자 리뷰페이징 */
+	public int replyCount(ReviewDTO rT) {
+		return businessDAO.replyCount(rT);
+	}
+	
+	/* 사업자 리뷰조회 */
+	public List<ReviewDTO> reviewList(Map<String, Object> para){
+		return businessDAO.reviewList(para);
+	}
+
+	/* 사업자 리뷰 댓글 */
+	public void updateAnwser(ReviewDTO reviewDTO) {
+		businessDAO.updateAnswer(reviewDTO);
+		
+	}
+
+
+
 	
 	
 }

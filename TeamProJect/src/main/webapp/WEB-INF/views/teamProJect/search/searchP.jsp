@@ -69,7 +69,7 @@
 <!-- 검색창 끝 -->
 		
 
-				<!-- 숙소 리스트 기존 방식 -->
+				<!-- 숙소 리스트 불러오기 -->
 				<div id="penlist123123">
   				   <c:forEach items="${pensionList }" var="PensionDTO">
 					<div class="row form-detail  pensionlist">
@@ -103,16 +103,20 @@
 </body>
 <script type="text/javascript">
 var index = 2;
+var check = true;
 window.addEventListener('scroll', () => {
 	var scrollLocation = document.documentElement.scrollTop; // 현재 스크롤바 위치
 	var windowHeight = window.innerHeight; // 스크린 창
 	var fullHeight = document.body.scrollHeight;
-	
+	//var isFetching = false;
 	if(scrollLocation + windowHeight >= fullHeight) {
 		var count = ${page.amount};
-	    
+	    if(!check){
+	    	return;
+	    }
+	    check = false;
 	    $.ajax({
-	        url : 'searchPajax',
+	        url : 'searchPajax?pen_name="${param.pen_name}"&pen_address="${param.pen_address}"',
 	        type : "get",
 	        data : {'count': count, 'index2' : index},
 	   		success:(data) => {
@@ -122,6 +126,8 @@ window.addEventListener('scroll', () => {
 				} 
 				
 	   			$.each(data, function (index, PensionDTO) {
+	   //				isFetching = true;
+	   				
 		   			$('#penlist123123').append('<div class="col-lg-8 pensionlist">' + 
 									'<div class="pensions" data-pensionid='+PensionDTO.pen_id+'">'+
 									'<div class="container">'+
@@ -146,6 +152,7 @@ window.addEventListener('scroll', () => {
 								'</div>'+ 
 							'</div>');
 	   			})
+	   			check = true;
 	   			index++;
 			}
 	    });

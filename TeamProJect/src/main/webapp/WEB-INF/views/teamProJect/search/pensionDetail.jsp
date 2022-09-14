@@ -209,6 +209,75 @@
 	text-align: center;
 	font-size: 17px;
 }
+
+<style>
+    .title_color:hover {
+	color:#007bff;
+	transition: all .3s;
+}
+.navbar-nav > li > .dropdown-menu {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    display: block;
+    opacity: 0;
+    transition: ease-out 0.3s;
+}
+/* .dropdown-menu > li{ */
+/*     font-size: 50px; */
+/* } */
+.dropdown-menu1 {
+min-width: 8rem;
+}
+.dropdown:hover .dropdown-menu > li{
+	width:100%;
+    font-size: 1rem;
+}
+.dropdown:hover .dropdown-menu > li:hover{
+	text-align:left;
+	background-color: gray;
+	transition: all .5s;
+/*     font-style: italic; */
+}
+.dropdown:hover .dropdown-menu > li:hover > a{
+	color:white;
+}
+.dropdown:hover .dropdown-menu {
+     opacity:1;
+}
+.dropdown-menu1
+{
+	border:none;
+	display: block;
+  	opacity:1;
+	height: 0px;
+	overflow: hidden;
+	padding: 0px;
+	top: 180px;
+	transition: all .3s;
+}
+.dropdown:hover .dropdown-menu1
+{
+	display:block;
+	top: 70%;
+	height: inherit;
+}
+a {
+    color: #444;
+    text-decoration: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #ff4a52d9;
+    border-color: #ff4a52d9;
+}
+
+header .navs ul li ul li {
+    padding: 10px;
+
+}
+</style> 
 </style> 
 <script type="text/javascript">
 	var btn = $('#replyForm'); 

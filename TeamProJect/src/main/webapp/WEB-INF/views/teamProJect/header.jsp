@@ -139,7 +139,7 @@ header .navs ul li ul li {
 							   	  	<c:otherwise>
 							   	  		<li><a href="${pageContext.request.contextPath}/member/m_myPage/">마이페이지</a></li>
 							            <li><a href="${pageContext.request.contextPath}/member/mypage/listReservation">예약내역</a></li>
-							            <li><a href="#" onclick="alert('준비중이다')">내가쓴 댓글</a></li>
+							            <li><a href="${pageContext.request.contextPath}/member/mypage/myreview" >내가쓴 리뷰</a></li>
 							            <li style="border-bottom: solid 1px;"><a href="${pageContext.request.contextPath}/member/mypage/listInquiry">1:1 문의</a></li>	
 							   	  	</c:otherwise>
 							   	  </c:choose>

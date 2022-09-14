@@ -3,7 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwillbs.mappers.BusinessMapper">
-
+	
+	<!--펜션리스트 카운팅  -->
 	<select id="pensionCount" resultType="int">
 		SELECT COUNT(PEN_ID) AS COUNT
 		FROM PENSION
@@ -16,7 +17,7 @@
 			 , P.PEN_NAME
 		     , P.PEN_ADDRESS
 		     , SUBSTRING_INDEX(A.PEN_IMAGE, '_', -1) AS PEN_IMAGE
-		     , IFNULL(ROUND(AVG(R.REV_STAR),1), ' ') AS STAR
+		     , IFNULL(ROUND(AVG(R.REV_STAR),0), ' ') AS STAR
 		     , COUNT(R.REV_NUM) AS RV
 		     , (SELECT IFNULL( MIN(CAST(RM_PRICE AS UNSIGNED)) , 0)
 				  FROM PENSION_ROOM
@@ -40,7 +41,6 @@
 	</select> 
 	
 	<!--메인페이지 top6 숙소 -->
-	<!-- 다시 커밋 -->
 	<select id="getTopList" resultType="com.itwillbs.domain.PensionDTO">
 		SELECT A.PEN_IMAGE
 			,  P.PEN_NAME
@@ -116,10 +116,8 @@
 	</insert>
 	
 	<select id="getRoomList" resultType="com.itwillbs.domain.BusinessDTO">
-		SELECT *
-		  FROM PENSION_ROOM A JOIN PENSION B
-		    ON A.PEN_ID = B.PEN_ID
-		 WHERE USER_ID = #{USER_ID}
+		Select *
+		  FROM PENSION_ROOM
 	</select>
 	
 	<update id="updateRoomList">
@@ -238,5 +236,52 @@
 	<delete id="delete">
  		DELETE RESERVATION WHERE RES_NUMBER = #{RES_NUMBER}
  	</delete>
+
+
+	<!--(지연) 사업자 리뷰조회 -->
+	<select id="reviewList" resultType="com.itwillbs.domain.ReviewDTO">
+		SELECT A.REV_NUM
+			 , A.PEN_ID
+			 , A.REV_TITLE
+			 , A.REV_CONTENT
+			 , A.REV_STAR
+			 , A.REV_DATE
+			 , A.REPLY
+			 , A.ANS_CONTENT
+             , A.ANS_DATE
+			 , B.USER_NAME
+          FROM REVIEW A JOIN MEMBER B
+            ON A.USER_ID = B.USER_ID
+           AND A.USER_TYPE = B.USER_TYPE
+         WHERE  PEN_ID =  (SELECT PEN_ID 
+							FROM PENSION 
+							WHERE USER_ID = (SELECT USER_ID
+							 FROM MEMBER
+                            WHERE USER_TYPE='2' AND USER_ID = #{user_id}))
+         ORDER BY REPLY, REV_NUM DESC
+   		 LIMIT ${index}
+		  	 , ${amount}
+	</select>
+	
+		<!-- (지연) 사업자 리뷰댓글입력 -->
+	<update id="updateAnswer">
+		 UPDATE REVIEW
+		    SET REPLY = #{reply}
+		      , ANS_CONTENT= #{ans_content}
+		      , ANS_DATE = #{ans_date}
+         WHERE REV_NUM = #{rev_num};
+	</update>
+	
+	 	<!--(지연) 사업자 리뷰 페이징  -->
+ 	<select id="replyCount" resultType="int">
+ 		SELECT COUNT(REV_NUM)
+ 		  FROM REVIEW
+ 		 WHERE PEN_ID =	 (SELECT PEN_ID 
+							FROM PENSION 
+							WHERE USER_ID = (SELECT USER_ID
+							 FROM MEMBER
+                            WHERE USER_TYPE='2' AND USER_ID = #{user_id}))
+ 	</select>
+
 	
 </mapper>

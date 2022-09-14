@@ -24,6 +24,7 @@ import com.itwillbs.dao.BusinessDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReservationDTO;
+import com.itwillbs.domain.ReviewDTO;
 import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.BusinessService;
 
@@ -295,6 +296,47 @@ public class BusinessController extends FunctionClass {
 		return "teamProJect/business/mypage/listInquiry";
 	}
 	
+	/*사업자 리뷰조회 0914*/
+	@RequestMapping(value = "/business/b_myreply", method = RequestMethod.GET)
+	public String b_myreply(ReviewDTO rT, HttpServletRequest req,HttpSession session, Model model) {
+		String user_id = session.getAttribute("user_id").toString();
+		rT.setUser_id(user_id);
+		int totalCount = businessService.replyCount(rT);
+		String spageNum = req.getParameter("pageNum");
+		int ipageNum;
+		if(spageNum == null) {
+			ipageNum = 1;
+		}else {
+			ipageNum = Integer.parseInt(req.getParameter("pageNum"));
+		}
+		
+		Map<String, Integer> para = new FunctionClass().pagingFunction(ipageNum, totalCount, model);
+		System.out.println(para);
+		Map<String, Object> para2 = new HashMap<String, Object>();
+		para2.put("amount", para.get("amount"));
+		para2.put("index", para.get("index"));
+		para2.put("user_id", user_id);
+		System.out.println(para2);
+		List<ReviewDTO> rtl = businessService.reviewList(para2);
+		System.out.println(rtl);
+		model.addAttribute("List", rtl);
+		/*
+		 * String user_id = session.getAttribute("user_id").toString(); 
+		 * List<ReviewDTO> rtl = businessService.reviewList(user_id);
+		 */
+
+		return "teamProJect/business/b_myreply";
+	}
 	
+	/*사업자 리뷰조회 0914*/
+	@RequestMapping(value = "/business/b_myreplyPro", method = RequestMethod.POST)
+	public String b_myreply(ReviewDTO reviewDTO) {
+		System.out.println(123);
+		reviewDTO.setAns_date(new FunctionClass().nowTime("yyyy-MM-dd"));
+		reviewDTO.setReply("Y");
+		System.out.println(reviewDTO);
+		businessService.updateAnwser(reviewDTO);
+		return "redirect:/business/b_myreply";
+	}
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ReviewDTO;
 
 @Repository
 public class BusinessDAO {
@@ -74,7 +75,29 @@ public class BusinessDAO {
 //		return sqlSession.selectOne(namespace+".getMaxNum");
 //	}
 	
+
 	
+	/*사업자 리뷰리스트*/
+	public List<ReviewDTO> reviewList(Map<String, Object> para){
+		System.out.println(para);
+		return sqlSession.selectList(namespace+".reviewList", para);
+	}
+
+	/* 사업자 리뷰댓글 */
+	public void updateAnswer(ReviewDTO reviewDTO) {
+		
+		sqlSession.update(namespace + ".updateAnswer", reviewDTO);
+		
+	}
+
+	/* 사업자 리뷰 페이징 */
+	public int replyCount(ReviewDTO rT) {
+		return sqlSession.selectOne(namespace + ".replyCount", rT);
+	}
+
+
+
+
 	
 
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -398,18 +398,19 @@
                             <p>${PensionDTO.pen_address }</p>
                             <p>평점 ${PensionDTO.star }</p>
                             <ul class="rat">
-                                <li>
-<%--                                 <c:forEach var="i" begin="1" end="5" step="1"> --%>
-<%-- 			                    	<c:choose> --%>
-<%-- 			                    		<c:when test="${i <= PensionDTO.star}"> --%>
-<!-- 			                    			<i class="fas fa-star"></i> -->
-<%-- 			                    		</c:when> --%>
-<%-- 			                    		<c:otherwise> --%>
-<!-- 			                    			<i class="far fa-star"></i> -->
-<%-- 			                    		</c:otherwise> --%>
-<%-- 			                    	</c:choose> --%>
-<%-- 			                    </c:forEach> --%>
-                                </li>
+                            <li>
+                            <fmt:parseNumber var="star" type="number" value="${PensionDTO.star}" />
+                            <c:forEach var="i" begin="1" end="5" step="1">
+                            			<c:choose>
+                            			<c:when test="${i <= star}">
+                            			<i class="fa fa-star" style="color: #fdae5c"></i>
+                            			</c:when>
+                            			<c:otherwise>
+                            			<i class="fa fa-star" style="color: #fdae5c; font-weight: 100;"></i>
+                            			</c:otherwise>
+                            			</c:choose>
+                            		</c:forEach> 
+                            </li>
                             </ul>
                             
                         </div>

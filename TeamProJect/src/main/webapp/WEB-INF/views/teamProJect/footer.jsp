@@ -34,7 +34,7 @@
                 <div class="col-md-4 col-sm-12">
                     <h2>팀원</h2>
                     <ul class="list-unstyled link-list">
-                        <li><a ui-sref="about" href="#/about">임진규(조장)</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="about" href="#/about">임진규</a><i class="fa fa-angle-right"></i></li>
                         <li><a ui-sref="portfolio" href="#/portfolio">남기석</a><i class="fa fa-angle-right"></i></li>
                         <li><a ui-sref="products" href="#/products">박성빈</a><i class="fa fa-angle-right"></i></li>
                         <li><a ui-sref="gallery" href="#/gallery">김정우</a><i class="fa fa-angle-right"></i></li>

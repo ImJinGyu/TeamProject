@@ -51,7 +51,7 @@ public class SearchController {
 	private SearchDAO searchDAO;
 	
 	
-	/* 메인 검색창 날짜 설정 + 인기숙소 리스트 */
+	/* 메인 검색창 날짜 설정 + 인기숙소 리스트 (지연)*/
 	@RequestMapping(value = "/search/main", method = RequestMethod.GET)
 	public String home(PensionDTO pensionDTO, HttpServletRequest request, Model model ) {
 		
@@ -64,6 +64,7 @@ public class SearchController {
 		
 		/* 인기숙소 불러오기 */
 		List<PensionDTO> TopList = searchService.getTopList(pensionDTO);
+		
 		model.addAttribute("TopList",TopList);
 		
 		
@@ -72,7 +73,7 @@ public class SearchController {
 		return "teamProJect/search/main";
 	}
 	
-	/* 펜션리스트 불러오기 */
+	/* 펜션리스트 불러오기 (지연)*/
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search/searchP", method = RequestMethod.GET)
 	public String list(PensionDTO pensionDTO, HttpServletRequest request, Model model) {
@@ -113,7 +114,7 @@ public class SearchController {
 		/* 펜션 리스트 불러오기 */
 		List<PensionDTO> pensionList = searchService.getPensionList(map);
 		model.addAttribute("pensionList", pensionList);
-		System.out.println(pensionList.size());
+		System.out.println(pensionList.size()+" 펜션리스트 사이즈"); 
 		model.addAttribute("page", map);
 //		System.out.println(pensionList);
 
@@ -147,7 +148,7 @@ public class SearchController {
 		
 	}
 	
-	/* 펜션리스트 무한스크롤 */
+	/* 펜션리스트 무한스크롤 (지연)*/
 	@ResponseBody
 	@RequestMapping(value = "/search/searchPajax", method = RequestMethod.GET)
 	public List<PensionDTO> listajax(@RequestParam String count, String index2, PensionDTO pensionDTO, HttpServletRequest request, Model model) {
@@ -176,9 +177,10 @@ public class SearchController {
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
 		String rm_resable_num = request.getParameter("rm_resable_num");
-		
-		Map map = new HashMap();
-		map.put("pen_address", pen_address == null ? "" : pen_address);
+		System.out.println(pen_address);
+		System.out.println(pen_name);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pen_address",pen_address);
 		map.put("pen_name", pen_name);
 		map.put("rm_resable_num", rm_resable_num);
 		map.put("index", index);
@@ -220,7 +222,6 @@ public class SearchController {
 		
 		return pensionList;
 	}
-
 	
 	
 	/* 아직 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원) */
