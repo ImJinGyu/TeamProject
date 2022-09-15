@@ -100,7 +100,7 @@
                </div>
                <c:if test="${sessionScope.user_id == null}">
                	 <div class="text-center py-4">
-                    <a href="${pageContext.request.contextPath}/member/login">댓글 등록은 로그인 이후에 가능합니다.</a>
+                    <a href="${pageContext.request.contextPath}/member/login" style="color: #0d6efd;text-decoration: underline;">댓글 등록은 로그인 이후에 가능합니다.</a>
                  </div>
                </c:if>
             <!-- 댓글 들어가는 곳 -->
