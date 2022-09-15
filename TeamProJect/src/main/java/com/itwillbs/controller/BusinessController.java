@@ -46,34 +46,49 @@ public class BusinessController extends FunctionClass {
 //	private String uploadPath2;
 	
 	@RequestMapping(value = "/business/b_myPage", method = RequestMethod.GET)
-	public String b_myPage() {
-				
-		return "teamProJect/business/b_myPage";
+	public String b_myPage(HttpSession session) {
+		String user_type = (String)session.getAttribute("user_type");
+		if(user_type == null) user_type = "0";
+		
+		if(user_type.equals("2")) return "teamProJect/business/b_myPage";
+		else return "teamProJect/business/msg";
 	}
 	
 	
 	@RequestMapping(value = "/business/b_index", method = RequestMethod.GET)
 	public String b_index(HttpSession session, Model model) {
-		// 사업자페이지 로그인아이디 화면단 표시 구현
-		String user_id = (String)session.getAttribute("user_id");
-		model.addAttribute("user_id", user_id);
+		String user_type = (String)session.getAttribute("user_type");
 		
-		// 사업자페이지 초기화면 데이터 표시 구현
-		System.out.println(user_id);
-		int count = businessService.reservationCount(user_id);
-		System.out.println(count);
-		model.addAttribute("rCount",count);
+		if(user_type == null) user_type = "0";
 		
-		
-		return "teamProJect/business/b_index";
+		if(user_type.equals("2")) {
+			// 사업자페이지 로그인아이디 화면단 표시 구현
+			System.out.println("유저타입 : " + session.getAttribute("user_type"));
+			String user_id = (String)session.getAttribute("user_id");
+			model.addAttribute("user_id", user_id);
+			
+			// 사업자페이지 초기화면 데이터 표시 구현
+			System.out.println(user_id);
+			int count = businessService.reservationCount(user_id);
+			System.out.println(count);
+			model.addAttribute("rCount",count);
+			
+			return "teamProJect/business/b_index";
+		} else {
+			return "teamProJect/business/msg";
+		}
 	}
 	
 	
 	
 	@RequestMapping(value = "/business/listPayment", method = RequestMethod.GET)
-	public String listPayment() {
+	public String listPayment(HttpSession session) {
 				
-		return "teamProJect/business/listPayment";
+		String user_type = (String)session.getAttribute("user_type");
+		if(user_type == null) user_type = "0";
+		
+		if(user_type.equals("2")) return "teamProJect/business/listPayment";
+		else return "teamProJect/business/msg";
 	}
 	
 	
@@ -81,15 +96,24 @@ public class BusinessController extends FunctionClass {
 	@RequestMapping(value = "/business/roomList", method = RequestMethod.GET)
 	public String roomList(Model model, BusinessDTO businessDTO, HttpSession session) {
 		
-		String user_id = (String)session.getAttribute("user_id");
+		String user_type = (String)session.getAttribute("user_type");
+		if(user_type == null) user_type = "0";
 		
-		businessDTO.setUSER_ID(user_id);
-		
-		List<BusinessDTO> roomList = businessService.getRoomList(businessDTO);
-		
-		model.addAttribute("rList", roomList);
-		
-		return "teamProJect/business/roomList";
+		if(user_type.equals("2")) {
+			
+			String user_id = (String)session.getAttribute("user_id");
+			
+			businessDTO.setUSER_ID(user_id);
+			
+			List<BusinessDTO> roomList = businessService.getRoomList(businessDTO);
+			
+			model.addAttribute("rList", roomList);
+			
+			return "teamProJect/business/roomList";
+			
+		} else {
+			return "teamProJect/business/msg";
+		}
 	}
 	
 //	가상주소 시작점 http://localhost:8080/myweb2/board/updatePro
@@ -116,20 +140,27 @@ public class BusinessController extends FunctionClass {
 
 	
 	@RequestMapping(value = "/business/roomRegister", method = RequestMethod.GET)
-	public String roomRegister(Model model) {
+	public String roomRegister(HttpSession session, Model model) {
 		
-		// 팬션 고유번호 
-		String pen_id = simplePenSionCreateCode();
+		String user_type = (String)session.getAttribute("user_type");
+		if(user_type == null) user_type = "0";
 		
-		// 팬션 고유번호값이 넘어 오는지 확인
-//		System.out.println(pen_id);
-		
-		// 팬션 고유번호를 model로 받아 view에 전달
-		model.addAttribute("pen_id", pen_id);
-		
-		
-		
-		return "teamProJect/business/roomRegister";
+		if(user_type.equals("2")) {
+			
+			System.out.println("유저타입 : " + session.getAttribute("user_type"));
+			// 팬션 고유번호 
+			String pen_id = simplePenSionCreateCode();
+			
+			// 팬션 고유번호값이 넘어 오는지 확인
+//			System.out.println(pen_id);
+			
+			// 팬션 고유번호를 model로 받아 view에 전달
+			model.addAttribute("pen_id", pen_id);
+			
+			return "teamProJect/business/roomRegister";
+		} else {
+			return "teamProJect/business/msg";
+		}
 	}
 	
 	@RequestMapping(value = "/business/roomRegisterPro", method = RequestMethod.POST)

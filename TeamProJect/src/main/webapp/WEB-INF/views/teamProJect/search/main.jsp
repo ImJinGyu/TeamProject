@@ -390,10 +390,11 @@
              <c:forEach items="${TopList }" var="PensionDTO" begin="0" end="5">
                 <div class="col-md-4">
                     <div class="colpack">
-                    	<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name=${PensionDTO.pen_name}">
+                    	<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id=${PensionDTO.pen_id}">
                         <img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="">
                         </a>
                         <div class="details row no-margin">
+                        	<input id="" type="hidden" name="pen_id" value="${PensionDTO.pen_id}">
                             <h4>${PensionDTO.pen_name}</h4>
                             <p>${PensionDTO.pen_address }</p>
                             <p>평점 ${PensionDTO.star }</p>

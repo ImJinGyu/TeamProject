@@ -72,14 +72,12 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-            <sec:authorize access="isAuthenticated()">
                 <a class="nav-link dropdown-toggle pl-0" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 mt-1 d-none d-lg-inline text-gray-600 small"><sec:authentication property="principal.member.nickName"/></span>
+                    <span class="mr-2 mt-1 d-none d-lg-inline text-gray-600 small">${sessionScope.user_id}</span>
                     <img class="img-profile rounded-circle ml-1"
                         src="${pageContext.request.contextPath }/resources/assets/admin/img/undraw_profile.svg">
                 </a>
-             </sec:authorize>   
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                     aria-labelledby="userDropdown">
@@ -87,7 +85,7 @@
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
                     </a>
-                    <form action="/logout" name="logout" method="post" onsubmit="return confirm('로그아웃 하시겠습니까?')">
+                    <form action="${pageContext.request.contextPath}/member/logout" name="logout" method="get" onsubmit="return confirm('로그아웃 하시겠습니까?')">
 						<sec:csrfInput/>
 					</form>
                 </div>

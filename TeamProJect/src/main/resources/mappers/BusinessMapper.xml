@@ -43,6 +43,7 @@
 	<!--메인페이지 top6 숙소 -->
 	<select id="getTopList" resultType="com.itwillbs.domain.PensionDTO">
 		SELECT A.PEN_IMAGE
+		    ,  P.PEN_ID
 			,  P.PEN_NAME
 	        ,  P.PEN_ADDRESS
 		    ,  IFNULL(ROUND(AVG(R.REV_STAR),1), ' ') AS STAR
@@ -116,8 +117,10 @@
 	</insert>
 	
 	<select id="getRoomList" resultType="com.itwillbs.domain.BusinessDTO">
-		Select *
-		  FROM PENSION_ROOM
+		SELECT *
+		  FROM PENSION_ROOM A JOIN PENSION B
+		    ON A.PEN_ID = B.PEN_ID
+		 WHERE USER_ID = #{USER_ID}
 	</select>
 	
 	<update id="updateRoomList">
