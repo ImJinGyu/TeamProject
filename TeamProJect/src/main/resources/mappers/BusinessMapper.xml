@@ -117,8 +117,10 @@
 	</insert>
 	
 	<select id="getRoomList" resultType="com.itwillbs.domain.BusinessDTO">
-		Select *
-		  FROM PENSION_ROOM
+		SELECT *
+		  FROM PENSION_ROOM A JOIN PENSION B
+		    ON A.PEN_ID = B.PEN_ID
+		 WHERE USER_ID = #{USER_ID}
 	</select>
 	
 	<update id="updateRoomList">
