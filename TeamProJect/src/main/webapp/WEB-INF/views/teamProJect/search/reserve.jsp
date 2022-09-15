@@ -106,8 +106,6 @@
 	<div style="padding-bottom: 1000px;"></div>
 <!--footer -->
 <%@ include file="../footer.jsp" %>
-
-
 	
 	<script>
 	
@@ -116,8 +114,7 @@
 			var amount = '${total }';
 // 			var b = '${businessDTO.USER_ID }';
 // 			alert(b);
-			//가맹점 식별코드
-			IMP.init('imp84747824');
+			IMP.init('imp84747824');	//가맹점 식별코드	
 			IMP.request_pay({
 			    pg : 'html5_inicis',
 			    pay_method : 'card',
@@ -128,10 +125,11 @@
 			    buyer_id : '${businessDTO.USER_ID }',
 			    buyer_tel : '${user.phone}',
 			    buyer_addr : '${user.roadAddr}',
-			    buyer_postcode : '${user.zipNo}'
-			}, function(rsp) {
+			    buyer_postcode : '${user.zipNo}'}, 
+			    
+		function(rsp) {
+			    	
 				console.log(rsp);
-				
 		        var reservation = {
 	        		res_num: rsp.merchant_uid,	// 예약번호
                     check_in: '${rm_checkin}' + '${businessDTO.RM_CHECKIN }',
@@ -139,8 +137,7 @@
 					totalPrice: '${total }',
 //                     roomNum: '${room.roomNum}',
                     user_id: '${businessDTO.USER_ID }',
-                    pensionid: '${pension.pensionid}'
-       	   	 	};
+                    pensionid: '${pension.pensionid}' };
        	   	 	
 			    if (rsp.success) {
 			        var msg = '결제가 완료되었습니다.';
@@ -165,8 +162,6 @@
 		}
 	</script>
 	
-
-
     <script src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/popper.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
