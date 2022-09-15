@@ -149,6 +149,17 @@
 <!-- 	</select> -->
 
 	<!-- 이지원 -->
+<!-- 	<select id="getPensionDetail" resultType="com.itwillbs.domain.PensionDTO"> -->
+<!-- 		SELECT P.PEN_NAME -->
+<!-- 		     , P.PEN_ADDRESS -->
+<!-- 		     , A.PEN_IMAGE -->
+<!-- 		  FROM PENSION P -->
+<!-- 		  JOIN PENSION_ATTACH A -->
+<!-- 		    ON P.PEN_ID = A.PEN_ID -->
+<!-- 		 WHERE P.PEN_NAME = #{PEN_NAME}; -->
+<!-- 	</select> -->
+
+	
 	<select id="getPensionDetail" resultType="com.itwillbs.domain.PensionDTO">
 		SELECT P.PEN_NAME
 		     , P.PEN_ADDRESS
@@ -156,7 +167,7 @@
 		  FROM PENSION P
 		  JOIN PENSION_ATTACH A
 		    ON P.PEN_ID = A.PEN_ID
-		 WHERE P.PEN_NAME = #{PEN_NAME};
+		 WHERE P.PEN_ID = #{PEN_ID};
 	</select>
 	
 	<!-- 이지원 -->
@@ -172,7 +183,7 @@
 		    ON P.PEN_ID = R.PEN_ID
 		  JOIN ROOM_ATTACH RA
 		    ON R.RM_NAME = RA.RM_NAME
-		 WHERE P.PEN_NAME = #{PEN_NAME}
+		 WHERE P.PEN_ID = #{PEN_ID}
 		 ORDER BY CONVERT(R.RM_PRICE, SIGNED);		<!-- convert : 문자형을 숫자형으로 변환 -->
 	</select>
 	

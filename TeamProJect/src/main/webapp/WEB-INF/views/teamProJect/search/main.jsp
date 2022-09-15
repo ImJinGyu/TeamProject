@@ -230,7 +230,7 @@
 
 
 	<!-- 검색창 시작 -->
-	<div class="search container-fluid" style="background-color: gainsboro;">
+	<div class="search container-fluid" style="background-color: #e2e6e9;"><!-- gainsboro -->
 		<div class="container" style="background-color: white; border-radius: 10px; padding: 2.5px 2.5px 2.5px 2.5px;">
 			<form action="${pageContext.request.contextPath}/search/searchP" name="f" method="get"  style="margin: auto ;border: solid white !important;">
 				<div class="row form-detail" style="margin: auto;">

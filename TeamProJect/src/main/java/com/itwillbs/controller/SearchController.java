@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.nio.file.spi.FileSystemProvider;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -34,54 +35,49 @@ import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.ReviewService;
 import com.itwillbs.service.SearchService;
 
-
 import util.DateParse;
 
 @Controller
 public class SearchController {
-	
+
 //	// 결제 api 연동 (정우)
 //	private IamportClient api;
-	
+
 	@Inject
 	private SearchService searchService;
 	@Inject
 	private ReviewService service;
 	@Inject
 	private SearchDAO searchDAO;
-	
-	
-	/* 메인 검색창 날짜 설정 + 인기숙소 리스트 (지연)*/
+
+	/* 메인 검색창 날짜 설정 + 인기숙소 리스트 (지연) */
 	@RequestMapping(value = "/search/main", method = RequestMethod.GET)
-	public String home(PensionDTO pensionDTO, HttpServletRequest request, Model model ) {
-		
+	public String home(PensionDTO pensionDTO, HttpServletRequest request, Model model) {
+
 		/* 검색창 날짜 지정 */
 		DateParse dateParse = new DateParse();
 		String today = dateParse.getTodayPlus(0);
 		String tomorrow = dateParse.getTodayPlus(1);
 		request.setAttribute("today", dateParse.strToDate(today));
 		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
-		
+
 		/* 인기숙소 불러오기 */
 		List<PensionDTO> TopList = searchService.getTopList(pensionDTO);
-		
-		model.addAttribute("TopList",TopList);
-		
-		
-		
-		
+
+		model.addAttribute("TopList", TopList);
+
 		return "teamProJect/search/main";
 	}
-	
-	/* 펜션리스트 불러오기 (지연)*/
+
+	/* 펜션리스트 불러오기 (지연) */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search/searchP", method = RequestMethod.GET)
 	public String list(PensionDTO pensionDTO, HttpServletRequest request, Model model) {
-		
+
 		int totalCount = searchService.pensionCount(pensionDTO);
 		String spageNum = request.getParameter("pageNum");
 		int ipageNum;
-		if(spageNum == null) {
+		if (spageNum == null) {
 			ipageNum = 1;
 		} else {
 			ipageNum = Integer.parseInt(request.getParameter("pageNum"));
@@ -90,11 +86,10 @@ public class SearchController {
 //		System.out.println(ipageNum );
 		PagingDTO pT = new PagingDTO(ipageNum, totalCount);
 		model.addAttribute("page", pT);
-		
+
 		int index = (pT.getPageNum() - 1) * pT.getAmount();
 //		int amount = pT.getAmount();
 		int amount = 10;
-		
 
 		/* 검색창 조건 컬럼 */
 		String pen_address = request.getParameter("pen_address");
@@ -102,19 +97,18 @@ public class SearchController {
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
 		String rm_resable_num = request.getParameter("rm_resable_num");
-		
+
 		Map map = new HashMap();
 		map.put("pen_address", pen_address == null ? "" : pen_address);
 		map.put("pen_name", pen_name);
 		map.put("rm_resable_num", rm_resable_num);
 		map.put("index", index);
 		map.put("amount", amount);
-		
-		
+
 		/* 펜션 리스트 불러오기 */
 		List<PensionDTO> pensionList = searchService.getPensionList(map);
 		model.addAttribute("pensionList", pensionList);
-		System.out.println(pensionList.size()+" 펜션리스트 사이즈"); 
+		System.out.println(pensionList.size() + " 펜션리스트 사이즈");
 		model.addAttribute("page", map);
 //		System.out.println(pensionList);
 
@@ -122,15 +116,17 @@ public class SearchController {
 		DateParse dateParse = new DateParse();
 		String today = dateParse.getTodayPlus(0);
 		String tomorrow = dateParse.getTodayPlus(1);
-		
+
 		// yyyyMMdd -> yyyy-MM-dd
 		today = dateParse.strToDate(today);
 		tomorrow = dateParse.strToDate(tomorrow);
-		
+
 		/* 카테고리 별 검색 시 현재 날짜로 날짜 설정 */
-		if(rm_checkin == null) rm_checkin = today;
-		if(rm_checkout == null) rm_checkout = tomorrow;
-		
+		if (rm_checkin == null)
+			rm_checkin = today;
+		if (rm_checkout == null)
+			rm_checkout = tomorrow;
+
 //		request.setAttribute("pensionList", pensionList);
 		request.setAttribute("pen_address", pen_address);
 		request.setAttribute("pen_name", pen_name);
@@ -139,26 +135,27 @@ public class SearchController {
 		request.setAttribute("rm_resable_num", rm_resable_num);
 		request.setAttribute("today", dateParse.strToDate(today));
 		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
-		
-		
+
 		return "teamProJect/search/searchP";
-		
+
 	}
+
 	public void listajax2() {
-		
+
 	}
-	
-	/* 펜션리스트 무한스크롤 (지연)*/
+
+	/* 펜션리스트 무한스크롤 (지연) */
 	@ResponseBody
 	@RequestMapping(value = "/search/searchPajax", method = RequestMethod.GET)
-	public List<PensionDTO> listajax(@RequestParam String count, String index2, PensionDTO pensionDTO, HttpServletRequest request, Model model) {
+	public List<PensionDTO> listajax(@RequestParam String count, String index2, PensionDTO pensionDTO,
+			HttpServletRequest request, Model model) {
 		System.out.println(count + "-count");
-		
+
 		int amount = Integer.parseInt(count.toString());
 		int totalCount = searchService.pensionCount(pensionDTO);
 		String spageNum = request.getParameter("pageNum");
 		int ipageNum;
-		if(spageNum == null) {
+		if (spageNum == null) {
 			ipageNum = 1;
 		} else {
 			ipageNum = Integer.parseInt(request.getParameter("pageNum"));
@@ -167,9 +164,9 @@ public class SearchController {
 //		System.out.println(ipageNum );
 		PagingDTO pT = new PagingDTO(ipageNum, totalCount);
 		model.addAttribute("page", pT);
-		
+
 		int index = (Integer.parseInt(index2) - 1) * pT.getAmount();
-		
+
 		System.out.println(index + "-index");
 		/* 검색창 조건 컬럼 */
 		String pen_address = request.getParameter("pen_address");
@@ -180,13 +177,12 @@ public class SearchController {
 		System.out.println(pen_address);
 		System.out.println(pen_name);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("pen_address",pen_address);
+		map.put("pen_address", pen_address);
 		map.put("pen_name", pen_name);
 		map.put("rm_resable_num", rm_resable_num);
 		map.put("index", index);
 		map.put("amount", amount);
-		
-		
+
 		/* 펜션 리스트 불러오기 */
 		List<PensionDTO> pensionList = searchService.getPensionList(map);
 		for (PensionDTO dto : pensionList) {
@@ -196,21 +192,22 @@ public class SearchController {
 		model.addAttribute("pensionList", pensionList);
 		model.addAttribute("page", map);
 		System.out.println(pensionList);
-		
 
 		/* 기존 검색창 날짜 오늘, 내일 날짜로 설정 */
 		DateParse dateParse = new DateParse();
 		String today = dateParse.getTodayPlus(0);
 		String tomorrow = dateParse.getTodayPlus(1);
-		
+
 		// yyyyMMdd -> yyyy-MM-dd
 		today = dateParse.strToDate(today);
 		tomorrow = dateParse.strToDate(tomorrow);
-		
+
 		/* 카테고리 별 검색 시 현재 날짜로 날짜 설정 */
-		if(rm_checkin == null) rm_checkin = today;
-		if(rm_checkout == null) rm_checkout = tomorrow;
-		
+		if (rm_checkin == null)
+			rm_checkin = today;
+		if (rm_checkout == null)
+			rm_checkout = tomorrow;
+
 //		request.setAttribute("pensionList", pensionList);
 		request.setAttribute("pen_address", pen_address);
 		request.setAttribute("pen_name", pen_name);
@@ -219,46 +216,48 @@ public class SearchController {
 		request.setAttribute("rm_resable_num", rm_resable_num);
 		request.setAttribute("today", dateParse.strToDate(today));
 		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
-		
+
 		return pensionList;
 	}
-	
-	
+
 	/* 아직 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원) */
 	@RequestMapping(value = "/search/pensionDetail", method = RequestMethod.GET)
-	public String pensionDetail(HttpServletRequest request, Model model) throws Exception{
-		
+	public String pensionDetail(HttpServletRequest request, Model model) throws Exception {
+
 		/* 파라미터 값(펜션 이름) 저장 */
-		String pen_name = request.getParameter("pen_name");
+//		String pen_name = request.getParameter("pen_name");
+		String pen_id = request.getParameter("pen_id");
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
-		
-		System.out.println("펜션 이름 : " + pen_name);
+
+//		System.out.println("펜션 이름 : " + pen_name);		
+		System.out.println("Pension ID : " + pen_id);
 		System.out.println("checkin : " + rm_checkin + " / checkout : " + rm_checkout);
-		
+
 		/* 해당 펜션 정보, 방 리스트 불러오기 */
-		PensionDTO pensionDTO = searchService.getPensionDetail(pen_name);
-		List<BusinessDTO> searchRoomList = searchService.getSearchRoomList(pen_name);
+		PensionDTO pensionDTO = searchService.getPensionDetail(pen_id);
+		List<BusinessDTO> searchRoomList = searchService.getSearchRoomList(pen_id);
 
 		/* 기존 검색창 날짜 오늘, 내일 날짜로 설정 */
 		DateParse dateParse = new DateParse();
 		String today = dateParse.getTodayPlus(0);
 		String tomorrow = dateParse.getTodayPlus(1);
-		
+
 		// yyyyMMdd -> yyyy-MM-dd
 		today = dateParse.strToDate(today);
 		tomorrow = dateParse.strToDate(tomorrow);
-		
+
 		/* 카테고리 별 검색 시 현재 날짜로 날짜 설정 */
-		if(rm_checkin == null) rm_checkin = today;
-		if(rm_checkout == null) rm_checkout = tomorrow;
-		
+		if (rm_checkin == null)
+			rm_checkin = today;
+		if (rm_checkout == null)
+			rm_checkout = tomorrow;
 
 		request.setAttribute("rm_checkin", rm_checkin);
 		request.setAttribute("rm_checkout", rm_checkout);
 		request.setAttribute("today", dateParse.strToDate(today));
 		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
-		
+
 		/* model에 펜션 정보, 방 리스트 저장 */
 		model.addAttribute("pensionDTO", pensionDTO);
 		model.addAttribute("searchRoomList", searchRoomList);
@@ -268,9 +267,10 @@ public class SearchController {
 		model.addAttribute("tomorrow", tomorrow);
 		reviewtest(model, request);
 		return "teamProJect/search/pensionDetail";
-		
+
 	}
-	public void reviewtest(Model model, HttpServletRequest req) throws Exception{
+
+	public void reviewtest(Model model, HttpServletRequest req) throws Exception {
 		String pen_id = req.getParameter("pen_id");
 		int index = 0;
 		int amount = 10;
@@ -280,78 +280,118 @@ public class SearchController {
 		sMap.put("amount", amount);
 		Map<String, Object> avg = service.staravg(pen_id);
 		model.addAttribute("avg", avg);
-		
+
 		List<ReviewDTO> rList = service.selectreviewlist(sMap);
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		for (ReviewDTO dto : rList) {
 			Date nowdate = formatter.parse(new FunctionClass().nowTime("yyyy-MM-dd"));
-			int stamp = 24*60*60*1000;
-			
-			
-			if(dto.getRev_date() != null && !("".equals(dto.getRev_date()))) {
+			int stamp = 24 * 60 * 60 * 1000;
+
+			if (dto.getRev_date() != null && !("".equals(dto.getRev_date()))) {
 				Date rdate = formatter.parse(dto.getRev_date());
-				Long rt = (nowdate.getTime() - rdate.getTime())  / stamp;
-				if(rt == 0) {
+				Long rt = (nowdate.getTime() - rdate.getTime()) / stamp;
+				if (rt == 0) {
 					dto.setRev_date("ToDay ReView");
-				}else {
+				} else {
 					dto.setRev_date(rt.toString() + "일 전");
 				}
 			}
-			
-			if(dto.getAns_date() != null && !("".equals(dto.getAns_date()))) {
+
+			if (dto.getAns_date() != null && !("".equals(dto.getAns_date()))) {
 				Date adate = formatter.parse(dto.getAns_date());
-				Long at = (nowdate.getTime() - adate.getTime())  / stamp;
-				if(at == 0) {
+				Long at = (nowdate.getTime() - adate.getTime()) / stamp;
+				if (at == 0) {
 					dto.setAns_date("ToDay Answer");
-				}else {
+				} else {
 					dto.setAns_date(at.toString() + "일 전");
 				}
 			}
-			
+
 		}
 		System.out.println(rList);
 		model.addAttribute("List", rList);
 	}
-	
-	/* 손 거의 안댐 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원) */
+
+	/* 수정할거 많음 결제페이지에 펜션 + 방 정보 불러오기 (지원) */
 	@RequestMapping(value = "/search/reserve", method = RequestMethod.GET)
-	public String reserve(HttpServletRequest request, Model model) {
-		
+	public String reserve(HttpServletRequest request, Model model) throws ParseException {
+
 //		String pen_name = request.getParameter("pen_name");
 		int room_id = Integer.parseInt(request.getParameter("room_id"));
+		int rm_price = Integer.parseInt(request.getParameter("rm_price"));
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
-		
-		// 정우 테스트
-//		String rm_price = request.getParameter("rm_price");
-//		System.out.println(rm_price);
-		
+
+		// date test
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date startDate = new Date(dateFormat.parse(rm_checkin).getTime());
+		Date endDate = new Date(dateFormat.parse(rm_checkout).getTime());
+
+		long calculate = endDate.getTime() - startDate.getTime();
+		int days = (int) (calculate / (1000 * 60 * 60 * 24));
+
+		// 총 결제금액 = 1박 당 가격 * 일수
+		int total = rm_price * days;
+
 //		System.out.println("펜션 이름 : " + pen_name);
 		System.out.println("방 번호 : " + room_id);
+		System.out.println("방 가격 : " + rm_price + " 원 /" + days + "박");
 		System.out.println("checkin : " + rm_checkin + " / checkout : " + rm_checkout);
-		
-//		PensionDTO pensionDTO = searchService.getPensionDetail(pen_name);
+		System.out.println("총 결제금액 : " + total + " 원");
+
 		BusinessDTO businessDTO = searchService.getRoomDetail(room_id);
-		
-		// 정우 테스트
-//		List<BusinessDTO> businessDTO = searchService.getSearchRoomList(pen_name);
-		
+
 		request.setAttribute("rm_checkin", rm_checkin);
 		request.setAttribute("rm_checkout", rm_checkout);
-		// 정우 테스트
-//		request.setAttribute("rm_price", rm_price);
-		
-//		model.addAttribute("pensionDTO", pensionDTO);
-		// 정우 테스트
+
+//		model.addAttribute("pen_name", pen_name);
 		model.addAttribute("businessDTO", businessDTO);
 		model.addAttribute("rm_checkin", rm_checkin);
 		model.addAttribute("rm_checkout", rm_checkout);
-		// 정우 테스트
-//		model.addAttribute("rm_price", rm_price);
-		
+		model.addAttribute("days", days);
+		model.addAttribute("total", total);
+
 		return "teamProJect/search/reserve";
-		
+
 	}
-	
+
+	/*
+	 * 손 거의 안댐 수정할거 많음 펜션 정보 + 방 리스트 불러오기 (지원)
+	 * 
+	 * @RequestMapping(value = "/search/reserve", method = RequestMethod.GET) public
+	 * String reserve(HttpServletRequest request, Model model) {
+	 * 
+	 * // String pen_name = request.getParameter("pen_name"); int room_id =
+	 * Integer.parseInt(request.getParameter("room_id")); String rm_checkin =
+	 * request.getParameter("rm_checkin"); String rm_checkout =
+	 * request.getParameter("rm_checkout");
+	 * 
+	 * // 정우 테스트 // String rm_price = request.getParameter("rm_price"); //
+	 * System.out.println(rm_price);
+	 * 
+	 * // System.out.println("펜션 이름 : " + pen_name); System.out.println("방 번호 : " +
+	 * room_id); System.out.println("checkin : " + rm_checkin + " / checkout : " +
+	 * rm_checkout);
+	 * 
+	 * // PensionDTO pensionDTO = searchService.getPensionDetail(pen_name);
+	 * BusinessDTO businessDTO = searchService.getRoomDetail(room_id);
+	 * 
+	 * // 정우 테스트 // List<BusinessDTO> businessDTO =
+	 * searchService.getSearchRoomList(pen_name);
+	 * 
+	 * request.setAttribute("rm_checkin", rm_checkin);
+	 * request.setAttribute("rm_checkout", rm_checkout); // 정우 테스트 //
+	 * request.setAttribute("rm_price", rm_price);
+	 * 
+	 * // model.addAttribute("pensionDTO", pensionDTO); // 정우 테스트
+	 * model.addAttribute("businessDTO", businessDTO);
+	 * model.addAttribute("rm_checkin", rm_checkin);
+	 * model.addAttribute("rm_checkout", rm_checkout); // 정우 테스트 //
+	 * model.addAttribute("rm_price", rm_price);
+	 * 
+	 * return "teamProJect/search/reserve";
+	 * 
+	 * }
+	 */
 
 }

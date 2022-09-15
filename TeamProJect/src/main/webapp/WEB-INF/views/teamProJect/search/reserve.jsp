@@ -43,7 +43,7 @@
 				</p>
 				<p class="rName">
 					<strong class="rStrong">객실타입 / 기간</strong>
-					${businessDTO.RM_NAME }
+					${businessDTO.RM_NAME } / <span>${days } 박</span>
 				</p>
 				<p class="rName">
 					<strong class="rStrong">체크인</strong>
@@ -61,7 +61,7 @@
 						(VAT포함)
 					</strong>
 					<span class="in_price">
-						<fmt:formatNumber type="number" maxFractionDigits="3" value="${businessDTO.RM_PRICE }"/> 원<!-- 99,000원 -->
+						<fmt:formatNumber type="number" maxFractionDigits="3" value="${total }"/> 원<!-- 99,000원 -->
 					</span>
 				</p>
 				<ul>
