@@ -203,6 +203,14 @@
 		 WHERE PR.ROOM_ID = #{ROOM_ID}
 	</select>
 	
+	<!-- 이지원 -->
+	<select id="getNamePhone" resultType="com.itwillbs.domain.MemberDTO">
+		SELECT USER_NAME
+		     , USER_PHONENUMBER
+		  FROM MEMBER
+		 WHERE USER_ID = #{user_id}
+	</select>
+	
 	<!-- 박성빈 -->
 	<select id="listReservation" resultType="com.itwillbs.domain.ReservationDTO">
 	SELECT R.RES_NUMBER

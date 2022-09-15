@@ -13,6 +13,7 @@ import java.util.Optional;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.annotation.SuppressAjWarnings;
 import org.springframework.format.datetime.joda.LocalDateParser;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.dao.SearchDAO;
 import com.itwillbs.domain.BusinessDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PagingDTO;
 import com.itwillbs.domain.PensionDTO;
 import com.itwillbs.domain.PensionRmDTO;
@@ -315,13 +317,14 @@ public class SearchController {
 
 	/* 수정할거 많음 결제페이지에 펜션 + 방 정보 불러오기 (지원) */
 	@RequestMapping(value = "/search/reserve", method = RequestMethod.GET)
-	public String reserve(HttpServletRequest request, Model model) throws ParseException {
+	public String reserve(HttpServletRequest request, HttpSession session, Model model) throws ParseException {
 
 //		String pen_name = request.getParameter("pen_name");
 		int room_id = Integer.parseInt(request.getParameter("room_id"));
 		int rm_price = Integer.parseInt(request.getParameter("rm_price"));
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
+		String user_id = session.getAttribute("user_id").toString();
 
 		// date test
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -341,6 +344,7 @@ public class SearchController {
 		System.out.println("총 결제금액 : " + total + " 원");
 
 		BusinessDTO businessDTO = searchService.getRoomDetail(room_id);
+		MemberDTO memberDTO = searchService.getNamePhone(user_id);
 
 		request.setAttribute("rm_checkin", rm_checkin);
 		request.setAttribute("rm_checkout", rm_checkout);
@@ -351,6 +355,7 @@ public class SearchController {
 		model.addAttribute("rm_checkout", rm_checkout);
 		model.addAttribute("days", days);
 		model.addAttribute("total", total);
+		model.addAttribute("memberDTO", memberDTO);
 
 		return "teamProJect/search/reserve";
 

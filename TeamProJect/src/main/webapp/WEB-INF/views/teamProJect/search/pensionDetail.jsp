@@ -95,7 +95,7 @@
 						</div>
 						<div class="col-md-2 ffb">
 							<button class="btn btn-primary w-100"
-							 style="border: none; border-radius: 10px; height: 48px; font-size: 27px; font-family: 'Do Hyeon', sans-serif;">검 색</button>
+							 style="border: none; border-radius: 10px; height: 48px; font-size: 27px; font-family: 'Do Hyeon', sans-serif;">변 경</button>
 						</div>
 					</div>
 				</div>

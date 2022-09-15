@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.BusinessDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PensionDTO;
 
 
@@ -51,6 +52,10 @@ public class SearchDAO {
 
 	public BusinessDTO getRoomDetail(int room_id) {
 		return sqlSession.selectOne(NAMESPACE + ".getRoomDetail", room_id);
+	}
+
+	public MemberDTO getNamePhone(String user_id) {
+		return sqlSession.selectOne(NAMESPACE + ".getNamePhone", user_id);
 	}
 	
 	

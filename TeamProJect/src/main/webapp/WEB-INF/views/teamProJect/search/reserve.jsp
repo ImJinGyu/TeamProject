@@ -79,7 +79,8 @@
 					<h3 style="margin-top: 0;">예약자 정보</h3>
 					<strong>예약자 이름</strong>
 					<p class="inp_wrap">
-						<input type="text" name="userName" placeholder="체크인시 필요한 정보입니다." maxlength="20">
+						<input type="hidden" name="user_id" value="${user_id}">
+						<input type="text" name="user_name" maxlength="20" value="${memberDTO.user_name }" readonly style="margin: 10.5px 0;"><!--  placeholder="체크인시 필요한 정보입니다." -->
 					</p>
 					<p class="alert_txt">
 						<!-- 한글, 영문, 숫자만 입력 가능. (문자 사이 공백은 1칸만 입력 가능) -->
@@ -88,11 +89,11 @@
 					<div style="padding-bottom: 50px;"></div>
 					
 					<div>
-						<strong>휴대폰 번호</strong>
+						<strong>휴대폰 번호 </strong>
 						<span>개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span>
 						<div>
 							<div class="inp_wrap">
-								<input type="tel" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="" class="">
+								<input type="tel" name="user_phonenumber" maxlength="13" value="${memberDTO.user_phonenumber }" class="" style="margin: 10.5px 0;"><!--  placeholder="체크인시 필요한 정보입니다." -->
 							</div>
 						</div>
 					</div>

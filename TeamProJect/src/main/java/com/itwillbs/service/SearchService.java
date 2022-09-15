@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.SearchDAO;
 import com.itwillbs.domain.BusinessDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PensionDTO;
 
 
@@ -47,6 +48,10 @@ public class SearchService {
 
 	public BusinessDTO getRoomDetail(int room_id) {
 		return searchDAO.getRoomDetail(room_id);
+	}
+
+	public MemberDTO getNamePhone(String user_id) {
+		return searchDAO.getNamePhone(user_id);
 	}
 	
 
