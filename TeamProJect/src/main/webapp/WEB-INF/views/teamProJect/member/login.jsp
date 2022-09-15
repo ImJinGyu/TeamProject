@@ -148,6 +148,7 @@ h1 {
     <div class="form-group">
      <input class="form-control" type="password" name="password" id="password" required placeholder="비밀번호">
      <input type="hidden" id="user_type" name="user_type" value="1">
+     <input type="hidden" id="path" name="path" value="${path}">
     </div>
      <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로 그 인" style="font-size: 27px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
      <span id="loginspan"></span>
@@ -175,6 +176,7 @@ h1 {
      <div class="form-group">
       <input class="form-control" type="password" name="password" id="password" required placeholder="비밀번호">
       <input type="hidden" id="user_type" name="user_type" value="2">
+      <input type="hidden" id="path" name="path" value="${path}">
      </div>
      <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로 그 인" style="font-size: 27px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
      <div class="link_half">
@@ -184,7 +186,6 @@ h1 {
     </form>
   </div>
  </div>
- 
   <!-- 관리자 로그인 폼 -->
  <div id="admin-login" class="container tab-pane fade">		
   <div class="login">
@@ -201,6 +202,7 @@ h1 {
      <div class="form-group">
       <input class="form-control" type="password" name="password" id="password" required placeholder="비밀번호">
       <input type="hidden" id="user_type" name="user_type" value="0">
+      <input type="hidden" id="path" name="path" value="${path}">
      </div>
      <input class="btn btn-danger w-100" id="loginbtn" type="submit" value="로 그 인" style="font-size: 27px; font-family: 'Do Hyeon', sans-serif; padding: 0.75px 0.75px;">
     </form>

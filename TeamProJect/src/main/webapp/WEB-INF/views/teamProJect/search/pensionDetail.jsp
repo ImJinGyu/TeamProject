@@ -106,7 +106,7 @@
 	<div id="tabhome" class="container tab-pane fade active show">
 	<c:forEach var="businessDTO" items="${searchRoomList }">
 	<form action="${pageContext.request.contextPath }/search/reserve?rm_checkin=${rm_checkin}&rm_checkout=${rm_checkout}&room_id=${businessDTO.ROOM_ID }" method="get" data-sel-date="" data-sel-date2=""
-		style="margin: 15px 0; padding: 0; border: 0; box-sizing: border-box;">
+		style="margin: 15px 0; padding: 0; border: 0; box-sizing: border-box;" onsubmit="return logincheck();">
 <%-- 		<input id="" type="hidden" name="pen_name" value="${pensionDTO.pen_name }"> --%>
 		<input id="" type="hidden" name="rm_checkin" value="${rm_checkin}">
 		<input id="" type="hidden" name="rm_checkout" value="${rm_checkout}">
@@ -166,8 +166,18 @@
 <%@ include file="review.jsp" %>
 	</div>
 
-	
-
+<script type="text/javascript">
+function logincheck(){
+	debugger;
+	const user_id = '${sessionScope.user_id}';
+	if(user_id == null || user_id == ''){
+		alert('로그인 이후에 이용 가능합니다.');
+		location.href = '${pageContext.request.contextPath }/member/login';
+		return false;
+	}
+	return true;
+}
+</script>
 	
 	
 	

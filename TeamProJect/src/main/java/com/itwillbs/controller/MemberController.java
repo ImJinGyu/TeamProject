@@ -1,8 +1,10 @@
 package com.itwillbs.controller;
 
+import java.io.PrintWriter;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.MemberService;
 
 @Controller
@@ -21,8 +24,13 @@ public class MemberController {
 	private MemberService service;
 	
 	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
-	public String login() {
-				
+	public String login(HttpSession session, HttpServletRequest req) {
+		String bpath = req.getHeader("Referer");
+		String uri = req.getContextPath();
+		if(bpath != null) {
+			String path = bpath.split(uri)[1];
+			req.setAttribute("path", path);
+		}
 		return "teamProJect/member/login";
 	}
 	
@@ -30,9 +38,8 @@ public class MemberController {
 	@RequestMapping(value = "/member/loginPro", method = RequestMethod.GET)
 	public String loginPro(MemberDTO mT, HttpServletRequest req){
 		
-		System.out.println(mT.getUser_id());
-		System.out.println(mT.getPassword());
-		System.out.println(mT.getUser_type());
+		String bpath = req.getParameter("path");
+		
 		
 		Map<String, String> userMap = service.userlogin(mT);
 		System.out.println(userMap);
@@ -43,13 +50,13 @@ public class MemberController {
 		if(mT.getPassword().equals(userMap.get("PASSWORD").toString())) {
 			HttpSession session = req.getSession();
 			session.setAttribute("user_id", mT.getUser_id());
-			session.setAttribute("user_type", userMap.get("USER_TYPE"));
+			session.setAttribute("user_type", userMap.get("USER_TYPE")); 
 			String user_name = userMap.get("USER_NAME");
 			if(user_name == null || "".equals(user_name)) {
 				user_name = "넌 이름이 없니?";
 			}
 			session.setAttribute("user_name", user_name);
-			return "redirect:/search/main";
+			return "redirect:"+bpath+"";
 		}
 		req.setAttribute("msg", "패스워드가 일치하지 않습니다.");
 		return "teamProJect/member/loginPro";
