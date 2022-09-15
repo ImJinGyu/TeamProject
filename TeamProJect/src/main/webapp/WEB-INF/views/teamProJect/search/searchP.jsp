@@ -80,7 +80,7 @@
 							</a>
 							<div class="pensionInfo">
 							  <div class="infoBox1">
-								<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?&pen_id=${PensionDTO.pen_id}rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }">${PensionDTO.pen_name }</a>
+								<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?&pen_id=${PensionDTO.pen_id}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }">${PensionDTO.pen_name }</a>
 								</h2>
 								<p>${PensionDTO.pen_address }</p>
 							  </div>
