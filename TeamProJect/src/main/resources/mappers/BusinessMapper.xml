@@ -43,6 +43,7 @@
 	<!--메인페이지 top6 숙소 -->
 	<select id="getTopList" resultType="com.itwillbs.domain.PensionDTO">
 		SELECT A.PEN_IMAGE
+		    ,  P.PEN_ID
 			,  P.PEN_NAME
 	        ,  P.PEN_ADDRESS
 		    ,  IFNULL(ROUND(AVG(R.REV_STAR),1), ' ') AS STAR
