@@ -197,6 +197,8 @@
 			 , PR.RM_CHECKIN
 		     , PR.RM_CHECKOUT
 		     , PR.RM_PRICE
+		     , P.PEN_ID
+		     , P.USER_ID
 		  FROM PENSION P
 		  JOIN PENSION_ROOM PR
 		    ON P.PEN_ID = PR.PEN_ID
