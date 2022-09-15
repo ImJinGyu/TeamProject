@@ -259,6 +259,7 @@ public class SearchController {
 		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
 
 		/* model에 펜션 정보, 방 리스트 저장 */
+		model.addAttribute("pen_id", pen_id);
 		model.addAttribute("pensionDTO", pensionDTO);
 		model.addAttribute("searchRoomList", searchRoomList);
 		model.addAttribute("rm_checkin", rm_checkin);

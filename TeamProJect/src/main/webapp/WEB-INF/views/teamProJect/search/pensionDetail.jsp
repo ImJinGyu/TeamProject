@@ -81,7 +81,8 @@
 	<div style="margin: 15px 0;">
 		<div class="roomInfo">
 			<form action="${pageContext.request.contextPath}/search/pensionDetail">
-				<input id="" type="hidden" name="pen_name" value="${pen_name }">
+<%-- 				<input id="" type="hidden" name="pen_name" value="${pen_name }"> --%>
+				<input id="" type="hidden" name="pen_id" value="${pen_id }">
 				<div style="padding: 2.5px 2.5px 2.5px 2.5px;">
 					<div class="row form-detail" style="margin: auto; border: 1px solid gainsboro; border-radius: 10px; width: auto; background: white;">
 						<div class="col-md-2 ffb">
@@ -93,7 +94,8 @@
 								style="width: 99%; margin: 0px 2.25px; padding: 0; border-left: 0;" required>
 						</div>
 						<div class="col-md-2 ffb">
-							<button>검 색</button>
+							<button class="btn btn-primary w-100"
+							 style="border: none; border-radius: 10px; height: 48px; font-size: 27px; font-family: 'Do Hyeon', sans-serif;">검 색</button>
 						</div>
 					</div>
 				</div>
