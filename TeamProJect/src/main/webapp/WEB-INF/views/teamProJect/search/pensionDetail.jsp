@@ -166,7 +166,6 @@
 <%@ include file="review.jsp" %>
 	</div>
 
-	
 <script type="text/javascript">
 function logincheck(){
 	debugger;

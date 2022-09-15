@@ -176,6 +176,7 @@
          <hr>
              </article>
          </div>
+         
 <script type="text/javascript">
 var index = 0;
 var check = true;
@@ -197,7 +198,7 @@ function moreReview(){
 					index -= 10;
 					check = true;
 					return;
-				} 
+				}  
     			$.each(data, function (index, review) {
     				var result = "";
     				result += ('<ul>'+

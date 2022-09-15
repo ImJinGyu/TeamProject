@@ -186,7 +186,6 @@ h1 {
     </form>
   </div>
  </div>
- 
   <!-- 관리자 로그인 폼 -->
  <div id="admin-login" class="container tab-pane fade">		
   <div class="login">
