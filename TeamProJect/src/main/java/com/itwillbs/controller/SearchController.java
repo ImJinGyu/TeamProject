@@ -42,9 +42,6 @@ import util.DateParse;
 @Controller
 public class SearchController {
 
-//	// 결제 api 연동 (정우)
-//	private IamportClient api;
-
 	@Inject
 	private SearchService searchService;
 	@Inject

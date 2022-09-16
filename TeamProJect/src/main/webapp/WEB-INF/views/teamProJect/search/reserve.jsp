@@ -108,7 +108,7 @@
 <%@ include file="../footer.jsp" %>
 	
 	<script>
-	
+	var res_num = '${businessDTO.PEN_ID }' + '${param.room_id}';
 		function iamport(){
 // 			debugger;
 			var amount = '${total }';
@@ -118,11 +118,11 @@
 			IMP.request_pay({
 			    pg : 'html5_inicis',
 			    pay_method : 'card',
-			    merchant_uid : '${businessDTO.PEN_ID }' + '${room_id}' + new Date().getTime(),
+			    merchant_uid : res_num,
 			    name : '(주)부산온나' , 	//결제창에서 보여질 이름
 			    amount : amount, 		//실제 결제되는 가격
 			    buyer_email : '${user.email}',
-			    buyer_id : '${businessDTO.USER_ID }',
+			    buyer_id : '${memberDTO.user_name }',
 			    buyer_tel : '${user.phone}',
 			    buyer_addr : '${user.roadAddr}',
 			    buyer_postcode : '${user.zipNo}'}, 
@@ -143,14 +143,22 @@
 			        var msg = '결제가 완료되었습니다.';
 			        console.log(reservation);
 			        alert(msg);
-			      
 			        $.ajax({
-			         	url: "/verifyIamport/" + rsp.imp_uid,
+			         	url: "insertReservation",
 			        	type: "POST",
-			        	headers: { "Content-Type": "application/json" },
-			        	data: JSON.stringify(reservation),
+			        	data: { 'user_id':'${sessionScope.user_id}',
+				        		'user_type':'${sessionScope.user_type}',
+				        		'pen_id':'${businessDTO.PEN_ID }',
+				        		'room_id':'${param.room_id}',
+				        		'rm_name':'${businessDTO.RM_NAME }',
+				        		'check_in_d':'${rm_checkin}',
+				        		'check_out_d':'${rm_checkout}',
+				        		'check_in_t':'${businessDTO.RM_CHECKIN }',
+				        		'check_out_t':'${businessDTO.RM_CHECKOUT }',
+			        		    'rm_price':'${total }',
+			        		    'res_status':'1'
+			        		   },
 			        	dataType:"json",
-			            contentType:"application/json; charset=utf-8"
 			        })
 			      
 			        location.href = '${pageContext.request.contextPath}/member/mypage/listReservation';

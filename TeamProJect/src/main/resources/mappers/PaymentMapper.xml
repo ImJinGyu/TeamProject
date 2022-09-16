@@ -9,23 +9,31 @@
 		INSERT INTO RESERVATION
 			 ( RES_NUMBER
 			 , USER_ID
+			 , USER_TYPE
 			 , PEN_ID
 			 , ROOM_ID
 			 , RM_NAME
 			 , CHECK_IN_D
 			 , CHECK_OUT_D
 			 , CHECK_IN_T
-			 , CHECK_OUT_T )
+			 , CHECK_OUT_T
+			 , RES_TIME
+			 , RM_PRICE
+			 , RES_STATUS )
 		VALUES
 			 ( #{res_number}
 			 , #{user_id}
+			 , #{user_type}
 			 , #{pen_id}
 			 , #{room_id}
 			 , #{rm_name}
 			 , #{check_in_d}
 			 , #{check_out_d}
 			 , #{check_in_t}
-			 , #{check_out_d} )
+			 , #{check_out_d}
+			 , #{res_time}
+			 , #{rm_price}
+			 , #{res_status} )
 	</insert>
 
 </mapper>
