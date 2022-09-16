@@ -89,7 +89,7 @@ public class SearchController {
 		int index = (pT.getPageNum() - 1) * pT.getAmount();
 //		int amount = pT.getAmount();
 		int amount = 10;
-
+		
 		/* 검색창 조건 컬럼 */
 		String pen_address = request.getParameter("pen_address");
 		String pen_name = request.getParameter("pen_name");
@@ -107,7 +107,7 @@ public class SearchController {
 		/* 펜션 리스트 불러오기 */
 		List<PensionDTO> pensionList = searchService.getPensionList(map);
 		model.addAttribute("pensionList", pensionList);
-		System.out.println(pensionList.size() + " 펜션리스트 사이즈");
+		//System.out.println(pensionList.size() + " 펜션리스트 사이즈");
 		model.addAttribute("page", map);
 //		System.out.println(pensionList);
 
@@ -163,8 +163,13 @@ public class SearchController {
 //		System.out.println(ipageNum );
 		PagingDTO pT = new PagingDTO(ipageNum, totalCount);
 		model.addAttribute("page", pT);
-
-		int index = (Integer.parseInt(index2) - 1) * pT.getAmount();
+		
+		String gb = request.getParameter("gb");
+		int index = 0;
+		if(gb.equals("scroll")) {
+			index = (Integer.parseInt(index2) - 1) * pT.getAmount();
+		}
+		 
 
 		System.out.println(index + "-index");
 		/* 검색창 조건 컬럼 */
@@ -173,6 +178,7 @@ public class SearchController {
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
 		String rm_resable_num = request.getParameter("rm_resable_num");
+		String order = request.getParameter("order");
 		System.out.println(pen_address);
 		System.out.println(pen_name);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -181,6 +187,7 @@ public class SearchController {
 		map.put("rm_resable_num", rm_resable_num);
 		map.put("index", index);
 		map.put("amount", amount);
+		map.put("order", order);
 
 		/* 펜션 리스트 불러오기 */
 		List<PensionDTO> pensionList = searchService.getPensionList(map);

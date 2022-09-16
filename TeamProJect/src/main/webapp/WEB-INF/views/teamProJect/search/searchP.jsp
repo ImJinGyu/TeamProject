@@ -51,11 +51,11 @@
 						</div>
 					</div>
                  	<div class="col-md-2 ffb">
-						<input type=search class=main_search_text placeholder="지 역" name="pen_address" value="${pen_address }"
+						<input type=search class=main_search_text placeholder="지 역" id="pen_address" name="pen_address" value="${pen_address }"
 						style="width:99%; height: 48px; margin: 0px 2.25px; padding-left: 0;"><!--  required -->
 					</div>
 					<div class="col-md-2 ffb">
-						<input type=search class=main_search_text placeholder="숙 소 명" name="pen_name" value="${pen_name }"
+						<input type=search class=main_search_text placeholder="숙 소 명" id="pen_name" name="pen_name" value="${pen_name }"
 						style="width:99%; height: 48px; margin: 0px 2.25px; padding-left: 0;"><!--  required -->
 					</div>
 					<div class="col-md-3 ffb">
@@ -67,10 +67,18 @@
 		</div>
 	</div>
 <!-- 검색창 끝 -->
-		
+			<div class=" btn_wrap width_4">
+              <button type="button" data-sort="HIT" class="order" id="rev">
+              	<span>리뷰 순</span></button>
+              <button type="button" data-sort="LOWPRICE" class="order" id="lPr">
+              	<span>낮은 가격 순</span></button>
+              <button type="button" data-sort="HIGHPRICE" class="order" id="hPr">
+              	<span>높은 가격 순</span></button>
+            </div>
 
 				<!-- 숙소 리스트 불러오기 -->
 				<div id="penlist123123">
+
   				   <c:forEach items="${pensionList }" var="PensionDTO">
 					<div class="row form-detail  pensionlist">
 						<div class="pensions" data-pensionid="${PensionDTO.pen_id}">
@@ -103,30 +111,35 @@
 </body>
 <script type="text/javascript">
 var index = 2;
+var curr_order = "";
 var check = true;
+
+
+// 무한스크롤
 window.addEventListener('scroll', () => {
 	var scrollLocation = document.documentElement.scrollTop; // 현재 스크롤바 위치
 	var windowHeight = window.innerHeight; // 스크린 창
 	var fullHeight = document.body.scrollHeight;
-	//var isFetching = false;
 	if(scrollLocation + windowHeight >= fullHeight) {
+		//debugger;
 		var count = ${page.amount};
 	    if(!check){
 	    	return;
 	    }
 	    check = false;
 	    $.ajax({
-	        url : 'searchPajax?pen_name="${param.pen_name}"&pen_address="${param.pen_address}"',
+	        url : 'searchPajax?pen_name=${param.pen_name}&pen_address=${param.pen_address}',
 	        type : "get",
-	        data : {'count': count, 'index2' : index},
+	        data : {'count': count, 'index2' : index, 'gb' : 'scroll', 'order': curr_order},
 	   		success:(data) => {
+	   			
 				if(data.length == 0){
 					index--;
 					return;
 				} 
 				
-	   			$.each(data, function (index, PensionDTO) {
-	   //				isFetching = true;
+	   			$.each(data, function (i, PensionDTO) {
+	   				
 	   				
 		   			$('#penlist123123').append('<div class="col-lg-8 pensionlist">' + 
 									'<div class="pensions" data-pensionid='+PensionDTO.pen_id+'">'+
@@ -158,95 +171,83 @@ window.addEventListener('scroll', () => {
 	    });
 	}
 
-// 	   $(function() {
-// 	 	  $("#btnSearchFilter").click(function() {
-// 	 		  event.preventDefault();
-// 	 		  $(".pensionlist").html("")
-// 	 		  options = $(this).closest("form").serializeObject();
-// 	 		showList(lastPensionid, amount, options);
-// 	 	  })	  
-			  
-//	 	function getPensionStr(pension) {
-	/* 		var path = '';
-			var uuid = '';
-			var price = pension.price != null ? pension.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : 0;
-			for(var i in pension.attachs) {
-				path = pension.attachs[i].path.trim();
-				uuid = pension.attachs[i].uuid;
-				break;
-			} */
-/* 	 		str = "";
-	 		str += '<div class="blog-entry d-flex blog-entry-search-item pensions" data-pensionid ="' + pension.pen_id + '">'
-	 		str += '	<button class="img-link me-4">'
-	 		str += '		<img src="/resources/upload/' + pension.pen_image + '" alt="Image" class="img-fluid">'
-	 		str += '	</button>'
-	 		str += '	<div>'
-	 		str += '		<h2><a href="/search/pensionDetail?pensionid=' + pension.pen_id + ('${rm_checkin}' != "" ? "&rm_checkin=" + '${rm_checkin}' : "") + ('${rm_checkout}' != "" ? "&rm_checkout=" + '${rm_checkout}' : "") + '" class="bg-white border-0">' + pension.pen_name + '</a></h2>'
-	 		str += '		<p>' + pension.pen_address + '</p>'
-	 		str += '		<p>가격 ' + pension_rm_price + ' 원</p>'
-	 		str += '		<p>별점 </p>'
-	 		str += '		<p>리뷰 ' + pension.rv +  '</p>'
-	 		str += '	</div>'
-	 		str += '</div>'
-	 		return str;
-	 	} */
-// 			var lastPensionid = $(".pensions").last().data("pen_id")
-// 			showList(lastPensionid, amount, options);
-})
-</script>
-<!-- //   jQuery.fn.serializeObject = function() { -->
-<!-- // 	    var obj = null; -->
-<!-- // 	    try { -->
-<!-- // 	        if (this[0].tagName && this[0].tagName.toLowerCase() == "form") { -->
-<!-- // 	            var arr = this.serializeArray(); -->
-<!-- // 	            if (arr) { -->
-<!-- // 	                obj = {}; -->
-<!-- // 	                jQuery.each(arr, function() { -->
-<!-- // 	                	if(this.name.indexOf('.') != -1) { -->
-<!-- // 	                		var key = this.name.substring(0, this.name.indexOf(".")); -->
-<!-- // 	                		console.log(key); -->
-<!-- // 	                		if(!(key in obj)) { -->
-<!-- // 	                			obj[key] = []; -->
-<!-- // 	                		} -->
-<!-- // 	                		var subkey = this.name.substring(this.name.indexOf(".")+1); -->
-<!-- // 	                		var subvalue = this.value; -->
-<!-- // 	                		var o = {}; -->
-<!-- // 	                		o[subkey] = subvalue; -->
-<!-- // 	                		obj[key].push(o); -->
-<!-- // 	                	}else { -->
-<!-- // 		                    obj[this.name] = this.value; -->
-<!-- // 	                	} -->
-<!-- // 	                }); -->
-<!-- // 	            } -->
-<!-- // 	        } -->
-<!-- // 	    } catch (e) { -->
-<!-- // 	        alert(e.message); -->
-<!-- // 	    } finally { -->
-<!-- // 	    } -->
-	 
-<!-- // 	    return obj; -->
-<!-- // 	}; -->
-	
-<!-- // 	var options;   -->
+});
 
-	  
-<!-- // 	  /* console.log(getPensionStr(pension)) */ -->
-	
-<!-- // 		var lastPensionid; -->
-<!-- // 		var amount;  -->
-<!-- // 		function showList(lastPensionid, amount, option) { -->
-<!-- // 			var param = {lastPensionid : lastPensionid, amount : amount, option : option} -->
-<!-- // 			pensionService.getList(param, function(result) { -->
-<!-- //       		/* console.log(result) */ -->
-<!-- // 				var str = ''; -->
-<!-- // 				for (var i in result) { -->
-<!-- // 					str += getPensionStr(result[i]); -->
-<!-- // 				} -->
-<!-- // 				/* console.log(str); */ -->
-<!-- // 				$(".pensionlist").append(str); -->
-<!-- //       		}) -->
-<!-- // 		}   -->
-<!-- // 		showList(lastPensionid, amount); -->
+// 버튼
+window.onload = function(){
+	$(".order").on('click', function() {
+	    
+	    var pen_name = $('#pen_name').val();
+	    var pen_address =  $('#pen_address').val();
+	    var order = this.id;
+	    //var amount = $('.pensions').length;
+	    var count = ${page.amount};
+	    
+	   //debugger;
+	    
+	    if(!check){
+	    	return;
+	    }
+	    check = false;
+	    
+		$.ajax({
+			type: 'get',
+			url: 'searchPajax?pen_name=${param.pen_name}&pen_address=${param.pen_address}',
+			data: {
+				'pen_name': pen_name
+			  , 'pen_address' : pen_address
+			  , 'order' : order
+			  , 'index2' : 2
+			  , 'count': count
+			  , 'gb': 'button'
+			},
+	   		success:(data) => {
+	   			
+
+				if(data.length == 0){
+					index--;
+					return;
+				} 
+				$('#penlist123123').empty();
+	   			$.each(data, function (i, PensionDTO) {
+	   //				isFetching = true;
+	   				
+		   			$('#penlist123123').append('<div class="col-lg-8 pensionlist">' + 
+									'<div class="pensions" data-pensionid='+PensionDTO.pen_id+'">'+
+									'<div class="container">'+
+									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+PensionDTO.rm_checkin+'&rm_checkout='+PensionDTO.rm_checkout+'">'+
+										'<img src="${pageContext.request.contextPath }/resources/upload/'+PensionDTO.pen_image+'" alt="Image" class="img-fluid">'+
+									'</a>'+
+									'<div class="pensionInfo">'+
+									'<div class="infoBox1">'+
+									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+PensionDTO.rm_checkin+'&rm_checkout='+PensionDTO.rm_checkout+'">'+PensionDTO.pen_name+'</a>'+
+										'</h2>'+
+										'<p>'+PensionDTO.pen_address+'</p>'+
+										'</div>'+
+										'<div class="infoBox2">'+
+										'<p>가격 '+PensionDTO.rm_price+'원</p>'+
+										'</div>'+
+										'<div class="infoBox3">'+
+										'<p>별점 '+PensionDTO.star+'</p>'+
+										'<p>리뷰 '+PensionDTO.rv+'개</p>'+
+										'</div>'+
+									'</div>'+
+								  '</div>'+
+								'</div>'+ 
+							'</div>');
+	   			})
+	   			check = true;
+	   			index++;
+	   			
+	   			// 전역번수 초기화
+	   			index = 2;
+	   			curr_order = order;
+			}
+			
+		});
+	});
+} 
+</script>
 
 
      <script src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
