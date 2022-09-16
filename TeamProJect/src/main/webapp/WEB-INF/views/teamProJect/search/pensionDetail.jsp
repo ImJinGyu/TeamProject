@@ -84,7 +84,7 @@
 <%-- 				<input id="" type="hidden" name="pen_name" value="${pen_name }"> --%>
 				<input id="" type="hidden" name="pen_id" value="${pen_id }">
 				<div style="padding: 2.5px 2.5px 2.5px 2.5px;">
-					<div class="row form-detail" style="margin: auto; border: 1px solid gainsboro; border-radius: 10px; width: auto; background: white;">
+					<div class="row form-detail" style="display: flex;margin: auto;border: 1px solid gainsboro;border-radius: 10px;width: auto;background: white;align-items: center;">
 						<div class="col-md-2 ffb">
 			               	<input type='date' id="checkin" min="${today }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin" onchange="dateChk()"
 			               		style="width: 99%; margin: 0px 2.25px; padding: 0;" required>
@@ -95,7 +95,7 @@
 						</div>
 						<div class="col-md-2 ffb">
 							<button class="btn btn-primary w-100"
-							 style="border: none; border-radius: 10px; height: 48px; font-size: 27px; font-family: 'Do Hyeon', sans-serif;">변 경</button>
+							 style="border: none;border-radius: 10px;height: 35px;font-size: 25px;font-family: 'Do Hyeon', sans-serif;display: flex;justify-content: center;align-items: center;padding-bottom: 4px;">변 경</button>
 						</div>
 					</div>
 				</div>
