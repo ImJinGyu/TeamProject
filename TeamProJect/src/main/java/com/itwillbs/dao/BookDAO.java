@@ -20,21 +20,28 @@ public class BookDAO {
 		return sqlSession.selectList(namespace+".listReservation",reservationDTO);
 	}
 	
-	public List<ReservationDTO> getListCheckReservation(ReservationDTO reservationDTO) {
-		return sqlSession.selectList(namespace+".getListCheckReservation",reservationDTO);
+	public List<ReservationDTO> getListCheckReservation(String string) {
+		return sqlSession.selectList(namespace+".getListCheckReservation",string);
 	}
 
 	public ReservationDTO getMember(String user_id) {
 		return sqlSession.selectOne(namespace+".getMember", user_id);
 	}
 
-
+	public List<ReservationDTO> reservationAtMonth(String pen_id) {
+		return sqlSession.selectList(namespace+".reservationAtMonth", pen_id);
+		
+	}
 
 
 
 
 	public ReservationDTO listReservation2(ReservationDTO reservationDTO) {
 		return sqlSession.selectOne(namespace+".listReservation2",reservationDTO);
+	}
+
+	public int cancelReservation(String res_num) {
+		return sqlSession.selectOne(namespace+".cancelReservation",res_num);
 	}
 
 //	public void cancelReservation(String res_number) {

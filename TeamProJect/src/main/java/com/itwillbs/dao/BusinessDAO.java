@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.domain.ReviewDTO;
 
 @Repository
@@ -96,7 +97,7 @@ public class BusinessDAO {
 	}
 
 
-
+	
 
 	
 

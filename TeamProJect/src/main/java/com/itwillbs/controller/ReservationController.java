@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.BookDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.service.BookService;
 
@@ -49,8 +51,8 @@ public class ReservationController {
 		System.out.println(reservationDTO.toString());
 		
 		List<ReservationDTO> listReservation2 = bookService.listReservation(reservationDTO);
-		System.out.println(listReservation2.toString());
-		List<ReservationDTO> listReservation3 = bookService.getListCheckReservation(reservationDTO);
+		System.out.println(listReservation2.get(0).getPen_id());
+		List<ReservationDTO> listReservation3 = bookService.getListCheckReservation(listReservation2.get(0).getPen_id());
 		System.out.println(listReservation3.toString());
 		if(listReservation3.size() > 0) {
 			model.addAttribute("reservation2",listReservation3 );
@@ -60,13 +62,41 @@ public class ReservationController {
 		}
 	}
 	
-//	@RequestMapping(value = "/business/cancelReservation", method = RequestMethod.GET)
-//	public String cancelReservation(String res_number) {
-//		bookService.cancelReservation(res_number);
-//		return "teamProJect/business/checkReservation";
-//	}
+	@RequestMapping(value = "/business/cancelReservation", method = RequestMethod.GET)
+	public String cancelReservation(ReservationDTO reservationDTO, Model model, HttpSession session) {
+		String user_id = (String)session.getAttribute("user_id");
+		reservationDTO.setUser_id(user_id);
+		List<ReservationDTO> listReservation3 = bookService.listReservation(reservationDTO);
+		if(listReservation3.size() > 0) {
+			String Res_num = listReservation3.get(0).getRes_number();
+			
+			bookService.cancelReservation(Res_num);
+			return "redirect:/business/b_index";
+		} else {
+			return "redirect:teamProJect/business/checkReservation";
+		}
 		
-//		System.out.println(reservationDTO2.getPen_id().toString());
+		
+	}
+	
+	@RequestMapping(value = "/business/listPayment", method = RequestMethod.GET)
+	public String listPayment(ReservationDTO reservationDTO  , Model model, HttpSession session) {
+		String user_id = (String)session.getAttribute("user_id");		
+		String user_type = (String)session.getAttribute("user_type");
+		
+		if(user_type == null) user_type = "0";
+		if(user_type.equals("2")) {
+			
+			reservationDTO.setUser_id(user_id);;
+			List<ReservationDTO> listReservation = bookService.listReservation(reservationDTO);
+			
+			model.addAttribute("listReservation3", listReservation);	
+			
+			return "teamProJect/business/listPayment";
+		} else {
+			return "teamProJect/business/msg";
+		}
+	}
 		
 		
 				

@@ -15,7 +15,14 @@ public class ReservationDTO {
 	private String rm_name;
 	private String user_name;
 	private String res_status;
+	private String rm_price;
 	
+	public String getRm_price() {
+		return rm_price;
+	}
+	public void setRm_price(String rm_price) {
+		this.rm_price = rm_price;
+	}
 	public String getRes_status() {
 		return res_status;
 	}

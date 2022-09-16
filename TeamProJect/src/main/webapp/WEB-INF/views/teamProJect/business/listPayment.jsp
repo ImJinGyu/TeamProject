@@ -44,14 +44,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${reservation}" var="p">
+                                    	<c:forEach items="${listReservation3}" var="p">
 	                                        <tr>
-	                                            <td class="text-center">${p.paymentNum}</td>
-	                                            <td class="text-center text-truncate">${p.roomName}</td>
-	                                            <td class="text-center">${p.userid}</td>
-	                                            <td class="text-center">${p.paymentStatus ? "승인" : "취소"}</td>
-	                                            <td class="text-right text-truncate"><fmt:formatNumber type="number" maxFractionDigits="3" value="${p.paymentPrice}" />원</td>
-	                                            <td class="text-center small pt-3">${p.paymentDate}</td>
+	                                            <td class="text-center">${p.res_number}</td>
+	                                            <td class="text-center text-truncate">${p.pen_name}(${p.rm_name})</td>
+	                                            <td class="text-center">${p.user_id}</td>
+	                                            <td class="text-center">${p.res_status ? "취소" : "승인"}</td>
+	                                            <td class="text-right text-truncate"><fmt:formatNumber type="number" maxFractionDigits="3" value="${p.rm_price}" />원</td>
+	                                            <td class="text-center small pt-3">${p.res_time}</td>
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>

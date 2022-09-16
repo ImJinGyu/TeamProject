@@ -39,8 +39,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                숙소 이용 예정 건수</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${checkReservation} 건</div>
+                                                숙소 이용 건수</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${rCount} 건</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
