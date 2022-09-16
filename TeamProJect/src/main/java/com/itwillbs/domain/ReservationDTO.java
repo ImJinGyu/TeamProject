@@ -17,6 +17,7 @@ public class ReservationDTO {
 	private String res_status;
 	private String rm_price;
 	
+	
 	public String getRm_price() {
 		return rm_price;
 	}
@@ -107,7 +108,8 @@ public class ReservationDTO {
 		return "ReservationDTO [res_number=" + res_number + ", user_id=" + user_id + ", user_type=" + user_type
 				+ ", pen_id=" + pen_id + ", pen_name=" + pen_name + ", check_in_d=" + check_in_d + ", check_out_d="
 				+ check_out_d + ", check_in_t=" + check_in_t + ", check_out_t=" + check_out_t + ", res_time=" + res_time
-				+ ", rm_name=" + rm_name + ", user_name=" + user_name + ", res_status=" + res_status + "]";
+				+ ", rm_name=" + rm_name + ", user_name=" + user_name + ", res_status=" + res_status + ", rm_price="
+				+ rm_price + "]";
 	}
 	
 	

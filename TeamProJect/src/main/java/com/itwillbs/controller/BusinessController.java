@@ -58,33 +58,21 @@ public class BusinessController extends FunctionClass {
 	@RequestMapping(value = "/business/b_index", method = RequestMethod.GET)
 	public String b_index(HttpSession session, Model model, ReservationDTO reservationDTO) {
 		String user_type = (String)session.getAttribute("user_type");
-		
 		if(user_type == null) user_type = "0";
-		
 		if(user_type.equals("2")) {
 			// 사업자페이지 로그인아이디 화면단 표시 구현
 			System.out.println("유저타입 : " + session.getAttribute("user_type"));
 			String user_id = (String)session.getAttribute("user_id");
 			model.addAttribute("user_id", user_id);
-			
 			// 사업자페이지 초기화면 데이터 표시 구현
 			System.out.println(user_id);
 			int count = businessService.reservationCount(user_id);
 			System.out.println(count);
 			model.addAttribute("rCount",count);
-			reservationDTO.setUser_id(user_id);
-			System.out.println(reservationDTO.toString());
-			List<ReservationDTO> listReservation2 = businessService.listReservation(reservationDTO);
-			System.out.println(listReservation2.get(0).getPen_id());
-			List<ReservationDTO> listReservation3 = businessService.reservationAtMonth(listReservation2.get(0).getPen_id());
-			System.out.println(listReservation3.toString());
-			if(listReservation3.size() > 0) {
-				model.addAttribute("reservation2",listReservation3 );
-				return "redirect:/business/b_index";
-			} 
+			reservationDTO = businessService.reservationAtMonth(user_id);
+			model.addAttribute("AtMonth",reservationDTO);
+				return "teamProJect/business/b_index";
 		} else {
-			return "teamProJect/business/msg";
-//			return "redirect:/business/b_index";
 		}
 		return "teamProJect/business/msg"; 
 	}

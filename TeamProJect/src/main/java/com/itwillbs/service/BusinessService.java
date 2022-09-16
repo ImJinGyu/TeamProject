@@ -92,14 +92,8 @@ public class BusinessService {
 		
 	}
 
-
-	public List<ReservationDTO> listReservation(ReservationDTO reservationDTO) {
-		return businessDAO.listReservation(reservationDTO);
-	}
-
-
-	public List<ReservationDTO> reservationAtMonth(String pen_id) {
-		return businessDAO.reservationAtMonth(pen_id);
+	public ReservationDTO reservationAtMonth(String user_id) {
+		return businessDAO.reservationAtMonth(user_id);
 	}
 
 
