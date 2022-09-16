@@ -62,7 +62,10 @@
 						ON (M.USER_ID = R.USER_ID);
 	</select>
 	
-
+	<select id="pensionCount" resultType="int">
+		SELECT COUNT(PEN_ID)
+		  FROM PENSION
+	</select>
 	
 	
 	

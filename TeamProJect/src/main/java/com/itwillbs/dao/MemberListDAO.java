@@ -40,6 +40,9 @@ public class MemberListDAO {
 	public Map<String ,Object> customCount() {
 		return sqlSession.selectOne(NAMESPACE2 + ".customCount");
 	}
-
+	
+	public int pensioncount() {
+		return sqlSession.selectOne(NAMESPACE2 + ".pensionCount");
+	}
 }
 

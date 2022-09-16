@@ -37,4 +37,8 @@ public class MemberListService {
 	public Map<String ,Object> customCount() {
 		return memberListDAO.customCount();
 	}
+	
+	public int pensioncount() {
+		return memberListDAO.pensioncount();
+	}
 }

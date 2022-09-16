@@ -23,7 +23,9 @@ public class ReviewDAO {
 	public int reviewcount() {
 		return sqlSession.selectOne(NAMESPACE + ".reviewCount");
 	}
-	
+	public int reviewcount2() {
+		return sqlSession.selectOne(NAMESPACE + ".reviewcount2");
+	}
 	public void insertreview(ReviewDTO rT) {
 		sqlSession.insert(NAMESPACE + ".reviewInput", rT);
 	}

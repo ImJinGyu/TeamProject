@@ -39,10 +39,12 @@
 	        </a>
 	        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages2" data-parent="#accordionSidebar">
 	            <div class="bg-white py-2 collapse-inner rounded">
-	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 전체 펜션 목록</a>
+	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/a_pensionlist">- 전체 펜션 목록</a>
 	                
-	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/pensionAdStatus">- 펜션 광고 승인</a>
-	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/pensionListWithAd">- 광고 목록 조회</a>
+<%-- 	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/pensionAdStatus">- 펜션 광고 승인</a> --%>
+<%-- 	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/pensionListWithAd">- 광고 목록 조회</a> --%>
+	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 펜션 광고 승인</a>
+	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 광고 목록 조회</a>
 	            </div>
 	        </div>
 	    </li>
@@ -55,7 +57,7 @@
 	        </a>
 	        <div id="collapsePages3" class="collapse" aria-labelledby="headingPages3" data-parent="#accordionSidebar">
 	            <div class="bg-white py-2 collapse-inner rounded">
-	                <a class="collapse-item" href="#" id="replyListAll">- 리뷰 관리</a>
+	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/a_reviewlist" id="replyListAll">- 리뷰 관리</a>
 	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/listPaymentAll">- 전체 매출 조회</a>
 	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 관리자 권한 부여</a>
 	            </div>

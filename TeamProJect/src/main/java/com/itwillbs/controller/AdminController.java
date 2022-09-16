@@ -22,13 +22,17 @@ import org.springframework.web.multipart.MultipartFile;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PagingDTO;
+import com.itwillbs.domain.PensionDTO;
 import com.itwillbs.domain.QnaDTO;
 import com.itwillbs.domain.ReservationDTO;
+import com.itwillbs.domain.ReviewDTO;
 import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.BusinessService;
 import com.itwillbs.service.MemberListService;
 import com.itwillbs.service.MemberService;
 import com.itwillbs.service.ReservationService;
+import com.itwillbs.service.ReviewService;
+import com.itwillbs.service.SearchService;
 
 
 @Controller
@@ -40,9 +44,47 @@ public class AdminController {
 	@Inject
 	private ReservationService reservationService;
 	
+	@Inject
+	private SearchService searchService;
+	
+	@Inject
+	private ReviewService reviewservice;
+	
+	
 	@RequestMapping(value = "/admin/a_myPage", method = RequestMethod.GET)
 	public String a_myPage() {
 		return "teamProJect/admin/a_myPage";
+	}
+	
+	@RequestMapping(value = "/admin/a_pensionlist", method = RequestMethod.GET)
+	public String a_pensionlist(Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("index", "");
+		List<PensionDTO> pensionList = searchService.getPensionList(map);
+		System.out.println(pensionList);
+		model.addAttribute("list",pensionList);
+		return "teamProJect/admin/a_pensionlist";
+	}
+	
+	@RequestMapping(value = "/admin/a_reviewlist", method = RequestMethod.GET)
+	public String a_reviewlist(Model model, HttpServletRequest req) {
+		
+		int totalCount = reviewservice.reviewcount2();
+		String spageNum = req.getParameter("pageNum");
+		int ipageNum;
+		if(spageNum == null) {
+			ipageNum = 1;
+		}else {
+			ipageNum = Integer.parseInt(req.getParameter("pageNum"));
+		}
+		Map<String, Integer> para = new FunctionClass().pagingFunction(ipageNum, totalCount, model);
+		Map<String, Object> sMap = new HashMap<String, Object>();
+		sMap.put("index", para.get("index"));
+		sMap.put("amount", para.get("amount"));
+		List<ReviewDTO> reviewlist = reviewservice.selectreviewlist(sMap);
+		System.out.println(reviewlist);
+		model.addAttribute("list",reviewlist);
+		return "teamProJect/admin/a_reviewlist";
 	}
 	
 	@RequestMapping(value = "/admin/a_index", method = RequestMethod.GET)
@@ -50,7 +92,9 @@ public class AdminController {
 		qT.setReply("N");
 		int Nqna = memberListService.qnaCount(qT);
 		Map<String ,Object> sMap = memberListService.customCount();
+		int pcount = memberListService.pensioncount();
 		sMap.put("NQNA", Nqna);
+		sMap.put("pcount", pcount);
 		model.addAttribute("Map",sMap);
 		return "teamProJect/admin/a_index";
 	}

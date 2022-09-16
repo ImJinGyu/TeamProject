@@ -25,6 +25,10 @@ public class ReviewService {
 		return reviewDAO.reviewcount();
 	}
 	
+	public int reviewcount2() {
+		return reviewDAO.reviewcount2();
+	}
+	
 	public void insertreview(ReviewDTO rT) {
 		reviewDAO.insertreview(rT);
 	}
