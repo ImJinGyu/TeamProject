@@ -30,7 +30,7 @@
 			 , #{check_in_d}
 			 , #{check_out_d}
 			 , #{check_in_t}
-			 , #{check_out_d}
+			 , #{check_out_t}
 			 , #{res_time}
 			 , #{rm_price}
 			 , #{res_status} )

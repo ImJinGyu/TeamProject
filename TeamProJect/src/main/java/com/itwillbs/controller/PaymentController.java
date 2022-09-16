@@ -20,6 +20,7 @@ import com.siot.IamportRestClient.response.Payment;
 public class PaymentController {
 	
 	private IamportClient api;
+	
 	@Inject
 	private PaymentService service;
 	
@@ -30,14 +31,13 @@ public class PaymentController {
 	
 	@ResponseBody
 	@RequestMapping(value="search/insertReservation", method = RequestMethod.POST)
-	public String paymenByImpUid (@RequestParam Map<String, Object> para){
+	public String paymentByImpUid (@RequestParam Map<String, Object> para){
 		
 		Map<String, Object> sMap = para;
 		sMap.put("res_number", para.get("pen_id").toString().concat(para.get("room_id").toString().concat(new FunctionClass().nowTime("yyyyMMddHHmmss"))));
 		sMap.put("res_time", new FunctionClass().nowTime("yyyy-MM-dd HH:mm:ss"));
 		System.out.println(sMap);
 		service.insertreservation(sMap);
-		
 		
 		return "redirect:/member/mypage/listReservation";
 		

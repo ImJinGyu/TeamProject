@@ -80,7 +80,7 @@
 					<strong>예약자 이름</strong>
 					<p class="inp_wrap">
 						<input type="hidden" name="user_id" value="${user_id}">
-						<input type="text" name="user_name" maxlength="20" value="${memberDTO.user_name }" readonly style="margin: 10.5px 0;"><!--  placeholder="체크인시 필요한 정보입니다." -->
+						<input type="text" name="user_name" maxlength="20" value="${memberDTO.user_name }" readonly style="margin: 10.5px 0; color: black;"><!--  placeholder="체크인시 필요한 정보입니다." -->
 					</p>
 					<p class="alert_txt">
 						<!-- 한글, 영문, 숫자만 입력 가능. (문자 사이 공백은 1칸만 입력 가능) -->
@@ -93,7 +93,7 @@
 						<span>개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span>
 						<div>
 							<div class="inp_wrap">
-								<input type="tel" name="user_phonenumber" maxlength="13" value="${memberDTO.user_phonenumber }" class="" style="margin: 10.5px 0;"><!--  placeholder="체크인시 필요한 정보입니다." -->
+								<input type="tel" name="user_phonenumber" maxlength="13" value="${memberDTO.user_phonenumber }" class="" style="margin: 10.5px 0; color: black;"><!--  placeholder="체크인시 필요한 정보입니다." -->
 							</div>
 						</div>
 					</div>
@@ -108,7 +108,7 @@
 <%@ include file="../footer.jsp" %>
 	
 	<script>
-	var res_num = '${businessDTO.PEN_ID }' + '${param.room_id}';
+		var res_num = '${businessDTO.PEN_ID }' + '${param.room_id}';
 		function iamport(){
 // 			debugger;
 			var amount = '${total }';
@@ -146,17 +146,17 @@
 			        $.ajax({
 			         	url: "insertReservation",
 			        	type: "POST",
-			        	data: { 'user_id':'${sessionScope.user_id}',
-				        		'user_type':'${sessionScope.user_type}',
-				        		'pen_id':'${businessDTO.PEN_ID }',
-				        		'room_id':'${param.room_id}',
-				        		'rm_name':'${businessDTO.RM_NAME }',
-				        		'check_in_d':'${rm_checkin}',
+			        	data: { 'user_id'	 :'${sessionScope.user_id}',
+				        		'user_type'	 :'${sessionScope.user_type}',
+				        		'pen_id'	 :'${businessDTO.PEN_ID }',
+				        		'room_id'	 :'${param.room_id}',
+				        		'rm_name'	 :'${businessDTO.RM_NAME }',
+				        		'check_in_d' :'${rm_checkin}',
 				        		'check_out_d':'${rm_checkout}',
-				        		'check_in_t':'${businessDTO.RM_CHECKIN }',
+				        		'check_in_t' :'${businessDTO.RM_CHECKIN }',
 				        		'check_out_t':'${businessDTO.RM_CHECKOUT }',
-			        		    'rm_price':'${total }',
-			        		    'res_status':'1'
+			        		    'rm_price'	 :'${total }',
+			        		    'res_status' :'1'
 			        		   },
 			        	dataType:"json",
 			        })
