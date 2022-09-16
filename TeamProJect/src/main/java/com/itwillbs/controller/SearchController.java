@@ -333,13 +333,17 @@ public class SearchController {
 
 		// 총 결제금액 = 1박 당 가격 * 일수
 		int total = rm_price * days;
+		
+		// 1 부터 100 까지 난수 생성_kjw 추가
+		int uidRandom = (int)(Math.random() * 100) + 1;
 
 //		System.out.println("펜션 이름 : " + pen_name);
 		System.out.println("방 번호 : " + room_id);
 		System.out.println("방 가격 : " + rm_price + " 원 /" + days + "박");
 		System.out.println("checkin : " + rm_checkin + " / checkout : " + rm_checkout);
 		System.out.println("총 결제금액 : " + total + " 원");
-
+		System.out.println("랜덤번호 : " + uidRandom);
+		
 		BusinessDTO businessDTO = searchService.getRoomDetail(room_id);
 		MemberDTO memberDTO = searchService.getNamePhone(user_id);
 
@@ -353,6 +357,7 @@ public class SearchController {
 		model.addAttribute("days", days);
 		model.addAttribute("total", total);
 		model.addAttribute("memberDTO", memberDTO);
+		model.addAttribute("uidRandom", uidRandom);
 
 		return "teamProJect/search/reserve";
 

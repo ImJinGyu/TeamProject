@@ -93,7 +93,7 @@
 						<span>개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span>
 						<div>
 							<div class="inp_wrap">
-								<input type="tel" name="user_phonenumber" maxlength="13" value="${memberDTO.user_phonenumber }" class="" style="margin: 10.5px 0; color: black;"><!--  placeholder="체크인시 필요한 정보입니다." -->
+								<input type="tel" name="user_phonenumber" maxlength="13" value="${memberDTO.user_phonenumber }" readonly class="" style="margin: 10.5px 0; color: black;"><!--  placeholder="체크인시 필요한 정보입니다." -->
 							</div>
 						</div>
 					</div>
@@ -108,12 +108,12 @@
 <%@ include file="../footer.jsp" %>
 	
 	<script>
-		var res_num = '${businessDTO.PEN_ID }' + '${param.room_id}';
+		var res_num = '${businessDTO.PEN_ID }' + '${param.room_id}' + '${uidRandom }';
+// 		alert(res_num);
 		function iamport(){
 // 			debugger;
 			var amount = '${total }';
 // 			var b = '${businessDTO.USER_ID }';
-// 			alert(b);
 			IMP.init('imp84747824');	//가맹점 식별코드	
 			IMP.request_pay({
 			    pg : 'html5_inicis',
