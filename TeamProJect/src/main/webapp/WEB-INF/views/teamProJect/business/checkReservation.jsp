@@ -49,8 +49,8 @@
 	                                            <td class="text-center">${r.res_number}</td>
 	                                            <td class="text-center text-truncate">${r.pen_name}(${r.rm_name})</td>
 	                                            <td class="text-center">${r.user_id}</td>
-	                                    		<td class="text-center">${r.check_in_d}  ${r.check_in_t}</td>
-	                                            <td class="text-center">${r.check_out_d}  ${r.check_out_t}</td>
+	                                    		<td class="text-center">${r.check_in_d}</td>
+	                                            <td class="text-center">${r.check_out_d}</td>
 	                                            <td class="text-center small pt-3"><a href="/business/cancelReservation?reservationNum=${r.res_status}" onclick="confirm('예약을 취소하시겠습니까?')">취소하기</a></td>
 	                                        </tr>
                                         </c:forEach>

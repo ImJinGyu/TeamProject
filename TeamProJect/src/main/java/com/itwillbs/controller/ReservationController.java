@@ -45,11 +45,8 @@ public class ReservationController {
 	@RequestMapping(value = "/business/checkReservation", method = RequestMethod.GET)
 	public String checkReservation(ReservationDTO reservationDTO, Model model, HttpSession session){
 		String user_id = (String)session.getAttribute("user_id");
-		
 		reservationDTO.setUser_id(user_id);;
-		
 		System.out.println(reservationDTO.toString());
-		
 		List<ReservationDTO> listReservation2 = bookService.listReservation(reservationDTO);
 		System.out.println(listReservation2.get(0).getPen_id());
 		List<ReservationDTO> listReservation3 = bookService.getListCheckReservation(listReservation2.get(0).getPen_id());
@@ -64,17 +61,17 @@ public class ReservationController {
 	
 	@RequestMapping(value = "/business/cancelReservation", method = RequestMethod.GET)
 	public String cancelReservation(ReservationDTO reservationDTO, Model model, HttpSession session) {
-		String user_id = (String)session.getAttribute("user_id");
-		reservationDTO.setUser_id(user_id);
-		List<ReservationDTO> listReservation3 = bookService.listReservation(reservationDTO);
-		if(listReservation3.size() > 0) {
-			String Res_num = listReservation3.get(0).getRes_number();
-			
-			bookService.cancelReservation(Res_num);
-			return "redirect:/business/b_index";
-		} else {
+//		String user_id = (String)session.getAttribute("user_id");
+//		reservationDTO.setUser_id(user_id);
+//		List<ReservationDTO> listReservation3 = bookService.listReservation(reservationDTO);
+//		if(listReservation3.size() > 0) {
+//			String Res_num = listReservation3.get(0).getRes_number();
+//			
+//			bookService.cancelReservation(Res_num);
+//			return "redirect:/business/b_index";
+//		} else {
 			return "redirect:teamProJect/business/checkReservation";
-		}
+//		}
 		
 		
 	}

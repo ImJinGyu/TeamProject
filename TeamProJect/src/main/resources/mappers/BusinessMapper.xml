@@ -238,7 +238,7 @@
 	 	 , M.USER_NAME, R.USER_ID
 	  	 , R.CHECK_IN_D, R.CHECK_IN_T
 	 	 , R.CHECK_OUT_D, R.CHECK_OUT_T
-		 , R.RES_TIME,R.PEN_ID
+		 , R.RES_TIME,R.PEN_ID,R.RM_PRICE
   	 FROM RESERVATION R LEFT JOIN PENSION P
 						ON (P.PEN_ID = R.PEN_ID)
 						LEFT JOIN MEMBER M
@@ -265,7 +265,7 @@
                         LEFT JOIN PENSION_ROOM PR
 						ON (PR.PEN_ID = R.PEN_ID)
 	 WHERE
-	 R.USER_ID = #{user_id}
+	 R.PEN_ID = #{PEN_ID}
 	 AND DATE_FORMAT(R.CHECK_IN_D, '%Y-%m-%d') > SYSDATE()
 	 AND PR.RES_STATUS = '1'
  	</select>
@@ -327,7 +327,7 @@
 
 	 	<!--(성빈) 사업자 이번달 예약건수  -->
  	<select id="reservationAtMonth" resultType="com.itwillbs.domain.ReservationDTO">
- 		SELECT count(RES_NUMBER), sum(RM_PRICE), RES_TIME
+ 		SELECT COUNT(RES_NUMBER) RES_NUMBER, SUM(RM_PRICE) RM_PRICE
         FROM RESERVATION
 		WHERE
 		    DATE_FORMAT(RES_TIME, 'YY') = DATE_FORMAT(SYSDATE(), 'YY')

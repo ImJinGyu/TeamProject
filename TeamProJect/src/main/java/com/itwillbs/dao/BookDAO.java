@@ -34,8 +34,6 @@ public class BookDAO {
 	}
 
 
-
-
 	public ReservationDTO listReservation2(ReservationDTO reservationDTO) {
 		return sqlSession.selectOne(namespace+".listReservation2",reservationDTO);
 	}

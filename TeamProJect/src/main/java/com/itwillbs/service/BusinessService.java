@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.BusinessDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.domain.ReviewDTO;
 
 @Service
@@ -90,6 +91,18 @@ public class BusinessService {
 		businessDAO.updateAnswer(reviewDTO);
 		
 	}
+
+
+	public List<ReservationDTO> listReservation(ReservationDTO reservationDTO) {
+		return businessDAO.listReservation(reservationDTO);
+	}
+
+
+	public List<ReservationDTO> reservationAtMonth(String pen_id) {
+		return businessDAO.reservationAtMonth(pen_id);
+	}
+
+
 
 
 

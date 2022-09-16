@@ -97,6 +97,16 @@ public class BusinessDAO {
 	}
 
 
+	public List<ReservationDTO> listReservation(ReservationDTO reservationDTO) {
+		return sqlSession.selectList(namespace + ".listReservation", reservationDTO);
+	}
+
+
+	public List<ReservationDTO> reservationAtMonth(String pen_id) {
+		return sqlSession.selectList(namespace + ".reservationAtMonth", pen_id);
+	}
+
+
 	
 
 	

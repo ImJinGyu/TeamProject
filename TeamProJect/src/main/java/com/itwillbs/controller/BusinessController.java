@@ -26,6 +26,7 @@ import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.domain.ReviewDTO;
 import com.itwillbs.function.FunctionClass;
+import com.itwillbs.service.BookService;
 import com.itwillbs.service.BusinessService;
 
 @Controller
@@ -34,8 +35,7 @@ public class BusinessController extends FunctionClass {
 	@Inject
 	private BusinessService businessService;
 	
-	@Inject
-	private BusinessDAO businessDAO;
+	
 	
 	// 업로드 경로
 //		Resource(name = "servlet-context.xml에 있는 업로드 경로의 id값")
@@ -56,7 +56,7 @@ public class BusinessController extends FunctionClass {
 	
 	
 	@RequestMapping(value = "/business/b_index", method = RequestMethod.GET)
-	public String b_index(HttpSession session, Model model) {
+	public String b_index(HttpSession session, Model model, ReservationDTO reservationDTO) {
 		String user_type = (String)session.getAttribute("user_type");
 		
 		if(user_type == null) user_type = "0";
@@ -72,24 +72,34 @@ public class BusinessController extends FunctionClass {
 			int count = businessService.reservationCount(user_id);
 			System.out.println(count);
 			model.addAttribute("rCount",count);
-			
-			return "teamProJect/business/b_index";
+			reservationDTO.setUser_id(user_id);
+			System.out.println(reservationDTO.toString());
+			List<ReservationDTO> listReservation2 = businessService.listReservation(reservationDTO);
+			System.out.println(listReservation2.get(0).getPen_id());
+			List<ReservationDTO> listReservation3 = businessService.reservationAtMonth(listReservation2.get(0).getPen_id());
+			System.out.println(listReservation3.toString());
+			if(listReservation3.size() > 0) {
+				model.addAttribute("reservation2",listReservation3 );
+				return "redirect:/business/b_index";
+			} 
 		} else {
 			return "teamProJect/business/msg";
+//			return "redirect:/business/b_index";
 		}
+		return "teamProJect/business/msg"; 
 	}
 	
 	
 	
-	@RequestMapping(value = "/business/listPayment", method = RequestMethod.GET)
-	public String listPayment(HttpSession session) {
-				
-		String user_type = (String)session.getAttribute("user_type");
-		if(user_type == null) user_type = "0";
-		
-		if(user_type.equals("2")) return "teamProJect/business/listPayment";
-		else return "teamProJect/business/msg";
-	}
+//	@RequestMapping(value = "/business/listPayment", method = RequestMethod.GET)
+//	public String listPayment(HttpSession session) {
+//				
+//		String user_type = (String)session.getAttribute("user_type");
+//		if(user_type == null) user_type = "0";
+//		
+//		if(user_type.equals("2")) return "teamProJect/business/listPayment";
+//		else return "teamProJect/business/msg";
+//	}
 	
 	
 	
