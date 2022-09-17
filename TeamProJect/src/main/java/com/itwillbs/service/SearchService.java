@@ -37,9 +37,14 @@ public class SearchService {
 	}
 
 	/* pen_name에 해당하는 방 리스트 가져오기 (지원) */
-	public List<BusinessDTO> getSearchRoomList(String pen_name) {
-		System.out.println("SearchDAO getRoomList()");
-		return searchDAO.getSearchRoomList(pen_name);
+//	public List<BusinessDTO> getSearchRoomList(String pen_name) {
+//		System.out.println("SearchDAO getSearchRoomList()");
+//		return searchDAO.getSearchRoomList(pen_name);
+//	}
+
+	public List<BusinessDTO> getSearchRoomList(Map<String, String> param) {
+		System.out.println("SearchDAO getSearchRoomList()");
+		return searchDAO.getSearchRoomList(param);
 	}
 
 	public List<PensionDTO> getTopList(PensionDTO pensionDTO) {

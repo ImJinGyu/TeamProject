@@ -169,29 +169,18 @@
 <!-- 		  FROM ROOM -->
 <!-- 	</select> -->
 
-	<!-- 이지원 -->
-<!-- 	<select id="getPensionDetail" resultType="com.itwillbs.domain.PensionDTO"> -->
-<!-- 		SELECT P.PEN_NAME -->
-<!-- 		     , P.PEN_ADDRESS -->
-<!-- 		     , A.PEN_IMAGE -->
-<!-- 		  FROM PENSION P -->
-<!-- 		  JOIN PENSION_ATTACH A -->
-<!-- 		    ON P.PEN_ID = A.PEN_ID -->
-<!-- 		 WHERE P.PEN_NAME = #{PEN_NAME}; -->
-<!-- 	</select> -->
 
-	
+	<!-- 펜션 정보 불러오기 (지원) -->	
 	<select id="getPensionDetail" resultType="com.itwillbs.domain.PensionDTO">
 		SELECT P.PEN_NAME
 		     , P.PEN_ADDRESS
 		     , A.PEN_IMAGE
-		  FROM PENSION P
-		  JOIN PENSION_ATTACH A
-		    ON P.PEN_ID = A.PEN_ID
+		  FROM PENSION P JOIN PENSION_ATTACH A
+		                   ON P.PEN_ID = A.PEN_ID
 		 WHERE P.PEN_ID = #{PEN_ID};
 	</select>
 	
-	<!-- 이지원 -->
+	<!-- 방 정보 불러오기 (지원) -->
  	<select id="getSearchRoomList" resultType="com.itwillbs.domain.BusinessDTO">
 		SELECT R.ROOM_ID
 		     , R.RM_PRICE
@@ -199,13 +188,14 @@
 		     , R.RM_CHECKOUT
 		     , RA.RM_NAME
 		     , RA.RM_IMAGE
-		  FROM PENSION P
-		  JOIN PENSION_ROOM R
-		    ON P.PEN_ID = R.PEN_ID
-		  JOIN ROOM_ATTACH RA
-		    ON R.RM_NAME = RA.RM_NAME
-		 WHERE P.PEN_ID = #{PEN_ID}
-		 ORDER BY CONVERT(R.RM_PRICE, SIGNED);		<!-- convert : 문자형을 숫자형으로 변환 -->
+		     , CASE WHEN TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}) > 1 THEN CONCAT('예 약 하 기 | ', FORMAT(R.RM_PRICE*TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}), 0), '원 (', TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}), '박)')
+		            ELSE '예 약 하 기' END AS BOOK
+		  FROM PENSION P JOIN PENSION_ROOM R
+		    			   ON P.PEN_ID = R.PEN_ID
+		  				 JOIN ROOM_ATTACH RA
+		    			   ON R.RM_NAME = RA.RM_NAME
+		 WHERE P.PEN_ID = #{pen_id}
+		 ORDER BY CONVERT(R.RM_PRICE, SIGNED)	<!-- convert : 문자형을 숫자형으로 변환 -->
 	</select>
 	
 	<!-- 이지원 -->

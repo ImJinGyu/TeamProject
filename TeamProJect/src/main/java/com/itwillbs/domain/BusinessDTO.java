@@ -23,6 +23,7 @@ public class BusinessDTO {
 	private String RM_NUM;
 //	private String ROOM_ID;
 	private int ROOM_ID;
+	private String BOOK;
 	
 	
 	public String getRM_NUM() {
@@ -122,6 +123,12 @@ public class BusinessDTO {
 	}
 	public void setRM_PRICE(String rM_PRICE) {
 		RM_PRICE = rM_PRICE;
+	}
+	public String getBOOK() {
+		return BOOK;
+	}
+	public void setBOOK(String bOOK) {
+		BOOK = bOOK;
 	}
 	
 	

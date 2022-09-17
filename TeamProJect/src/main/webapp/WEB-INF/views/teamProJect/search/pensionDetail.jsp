@@ -86,11 +86,11 @@
 				<div style="padding: 2.5px 2.5px 2.5px 2.5px;">
 					<div class="row form-detail" style="display: flex;margin: auto;border: 1px solid gainsboro;border-radius: 10px;width: auto;background: white;align-items: center;">
 						<div class="col-md-2 ffb">
-			               	<input type='date' id="checkin" min="${today }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin" onchange="dateChk()"
+			               	<input type='date' id="checkin" min="${rm_checkin }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin" onchange="dateChk()"
 			               		style="width: 99%; margin: 0px 2.25px; padding: 0;" required>
 						</div>
 						<div class="col-md-2 ffb">
-			               	<input type='date' id="checkout" min="${tomorrow }" value="${rm_checkout }" class="main_checkout_1" name="rm_checkout" onchange="dateChk()"
+			               	<input type='date' id="checkout" min="${rm_checkout }" value="${rm_checkout }" class="main_checkout_1" name="rm_checkout" onchange="dateChk()"
 								style="width: 99%; margin: 0px 2.25px; padding: 0; border-left: 0;" required>
 						</div>
 						<div class="col-md-2 ffb">
@@ -154,7 +154,7 @@
 					 	
 					 	<div class="rButton">
 					 		<button class="btn btn-primary w-100" style="border-radius:7px; height: 40px; ">
-					 			<h4 style="color:white; font-family: 'Do Hyeon', sans-serif;">예 약 하 기</h4>
+					 			<h4 style="color:white; font-family: 'Do Hyeon', sans-serif;">${businessDTO.BOOK }</h4>
 					 		</button>
 					 	</div>
 					 	<div style="margin: 0 0 25px 0;"></div>
@@ -164,8 +164,10 @@
 		</article>
 	</form>
 	</c:forEach>
+	<div style="padding-top: 100px;"></div>
 	</div>
 <%@ include file="review.jsp" %>
+<%@ include file="../footer.jsp" %>
 	</div>
 
 <script type="text/javascript">
@@ -292,7 +294,6 @@ header .navs ul li ul li {
     padding: 10px;
 
 }
-</style> 
 </style> 
 <script type="text/javascript">
 	var btn = $('#replyForm'); 
