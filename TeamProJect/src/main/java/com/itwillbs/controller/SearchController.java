@@ -237,8 +237,11 @@ public class SearchController {
 
 		/* rm_checkin/rm_checkout 값이 null이면 오늘/내일 날짜로 저장 yyyyMMdd -> yyyy-MM-dd */
 		DateParse dateParse = new DateParse();
-		rm_checkin = rm_checkin == null ? dateParse.strToDate(dateParse.getTodayPlus(0)) : rm_checkin;
-		rm_checkout = rm_checkout == null ? dateParse.strToDate(dateParse.getTodayPlus(1)) : rm_checkout;
+		String today = dateParse.strToDate(dateParse.getTodayPlus(0));
+		String tomorrow = dateParse.strToDate(dateParse.getTodayPlus(1));
+		
+		rm_checkin = rm_checkin == null ? today : rm_checkin;
+		rm_checkout = rm_checkout == null ? tomorrow : rm_checkout;
 
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("pen_id", pen_id);
@@ -254,6 +257,8 @@ public class SearchController {
 
 		request.setAttribute("rm_checkin", rm_checkin);
 		request.setAttribute("rm_checkout", rm_checkout);
+		request.setAttribute("today", today);
+		request.setAttribute("tomorrow", tomorrow);
 
 		/* model에 펜션 정보, 방 리스트 저장 */
 		model.addAttribute("pen_id", pen_id);
@@ -261,6 +266,8 @@ public class SearchController {
 		model.addAttribute("searchRoomList", searchRoomList);
 		model.addAttribute("rm_checkin", rm_checkin);
 		model.addAttribute("rm_checkout", rm_checkout);
+		model.addAttribute("today", today);
+		model.addAttribute("tomorrow", tomorrow);
 		reviewtest(model, request);
 		return "teamProJect/search/pensionDetail";
 

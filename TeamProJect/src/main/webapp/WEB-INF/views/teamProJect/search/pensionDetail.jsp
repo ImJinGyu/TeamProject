@@ -77,6 +77,66 @@
          </li>
       </ul>
 	</div>
+
+	<script type="text/javascript">
+	
+// 	function dateChk(){ // 날짜 유효성 체크
+// 		const today = new Date();   
+// 		const year = today.getFullYear(); // 년도
+// 		let month = today.getMonth() + 1;  // 월
+// 		if(month<10) month = '0'+month
+// 		let date = today.getDate();  // 날짜
+// 		if(date<10) date = '0'+date
+// 		const day=year+''+month+''+date
+// 		console.log(day)
+		
+// 		let checkin = document.f.checkin.value
+// 		let checkout = document.f.checkout.value
+		
+// 		checkin = checkin.replace('-',	'')
+// 		checkin = checkin.replace('-',	'')
+// 		checkout = checkout.replace('-', '')
+// 		checkout = checkout.replace('-', '')
+		
+// 		if(checkin != '' && checkout != ''){
+// 			if(checkin >= checkout){
+// 				alert('최소 1박 2일의 일정을 선택해주세요')
+// 				document.f.checkout.value = null
+// 			}
+// 		}
+// 	}
+	
+// 	function dtChange() {
+// 		debugger;
+// 		alert(123);
+// 		var checkin = $('#checkin').val();
+// 		var month = new Date(checkin).getMonth() < 10 ? '0' + (new Date(checkin).getMonth() + 1) : new Date(checkin).getMonth() + 1;
+// 		var date = new Date(checkin).getDate() < 10 ? '0' + new Date(checkin).getDate() : new Date(checkin).getDate();
+		
+// 		let dateElement = document.getElementById('checkout');
+// 		let tomorrow = new Date(checkin).getFullYear() + "-" + month + "-" + (date + 1);
+// 		dateElement.setAttribute("min", tomorrow);
+// // 		document.getElementById("checkout").setAttribute("min", tomorrow);
+// 	}
+	
+	
+// 		$(document).ready( function() {
+// 			$('#checkin').change( function() {
+// 				debugger;
+// 				alert(123);
+// 				var checkin = $('#checkin').val();
+// 				var month = new Date(checkin).getMonth() < 10 ? '0' + (new Date(checkin).getMonth() + 1) : new Date(checkin).getMonth() + 1;
+// 				var date = new Date(checkin).getDate() < 10 ? '0' + new Date(checkin).getDate() : new Date(checkin).getDate();
+// 				var tomorrow = new Date(checkin).getFullYear() + "-" + month + "-" + (date + 1);
+// // 				document.getElementById("checkout").setAttribute("min", tomorrow);
+// // 				$('#reserve').text(total);
+// 			});
+// 		});
+	
+	
+
+	
+	</script>
 	
 	<div style="margin: 15px 0;">
 		<div class="roomInfo">
@@ -86,12 +146,12 @@
 				<div style="padding: 2.5px 2.5px 2.5px 2.5px;">
 					<div class="row form-detail" style="display: flex;margin: auto;border: 1px solid gainsboro;border-radius: 10px;width: auto;background: white;align-items: center;">
 						<div class="col-md-2 ffb">
-			               	<input type='date' id="checkin" min="${rm_checkin }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin" onchange="dateChk()"
-			               		style="width: 99%; margin: 0px 2.25px; padding: 0;" required>
+			               	<input type='date' id="checkin" min="${today }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin" onchange="dtChange()"
+			               		style="width: 99%; margin: 0px 2.25px; padding: 0;" required><!--  onchange="dateChk()" -->
 						</div>
 						<div class="col-md-2 ffb">
-			               	<input type='date' id="checkout" min="${rm_checkout }" value="${rm_checkout }" class="main_checkout_1" name="rm_checkout" onchange="dateChk()"
-								style="width: 99%; margin: 0px 2.25px; padding: 0; border-left: 0;" required>
+			               	<input type='date' id="checkout" min="${tomorrow }" value="${rm_checkout }" class="main_checkout_1" name="rm_checkout"
+								style="width: 99%; margin: 0px 2.25px; padding: 0; border-left: 0;" required><!--  onchange="dateChk()" -->
 						</div>
 						<div class="col-md-2 ffb">
 							<button class="btn btn-primary w-100"
