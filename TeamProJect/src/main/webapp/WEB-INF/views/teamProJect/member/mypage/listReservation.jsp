@@ -56,7 +56,7 @@ color:blue;
                                             <th style="width: 20%">방 이름</th>
                                             <th>체크인</th>
                                             <th>체크아웃</th>
-                                            <th>승인상태</th>
+                                            <th>예약취소</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,17 +67,20 @@ color:blue;
 	                                            <td class="text-center">${r.rm_name}</td>
 	                                            <td class="text-center">${r.check_in_d}</td>
 	                                            <td class="text-center">${r.check_out_d}</td>
-	                                            <td class="text-center">
-	                                            <c:choose>
-	                                            <c:when test="${r.res_status == '1'}">
-	                                            <b style="color: purple;">예약</b>
-	                                            </c:when>
-	                                            <c:otherwise>
-	                                            <b style="color: red;">취소</b>
-	                                            </c:otherwise>
-	                                            </c:choose>
-	                                            
+	                                            <td>
+	                                             <button class="text-center" onclick="cancelPay()" >취소하기
+	                                             </button> 
 	                                            </td>
+<!-- 	                                            <td class="text-center"> -->
+<%-- 	                                            <c:choose> --%>
+<%-- 	                                            <c:when test="${r.res_status}"> --%>
+<!-- 	                                            <b style="color: purple;">예약</b> -->
+<%-- 	                                            </c:when> --%>
+<%-- 	                                            <c:otherwise> --%>
+<!-- 	                                            <b style="color: red;">취소</b> -->
+<%-- 	                                            </c:otherwise> --%>
+<%-- 	                                            </c:choose> --%>
+<!-- 	                                            </td> -->
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>
@@ -93,6 +96,70 @@ color:blue;
 <!--  ************************* Footer Start Here ************************** --> 
      
     <%@ include file="../../footer.jsp" %>
+    
+    	<script>
+		var res_num = '${businessDTO.PEN_ID }' + '${param.room_id}' + '${uidRandom }';
+// 		alert(res_num);
+		function cancelPay(){
+// 			debugger;
+			var amount = res_num;
+			alert(amount);
+// 			var b = '${businessDTO.USER_ID }';
+			IMP.init('imp84747824');	//가맹점 식별코드	
+			IMP.request_pay({
+			    pg : 'html5_inicis',
+			    pay_method : 'card',
+			    merchant_uid : res_num,
+			    name : '(주)부산온나' , 	//결제창에서 보여질 이름
+			    amount : amount, 		//실제 결제되는 가격
+			    buyer_email : '${user.email}',
+			    buyer_id : '${memberDTO.user_name }',
+			    buyer_tel : '${user.phone}',
+			    buyer_addr : '${user.roadAddr}',
+			    buyer_postcode : '${user.zipNo}'}, 
+			    
+		function(rsp) {
+			    	
+				console.log(rsp);
+		        var reservation = {
+	        		res_num: rsp.merchant_uid,	// 예약번호
+                    check_in: '${rm_checkin}' + '${businessDTO.RM_CHECKIN }',
+                    check_out: '${rm_checkout}' + '${businessDTO.RM_CHECKOUT }',
+					totalPrice: '${total }',
+//                     roomNum: '${room.roomNum}',
+                    user_id: '${businessDTO.USER_ID }',
+                    pensionid: '${pension.pensionid}' };
+       	   	 	
+			    if (rsp.success) {
+			        var msg = '정말로 취소하시겠습니까 ?';
+			        console.log(reservation);
+			        alert(msg);
+			        $.ajax({
+			         	url: "cancelReservation",
+			        	type: "POST",
+			        	data: { 'user_id'	 :'${sessionScope.user_id}',
+				        		'user_type'	 :'${sessionScope.user_type}',
+				        		'pen_id'	 :'${businessDTO.PEN_ID }',
+				        		'room_id'	 :'${param.room_id}',
+				        		'rm_name'	 :'${businessDTO.RM_NAME }',
+				        		'check_in_d' :'${rm_checkin}',
+				        		'check_out_d':'${rm_checkout}',
+				        		'check_in_t' :'${businessDTO.RM_CHECKIN }',
+				        		'check_out_t':'${businessDTO.RM_CHECKOUT }',
+			        		    'rm_price'	 :'${total }',
+			        		    'res_status' :'1'
+			        		   },
+			        	dataType:"json",
+			        })
+			      
+			        location.href = '${pageContext.request.contextPath}/member/mypage/listReservation';
+			    } else {
+			      var msg = rsp.error_msg;
+			      alert(msg);
+			    }
+			});
+		}
+	</script>
 
     </body>
 
