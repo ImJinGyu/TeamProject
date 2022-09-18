@@ -327,6 +327,8 @@ header {
   margin: auto;
   .slider-captions .slider-title {
     font-size: 42px; } }
+    
+    
 @media screen and (max-width: 810px) {
   .slider-captions {
     bottom: 50px !important; }
@@ -870,8 +872,33 @@ address {
 
 .pensions {
 	width: 100%;
-	margin: 10px auto;
+/* 	margin: 10px auto;  이미지 사이 공백 삭제 */
 	position: relative;
+}
+
+
+.btn_wrap .order  {
+	width: 240px;
+	cursor: pointer;
+	height: 40px;
+    border: 1px solid rgba(0,0,0,0.08) !important; 
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: rgba(250,250,250,0.6);
+    font-size: 18px;
+    color: rgba(0,0,0,0.38);
+    margin-left: -5px;
+}
+
+/* .order:hover {
+	color: #ff4a52;
+} */
+
+.order:focus {
+	color: #ff4a52;
+	border: none !important; 
+	outline: noen !important;
+	box-shadow: none !important;
 }
 
 

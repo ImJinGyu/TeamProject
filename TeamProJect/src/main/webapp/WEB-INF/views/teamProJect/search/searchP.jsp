@@ -16,6 +16,13 @@
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"> -->
+<style type="text/css">
+.pensionlist {
+margin: 0 auto 0 auto !important;  /* 이미지 사이 공백 삭제 */
+}
+
+</style>
+
 </head>
 <body>
 <%@ include file="../header.jsp" %>
@@ -107,6 +114,8 @@
 					</div>
 					</c:forEach>
 				</div>  
+				
+				<div style="padding-bottom: 10px;"></div>
 				<%@ include file="../footer.jsp" %>
 </body>
 <script type="text/javascript">
