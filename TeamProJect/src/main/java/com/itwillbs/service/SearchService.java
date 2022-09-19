@@ -55,8 +55,8 @@ public class SearchService {
 		return searchDAO.getRoomDetail(room_id);
 	}
 
-	public MemberDTO getNamePhone(String user_id) {
-		return searchDAO.getNamePhone(user_id);
+	public MemberDTO getNamePhone(Map<String, Object> uMap) {
+		return searchDAO.getNamePhone(uMap);
 	}
 	
 

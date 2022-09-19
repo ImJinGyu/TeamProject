@@ -219,6 +219,7 @@
 		     , USER_PHONENUMBER
 		  FROM MEMBER
 		 WHERE USER_ID = #{user_id}
+		   AND USER_TYPE = #{user_type}
 	</select>
 	
 	<!-- 박성빈 -->

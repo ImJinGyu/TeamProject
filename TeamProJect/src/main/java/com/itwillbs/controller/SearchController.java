@@ -325,7 +325,10 @@ public class SearchController {
 		String rm_checkin = request.getParameter("rm_checkin");
 		String rm_checkout = request.getParameter("rm_checkout");
 		String user_id = session.getAttribute("user_id").toString();
-
+		String user_type = session.getAttribute("user_type").toString();
+		Map<String, Object> sMap = new HashMap<String, Object>();
+		sMap.put("user_id", user_id);
+		sMap.put("user_type", user_type);
 		// 날짜 차이 계산
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date startDate = new Date(dateFormat.parse(rm_checkin).getTime());
@@ -348,7 +351,7 @@ public class SearchController {
 		System.out.println("랜덤번호 : " + uidRandom);
 		
 		BusinessDTO businessDTO = searchService.getRoomDetail(room_id);
-		MemberDTO memberDTO = searchService.getNamePhone(user_id);
+		MemberDTO memberDTO = searchService.getNamePhone(sMap);
 
 		request.setAttribute("rm_checkin", rm_checkin);
 		request.setAttribute("rm_checkout", rm_checkout);

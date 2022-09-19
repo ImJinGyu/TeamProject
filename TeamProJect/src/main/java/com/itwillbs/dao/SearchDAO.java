@@ -59,8 +59,8 @@ public class SearchDAO {
 		return sqlSession.selectOne(NAMESPACE + ".getRoomDetail", room_id);
 	}
 
-	public MemberDTO getNamePhone(String user_id) {
-		return sqlSession.selectOne(NAMESPACE + ".getNamePhone", user_id);
+	public MemberDTO getNamePhone(Map<String, Object> uMap) {
+		return sqlSession.selectOne(NAMESPACE + ".getNamePhone", uMap);
 	}
 	
 	
