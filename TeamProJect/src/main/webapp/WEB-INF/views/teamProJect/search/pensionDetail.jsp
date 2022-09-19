@@ -80,58 +80,32 @@
 
 	<script type="text/javascript">
 	
-// 	function dateChk(){ // 날짜 유효성 체크
-// 		const today = new Date();   
-// 		const year = today.getFullYear(); // 년도
-// 		let month = today.getMonth() + 1;  // 월
-// 		if(month<10) month = '0'+month
-// 		let date = today.getDate();  // 날짜
-// 		if(date<10) date = '0'+date
-// 		const day=year+''+month+''+date
-// 		console.log(day)
-		
-// 		let checkin = document.f.checkin.value
-// 		let checkout = document.f.checkout.value
-		
-// 		checkin = checkin.replace('-',	'')
-// 		checkin = checkin.replace('-',	'')
-// 		checkout = checkout.replace('-', '')
-// 		checkout = checkout.replace('-', '')
-		
-// 		if(checkin != '' && checkout != ''){
-// 			if(checkin >= checkout){
-// 				alert('최소 1박 2일의 일정을 선택해주세요')
-// 				document.f.checkout.value = null
-// 			}
-// 		}
-// 	}
 	
-// 	function dtChange() {
-// 		debugger;
-// 		alert(123);
-// 		var checkin = $('#checkin').val();
-// 		var month = new Date(checkin).getMonth() < 10 ? '0' + (new Date(checkin).getMonth() + 1) : new Date(checkin).getMonth() + 1;
-// 		var date = new Date(checkin).getDate() < 10 ? '0' + new Date(checkin).getDate() : new Date(checkin).getDate();
-		
-// 		let dateElement = document.getElementById('checkout');
-// 		let tomorrow = new Date(checkin).getFullYear() + "-" + month + "-" + (date + 1);
-// 		dateElement.setAttribute("min", tomorrow);
-// // 		document.getElementById("checkout").setAttribute("min", tomorrow);
-// 	}
-	
-	
-// 		$(document).ready( function() {
-// 			$('#checkin').change( function() {
-// 				debugger;
-// 				alert(123);
-// 				var checkin = $('#checkin').val();
-// 				var month = new Date(checkin).getMonth() < 10 ? '0' + (new Date(checkin).getMonth() + 1) : new Date(checkin).getMonth() + 1;
-// 				var date = new Date(checkin).getDate() < 10 ? '0' + new Date(checkin).getDate() : new Date(checkin).getDate();
-// 				var tomorrow = new Date(checkin).getFullYear() + "-" + month + "-" + (date + 1);
-// // 				document.getElementById("checkout").setAttribute("min", tomorrow);
-// // 				$('#reserve').text(total);
-// 			});
-// 		});
+	// 체크인 날짜 값 변경 시 체크아웃 날짜 값 변경(지원)
+	$(document).ready( function() {
+
+		// 체크인 날짜 값이 변경되면
+		$('#checkin').change( function() {
+//				debugger;
+			var checkin = $('#checkin').val();
+			var checkout = $('#checkout').val();
+			var month = new Date(checkin).getMonth() < 10 ? '0' + (new Date(checkin).getMonth() + 1) : new Date(checkin).getMonth() + 1;
+			var date = new Date(checkin).getDate() < 10 ? '0' + new Date(checkin).getDate() : new Date(checkin).getDate();
+
+			let dateElement = document.getElementById('checkout');
+			let nextDay = new Date(checkin).getFullYear() + "-" + month + "-" + (date + 1);	// 체크인 날짜의 다음날
+			
+			
+			dateElement.setAttribute("min", nextDay);	// 체크아웃의 최소값 지정
+
+			// 다음날이 원래 체크아웃날짜보다 크면
+			if(nextDay > checkout) {
+				$('#checkout').val(nextDay);	// 체크아웃 value값을 다음날로 변경
+			}
+		});
+	});
+
+
 	
 	
 
