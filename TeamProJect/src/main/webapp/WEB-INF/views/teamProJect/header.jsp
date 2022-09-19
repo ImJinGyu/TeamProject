@@ -99,13 +99,15 @@ header .navs ul li ul li {
 
 }
     </style>
-    
 </head>
 
     <body>
+     <!--로딩 -->
+		<%@ include file="loading.jsp" %>
         <header id="menu-jk" class="container-fluid">
             <div class="row">
                 <div class="col logo">
+               
                 	<a href="${pageContext.request.contextPath }/search/main"><!-- 로고에 메인페이지 링크 추가 -->
                     	<img src="${pageContext.request.contextPath }/resources/images/busan_onna_logo.png" alt="">
                     	
