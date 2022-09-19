@@ -220,7 +220,7 @@ window.onload = function(){
 				$('#penlist123123').empty();
 	   			$.each(data, function (i, PensionDTO) {
 	   //				isFetching = true;
-	   				
+// 	   				
 		   			$('#penlist123123').append('<div class="col-lg-8 pensionlist">' + 
 									'<div class="pensions" data-pensionid='+PensionDTO.pen_id+'">'+
 									'<div class="container">'+
