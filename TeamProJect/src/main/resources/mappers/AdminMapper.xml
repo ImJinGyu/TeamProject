@@ -60,7 +60,9 @@
   	 FROM RESERVATION R LEFT JOIN PENSION P
 						ON (P.PEN_ID = R.PEN_ID)
 						LEFT JOIN MEMBER M
-						ON (M.USER_ID = R.USER_ID);
+						ON (M.USER_ID = R.USER_ID)
+					   AND M.USER_TYPE = R.USER_TYPE;
+					   
 	</select>
 	
 	<select id="pensionCount" resultType="int">
