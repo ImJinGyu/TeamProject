@@ -8,9 +8,9 @@
  	<!-- 팀플 디비연결 --> 
 	<bean id ="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://teamproject2.c8ciejik5vsh.us-west-1.rds.amazonaws.com:3306/tpdb?serverTimezone=UTC"></property>
+		<property name="url" value="jdbc:mysql://teamproject4.c8ciejik5vsh.us-west-1.rds.amazonaws.com:3306/tpdb?serverTimezone=UTC"></property>
 		<property name="username" value="admin"></property>
-		<property name="password" value="12345678"></property>
+		<property name="password" value="itwillbs123!"></property>
 	</bean>
 	
 	<!-- 테스트 디비연결 -->
