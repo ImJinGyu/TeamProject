@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -30,7 +31,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">전체 리뷰 목록 조회</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">업체별 수입 통계</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -39,47 +40,22 @@
                                         <tr>
                                             <th>팬션 번호</th>
                                             <th>팬션 이름</th>
-                                            <th>제목</th>
-                                            <th style="width: 15%">별점</th>
-                                            <th style="width: 15%">시간</th>
+                                            <th>주소</th>
+                                            <th style="width: 12%">예약건수(총 / 월)</th>
+                                            <th style="width: 12%">총 매출</th>
+                                            <th style="width: 12%">이번달 매출</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${list}" var="review">
-                                    		<tr style="cursor: pointer;" id="rep${review.rev_num}" onclick="showQna(this.id)">
-                                    			<td>${review.pen_id}</td>
-                                    			<td>${review.pen_name}</td>
-	                                    		<td>${review.rev_title}</td>
-	                                            <td style="text-align: center;">
-	                                            <c:forEach var="i" begin="1" end="5">
-                                           			<c:choose>
-                                           			<c:when test="${i <= review.rev_star}">
-                                           			<i class="fa fa-star" style="color: #fdae5c"></i>
-                                           			</c:when>
-                                           			<c:otherwise>
-                                           			<i class="fa fa-star" style="color: #fdae5c; font-weight: 100;"></i>
-                                           			</c:otherwise>
-                                           			</c:choose>
-                                           		</c:forEach>
-	                                            ${review.rev_star}점</td>
-	                                            <td>${review.rev_date}&nbsp;&nbsp;  
-	                                            <c:if test="${review.reply == 'Y'}">
-	                                        	<span class="badge badge-info p-2"> 답변 완료</span>
-	                                        	</c:if>
-	                                            </td>
+                                    	<c:forEach items="${list}" var="pension">
+                                    		<tr>
+                                    			<td>${pension.PEN_ID}</td>
+                                    			<td>${pension.PEN_NAME}</td>
+                                    			<td>${pension.PEN_ADDRESS}</td>
+	                                    		<td>${pension.RES_COUNT} 건 / ${pension.M_RES_COUNT} 건</td>
+	                                            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pension.PAYMENT}" /> 원</td>
+	                                            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pension.M_PAYMENT}" /> 원</td>
 	                                        </tr>
-	                                        <tr class="rep${review.rev_num}" style="display: none;">
-	                                        	<td colspan="5" style="height: 200px; text-align: center;"><span style="font-size: 25px; color: blue;">&lt;리뷰 내용&gt;</span><br>
-					                             ${review.rev_content}
-					                             </td>
-	                                        </tr>
-	                                        	<c:if test="${review.reply == 'Y'}">
-                                            <tr class="rep${review.rev_num}" style="display: none;">
-	                                        	<td colspan="5" style="height: 200px; text-align: center;"><span style="font-size: 25px; color:green;">&lt;답변 내용&gt;</span><br>
-	                                        	${review.ans_content}
-	                                        	</td>
-	                                        </tr>
-	                                        	</c:if>
                                     	</c:forEach>
                                     </tbody>
                                 </table>
@@ -89,17 +65,17 @@
 
                 </div>
                 <!-- /.container-fluid -->
-			            <ul class="pagination justify-content-center">
-				<c:if test="${page.prev}">
-					<li class="page-item"><a class="page-link" href="a_reviewlist?pageNum=${page.startPage-1}">이전</a></li>
-				</c:if>
-				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="p">
-					<li class="page-item ${page.pageNum == p ? 'active' : ''}"><a class="page-link" href="a_reviewlist?pageNum=${p}">${p}</a></li>
-				</c:forEach>
-				<c:if test="${page.next}">
-					<li class="page-item"><a class="page-link" href="a_reviewlist?&pageNum=${page.endPage+1}">다음</a></li>
-				</c:if>
-			</ul>
+<!-- 			            <ul class="pagination justify-content-center"> -->
+<%-- 				<c:if test="${page.prev}"> --%>
+<%-- 					<li class="page-item"><a class="page-link" href="a_reviewlist?pageNum=${page.startPage-1}">이전</a></li> --%>
+<%-- 				</c:if> --%>
+<%-- 				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="p"> --%>
+<%-- 					<li class="page-item ${page.pageNum == p ? 'active' : ''}"><a class="page-link" href="a_reviewlist?pageNum=${p}">${p}</a></li> --%>
+<%-- 				</c:forEach> --%>
+<%-- 				<c:if test="${page.next}"> --%>
+<%-- 					<li class="page-item"><a class="page-link" href="a_reviewlist?&pageNum=${page.endPage+1}">다음</a></li> --%>
+<%-- 				</c:if> --%>
+<!-- 			</ul> -->
             </div>
             <!-- End of Main Content -->
             

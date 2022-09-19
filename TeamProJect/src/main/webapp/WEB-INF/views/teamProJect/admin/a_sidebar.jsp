@@ -57,8 +57,8 @@
 	        </a>
 	        <div id="collapsePages3" class="collapse" aria-labelledby="headingPages3" data-parent="#accordionSidebar">
 	            <div class="bg-white py-2 collapse-inner rounded">
-	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/a_reviewlist" id="replyListAll">- 리뷰 관리</a>
-	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/listPaymentAll">- 전체 매출 조회</a>
+	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/a_reviewlist">- 리뷰 관리</a>
+	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/a_paymentlist">- 전체 매출 조회</a>
 	                <a class="collapse-item" href="#" onclick="alert('준비중입니다.')">- 관리자 권한 부여</a>
 	            </div>
 	        </div>

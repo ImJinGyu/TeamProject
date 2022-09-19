@@ -44,5 +44,13 @@ public class MemberListDAO {
 	public int pensioncount() {
 		return sqlSession.selectOne(NAMESPACE2 + ".pensionCount");
 	}
+	
+	public long paymentsum() {
+		return sqlSession.selectOne(NAMESPACE2 + ".paymentSum");
+	}
+	
+	public List<Map<String, Object>> selectpay(){
+		return sqlSession.selectList(NAMESPACE2 + ".selectPay");
+	}
 }
 

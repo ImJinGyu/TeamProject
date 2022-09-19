@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,9 +94,14 @@ public class AdminController {
 		int Nqna = memberListService.qnaCount(qT);
 		Map<String ,Object> sMap = memberListService.customCount();
 		int pcount = memberListService.pensioncount();
+		long payment = memberListService.paymentsum();
+//		DecimalFormat df = new DecimalFormat("###,###");
 		sMap.put("NQNA", Nqna);
 		sMap.put("pcount", pcount);
+		sMap.put("payment", payment);
+		System.out.println(sMap);
 		model.addAttribute("Map",sMap);
+		
 		return "teamProJect/admin/a_index";
 	}
 	
@@ -144,6 +150,14 @@ public class AdminController {
 		System.out.println(qT);
 		memberListService.updateAnwser(qT);
 		return "redirect:/admin/a_listInquiry";
+	}
+	
+	@RequestMapping(value = "/admin/a_paymentlist", method = RequestMethod.GET)
+	public String a_paymentlist(Model model) {
+		List<Map<String, Object>> list = memberListService.selectpay();
+		System.out.println(list);
+		model.addAttribute("list", list);
+		return "teamProJect/admin/a_paymentlist";
 	}
 	
 	@RequestMapping(value = "/admin/a_listReservationAll", method = RequestMethod.GET)

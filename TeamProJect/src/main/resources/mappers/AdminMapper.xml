@@ -67,7 +67,30 @@
 		  FROM PENSION
 	</select>
 	
+	<select id="paymentSum" resultType="long">
+		SELECT SUM(CAST(RM_PRICE AS UNSIGNED))
+		  FROM RESERVATION
+	</select>
 	
+	<select id="selectPay" resultType="map">
+		SELECT P.PEN_ID
+		 	 , P.PEN_NAME
+		 	 , P.PEN_ADDRESS
+		 	 , COUNT(R.RES_NUMBER) AS 'RES_COUNT'
+		 	 , IFNULL(SUM(CAST(R.RM_PRICE AS UNSIGNED)), 0) AS 'PAYMENT'
+		 	 , SUM(CASE WHEN MONTH(STR_TO_DATE(R.RES_TIME, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) 
+						 AND YEAR(STR_TO_DATE(R.RES_TIME, '%Y-%m-%d')) = YEAR(CURRENT_DATE())
+						THEN CAST(R.RM_PRICE AS UNSIGNED)
+				        ELSE 0 END) AS 'M_PAYMENT'
+		 	 , SUM(CASE WHEN MONTH(STR_TO_DATE(R.RES_TIME, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) 
+						 AND YEAR(STR_TO_DATE(R.RES_TIME, '%Y-%m-%d')) = YEAR(CURRENT_DATE())
+						THEN 1
+				        ELSE 0 END) AS 'M_RES_COUNT'
+		  FROM RESERVATION R RIGHT OUTER JOIN PENSION P
+		    ON R.PEN_ID = P.PEN_ID
+		 GROUP BY P.PEN_ID, P.PEN_NAME
+		 ORDER BY PAYMENT DESC
+	</select>
 	
 	
 	
