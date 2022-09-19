@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReservationDTO;
 @Repository
 public class BookDAO {
@@ -20,8 +21,8 @@ public class BookDAO {
 		return sqlSession.selectList(namespace+".listReservation",reservationDTO);
 	}
 	
-	public List<ReservationDTO> getListCheckReservation(String string) {
-		return sqlSession.selectList(namespace+".getListCheckReservation",string);
+	public List<ReservationDTO> getListCheckReservation(MemberDTO mT) {
+		return sqlSession.selectList(namespace+".getListCheckReservation",mT);
 	}
 
 	public ReservationDTO getMember(String user_id) {
@@ -33,10 +34,6 @@ public class BookDAO {
 		
 	}
 
-
-	public ReservationDTO listReservation2(ReservationDTO reservationDTO) {
-		return sqlSession.selectOne(namespace+".listReservation2",reservationDTO);
-	}
 
 	public int cancelReservation(String res_num) {
 		return sqlSession.selectOne(namespace+".cancelReservation",res_num);

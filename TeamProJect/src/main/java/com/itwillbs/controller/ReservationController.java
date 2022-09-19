@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.service.BookService;
 
@@ -41,20 +42,15 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value = "/business/checkReservation", method = RequestMethod.GET)
-	public String checkReservation(ReservationDTO reservationDTO, Model model, HttpSession session){
+	public String checkReservation(ReservationDTO reservationDTO, Model model, HttpSession session, MemberDTO mT){
 		String user_id = (String)session.getAttribute("user_id");
-		reservationDTO.setUser_id(user_id);;
-		System.out.println(reservationDTO.toString());
-		List<ReservationDTO> listReservation2 = bookService.listReservation(reservationDTO);
-		System.out.println(listReservation2.get(0).getPen_id());
-		List<ReservationDTO> listReservation3 = bookService.getListCheckReservation(listReservation2.get(0).getPen_id());
-		System.out.println(listReservation3.toString());
-		if(listReservation3.size() > 0) {
-			model.addAttribute("reservation2",listReservation3 );
-			return "teamProJect/business/checkReservation";
-		} else {
-			return "redirect:/business/b_index";
-		}
+		String user_type = session.getAttribute("user_type").toString();
+		mT.setUser_id(user_id);
+		mT.setUser_type(user_type);
+		List<ReservationDTO> listReservation = bookService.getListCheckReservation(mT);
+		System.out.println(listReservation.toString());
+		model.addAttribute("reservation2",listReservation );
+		return "teamProJect/business/checkReservation";
 	}
 	
 	@RequestMapping(value = "/business/cancelReservation", method = RequestMethod.GET)

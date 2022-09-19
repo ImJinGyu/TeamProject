@@ -259,16 +259,14 @@
                         LEFT JOIN PENSION_ROOM PR
 						ON (PR.PEN_ID = R.PEN_ID)
 	 WHERE
-	 R.PEN_ID = #{PEN_ID}
+	 R.PEN_ID = (SELECT PEN_ID
+	 			   FROM PENSION 
+	 			  WHERE USER_ID = #{user_id}
+	 			    AND USER_TYPE = #{user_type})
 	 AND DATE_FORMAT(R.CHECK_IN_D, '%Y-%m-%d') > SYSDATE()
 	 AND PR.RES_STATUS = '1'
  	</select>
- 	
-	<select id="listReservation2" resultType="com.itwillbs.domain.ReservationDTO">
-		 select*
-        FROM RESERVATION
-        WHERE USER_ID = #{user_id}
-	</select>
+
 	<delete id="delete">
  		DELETE RESERVATION WHERE RES_NUMBER = #{RES_NUMBER}
  	</delete>

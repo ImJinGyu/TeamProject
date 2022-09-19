@@ -32,13 +32,8 @@ public class BookService {
 	}
 
 
-	public ReservationDTO listReservation2(ReservationDTO reservationDTO) {
-		return bookDAO.listReservation2(reservationDTO);
-	}
-
-
-	public List<ReservationDTO> getListCheckReservation(String pen_id) {
-		return bookDAO.getListCheckReservation(pen_id);
+	public List<ReservationDTO> getListCheckReservation(MemberDTO mT) {
+		return bookDAO.getListCheckReservation(mT);
 	}
 
 
