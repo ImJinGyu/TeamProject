@@ -3,77 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwillbs.mappers.BusinessMapper">
-	
-	<!--펜션리스트 카운팅  -->
-	<select id="pensionCount" resultType="int">
-		SELECT COUNT(PEN_ID) AS COUNT
-		FROM PENSION
-	</select>
 
 
-	<!-- 펜션 리스트 불러오기(검색된 값) 리뷰 평점 추가-->
+	<!-- 펜션 리스트 불러오기(수정예정)-->
 	<select id="getPensionList" resultType="com.itwillbs.domain.PensionDTO">
-		
-		SELECT *
-		  FROM (
-			SELECT P.PEN_ID
-				 , P.PEN_NAME
-			     , P.PEN_ADDRESS
-			     , A.PEN_IMAGE
-			     , IFNULL(ROUND(AVG(R.REV_STAR),0), ' ') AS STAR
-			     , COUNT(R.REV_NUM) AS RV
-			     , (SELECT IFNULL( MIN(CAST(RM_PRICE AS UNSIGNED)) , 0)
-					  FROM PENSION_ROOM
-					 WHERE PEN_ID = P.PEN_ID) AS RM_PRICE
-			        
-			 FROM PENSION P LEFT OUTER JOIN PENSION_ATTACH A
-										    ON P.PEN_ID = A.PEN_ID
-				  		    LEFT OUTER JOIN REVIEW R
-			                                ON A.PEN_ID = R.PEN_ID
-			WHERE 1=1
-			<if test="pen_name != null and !pen_name.equals('')">
-			  AND PEN_NAME LIKE '%${pen_name}%'
-	 		</if>
-			<if test="pen_address != null and !pen_address.equals('')">
-			  AND PEN_ADDRESS LIKE '%${pen_address}%'
-			</if> 
-			
-		 	GROUP BY P.PEN_ID, P.PEN_NAME, A.PEN_IMAGE
-		 	
-		 	<if test="order != null and !order.equals('')">
-		 		<if test="order == 'rev' or order.equals('rev')">
-			 	ORDER BY COUNT(R.REV_NUM) DESC
-			 	</if>
-			 	<if test="order == 'hPr' or order.equals('hPr')">
-			 	ORDER BY RM_PRICE DESC
-			 	</if>
-			 	<if test="order == 'lPr' or order.equals('lPr')">
-			 	ORDER BY RM_PRICE
-			 	</if>
-		 	</if>
-	 		 ) A
-	 	
-		 LIMIT ${index}
-		     , ${amount}
-	 
-	</select> 
-	
-	<!--메인페이지 top6 숙소 -->
-	<select id="getTopList" resultType="com.itwillbs.domain.PensionDTO">
-		SELECT A.PEN_IMAGE
-		    ,  P.PEN_ID
-			,  P.PEN_NAME
-	        ,  P.PEN_ADDRESS
-		    ,  IFNULL(ROUND(AVG(R.REV_STAR),1), ' ') AS STAR
+		SELECT P.PEN_NAME, P.PEN_ADDRESS, A.PEN_IMAGE, COUNT(R.REV_NUMBER) AS RV
 		FROM PENSION P LEFT OUTER JOIN PENSION_ATTACH A
 									ON P.PEN_ID = A.PEN_ID
 					   LEFT OUTER JOIN REVIEW R
-					                ON A.PEN_ID = R.PEN_ID
-		GROUP BY P.PEN_ID, A.PEN_IMAGE
-		ORDER BY AVG(R.REV_STAR) DESC
+		                			ON A.PEN_ID = R.PEN_ID
+		GROUP BY P.PEN_ID, P.PEN_NAME, A.PEN_IMAGE;
+<!-- 		WHERE PEN_NAME LIKE '%검색%' -->
 	</select>
-	
-	<!-- PENSION Table(팬션 정보) 입력 SQL구문 -->
+
+
+<!-- 	<insert id="registerRoom"> -->
+<!-- 		INSERT INTO ROOM_ATTACH -->
+<!-- 		VALUES(#{RM_NAME}, #{RM_IMAGE}) -->
+<!-- 	</insert> -->
+
 	<insert id="registerPen">
 		INSERT INTO PENSION(
 							PEN_ID,
@@ -92,242 +40,27 @@
 		       #{PEN_NUMBER})
 	</insert>
 	
-	<!-- PENSION_ATTACH Table(팬션 사진 테이블) 입력 SQL구문 -->
 	<insert id="pensionAttach">
 		INSERT INTO PENSION_ATTACH(PEN_ID,PEN_IMAGE)
 		VALUES(
 		       #{PEN_ID}, 
 		       #{PEN_IMAGE})
-	</insert>
-	
-	<!-- PENSION_ROOM Table(객실 정보 테이블) 입력 SQL구문 -->
-	<!-- 여러 값들을 다중 입력을 위해 foreach 구문 사용 -->
-	<insert id="pensionRoom" parameterType="java.util.Map">
-		INSERT INTO PENSION_ROOM(
-								 PEN_ID,
-								 RM_NAME, 
-			 					 RM_CHECKIN,
-								 RM_CHECKOUT,
-			 					 RM_PRICE,
-								 RM_RESABLE_NUM,
-								 RES_STATUS
-								)
-		VALUES
-		<foreach collection="room" item="item" separator=",">
-			(#{item.PEN_ID},
-			 #{item.RM_NAME}, 
-			 #{item.RM_CHECKIN},
-			 #{item.RM_CHECKOUT},
-			 #{item.RM_PRICE},
-			 #{item.RM_RESABLE_NUM},
-			 #{item.RES_STATUS})
-		</foreach>
 	</insert>		
 	
-	<!-- ROOM_ATTACH Table(객실 사진 테이블) 입력 SQL구문 -->
-	<!-- 여러 값들을 다중 입력을 위해 foreach 구문 사용 -->
-	<insert id="registerRoom" parameterType="java.util.Map">
-		INSERT INTO ROOM_ATTACH(RM_NAME,RM_IMAGE)
-		VALUES
-		<foreach collection="roomAttach" item="item" separator=",">
-			(#{item.RM_NAME}, #{item.RM_IMAGE})
-		</foreach>
+	<insert id="registerRoom">
+		INSERT INTO ROOM_ATTACH
+		VALUES(
+		       #{RM_NAME}, 
+<!-- 		       #{checkin},  -->
+<!-- 		       #{checkout},  -->
+<!-- 		       #{people},  -->
+<!-- 		       #{RM_Price},  -->
+		       #{RM_IMAGE})
 	</insert>
-	
-	<select id="getRoomList" resultType="com.itwillbs.domain.BusinessDTO">
-		SELECT *
-		  FROM PENSION_ROOM A JOIN PENSION B
-		    ON A.PEN_ID = B.PEN_ID
-		 WHERE USER_ID = #{USER_ID}
-	</select>
-	
-	<update id="updateRoomList">
-		UPDATE PENSION_ROOM SET 
-		       RM_NAME = #{RM_NAME}
-			  ,RM_CHECKOUT = #{RM_CHECKOUT}
-			  ,RM_PRICE = #{RM_PRICE}
-	  	 WHERE ROOM_ID = #{RM_NUM}
-	</update>
-	
-	<delete id="deleteRoomList">
-		DELETE FROM PENSION_ROOM
-		 WHERE ROOM_ID = #{RM_NUM}
-	</delete>
-	
-	<select id="reservationCount" resultType="int">
-		SELECT Count(P.PEN_ID) 'RCOUNT'
-  	 	  FROM RESERVATION R LEFT JOIN PENSION P
-		    ON (P.PEN_ID = R.PEN_ID)
-		  LEFT JOIN MEMBER M
-			ON (M.USER_ID = R.USER_ID)
-		 WHERE P.USER_ID = #{USER_ID}
-	</select>
-	
 	
 <!-- 	<select id="getMaxNum" resultType="java.lang.Integer"> -->
 <!-- 		SELECT MAX(RM_NUM) -->
 <!-- 		  FROM ROOM -->
 <!-- 	</select> -->
 
-
-	<!-- 펜션 정보 불러오기 (지원) -->	
-	<select id="getPensionDetail" resultType="com.itwillbs.domain.PensionDTO">
-		SELECT P.PEN_NAME
-		     , P.PEN_ADDRESS
-		     , A.PEN_IMAGE
-		  FROM PENSION P JOIN PENSION_ATTACH A
-		                   ON P.PEN_ID = A.PEN_ID
-		 WHERE P.PEN_ID = #{PEN_ID};
-	</select>
-	
-	<!-- 방 정보 불러오기 (지원) -->
- 	<select id="getSearchRoomList" resultType="com.itwillbs.domain.BusinessDTO">
-		SELECT R.ROOM_ID
-		     , R.RM_PRICE
-		     , R.RM_CHECKIN
-		     , R.RM_CHECKOUT
-		     , RA.RM_NAME
-		     , RA.RM_IMAGE
-		     , CASE WHEN TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}) > 1 THEN CONCAT('예 약 하 기 | ', FORMAT(R.RM_PRICE*TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}), 0), '원 (', TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}), '박)')
-		            ELSE '예 약 하 기' END AS BOOK
-		  FROM PENSION P JOIN PENSION_ROOM R
-		    			   ON P.PEN_ID = R.PEN_ID
-		  				 JOIN ROOM_ATTACH RA
-		    			   ON R.RM_NAME = RA.RM_NAME
-		 WHERE P.PEN_ID = #{pen_id}
-		 ORDER BY CONVERT(R.RM_PRICE, SIGNED)	<!-- convert : 문자형을 숫자형으로 변환 -->
-	</select>
-	
-	<!-- 이지원 -->
-	<select id="getRoomDetail" resultType="com.itwillbs.domain.BusinessDTO">
-		SELECT P.PEN_NAME
-		     , PR.RM_NAME
-			 , PR.RM_CHECKIN
-		     , PR.RM_CHECKOUT
-		     , PR.RM_PRICE
-		     , P.PEN_ID
-		     , P.USER_ID
-		  FROM PENSION P
-		  JOIN PENSION_ROOM PR
-		    ON P.PEN_ID = PR.PEN_ID
-		 WHERE PR.ROOM_ID = #{ROOM_ID}
-	</select>
-	
-	<!-- 이지원 -->
-	<select id="getNamePhone" resultType="com.itwillbs.domain.MemberDTO">
-		SELECT USER_NAME
-		     , USER_PHONENUMBER
-		  FROM MEMBER
-		 WHERE USER_ID = #{user_id}
-	</select>
-	
-	<!-- 박성빈 -->
-	<select id="listReservation" resultType="com.itwillbs.domain.ReservationDTO">
-	SELECT R.RES_NUMBER
-		 , P.PEN_NAME, R.RM_NAME
-	 	 , M.USER_NAME, R.USER_ID
-	  	 , R.CHECK_IN_D, R.CHECK_IN_T
-	 	 , R.CHECK_OUT_D, R.CHECK_OUT_T
-		 , R.RES_TIME
-		 , R.PEN_ID
-		 , R.RM_PRICE
-  	 FROM RESERVATION R LEFT JOIN PENSION P
-						ON (P.PEN_ID = R.PEN_ID)
-						LEFT JOIN MEMBER M
-						ON (M.USER_ID = R.USER_ID)
-	 WHERE P.USER_ID = #{user_id}					
- 	</select>
- 	
- 	<select id="getMember" resultType="com.itwillbs.domain.ReservationDTO">
-		SELECT * FROM RESERVATION
-		WHERE USER_ID = #{user_id}
-	</select>
-	
-	<select id="getListCheckReservation" resultType="com.itwillbs.domain.ReservationDTO">
-	 SELECT  R.RES_NUMBER
-	 , P.PEN_NAME, R.RM_NAME,PR.RES_STATUS
-	 , M.USER_NAME, R.USER_ID
-	 ,DATE_FORMAT(R.CHECK_IN_D, '%Y-%m-%d') AS CHECK_IN_D
-	 ,DATE_FORMAT(R.CHECK_OUT_D, '%Y-%m-%d') AS CHECK_OUT_D
-	 , R.RES_TIME
-  	 FROM RESERVATION R LEFT JOIN PENSION P
-						ON (P.PEN_ID = R.PEN_ID)
-						LEFT JOIN MEMBER M
-						ON (M.USER_ID = R.USER_ID)
-                        LEFT JOIN PENSION_ROOM PR
-						ON (PR.PEN_ID = R.PEN_ID)
-	 WHERE
-	 R.PEN_ID = #{PEN_ID}
-	 AND DATE_FORMAT(R.CHECK_IN_D, '%Y-%m-%d') > SYSDATE()
-	 AND PR.RES_STATUS = '1'
- 	</select>
- 	
-	<select id="listReservation2" resultType="com.itwillbs.domain.ReservationDTO">
-		 select*
-        FROM RESERVATION
-        WHERE USER_ID = #{user_id}
-	</select>
-	<delete id="delete">
- 		DELETE RESERVATION WHERE RES_NUMBER = #{RES_NUMBER}
- 	</delete>
-
-
-	<!--(지연) 사업자 리뷰조회 -->
-	<select id="reviewList" resultType="com.itwillbs.domain.ReviewDTO">
-		SELECT A.REV_NUM
-			 , A.PEN_ID
-			 , A.REV_TITLE
-			 , A.REV_CONTENT
-			 , A.REV_STAR
-			 , A.REV_DATE
-			 , A.REPLY
-			 , A.ANS_CONTENT
-             , A.ANS_DATE
-			 , B.USER_NAME
-          FROM REVIEW A JOIN MEMBER B
-            ON A.USER_ID = B.USER_ID
-           AND A.USER_TYPE = B.USER_TYPE
-         WHERE  PEN_ID =  (SELECT PEN_ID 
-							FROM PENSION 
-							WHERE USER_ID = (SELECT USER_ID
-							 FROM MEMBER
-                            WHERE USER_TYPE='2' AND USER_ID = #{user_id}))
-         ORDER BY REPLY, REV_NUM DESC
-   		 LIMIT ${index}
-		  	 , ${amount}
-	</select>
-	
-		<!-- (지연) 사업자 리뷰댓글입력 -->
-	<update id="updateAnswer">
-		 UPDATE REVIEW
-		    SET REPLY = #{reply}
-		      , ANS_CONTENT= #{ans_content}
-		      , ANS_DATE = #{ans_date}
-         WHERE REV_NUM = #{rev_num};
-	</update>
-	
-	 	<!--(지연) 사업자 리뷰 페이징  -->
- 	<select id="replyCount" resultType="int">
- 		SELECT COUNT(REV_NUM)
- 		  FROM REVIEW
- 		 WHERE PEN_ID =	 (SELECT PEN_ID 
-							FROM PENSION 
-							WHERE USER_ID = (SELECT USER_ID
-							 FROM MEMBER
-                            WHERE USER_TYPE='2' AND USER_ID = #{user_id}))
- 	</select>
-
-	 	<!--(성빈) 사업자 이번달 예약건수  -->
- 	<select id="reservationAtMonth" resultType="com.itwillbs.domain.ReservationDTO">
- 		SELECT count(R.RES_NUMBER) RES_NUMBER
-				 , sum(R.RM_PRICE) RM_PRICE
-  	 	FROM RESERVATION R LEFT JOIN PENSION P
-						ON (P.PEN_ID = R.PEN_ID)
-						LEFT JOIN MEMBER M
-						ON (M.USER_ID = R.USER_ID)
-		 WHERE P.USER_ID = #{user_id}		
-            and DATE_FORMAT(RES_TIME, 'YY') = DATE_FORMAT(SYSDATE(), 'YY')
-		    AND DATE_FORMAT(RES_TIME, 'MM') = DATE_FORMAT(SYSDATE(), 'MM')
-		    AND RES_STATUS = '1';
- 	</select>
 </mapper>

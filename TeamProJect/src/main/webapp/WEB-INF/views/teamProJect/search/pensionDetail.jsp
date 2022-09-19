@@ -106,18 +106,18 @@
 // 		}
 // 	}
 	
-	function dtChange() {
-		debugger;
+// 	function dtChange() {
+// 		debugger;
 // 		alert(123);
-		var checkin = $('#checkin').val();
-		var month = new Date(checkin).getMonth() < 10 ? '0' + (new Date(checkin).getMonth() + 1) : new Date(checkin).getMonth() + 1;
-		var date = new Date(checkin).getDate() < 10 ? '0' + new Date(checkin).getDate() : new Date(checkin).getDate();
+// 		var checkin = $('#checkin').val();
+// 		var month = new Date(checkin).getMonth() < 10 ? '0' + (new Date(checkin).getMonth() + 1) : new Date(checkin).getMonth() + 1;
+// 		var date = new Date(checkin).getDate() < 10 ? '0' + new Date(checkin).getDate() : new Date(checkin).getDate();
 		
-		let dateElement = document.getElementById('checkout');
-		let tomorrow = new Date(checkin).getFullYear() + "-" + month + "-" + (date + 1);
-		dateElement.setAttribute("min", tomorrow);
-// 		document.getElementById("checkout").setAttribute("min", tomorrow);
-	}
+// 		let dateElement = document.getElementById('checkout');
+// 		let tomorrow = new Date(checkin).getFullYear() + "-" + month + "-" + (date + 1);
+// 		dateElement.setAttribute("min", tomorrow);
+// // 		document.getElementById("checkout").setAttribute("min", tomorrow);
+// 	}
 	
 	
 // 		$(document).ready( function() {
