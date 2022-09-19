@@ -237,7 +237,8 @@
 						ON (P.PEN_ID = R.PEN_ID)
 						LEFT JOIN MEMBER M
 						ON (M.USER_ID = R.USER_ID)
-	 WHERE P.USER_ID = #{user_id}					
+					   AND M.USER_TYPE = R.USER_TYPE
+	 WHERE P.USER_ID = #{user_id}	
  	</select>
  	
  	<select id="getMember" resultType="com.itwillbs.domain.ReservationDTO">
