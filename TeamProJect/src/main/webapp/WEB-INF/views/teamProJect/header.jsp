@@ -116,7 +116,7 @@ header .navs ul li ul li {
                      <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-md-none  small-menu fa-bars"></i></a>
                 </div>
                 <div class="col-md-auto"></div>
-                <div id="menu" class="col-lg-6 col-md-6	 d-none d-md-block navs ">
+                <div id="menu" class="col-lg-8 col-md-8	 d-none d-md-block navs ">
                     <ul>
 <!--                         <li><input type="text" style="visibility: hidden;"></li> -->
                         <li class="dropdown">
@@ -153,7 +153,7 @@ header .navs ul li ul li {
 						</c:otherwise> 
 					</c:choose>
 					<li><a class="title_color" href="${pageContext.request.contextPath }/map">찾아오는 길</a></li>
-					<li id="timer"></li>
+					<li id="timer" style=";padding: 0;margin-top: 22px;"></li>
                     </ul>
                 </div>
                 <div class="col-sm-1">
