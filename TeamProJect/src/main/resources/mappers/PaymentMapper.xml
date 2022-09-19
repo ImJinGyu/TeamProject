@@ -35,5 +35,12 @@
 			 , #{rm_price}
 			 , #{res_status} )
 	</insert>
+	
+	<!-- 결제 취소 -->
+	<delete id="cancelrsp">
+		DELETE FROM RESERVATION
+		 WHERE 
+	
+	</delete>
 
 </mapper>

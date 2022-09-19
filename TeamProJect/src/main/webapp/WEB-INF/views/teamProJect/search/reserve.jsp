@@ -109,7 +109,7 @@
 	
 	<script>
 		var res_num = '${businessDTO.PEN_ID }' + '${param.room_id}' + '${uidRandom }';
-// 		alert(res_num);
+		alert(res_num);
 		function iamport(){
 // 			debugger;
 			var amount = '${total }';

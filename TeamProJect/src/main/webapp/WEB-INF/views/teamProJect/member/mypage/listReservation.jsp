@@ -3,6 +3,12 @@
 <html lang="en">
 
 <head>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  			crossorigin="anonymous">
+	</script><!-- jQuery CDN --->
+	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
@@ -102,7 +108,7 @@ color:blue;
 // 		alert(res_num);
 		function cancelPay(){
 // 			debugger;
-			var amount = res_num;
+			var amount = '${total }';
 			alert(amount);
 // 			var b = '${businessDTO.USER_ID }';
 			IMP.init('imp84747824');	//가맹점 식별코드	
@@ -118,9 +124,9 @@ color:blue;
 			    buyer_addr : '${user.roadAddr}',
 			    buyer_postcode : '${user.zipNo}'}, 
 			    
-		function(rsp) {
+		function(cancelrsp) {
 			    	
-				console.log(rsp);
+				console.log(cancelrsp);
 		        var reservation = {
 	        		res_num: rsp.merchant_uid,	// 예약번호
                     check_in: '${rm_checkin}' + '${businessDTO.RM_CHECKIN }',
@@ -130,7 +136,7 @@ color:blue;
                     user_id: '${businessDTO.USER_ID }',
                     pensionid: '${pension.pensionid}' };
        	   	 	
-			    if (rsp.success) {
+			    if (cancelrsp.success) {
 			        var msg = '정말로 취소하시겠습니까 ?';
 			        console.log(reservation);
 			        alert(msg);

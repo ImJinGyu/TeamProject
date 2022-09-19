@@ -14,8 +14,15 @@ public class PaymentDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "com.itwillbs.mappers.paymentMapper";
 	
-//	public Map
 	public void insertreservation(Map<String, Object> sMap) {
 		sqlSession.insert(NAMESPACE + ".rsp", sMap);
 	}
+
+	public void cancelreservation(Map<String, Object> sMap) {
+		sqlSession.delete(NAMESPACE + ".cancelrsp", sMap);
+	}
+	
+	
+	
+	
 }
