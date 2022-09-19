@@ -325,7 +325,7 @@ public class BusinessController extends FunctionClass {
 		return "teamProJect/business/mypage/listInquiry";
 	}
 	
-	/*사업자 리뷰조회 0919수정*/
+	/*사업자 리뷰조회 0919수정지연*/
 	@RequestMapping(value = "/business/b_reviewlist", method = RequestMethod.GET)
 	public String b_reviewlist(ReviewDTO rT, HttpServletRequest req,HttpSession session, Model model) {
 		String user_id = session.getAttribute("user_id").toString();
@@ -357,7 +357,7 @@ public class BusinessController extends FunctionClass {
 		return "teamProJect/business/b_reviewlist";
 	}
 	
-	/*사업자 리뷰조회 0919수정 */
+	/*사업자 리뷰조회 0919수정지연 */
 	@RequestMapping(value = "/business/b_reviewlistPro", method = RequestMethod.POST)
 	public String b_reviewlist(ReviewDTO reviewDTO) {
 		System.out.println(123);
