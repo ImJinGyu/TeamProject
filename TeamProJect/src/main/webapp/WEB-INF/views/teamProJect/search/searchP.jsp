@@ -153,7 +153,7 @@ window.addEventListener('scroll', () => {
 		   			$('#penlist123123').append('<div class="col-lg-8 pensionlist">' + 
 									'<div class="pensions" data-pensionid='+PensionDTO.pen_id+'">'+
 									'<div class="container">'+
-									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id='+PensionDTO.pen_id+'&rm_checkin='+PensionDTO.rm_checkin+'&rm_checkout='+PensionDTO.rm_checkout+'">'+
+									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id='+PensionDTO.pen_id+'&rm_checkin=${param.rm_checkin}&rm_checkout=${param.rm_checkout}">'+
 										'<img src="${pageContext.request.contextPath }/resources/upload/'+PensionDTO.pen_image+'" alt="Image" class="img-fluid">'+
 									'</a>'+
 									'<div class="pensionInfo">'+
@@ -224,7 +224,7 @@ window.onload = function(){
 		   			$('#penlist123123').append('<div class="col-lg-8 pensionlist">' + 
 									'<div class="pensions" data-pensionid='+PensionDTO.pen_id+'">'+
 									'<div class="container">'+
-									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+PensionDTO.rm_checkin+'&rm_checkout='+PensionDTO.rm_checkout+'">'+
+									'<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id='+PensionDTO.pen_id+'&rm_checkin=${param.rm_checkin}&rm_checkout=${param.rm_checkout}">'+
 										'<img src="${pageContext.request.contextPath }/resources/upload/'+PensionDTO.pen_image+'" alt="Image" class="img-fluid">'+
 									'</a>'+
 									'<div class="pensionInfo">'+
