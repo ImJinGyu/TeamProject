@@ -124,7 +124,7 @@ var curr_order = "";
 var check = true;
 
 
-// 무한스크롤
+/* 무한스크롤*/
 window.addEventListener('scroll', () => {
 	var scrollLocation = document.documentElement.scrollTop; // 현재 스크롤바 위치
 	var windowHeight = window.innerHeight; // 스크린 창
