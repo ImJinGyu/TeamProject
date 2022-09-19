@@ -21,6 +21,15 @@
 margin: 0 auto 0 auto !important;  /* 이미지 사이 공백 삭제 */
 }
 
+@media (max-width: 768px) {
+ .order {width:100% !important;}
+
+}
+
+@media (max-width: 1440px) {
+ .order {width:257px;}
+
+}
 </style>
 
 </head>
@@ -74,20 +83,22 @@ margin: 0 auto 0 auto !important;  /* 이미지 사이 공백 삭제 */
 		</div>
 	</div>
 <!-- 검색창 끝 -->
-			<div class=" btn_wrap width_4">
-              <button type="button" data-sort="HIT" class="order" id="rev">
+			<div class="col-lg-8 btn_wrap width_4 pensionlist" style="">
+			 <div style="text-align: center;margin-left: 4px;">
+              <button type="button" data-sort="HIT" class="order" id="rev"> <!-- style="width: 256px;" -->
               	<span>리뷰 순</span></button>
               <button type="button" data-sort="LOWPRICE" class="order" id="lPr">
               	<span>낮은 가격 순</span></button>
               <button type="button" data-sort="HIGHPRICE" class="order" id="hPr">
               	<span>높은 가격 순</span></button>
+              </div>
             </div>
 
 				<!-- 숙소 리스트 불러오기 -->
 				<div id="penlist123123">
 
   				   <c:forEach items="${pensionList }" var="PensionDTO">
-					<div class="row form-detail  pensionlist">
+					<div class="col-lg-8  pensionlist">
 						<div class="pensions" data-pensionid="${PensionDTO.pen_id}">
 						  <div class="container">
 							<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id=${PensionDTO.pen_id}&rm_checkin=${rm_checkin }&rm_checkout=${rm_checkout }" >
@@ -158,7 +169,7 @@ window.addEventListener('scroll', () => {
 									'</a>'+
 									'<div class="pensionInfo">'+
 									'<div class="infoBox1">'+
-									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id='+PensionDTO.pen_id+'&rm_checkin='+PensionDTO.rm_checkin+'&rm_checkout='+PensionDTO.rm_checkout+'">'+PensionDTO.pen_name+'</a>'+
+									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id='+PensionDTO.pen_id+'&rm_checkin=${param.rm_checkin}&rm_checkout=${param.rm_checkout}">'+PensionDTO.pen_name+'</a>'+
 										'</h2>'+
 										'<p>'+PensionDTO.pen_address+'</p>'+
 										'</div>'+
@@ -229,7 +240,7 @@ window.onload = function(){
 									'</a>'+
 									'<div class="pensionInfo">'+
 									'<div class="infoBox1">'+
-									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_name='+PensionDTO.pen_name+'&rm_checkin='+PensionDTO.rm_checkin+'&rm_checkout='+PensionDTO.rm_checkout+'">'+PensionDTO.pen_name+'</a>'+
+									'<h2><a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id='+PensionDTO.pen_id+'&rm_checkin=${param.rm_checkin}&rm_checkout=${param.rm_checkout}">'+PensionDTO.pen_name+'</a>'+
 										'</h2>'+
 										'<p>'+PensionDTO.pen_address+'</p>'+
 										'</div>'+

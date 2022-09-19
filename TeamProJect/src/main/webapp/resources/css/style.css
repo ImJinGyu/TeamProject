@@ -868,6 +868,9 @@ address {
 	object-fit:cover;
 	vertical-align: middle;
 	filter: brightness(65%);
+/* 	background: linear-gradient(
+		to bottom,
+		rgba(20, 20, 20, 0) 10%) */
 }
 
 .pensions {
@@ -888,6 +891,7 @@ address {
     font-size: 18px;
     color: rgba(0,0,0,0.38);
     margin-left: -5px;
+    font-family: 'Do Hyeon', sans-serif;
 }
 
 /* .order:hover {
@@ -897,8 +901,9 @@ address {
 .order:focus {
 	color: #ff4a52;
 	border: none !important; 
-	outline: noen !important;
+	outline: none !important;
 	box-shadow: none !important;
+	
 }
 
 
