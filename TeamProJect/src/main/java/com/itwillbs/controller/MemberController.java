@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
 	public String login(HttpSession session, HttpServletRequest req) {
+		
 		String bpath = req.getHeader("Referer");
 		String uri = req.getContextPath();
 		if(bpath != null) {
@@ -32,6 +34,14 @@ public class MemberController {
 			req.setAttribute("path", path);
 		}
 		return "teamProJect/member/login";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/timerreset", method = RequestMethod.GET)
+	public String timerreset(HttpSession session) {
+		String date = new FunctionClass().nowTime("yyyy-MM-dd-HH-mm-ss");
+		session.setAttribute("TT", date);
+		return date;
 	}
 	
 
@@ -56,6 +66,7 @@ public class MemberController {
 				user_name = "넌 이름이 없니?";
 			}
 			session.setAttribute("user_name", user_name);
+			session.setAttribute("TT", new FunctionClass().nowTime("yyyy-MM-dd-HH-mm-ss"));
 			return "redirect:"+bpath+"";
 		}
 		req.setAttribute("msg", "패스워드가 일치하지 않습니다.");

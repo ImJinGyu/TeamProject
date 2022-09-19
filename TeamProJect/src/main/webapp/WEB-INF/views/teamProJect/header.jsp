@@ -16,8 +16,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" />
-    
+    <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/logintimer.js"></script>
        <style>
+       
+
 /* #menu a { */
 /*   position: relative; */
 /*   display: inline-block; */
@@ -149,7 +151,7 @@ header .navs ul li ul li {
 						</c:otherwise> 
 					</c:choose>
 					<li><a class="title_color" href="${pageContext.request.contextPath }/map">찾아오는 길</a></li>
-<!--                         <li><a href="contact-us.html">Contact US</a></li> -->
+					<li id="timer"></li>
                     </ul>
                 </div>
                 <div class="col-sm-1">
@@ -170,14 +172,35 @@ header .navs ul li ul li {
                     </ul>
                 </div>
             </div>
-            </div>
         </header>
         
 <script type="text/javascript">
+var user_id = "${sessionScope.user_id}";
+var ts = 170;
+if(user_id != null && user_id != '' && user_id.length != 0){
+	timer("${sessionScope.TT}", ts);
+}
+
+
 function logout(){
 	if(confirm("로그아웃 하시겠습니까?")){
 		location.href="${pageContext.request.contextPath }/member/logout";
 	}
+}
+
+function resettimer(){
+	
+	$(document).ready(() => {
+		$.ajax({
+			url:'${pageContext.request.contextPath}/timerreset',
+			type:'get',
+			success:(data) => {
+				debugger;
+				timer(data, ts);
+			}
+		})
+	})
+	
 }
 </script>
         
