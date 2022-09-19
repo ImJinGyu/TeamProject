@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.MemberListDAO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.PensionDTO;
 import com.itwillbs.domain.QnaDTO;
 
 @Service
 public class MemberListService {
-//	ㄴ
+
 	@Inject
 	private MemberListDAO memberListDAO;
 	
@@ -47,5 +48,9 @@ public class MemberListService {
 	
 	public List<Map<String, Object>> selectpay(){
 		return memberListDAO.selectpay();
+	}
+	
+	public List<PensionDTO> pensionlist(){
+		return memberListDAO.pensionlist();
 	}
 }

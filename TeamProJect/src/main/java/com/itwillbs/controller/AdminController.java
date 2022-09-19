@@ -59,9 +59,11 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/a_pensionlist", method = RequestMethod.GET)
 	public String a_pensionlist(Model model) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("index", "");
-		List<PensionDTO> pensionList = searchService.getPensionList(map);
+		List<PensionDTO> pensionList = memberListService.pensionlist();
+		for (PensionDTO pensionDTO : pensionList) {
+			Integer a = Integer.parseInt(pensionDTO.getStar());
+			pensionDTO.setStar(a.toString());
+		}
 		System.out.println(pensionList);
 		model.addAttribute("list",pensionList);
 		return "teamProJect/admin/a_pensionlist";

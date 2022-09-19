@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.PensionDTO;
 import com.itwillbs.domain.QnaDTO;
 
 @Repository
@@ -51,6 +52,10 @@ public class MemberListDAO {
 	
 	public List<Map<String, Object>> selectpay(){
 		return sqlSession.selectList(NAMESPACE2 + ".selectPay");
+	}
+	
+	public List<PensionDTO> pensionlist(){
+		return sqlSession.selectList(NAMESPACE2 + ".pensionlist");
 	}
 }
 

@@ -55,9 +55,9 @@ function pen(id, name){
                                     <thead>
                                         <tr>
                                             <th>팬션 번호</th>
-                                            <th style="width: 40%">팬션 이름</th>
+                                            <th>팬션 이름</th>
                                             <th>팬션 주소</th>
-                                            <th>평균 별점</th>
+                                            <th style="text-align: center;">평균 별점</th>
                                             <th>리뷰 수</th>
                                         </tr>
                                     </thead>
@@ -67,8 +67,19 @@ function pen(id, name){
 	                                            <td>${pension.pen_id}</td>
 	                                            <td id="pen_id" onclick="pen('${pension.pen_id}', '${pension.pen_name}')">${pension.pen_name}</td>
 	                                            <td>${pension.pen_address}</td>
-	                                            <td>${pension.star}</td>
-	                                            <td>${pension.rv}</td>
+	                                            <td style="text-align: center;">
+	                                            <c:forEach var="i" begin="1" end="5">
+                                           			<c:choose>
+                                           			<c:when test="${i <= pension.star}">
+                                           			<i class="fa fa-star" style="color: #fdae5c"></i>
+                                           			</c:when>
+                                           			<c:otherwise>
+                                           			<i class="fa fa-star" style="color: #fdae5c; font-weight: 100;"></i>
+                                           			</c:otherwise>
+                                           			</c:choose>
+                                           		</c:forEach>
+	                                            ${pension.star}점</td>
+	                                            <td>${pension.rv} 건</td>
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>
