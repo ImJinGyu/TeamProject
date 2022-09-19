@@ -326,8 +326,8 @@ public class BusinessController extends FunctionClass {
 	}
 	
 	/*사업자 리뷰조회 0914*/
-	@RequestMapping(value = "/business/b_myreply", method = RequestMethod.GET)
-	public String b_myreply(ReviewDTO rT, HttpServletRequest req,HttpSession session, Model model) {
+	@RequestMapping(value = "/business/b_reviewlist", method = RequestMethod.GET)
+	public String b_reviewlist(ReviewDTO rT, HttpServletRequest req,HttpSession session, Model model) {
 		String user_id = session.getAttribute("user_id").toString();
 		rT.setUser_id(user_id);
 		int totalCount = businessService.replyCount(rT);
@@ -345,7 +345,7 @@ public class BusinessController extends FunctionClass {
 		para2.put("amount", para.get("amount"));
 		para2.put("index", para.get("index"));
 		para2.put("user_id", user_id);
-		System.out.println(para2);
+//		System.out.println(para2);
 		List<ReviewDTO> rtl = businessService.reviewList(para2);
 		System.out.println(rtl);
 		model.addAttribute("List", rtl);
@@ -354,18 +354,18 @@ public class BusinessController extends FunctionClass {
 		 * List<ReviewDTO> rtl = businessService.reviewList(user_id);
 		 */
 
-		return "teamProJect/business/b_myreply";
+		return "teamProJect/business/b_reviewlist";
 	}
 	
 	/*사업자 리뷰조회 0914*/
-	@RequestMapping(value = "/business/b_myreplyPro", method = RequestMethod.POST)
-	public String b_myreply(ReviewDTO reviewDTO) {
+	@RequestMapping(value = "/business/b_reviewlistPro", method = RequestMethod.POST)
+	public String b_reviewlist(ReviewDTO reviewDTO) {
 		System.out.println(123);
 		reviewDTO.setAns_date(new FunctionClass().nowTime("yyyy-MM-dd"));
 		reviewDTO.setReply("Y");
 		System.out.println(reviewDTO);
 		businessService.updateAnwser(reviewDTO);
-		return "redirect:/business/b_myreply";
+		return "redirect:/business/b_reviewlist";
 	}
 	
 }

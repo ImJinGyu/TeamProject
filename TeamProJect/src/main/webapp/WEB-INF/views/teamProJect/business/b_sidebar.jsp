@@ -53,7 +53,7 @@
 	    </li>
 	    
 	    <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/business/b_myreply">
+        <a class="nav-link" href="${pageContext.request.contextPath}/business/b_reviewlist">
             <i class="fas fa-fw fa-comment"></i>
             <span>댓글 조회</span></a>
 	    </li>
