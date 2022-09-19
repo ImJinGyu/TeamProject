@@ -57,7 +57,7 @@ function pen(id, name){
                                             <th>팬션 번호</th>
                                             <th>팬션 이름</th>
                                             <th>팬션 주소</th>
-                                            <th style="text-align: center;">평균 별점</th>
+                                            <th style="text-align: center; width: 15%">평균 별점</th>
                                             <th>리뷰 수</th>
                                         </tr>
                                     </thead>
