@@ -20,7 +20,6 @@ public class BookService {
 	
 	@Inject
 	private BookDAO bookDAO;
-	
 
 	public List<ReservationDTO> listReservation(ReservationDTO reservationDTO) {
 		return bookDAO.listReservation(reservationDTO);

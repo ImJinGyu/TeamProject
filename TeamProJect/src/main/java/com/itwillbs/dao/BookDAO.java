@@ -16,7 +16,6 @@ public class BookDAO {
 	
 	private static final String namespace = "com.itwillbs.mappers.BusinessMapper";
 	
-	
 	public List<ReservationDTO> listReservation(ReservationDTO reservationDTO) {
 		return sqlSession.selectList(namespace+".listReservation",reservationDTO);
 	}

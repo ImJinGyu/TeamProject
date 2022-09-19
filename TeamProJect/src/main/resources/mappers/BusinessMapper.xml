@@ -267,6 +267,7 @@
 	 AND PR.RES_STATUS = '1'
  	</select>
 
+
 	<delete id="delete">
  		DELETE RESERVATION WHERE RES_NUMBER = #{RES_NUMBER}
  	</delete>

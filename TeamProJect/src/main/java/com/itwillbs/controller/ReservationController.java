@@ -53,6 +53,7 @@ public class ReservationController {
 		return "teamProJect/business/checkReservation";
 	}
 	
+	
 	@RequestMapping(value = "/business/cancelReservation", method = RequestMethod.GET)
 	public String cancelReservation(ReservationDTO reservationDTO, Model model, HttpSession session) {
 //		String user_id = (String)session.getAttribute("user_id");
