@@ -44,7 +44,6 @@ public class MemberListDAO {
 	public int pensioncount() {
 		return sqlSession.selectOne(NAMESPACE2 + ".pensionCount");
 	}
-	
 	public long paymentsum() {
 		return sqlSession.selectOne(NAMESPACE2 + ".paymentSum");
 	}

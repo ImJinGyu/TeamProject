@@ -139,7 +139,6 @@ public class AdminController {
 			mT2.setUser_type(type);
 		}
 		model.addAttribute("mList", memberList);
-		
 		return "teamProJect/admin/a_memberList";
 	}
 	

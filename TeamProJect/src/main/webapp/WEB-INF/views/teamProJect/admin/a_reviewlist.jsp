@@ -24,6 +24,7 @@
             <div id="content">
 			<jsp:include page="a_nav.jsp"/>
 
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 

@@ -64,18 +64,7 @@
                     </div>
 
                 </div>
-                <!-- /.container-fluid -->
-<!-- 			            <ul class="pagination justify-content-center"> -->
-<%-- 				<c:if test="${page.prev}"> --%>
-<%-- 					<li class="page-item"><a class="page-link" href="a_reviewlist?pageNum=${page.startPage-1}">이전</a></li> --%>
-<%-- 				</c:if> --%>
-<%-- 				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="p"> --%>
-<%-- 					<li class="page-item ${page.pageNum == p ? 'active' : ''}"><a class="page-link" href="a_reviewlist?pageNum=${p}">${p}</a></li> --%>
-<%-- 				</c:forEach> --%>
-<%-- 				<c:if test="${page.next}"> --%>
-<%-- 					<li class="page-item"><a class="page-link" href="a_reviewlist?&pageNum=${page.endPage+1}">다음</a></li> --%>
-<%-- 				</c:if> --%>
-<!-- 			</ul> -->
+
             </div>
             <!-- End of Main Content -->
             

@@ -21,6 +21,7 @@
 	            <i class="fas fa-fw fa-users"></i>
 	            <span>회원 관리</span>
 	        </a>
+	        
 	        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 	            <div class="bg-white py-2 collapse-inner rounded">
 	                <a class="collapse-item" href="${pageContext.request.contextPath }/admin/a_memberList">- 회원 목록 조회</a>
