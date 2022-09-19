@@ -37,8 +37,8 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="width: 10%">펜션번호</th>
-                                            <th style="width: 20%">숙소명</th>
+                                            <th style="width: 15%">펜션명</th>
+                                            <th style="width: 15%">객실명</th>
                                             <th style="width: 12%">체크인</th>
                                             <th style="width: 12%">체크아웃</th>
                                             <th style="width: 12%">객실이용가능인원</th>
@@ -50,7 +50,7 @@
 	                                    <tbody >
 	                                    	<c:forEach items="${rList}" var="businessDTO" >
 		                                    <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle room1" >
-			                                    <td>${businessDTO.PEN_ID}</td>
+			                                    <td>${businessDTO.PEN_NAME}</td>
 			                                    <td>${businessDTO.RM_NAME}</td>
 			                                    <td>${businessDTO.RM_CHECKIN}</td>
 			                                    <td>${businessDTO.RM_CHECKOUT}</td>
@@ -68,7 +68,8 @@
                       <thead>
                         <tr class="info">
 													<th>숙소명</th>
-													<th>체크아웃시간</th>
+													<th>체크인</th>
+													<th>체크아웃</th>
 													<th>가격</th>		
 												</tr>
 											</thead>
@@ -76,13 +77,16 @@
 												<tr>
 							<form class="user" method="post" action="${pageContext.request.contextPath}/business/roomListPro">
 									<td>
-                                    <input type="text" class="form-control form-control-user" id="name" name="RM_NAME" >
-                                    </td>
-                                 <td>
-                                    <input type="text" class="form-control form-control-user" id="deadline" name="RM_CHECKOUT" >
+                                     <input type="text" class="form-control form-control-user" id="name" name="RM_NAME" >
                                     </td>
                                     <td>
-                                    <input type="text" class="form-control form-control-user" id="price" name="RM_PRICE" >
+                                     <input type="text" class="form-control form-control-user" id="startline" name="RM_CHECKIN" >
+                                    </td>
+                                    <td>
+                                     <input type="text" class="form-control form-control-user" id="deadline" name="RM_CHECKOUT" >
+                                    </td>
+                                    <td>
+                                     <input type="text" class="form-control form-control-user" id="price" name="RM_PRICE" >
                                     </td>
                                 <hr>
 		                		<input type="hidden" id="num" name="RM_NUM" >
@@ -189,6 +193,7 @@
 			
 			var RM_NUM = td.eq(7).text();
 			var RM_NAME = td.eq(1).text();
+			var RM_CHECKIN = td.eq(2).text();
 			var RM_CHECKOUT = td.eq(3).text();
 			var RM_PRICE = td.eq(5).text();
 			
@@ -201,6 +206,7 @@
 			// 각 값에 입력
 			$('#num').val(RM_NUM);
 			$('#name').val(RM_NAME);
+			$('#startline').val(RM_CHECKIN);
 			$('#deadline').val(RM_CHECKOUT);
 			$('#price').val(RM_PRICE);
 			

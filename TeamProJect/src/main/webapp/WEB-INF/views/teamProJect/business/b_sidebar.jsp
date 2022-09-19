@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- Sidebar -->
+<%@ include file="../loading.jsp" %>
 	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 	
 	    <!-- Sidebar - Brand -->
@@ -53,7 +54,7 @@
 	    </li>
 	    
 	    <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/business/b_myreply">
+        <a class="nav-link" href="${pageContext.request.contextPath}/business/b_reviewlist">
             <i class="fas fa-fw fa-comment"></i>
             <span>댓글 조회</span></a>
 	    </li>

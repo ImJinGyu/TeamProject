@@ -144,6 +144,7 @@
 	<update id="updateRoomList">
 		UPDATE PENSION_ROOM SET 
 		       RM_NAME = #{RM_NAME}
+			  ,RM_CHECKIN = #{RM_CHECKIN}
 			  ,RM_CHECKOUT = #{RM_CHECKOUT}
 			  ,RM_PRICE = #{RM_PRICE}
 	  	 WHERE ROOM_ID = #{RM_NUM}
