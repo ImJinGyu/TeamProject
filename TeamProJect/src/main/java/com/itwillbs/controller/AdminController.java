@@ -64,7 +64,6 @@ public class AdminController {
 			Integer a = Integer.parseInt(pensionDTO.getStar());
 			pensionDTO.setStar(a.toString());
 		}
-		System.out.println(pensionList);
 		model.addAttribute("list",pensionList);
 		return "teamProJect/admin/a_pensionlist";
 	}

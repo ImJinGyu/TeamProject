@@ -57,5 +57,6 @@ public class MemberListDAO {
 	public List<PensionDTO> pensionlist(){
 		return sqlSession.selectList(NAMESPACE2 + ".pensionlist");
 	}
+	
 }
 

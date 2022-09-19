@@ -105,5 +105,4 @@
 		 ORDER BY RV DESC;
 	</select>
 	
-	
 </mapper>

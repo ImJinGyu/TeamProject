@@ -80,6 +80,7 @@ function pen(id, name){
                                            		</c:forEach>
 	                                            ${pension.star}점</td>
 	                                            <td>${pension.rv} 건</td>
+	                                            
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>

@@ -53,4 +53,5 @@ public class MemberListService {
 	public List<PensionDTO> pensionlist(){
 		return memberListDAO.pensionlist();
 	}
+	
 }
