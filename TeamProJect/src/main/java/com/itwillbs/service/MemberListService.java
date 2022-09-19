@@ -44,6 +44,7 @@ public class MemberListService {
 	public long paymentsum() {
 		return memberListDAO.paymentsum();
 	}
+	
 	public List<Map<String, Object>> selectpay(){
 		return memberListDAO.selectpay();
 	}
