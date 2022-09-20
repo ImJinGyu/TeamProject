@@ -343,21 +343,21 @@
  	</select>
 
 	 	<!--(성빈) 사업자 이번달 예약건수  -->
- 	<select id="reservationAtMonth" resultType="com.itwillbs.domain.ReservationDTO">
- 		SELECT COUNT(R.RES_NUMBER) RES_NUMBER
-			 , SUM(CAST(R.RM_PRICE AS UNSIGNED)) RM_PRICE
-             , (SELECT COUNT(RES_NUMBER) 
+ 	<select id="reservationAtMonth" resultType="map">
+         SELECT COUNT(R.RES_NUMBER) RES_NUMBER
+			  , SUM(CAST(R.RM_PRICE AS UNSIGNED)) RM_PRICE
+              , (SELECT COUNT(RES_NUMBER) 
               	   FROM RESERVATION 
               	  WHERE PEN_ID IN (SELECT PEN_ID 
               	 				 	 FROM PENSION 
               	 				    WHERE USER_ID = #{user_id}
               	 				      AND USER_TYPE = #{user_type})) AS RES_COUNT
-             , (SELECT COUNT(REV_NUM) 
-                  FROM REVIEW 
-                 WHERE PEN_ID IN (SELECT PEN_ID
-                  				    FROM PENSION 
-                  			       WHERE USER_ID = #{user_id}
-                  					 AND USER_TYPE = #{user_type})
+              , (SELECT COUNT(REV_NUM) 
+                   FROM REVIEW 
+                  WHERE PEN_ID IN (SELECT PEN_ID
+                  					 FROM PENSION 
+                  					WHERE USER_ID = #{user_id}
+                  					  AND USER_TYPE = #{user_type})
                     AND YEAR(STR_TO_DATE(REV_DATE, '%Y-%m-%d')) = YEAR(CURRENT_DATE())
 					AND MONTH(STR_TO_DATE(REV_DATE, '%Y-%m-%d')) = MONTH(CURRENT_DATE())) AS REVIEW
   	 	  FROM RESERVATION R LEFT JOIN PENSION P
