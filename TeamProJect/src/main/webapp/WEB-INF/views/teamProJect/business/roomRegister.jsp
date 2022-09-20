@@ -29,20 +29,20 @@
                             </div>
                             <form class="user" method="post" action="${pageContext.request.contextPath }/business/roomRegisterPro" enctype="multipart/form-data">
                             	<div class="form-group">
-                                	<label for="penNum">팬션 번호</label>
+                                	<label for="penNum">펜션 번호</label>
                                     <input type="text" class="form-control form-control-user" id="penNum" name="PEN_ID" value="${pen_id}" readonly>
                                 </div>
                             	<div class="form-group">
-                                	<label for="penname">팬션 이름</label>
+                                	<label for="penname">펜션 이름</label>
                                     <input type="text" class="form-control form-control-user" id="penname" name="PEN_NAME" required>
                                 </div>
                                 <div class="form-group">
-                                	<label for="penTel">팬션 전화번호</label>
+                                	<label for="penTel">펜션 전화번호</label>
                                     <input type="text" class="form-control form-control-user" id="penTel" name="PEN_TEL" required>
                                 </div>
                                 <div class="form-group">
                                 	<div style="margin-bottom: 10px">
-                                	<label for="add_dup">팬션 주소</label>
+                                	<label for="add_dup">펜션 주소</label>
                                 	<button type="button" class="btn btn-danger" id="add_dup" onclick="addressSearch()">검색</button>
                                 	</div>
                                     <input type="text" class="form-control form-control-user" id="postNum" name="postNum" placeholder="우편번호(검색 버튼 클릭)" readonly style="width: 200px; margin-bottom: 10px;">
@@ -52,7 +52,7 @@
                                 
                                 <hr>
                                 <div class="form-group uploadDiv">
-							   		<label class="btn btn-success btn-sm" for="attach">팬션 사진첨부</label>
+							   		<label class="btn btn-success btn-sm" for="attach">션 사진첨부</label>
 								    <input type="file" class="form-control d-none" placeholder="attach" id="attach" name="PEN_IMAGE" multiple required>
 							    </div>
 							    
