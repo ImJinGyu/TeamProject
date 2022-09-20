@@ -37,8 +37,8 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>펜션 사업자번호</th>
-                                            <th>고객 이름</th>
+                                            <th style="width: 15%">펜션 사업자번호</th>
+                                            <th style="width: 20%">고객 이름</th>
                                             <th>제목</th>
                                             <th style="width: 15%">별점</th>
                                             <th style="width: 15%">시간</th>
