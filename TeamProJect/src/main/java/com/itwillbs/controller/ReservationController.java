@@ -38,14 +38,19 @@ public class ReservationController {
 	
 	@RequestMapping(value = "/business/listReservation", method = RequestMethod.GET)
 	public String listReservation(ReservationDTO reservationDTO  , Model model, HttpSession session) {
-		String user_id = (String)session.getAttribute("user_id");
-		
+		String user_id = (String)session.getAttribute("user_id");		
+		String user_type = (String)session.getAttribute("user_type");
+		reservationDTO.setUser_type(user_type);
 		reservationDTO.setUser_id(user_id);
-		
-		List<ReservationDTO> listReservation = bookService.listReservation(reservationDTO);
-		System.out.println(listReservation);
-		model.addAttribute("listReservation", listReservation);
-		return "teamProJect/business/listReservation";
+		if(user_type == null) user_type = "0";
+		if(user_type.equals("2")) {
+			List<ReservationDTO> listReservation = bookService.listReservation(reservationDTO);
+			System.out.println(listReservation);
+			model.addAttribute("listReservation", listReservation);
+			return "teamProJect/business/listReservation";
+		} else {
+			return "teamProJect/business/msg";
+		}
 	}
 	
 	@RequestMapping(value = "/business/checkReservation", method = RequestMethod.GET)
@@ -54,10 +59,15 @@ public class ReservationController {
 		String user_type = session.getAttribute("user_type").toString();
 		mT.setUser_id(user_id);
 		mT.setUser_type(user_type);
-		List<ReservationDTO> listReservation = bookService.getListCheckReservation(mT);
-		System.out.println(listReservation.toString());
-		model.addAttribute("reservation2",listReservation );
+		if(user_type == null) user_type = "0";
+		if(user_type.equals("2")) {
+			List<ReservationDTO> listReservation = bookService.getListCheckReservation(mT);
+			System.out.println(listReservation.toString());
+			model.addAttribute("reservation2",listReservation );
 		return "teamProJect/business/checkReservation";
+		} else {
+			return "teamProJect/business/msg";
+		}
 	}
 	
 	
