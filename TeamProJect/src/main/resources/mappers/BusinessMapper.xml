@@ -215,10 +215,12 @@
                                                      , COUNT(*) AS OVERLAP
                                                   FROM RESERVATION
                                                  WHERE CHECK_OUT_D > #{rm_checkin}
+                                                 AND #{rm_checkout} > CHECK_IN_D
+                                                 AND RES_STATUS = 1
                                                  GROUP BY ROOM_ID) R
                                             ON PR.ROOM_ID = R.ROOM_ID
          WHERE PR.PEN_ID = #{pen_id}
-         ORDER BY CONVERT(PR.RM_PRICE, SIGNED);	<!-- convert : 문자형을 숫자형으로 변환 -->
+         ORDER BY CONVERT(PR.RM_PRICE, SIGNED)	<!-- convert : 문자형을 숫자형으로 변환 -->
 		 
 	</select>
 	
