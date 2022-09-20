@@ -52,7 +52,7 @@
                                 
                                 <hr>
                                 <div class="form-group uploadDiv">
-							   		<label class="btn btn-success btn-sm" for="attach">션 사진첨부</label>
+							   		<label class="btn btn-success btn-sm" for="attach">펜션 사진첨부</label>
 								    <input type="file" class="form-control d-none" placeholder="attach" id="attach" name="PEN_IMAGE" multiple required>
 							    </div>
 							    
