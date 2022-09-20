@@ -18,8 +18,8 @@ public class PaymentDAO {
 		sqlSession.insert(NAMESPACE + ".rsp", sMap);
 	}
 
-	public void cancelreservation(Map<String, Object> sMap) {
-		sqlSession.delete(NAMESPACE + ".cancelrsp", sMap);
+	public void cancelreservation(String res_number) {
+		sqlSession.delete(NAMESPACE + ".cancelreservation", res_number);
 	}
 	
 	
