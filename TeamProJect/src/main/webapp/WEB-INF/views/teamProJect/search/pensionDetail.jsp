@@ -336,7 +336,7 @@ header .navs ul li ul li {
 			if(btn.css('display') == 'none'){
 				$.ajax({
 					url:'rescheck',
-					data:{'user_id':"${sessionScope.user_id}", 'user_type':"${sessionScope.user_type}"},
+					data:{'user_id':"${sessionScope.user_id}", 'user_type':"${sessionScope.user_type}", 'pen_id':'${param.pen_id}'},
 					type:'get',
 					success:(data) => {
 						debugger;

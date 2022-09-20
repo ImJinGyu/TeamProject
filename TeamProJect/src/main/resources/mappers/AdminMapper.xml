@@ -111,7 +111,9 @@
 		SELECT USER_ID, USER_TYPE 
 		  FROM RESERVATION 
 		 WHERE USER_ID = #{user_id}
-		   AND USER_TYPE = #{user_type};
+		   AND USER_TYPE = #{user_type}
+		   AND PEN_ID = #{pen_id}
+		 GROUP BY USER_ID;
 	</select>
 	
 </mapper>
