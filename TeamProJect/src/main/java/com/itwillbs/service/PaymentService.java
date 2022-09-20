@@ -18,8 +18,9 @@ public class PaymentService {
 		paymentdao.insertreservation(sMap);
 	}
 	
-	public void cancelReservation(Map<String, Object> sMap) {
-		paymentdao.cancelreservation(sMap);
+	public void cancelReservation(String res_number) {
+		paymentdao.cancelreservation(res_number);
 	}
+	
 }
 

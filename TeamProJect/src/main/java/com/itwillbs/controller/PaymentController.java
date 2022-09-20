@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.PaymentService;
 import com.siot.IamportRestClient.IamportClient;
@@ -44,19 +46,16 @@ public class PaymentController {
 		
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value="search/cancelReservation", method = RequestMethod.POST)
-//	public String paymentByImpUid (@RequestParam Map<String, Object> para){
-//		
-//		Map<String, Object> sMap = para;
-//		sMap.put("res_number", para.get("pen_id").toString().concat(para.get("room_id").toString().concat(new FunctionClass().nowTime("yyyyMMddHHmmss"))));
-//		sMap.put("res_time", new FunctionClass().nowTime("yyyy-MM-dd HH:mm:ss"));
-//		System.out.println(sMap);
-//		service.cancelReservation(sMap);
-//		
-//		return "redirect:/member/mypage/listReservation";
-//		
-//	}
+	@RequestMapping(value="/member/mypage/listReservation2", method = RequestMethod.GET)
+	public String listReservation (HttpServletRequest req) {
+		String res_number = req.getParameter("res_number");
+		System.out.println(res_number);
+		service.cancelReservation(res_number);
+		
+		
+		
+		return "redirect:/member/mypage/listReservation";
+	}
 	
 	
 }

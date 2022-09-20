@@ -37,10 +37,10 @@
 	</insert>
 	
 	<!-- 결제 취소 -->
-	<delete id="cancelrsp">
-		DELETE FROM RESERVATION
-		 WHERE 
-	
-	</delete>
+	<update id="cancelreservation">
+		UPDATE RESERVATION 
+		   SET RES_STATUS = '0'
+		 WHERE RES_NUMBER = #{res_number}
+	</update>
 
 </mapper>
