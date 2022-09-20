@@ -78,6 +78,7 @@
 		INSERT INTO PENSION(
 							PEN_ID,
 		       				USER_ID,
+		       				USER_TYPE,
 		       				PEN_NAME,
 		       				PEN_ADDRESS,
 		       				PEN_ZIPCODE,
@@ -86,6 +87,7 @@
 		VALUES(
 			   #{PEN_ID},
 		       #{USER_ID},
+		       #{USER_TYPE},
 		       #{PEN_NAME},
 		       #{PEN_ADDRESS},
 		       #{PEN_ZIPCODE},
@@ -215,6 +217,7 @@
                                                      , COUNT(*) AS OVERLAP
                                                   FROM RESERVATION
                                                  WHERE CHECK_OUT_D > #{rm_checkin}
+                                                   AND DATE_ADD(#{rm_checkin}, INTERVAL 1 DAY) > CHECK_OUT_D
                                                  GROUP BY ROOM_ID) R
                                             ON PR.ROOM_ID = R.ROOM_ID
          WHERE PR.PEN_ID = #{pen_id}

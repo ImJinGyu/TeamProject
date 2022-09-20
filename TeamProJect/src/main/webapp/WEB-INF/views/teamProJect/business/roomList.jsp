@@ -176,42 +176,42 @@
     <script src="${pageContext.request.contextPath }/resources/js/room.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.room1').click(function() {
+		
+		$(document).on("click", ".room1", function() {
 			
 			var str = ""
 			var tdArr = new Array();
-			
+				
 			var tr = $(this);
 			var td = tr.children();
-			
+				
 			td.each(function(i) {
 				tdArr.push(td.eq(i).text());
 			});
-			
-			// 배열에 담긴 값을 확인하기 위한 log코드
-// 			console.log("배열 값 : " + tdArr);
-			
+				
+				// 배열에 담긴 값을 확인하기 위한 log코드
+//	 			console.log("배열 값 : " + tdArr);
+				
 			var RM_NUM = td.eq(7).text();
 			var RM_NAME = td.eq(1).text();
 			var RM_CHECKIN = td.eq(2).text();
 			var RM_CHECKOUT = td.eq(3).text();
 			var RM_PRICE = td.eq(5).text();
-			
-			// 각 변수에 담긴 값을 확인 하기위한 log코드
-// 			console.log("RM_NUM : " + RM_NUM)
-// 			console.log("RM_NAME : " + RM_NAME)
-// 			console.log("RM_CHECKOUT : " + RM_CHECKOUT)
-// 			console.log("RM_PRICE : " + RM_PRICE)
-			
-			// 각 값에 입력
+				
+				// 각 변수에 담긴 값을 확인 하기위한 log코드
+//	 			console.log("RM_NUM : " + RM_NUM)
+//	 			console.log("RM_NAME : " + RM_NAME)
+//	 			console.log("RM_CHECKOUT : " + RM_CHECKOUT)
+//	 			console.log("RM_PRICE : " + RM_PRICE)
+				
+				// 각 값에 입력
 			$('#num').val(RM_NUM);
 			$('#name').val(RM_NAME);
 			$('#startline').val(RM_CHECKIN);
 			$('#deadline').val(RM_CHECKOUT);
 			$('#price').val(RM_PRICE);
-			
-			
-			
+				
+				
 		});
 	});
 

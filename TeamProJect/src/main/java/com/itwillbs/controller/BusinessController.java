@@ -183,12 +183,13 @@ public class BusinessController extends FunctionClass {
 		
 		// session에서 id값을 가져와서 DTO에 담기위한 코드
 		String user_id = (String)session.getAttribute("user_id");
-		
+		String user_type = (String)session.getAttribute("user_type");
 		// address 주소 부분이 기본 주소 와 상세주소로 나뉘어 2개의 파라미터값을 받아올 String변수 생성
 		String address = request.getParameter("user_address") +" "+request.getParameter("user_address2");
 		
 		businessDTO.setPEN_ID(request.getParameter("PEN_ID"));
 		businessDTO.setUSER_ID(user_id);
+		businessDTO.setUSER_TYPE(user_type);
 		businessDTO.setPEN_NAME(request.getParameter("PEN_NAME"));
 		businessDTO.setPEN_NUMBER(request.getParameter("PEN_TEL"));
 		businessDTO.setPEN_ZIPCODE(request.getParameter("postNum"));

@@ -8,6 +8,7 @@ public class BusinessDTO {
 	
 	private String PEN_ID;
 	private String USER_ID;
+	private String USER_TYPE;
 	private String PEN_NAME;
 	private String PEN_ZIPCODE;
 	private String PEN_ADDRESS;
@@ -27,6 +28,12 @@ public class BusinessDTO {
 	private String OVERLAP;
 	
 	
+	public String getUSER_TYPE() {
+		return USER_TYPE;
+	}
+	public void setUSER_TYPE(String uSER_TYPE) {
+		USER_TYPE = uSER_TYPE;
+	}
 	public String getRM_NUM() {
 		return RM_NUM;
 	}
