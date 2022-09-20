@@ -3,6 +3,7 @@ package com.itwillbs.controller;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -12,10 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReservationDTO;
 import com.itwillbs.service.BookService;
+import com.itwillbs.service.ReservationService;
 
 
 
@@ -28,6 +32,9 @@ public class ReservationController {
 	@Inject
 	private BookService bookService;
 	
+	@Inject
+	private ReservationService resService;
+	
 	
 	@RequestMapping(value = "/business/listReservation", method = RequestMethod.GET)
 	public String listReservation(ReservationDTO reservationDTO  , Model model, HttpSession session) {
@@ -36,7 +43,7 @@ public class ReservationController {
 		reservationDTO.setUser_id(user_id);
 		
 		List<ReservationDTO> listReservation = bookService.listReservation(reservationDTO);
-		
+		System.out.println(listReservation);
 		model.addAttribute("listReservation", listReservation);
 		return "teamProJect/business/listReservation";
 	}
@@ -89,6 +96,20 @@ public class ReservationController {
 			return "teamProJect/business/msg";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/search/rescheck", method = RequestMethod.GET)
+	public boolean rescheck(@RequestParam Map<String, Object> sMap) {
+		System.out.println(sMap);
+		MemberDTO mT = resService.rescheck(sMap);
+		System.out.println(mT);
+		if(mT != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 		
 		
 				

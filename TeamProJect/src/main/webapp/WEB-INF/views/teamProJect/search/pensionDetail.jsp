@@ -330,13 +330,31 @@ header .navs ul li ul li {
 }
 </style> 
 <script type="text/javascript">
-	var btn = $('#replyForm'); 
-	$('#replyEvent').click(() => {
-		if(btn.css('display') == 'none'){
-			btn.css('display', 'block');
+	var btn = $('#replyForm');
+	$(document).ready(() => {
+		$('#replyEvent').click(() => {
+			if(btn.css('display') == 'none'){
+				$.ajax({
+					url:'rescheck',
+					data:{'user_id':"${sessionScope.user_id}", 'user_type':"${sessionScope.user_type}"},
+					type:'get',
+					success:(data) => {
+						debugger;
+						if(data == true){
+							if(btn.css('display') == 'none'){
+								btn.css('display', 'block');
+								return;
+							}
+						}
+						alert('예약 이력이 없어 리뷰작성이 불가능합니다.');
+						return;
+					}
+				})
+			}
+			btn.css('display', 'none');
 			return;
-		}
-		btn.css('display', 'none');
+		})
 	})
+	
 </script>
 </html>

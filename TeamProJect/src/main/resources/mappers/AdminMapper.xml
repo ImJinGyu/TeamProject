@@ -107,4 +107,11 @@
 		 ORDER BY RV DESC;
 	</select>
 	
+	<select id="rescheck" resultType="com.itwillbs.domain.MemberDTO">
+		SELECT USER_ID, USER_TYPE 
+		  FROM RESERVATION 
+		 WHERE USER_ID = #{user_id}
+		   AND USER_TYPE = #{user_type};
+	</select>
+	
 </mapper>

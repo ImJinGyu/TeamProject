@@ -1,12 +1,14 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReservationDTO;
 
 @Repository
@@ -20,6 +22,10 @@ public class ReservationDAO {
 	public List<ReservationDTO> listReservationAll(ReservationDTO reservationDTO){
 		System.out.println("전체 예약 내역 조회 출력");
 		return sqlSession.selectList(NAMESPACE + ".listReservationAll", reservationDTO);
+	}
+	
+	public MemberDTO rescheck(Map<String, Object> sMap) {
+		return sqlSession.selectOne(NAMESPACE + ".rescheck", sMap);
 	}
 	
 }
