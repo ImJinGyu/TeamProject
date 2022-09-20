@@ -30,14 +30,14 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">리뷰 목로고</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">리뷰 목록</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>펜션 사업자번호</th>
                                             <th>고객 이름</th>
                                             <th>제목</th>
                                             <th style="width: 15%">별점</th>
@@ -47,14 +47,15 @@
                                     <tbody>
                                     	<c:forEach items="${List}" var="review">
                                     		<tr style="cursor: pointer;" id="rep${review.rev_num}" onclick="showQna(this.id)">
-           			                        	<c:choose>
+           			                        	<%-- <c:choose>
                                     			<c:when test="${review.reply == 'Y'}">
 	                                        	<td><span class="badge badge-info p-2">답변 완료</span></td>
 	                                        	</c:when>
 	                                        	<c:when test="${review.reply == 'N'}">
 	                                        	<td><span class="badge badge-danger p-2">미답변 </span></td>
 	                                        	</c:when>
-                                    			</c:choose>
+                                    			</c:choose> --%>
+                                    			<td>${review.pen_id}</td>
                                     			<td>${review.user_name}</td>
 	                                    		<td>${review.rev_title}</td>
 	                                            <td style="text-align: center;">
@@ -70,10 +71,9 @@
                                            		</c:forEach>
 	                                            ${review.rev_star}점</td>
 	                                            <td>${review.rev_date}&nbsp;&nbsp;
-	                                              <%-- 
 	                                            <c:if test="${review.reply == 'Y'}">
 	                                        	<span class="badge badge-info p-2"> 답변 완료</span>
-	                                        	</c:if> --%>
+	                                        	</c:if>
 	                                            </td>
 	                                        </tr>
 	                                        <tr class="rep${review.rev_num}" style="display: none;">

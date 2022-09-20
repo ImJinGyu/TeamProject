@@ -274,7 +274,7 @@
  	</delete>
 
 
-	<!--(지연) 사업자 리뷰조회 -->
+	<!--(지연) 사업자 리뷰조회 서브쿼리 = -> IN 으로 수정 0920--> 
 	<select id="reviewList" resultType="com.itwillbs.domain.ReviewDTO">
 		SELECT A.REV_NUM
 			 , A.PEN_ID
@@ -289,7 +289,7 @@
           FROM REVIEW A JOIN MEMBER B
             ON A.USER_ID = B.USER_ID
            AND A.USER_TYPE = B.USER_TYPE
-         WHERE  PEN_ID =  (SELECT PEN_ID 
+         WHERE  PEN_ID IN (SELECT PEN_ID 
 							FROM PENSION 
 							WHERE USER_ID = (SELECT USER_ID
 							 FROM MEMBER
@@ -308,11 +308,11 @@
          WHERE REV_NUM = #{rev_num};
 	</update>
 	
-	 	<!--(지연) 사업자 리뷰 페이징  -->
+	 	<!--(지연) 사업자 리뷰 페이징 서브쿼리 = -> IN 으로 수정 0920 -->
  	<select id="replyCount" resultType="int">
  		SELECT COUNT(REV_NUM)
  		  FROM REVIEW
- 		 WHERE PEN_ID =	 (SELECT PEN_ID 
+ 		 WHERE PEN_ID IN (SELECT PEN_ID 
 							FROM PENSION 
 							WHERE USER_ID = (SELECT USER_ID
 							 FROM MEMBER
