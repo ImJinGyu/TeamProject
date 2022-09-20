@@ -46,6 +46,13 @@
 	  	SELECT SUM(IF(USER_TYPE = '0', 1, 0)) 'ADMIN'
 	 		 , SUM(IF(USER_TYPE = '1', 1, 0)) 'USER'
      		 , SUM(IF(USER_TYPE = '2', 1, 0)) 'BUSINESS'
+     		 , (SELECT COUNT(PEN_ID)
+     		 	  FROM PENSION) AS 'PCOUNT'
+     		 , (SELECT SUM(CAST(RM_PRICE AS UNSIGNED))
+		 		  FROM RESERVATION) AS 'PAYMENT'
+		 	 , (SELECT COUNT(COUNT)
+				  FROM QNA_INQUIRE
+				 WHERE REPLY = 'N') AS 'NQNA'
 		  FROM MEMBER;
 	</select>
 	
@@ -65,15 +72,6 @@
 					   
 	</select>
 	
-	<select id="pensionCount" resultType="int">
-		SELECT COUNT(PEN_ID)
-		  FROM PENSION
-	</select>
-	
-	<select id="paymentSum" resultType="long">
-		SELECT SUM(CAST(RM_PRICE AS UNSIGNED))
-		  FROM RESERVATION
-	</select>
 	
 	<select id="selectPay" resultType="map">
 		SELECT P.PEN_ID

@@ -90,16 +90,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/a_index", method = RequestMethod.GET)
-	public String a_index(QnaDTO qT, Model model) {
-		qT.setReply("N");
-		int Nqna = memberListService.qnaCount(qT);
+	public String a_index(Model model) {
 		Map<String ,Object> sMap = memberListService.customCount();
-		int pcount = memberListService.pensioncount();
-		long payment = memberListService.paymentsum();
-//		DecimalFormat df = new DecimalFormat("###,###");
-		sMap.put("NQNA", Nqna);
-		sMap.put("pcount", pcount);
-		sMap.put("payment", payment);
 		System.out.println(sMap);
 		model.addAttribute("Map",sMap);
 		
