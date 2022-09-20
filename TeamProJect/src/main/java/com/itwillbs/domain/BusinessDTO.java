@@ -24,6 +24,7 @@ public class BusinessDTO {
 //	private String ROOM_ID;
 	private int ROOM_ID;
 	private String BOOK;
+	private String OVERLAP;
 	
 	
 	public String getRM_NUM() {
@@ -129,6 +130,12 @@ public class BusinessDTO {
 	}
 	public void setBOOK(String bOOK) {
 		BOOK = bOOK;
+	}
+	public String getOVERLAP() {
+		return OVERLAP;
+	}
+	public void setOVERLAP(String oVERLAP) {
+		OVERLAP = oVERLAP;
 	}
 	
 	

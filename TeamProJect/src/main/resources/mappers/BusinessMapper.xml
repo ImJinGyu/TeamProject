@@ -183,7 +183,7 @@
 	
 	<!-- 방 정보 불러오기 (지원) -->
  	<select id="getSearchRoomList" resultType="com.itwillbs.domain.BusinessDTO">
-		SELECT R.ROOM_ID
+<!-- 		SELECT R.ROOM_ID
 		     , R.RM_PRICE
 		     , R.RM_CHECKIN
 		     , R.RM_CHECKOUT
@@ -196,7 +196,30 @@
 		  				 JOIN ROOM_ATTACH RA
 		    			   ON R.RM_NAME = RA.RM_NAME
 		 WHERE P.PEN_ID = #{pen_id}
-		 ORDER BY CONVERT(R.RM_PRICE, SIGNED)	<!-- convert : 문자형을 숫자형으로 변환 -->
+		 ORDER BY CONVERT(R.RM_PRICE, SIGNED) -->	<!-- convert : 문자형을 숫자형으로 변환 -->
+		
+		SELECT PR.PEN_ID
+             , PR.ROOM_ID
+             , PR.RM_PRICE
+             , PR.RM_CHECKIN
+             , PR.RM_CHECKOUT
+             , RA.RM_NAME
+             , RA.RM_IMAGE
+             , IFNULL(OVERLAP, 0) AS OVERLAP
+             , CASE WHEN TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}) > 1
+                         THEN CONCAT('예 약 하 기 | ', FORMAT(PR.RM_PRICE * TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}), 0), '원')
+                    ELSE '예 약 하 기' END AS BOOK
+          FROM PENSION_ROOM PR JOIN ROOM_ATTACH RA
+                                 ON PR.RM_NAME = RA.RM_NAME
+                               LEFT OUTER JOIN (SELECT ROOM_ID
+                                                     , COUNT(*) AS OVERLAP
+                                                  FROM RESERVATION
+                                                 WHERE CHECK_OUT_D > #{rm_checkin}
+                                                 GROUP BY ROOM_ID) R
+                                            ON PR.ROOM_ID = R.ROOM_ID
+         WHERE PR.PEN_ID = #{pen_id}
+         ORDER BY CONVERT(PR.RM_PRICE, SIGNED);	<!-- convert : 문자형을 숫자형으로 변환 -->
+		 
 	</select>
 	
 	<!-- 이지원 -->

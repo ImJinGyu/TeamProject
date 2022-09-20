@@ -187,9 +187,12 @@
 						<!-- <div style="margin: 15px 0;"></div> -->
 					 	
 					 	<div class="rButton">
-					 		<button class="btn btn-primary w-100" style="border-radius:7px; height: 40px; ">
-					 			<h4 style="color:white; font-family: 'Do Hyeon', sans-serif;">${businessDTO.BOOK }</h4>
-					 		</button>
+					 		<input type="submit" class="btn btn-primary w-100"
+					 			<c:if test="${businessDTO.OVERLAP != 0 }"> disabled value="판 매 완 료" style="border:none; border-radius:7px; height: 40px; background-color: gray; color:white; font-family: 'Do Hyeon', sans-serif; font-size: 20px;"</c:if>
+					 			<c:if test="${businessDTO.OVERLAP == 0 }"> value="${businessDTO.BOOK }" style="border-radius:7px; height: 40px; color:white; font-family: 'Do Hyeon', sans-serif; font-size: 20px;"</c:if>>
+<!-- 					 		<button class="btn btn-primary w-100" style="border-radius:7px; height: 40px; "> -->
+<%-- 					 			<h4 style="color:white; font-family: 'Do Hyeon', sans-serif;">${businessDTO.BOOK }</h4> --%>
+<!-- 					 		</button> -->
 					 	</div>
 					 	<div style="margin: 0 0 25px 0;"></div>
 				 	</div>

@@ -1231,9 +1231,7 @@ address {
 
 @media (min-width: 1024px) {
 	.rButton {
-/* 		padding: 5px 0 0 25px; */
-		padding: 25px 0 0 25px;
-/* 		padding: 122px 0 0 25px; */
+		padding: 45px 0 10px 25px;
 	}
 }
 
