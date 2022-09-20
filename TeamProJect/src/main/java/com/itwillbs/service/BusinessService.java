@@ -92,8 +92,8 @@ public class BusinessService {
 		
 	}
 
-	public ReservationDTO reservationAtMonth(String user_id) {
-		return businessDAO.reservationAtMonth(user_id);
+	public Map<String, Object> reservationAtMonth(Map<String, Object> sMap) {
+		return businessDAO.reservationAtMonth(sMap);
 	}
 
 

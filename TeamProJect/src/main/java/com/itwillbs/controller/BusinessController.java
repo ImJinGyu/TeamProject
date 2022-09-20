@@ -63,14 +63,15 @@ public class BusinessController extends FunctionClass {
 			// 사업자페이지 로그인아이디 화면단 표시 구현
 			System.out.println("유저타입 : " + session.getAttribute("user_type"));
 			String user_id = (String)session.getAttribute("user_id");
-			model.addAttribute("user_id", user_id);
+			Map<String, Object> sMap = new HashMap<String, Object>();
+			sMap.put("user_id", user_id);
+			sMap.put("user_type", user_type);
 			// 사업자페이지 초기화면 데이터 표시 구현
-			System.out.println(user_id);
-			int count = businessService.reservationCount(user_id);
-			System.out.println(count);
-			model.addAttribute("rCount",count);
-			reservationDTO = businessService.reservationAtMonth(user_id);
-			model.addAttribute("AtMonth",reservationDTO);
+			
+			
+			Map<String, Object> uMap = businessService.reservationAtMonth(sMap);
+			System.out.println(uMap);
+			model.addAttribute("AtMonth",uMap);
 				return "teamProJect/business/b_index";
 		} else {
 		}

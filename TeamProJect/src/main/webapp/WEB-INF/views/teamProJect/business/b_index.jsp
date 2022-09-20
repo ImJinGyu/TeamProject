@@ -40,7 +40,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 숙소 이용 건수</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${rCount} 건</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${AtMonth.RES_COUNT} 건</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -58,7 +58,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 이번 달 매출 금액</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><fmt:formatNumber type="number" maxFractionDigits="3" value="${AtMonth.rm_price == null ? '0' : AtMonth.rm_price}" /> 원</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><fmt:formatNumber type="number" maxFractionDigits="3" value="${AtMonth.RM_PRICE == null ? '0' : AtMonth.RM_PRICE}" /> 원</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -76,7 +76,7 @@
                                         <div class="col mr-2">
 	                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
 	                                                이번 달 예약 건수</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${AtMonth.res_number} 건</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${AtMonth.RES_NUMBER} 건</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -94,7 +94,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 이번 달 댓글 개수</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0 개</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${AtMonth.REVIEW} 개</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>

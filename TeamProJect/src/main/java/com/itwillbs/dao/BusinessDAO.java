@@ -97,8 +97,8 @@ public class BusinessDAO {
 	}
 
 
-	public ReservationDTO reservationAtMonth(String user_id) {
-		return sqlSession.selectOne(namespace + ".reservationAtMonth", user_id);
+	public  Map<String, Object> reservationAtMonth(Map<String, Object> sMap) {
+		return sqlSession.selectOne(namespace + ".reservationAtMonth", sMap);
 	}
 
 

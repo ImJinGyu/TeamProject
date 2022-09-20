@@ -344,15 +344,29 @@
 
 	 	<!--(성빈) 사업자 이번달 예약건수  -->
  	<select id="reservationAtMonth" resultType="com.itwillbs.domain.ReservationDTO">
- 		SELECT count(R.RES_NUMBER) RES_NUMBER
-				 , sum(R.RM_PRICE) RM_PRICE
-  	 	FROM RESERVATION R LEFT JOIN PENSION P
+ 		SELECT COUNT(R.RES_NUMBER) RES_NUMBER
+			 , SUM(CAST(R.RM_PRICE AS UNSIGNED)) RM_PRICE
+             , (SELECT COUNT(RES_NUMBER) 
+              	   FROM RESERVATION 
+              	  WHERE PEN_ID IN (SELECT PEN_ID 
+              	 				 	 FROM PENSION 
+              	 				    WHERE USER_ID = #{user_id}
+              	 				      AND USER_TYPE = #{user_type})) AS RES_COUNT
+             , (SELECT COUNT(REV_NUM) 
+                  FROM REVIEW 
+                 WHERE PEN_ID IN (SELECT PEN_ID
+                  				    FROM PENSION 
+                  			       WHERE USER_ID = #{user_id}
+                  					 AND USER_TYPE = #{user_type})
+                    AND YEAR(STR_TO_DATE(REV_DATE, '%Y-%m-%d')) = YEAR(CURRENT_DATE())
+					AND MONTH(STR_TO_DATE(REV_DATE, '%Y-%m-%d')) = MONTH(CURRENT_DATE())) AS REVIEW
+  	 	  FROM RESERVATION R LEFT JOIN PENSION P
 						ON (P.PEN_ID = R.PEN_ID)
-						LEFT JOIN MEMBER M
-						ON (M.USER_ID = R.USER_ID)
+					  LEFT JOIN MEMBER M
+						ON (M.USER_ID = R.USER_ID) AND M.USER_TYPE = R.USER_TYPE
 		 WHERE P.USER_ID = #{user_id}		
-            and DATE_FORMAT(RES_TIME, 'YY') = DATE_FORMAT(SYSDATE(), 'YY')
-		    AND DATE_FORMAT(RES_TIME, 'MM') = DATE_FORMAT(SYSDATE(), 'MM')
-		    AND RES_STATUS = '1';
+           AND YEAR(STR_TO_DATE(R.RES_TIME, '%Y-%m-%d')) = YEAR(CURRENT_DATE())
+		   AND MONTH(STR_TO_DATE(R.RES_TIME, '%Y-%m-%d')) = MONTH(CURRENT_DATE())
+		   AND RES_STATUS = '1';
  	</select>
 </mapper>
