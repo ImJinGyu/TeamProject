@@ -79,31 +79,54 @@
 	</div>
 
 	<script type="text/javascript">
-	
-	
-	// 체크인 날짜 값 변경 시 체크아웃 날짜 값 변경(지원)
-	$(document).ready( function() {
-
-		// 체크인 날짜 값이 변경되면
-		$('#checkin').change( function() {
-//				debugger;
-			var checkin = $('#checkin').val();
-			var checkout = $('#checkout').val();
-			var month = new Date(checkin).getMonth() < 10 ? '0' + (new Date(checkin).getMonth() + 1) : new Date(checkin).getMonth() + 1;
-			var date = new Date(checkin).getDate() < 10 ? '0' + new Date(checkin).getDate() : new Date(checkin).getDate();
-
-			let dateElement = document.getElementById('checkout');
-			let nextDay = new Date(checkin).getFullYear() + "-" + month + "-" + (date + 1);	// 체크인 날짜의 다음날
-			
-			
-			dateElement.setAttribute("min", nextDay);	// 체크아웃의 최소값 지정
-
-			// 다음날이 원래 체크아웃날짜보다 크면
-			if(nextDay > checkout) {
-				$('#checkout').val(nextDay);	// 체크아웃 value값을 다음날로 변경
+		
+		// 날짜 일수 더하는 함수
+		function dateAdd(date, days) {
+			var d = new Date(date);
+			d.setDate(d.getDate() + days);
+			return d;
+		}
+		
+		function zero(value) {
+			if (value < 10) {
+				return '0' + value;
 			}
+	       
+			return value;
+		}
+	   
+		function dateFormat(source, delimiter = '-') {
+			const year = source.getFullYear();
+			const month = zero(source.getMonth() + 1);
+			const day = zero(source.getDate());
+			
+			return [year, month, day].join(delimiter);
+		}
+	   
+	   // 체크인 날짜 값 변경 시 체크아웃 날짜 값 변경(지원)
+		$(document).ready( function() {
+
+			// 체크인 날짜 값이 변경되면
+			$('#checkin').change( function() {
+				var checkin = $('#checkin').val();
+				var nd = dateAdd(checkin, 1);
+// 				console.log("다음날 : " + nd);
+				
+				var checkout = $('#checkout').val();
+
+				let dateElement = document.getElementById('checkout');
+				let nextDay = dateFormat(nd);   // 체크인 날짜의 다음날
+// 				console.log(nextDay);
+				
+				dateElement.setAttribute("min", nextDay);   // 체크아웃의 최소값 지정
+				
+				// 다음날이 원래 체크아웃날짜보다 크면
+				if(nextDay > checkout) {
+					$('#checkout').val(nextDay);   // 체크아웃 value값을 다음날로 변경
+				}
+				
+			});
 		});
-	});
 
 
 	
@@ -120,7 +143,7 @@
 				<div style="padding: 2.5px 2.5px 2.5px 2.5px;">
 					<div class="row form-detail" style="display: flex;margin: auto;border: 1px solid gainsboro;border-radius: 10px;width: auto;background: white;align-items: center;">
 						<div class="col-md-2 ffb">
-			               	<input type='date' id="checkin" min="${today }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin" onchange="dtChange()"
+			               	<input type='date' id="checkin" min="${today }" value="${rm_checkin }" class="main_checkin_1" name="rm_checkin"
 			               		style="width: 99%; margin: 0px 2.25px; padding: 0;" required><!--  onchange="dateChk()" -->
 						</div>
 						<div class="col-md-2 ffb">
@@ -188,7 +211,7 @@
 					 	
 					 	<div class="rButton">
 					 		<input type="submit" class="btn btn-primary w-100"
-					 			<c:if test="${businessDTO.OVERLAP != 0 }"> disabled value="판 매 완 료" style="border:none; border-radius:7px; height: 40px; background-color: gray; color:white; font-family: 'Do Hyeon', sans-serif; font-size: 20px;"</c:if>
+					 			<c:if test="${businessDTO.OVERLAP != 0 }"> disabled value="예 약 불 가" style="border:none; border-radius:7px; height: 40px; background-color: gray; color:white; font-family: 'Do Hyeon', sans-serif; font-size: 20px;"</c:if>
 					 			<c:if test="${businessDTO.OVERLAP == 0 }"> value="${businessDTO.BOOK }" style="border-radius:7px; height: 40px; color:white; font-family: 'Do Hyeon', sans-serif; font-size: 20px;"</c:if>>
 <!-- 					 		<button class="btn btn-primary w-100" style="border-radius:7px; height: 40px; "> -->
 <%-- 					 			<h4 style="color:white; font-family: 'Do Hyeon', sans-serif;">${businessDTO.BOOK }</h4> --%>
