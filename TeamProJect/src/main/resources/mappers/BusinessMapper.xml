@@ -78,6 +78,7 @@
 		INSERT INTO PENSION(
 							PEN_ID,
 		       				USER_ID,
+		       				USER_TYPE,
 		       				PEN_NAME,
 		       				PEN_ADDRESS,
 		       				PEN_ZIPCODE,
@@ -86,6 +87,7 @@
 		VALUES(
 			   #{PEN_ID},
 		       #{USER_ID},
+		       #{USER_TYPE},
 		       #{PEN_NAME},
 		       #{PEN_ADDRESS},
 		       #{PEN_ZIPCODE},
