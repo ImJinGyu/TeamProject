@@ -276,4 +276,5 @@ window.onload = function(){
     <script src="${pageContext.request.contextPath }/resources/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/plugins/slider/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/script.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/date.js"></script>
     </html>

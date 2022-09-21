@@ -226,7 +226,7 @@ public class SearchController {
 		return pensionList;
 	}
 
-	/* 펜션 정보 + 방 리스트 불러오기 (지원) 아직 수정할거 많음 */
+	/* 펜션 정보 + 방 리스트 불러오기 (지원) */
 	@RequestMapping(value = "/search/pensionDetail", method = RequestMethod.GET)
 	public String pensionDetail(HttpServletRequest request, Model model) throws Exception {
 
@@ -240,8 +240,8 @@ public class SearchController {
 		String today = dateParse.strToDate(dateParse.getTodayPlus(0));
 		String tomorrow = dateParse.strToDate(dateParse.getTodayPlus(1));
 		
-		rm_checkin = rm_checkin == null ? today : rm_checkin;
-		rm_checkout = rm_checkout == null ? tomorrow : rm_checkout;
+		rm_checkin = rm_checkin == null || rm_checkin == "" ? today : rm_checkin;
+		rm_checkout = rm_checkout == null  || rm_checkout == "" ? tomorrow : rm_checkout;
 
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("pen_id", pen_id);
