@@ -205,15 +205,13 @@
              , PR.RM_PRICE
              , PR.RM_CHECKIN
              , PR.RM_CHECKOUT
-             , RA.RM_NAME
-             , RA.RM_IMAGE
+             , PR.RM_NAME
+             , PR.RM_IMAGE
              , IFNULL(OVERLAP, 0) AS OVERLAP
              , CASE WHEN TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}) > 1
                          THEN CONCAT('예 약 하 기 | ', FORMAT(PR.RM_PRICE * TIMESTAMPDIFF(DAY, #{rm_checkin}, #{rm_checkout}), 0), '원')
                     ELSE '예 약 하 기' END AS BOOK
-          FROM PENSION_ROOM PR JOIN ROOM_ATTACH RA
-                                 ON PR.RM_NAME = RA.RM_NAME
-                               LEFT OUTER JOIN (SELECT ROOM_ID
+          FROM PENSION_ROOM PR LEFT OUTER JOIN (SELECT ROOM_ID
                                                      , COUNT(*) AS OVERLAP
                                                   FROM RESERVATION
                                                  WHERE CHECK_OUT_D > #{rm_checkin}
