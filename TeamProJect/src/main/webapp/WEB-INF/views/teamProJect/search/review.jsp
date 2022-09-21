@@ -19,7 +19,7 @@
             <div class="score_top">
                <p><b>만족해요</b></p>
                <!-- 별 그려보기 -->
-               <div class="row col-7 mx-auto">
+               <div class="row col-7 mx-auto" style="max-width: 67%;">
                   <div class="text-warning display-3 col-10 float-right" id="paintStar">
                     <c:forEach var="i" begin="1" end="5" step="1">
                     	<c:choose>

@@ -268,6 +268,7 @@
 						<button class="btn btn-primary w-100" type=submit
 						style="border: none; border-radius: 10px; height: 48px; font-size: 27px; font-family: 'Do Hyeon', sans-serif;" >검 색</button>
 					</div>
+					
 				</div>
 			</form>
 		</div>
@@ -337,20 +338,31 @@
                         	<input id="" type="hidden" name="pen_id" value="${PensionDTO.pen_id}">
                             <h4>${PensionDTO.pen_name}</h4>
                             <p>${PensionDTO.pen_address }</p>
-                            <p>평점 ${PensionDTO.star }</p>
+                            
                             <ul class="rat">
                             <li>
-                            <fmt:parseNumber var="star" type="number" value="${PensionDTO.star}" />
+                            <c:choose>
+                            <c:when test="${fn:length(PensionDTO.star.trim()) == 0}">
+                            <p>평점 5점</p>
                             <c:forEach var="i" begin="1" end="5" step="1">
-                            			<c:choose>
-                            			<c:when test="${i <= star}">
-                            			<i class="fa fa-star" style="color: #fdae5c"></i>
-                            			</c:when>
-                            			<c:otherwise>
-                            			<i class="fa fa-star" style="color: #fdae5c; font-weight: 100;"></i>
-                            			</c:otherwise>
-                            			</c:choose>
-                            		</c:forEach> 
+                          			<i class="fa fa-star" style="color: #fdae5c"></i>
+                          		</c:forEach> 
+                            </c:when>
+                            <c:otherwise>
+                            <p>평점 ${PensionDTO.star }</p>
+                            <fmt:parseNumber var="star" type="number" value="${PensionDTO.star}" />
+                            	<c:forEach var="i" begin="1" end="5" step="1">
+                          			<c:choose>
+                          			<c:when test="${i <= star}">
+                          			<i class="fa fa-star" style="color: #fdae5c"></i>
+                          			</c:when>
+                          			<c:otherwise>
+                          			<i class="fa fa-star" style="color: #fdae5c; font-weight: 100;"></i>
+                          			</c:otherwise>
+                          			</c:choose>
+                          		</c:forEach> 
+                            </c:otherwise>		
+                            </c:choose>		
                             </li>
                             </ul>
                             
@@ -506,4 +518,29 @@
     <script src="${pageContext.request.contextPath }/resources/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/plugins/slider/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/script.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+    var ref = ['데이터2', '데이터3', '데이터1', '데이터4', '데이터10', '데이터7', '데이터6'];
+    $(document).ready(() => {
+    	$('.main_search_text').keyup( function(){
+    		$('.search2').empty();
+    		var value = $(this).val().trim();
+    		for(var v of ref.values()) {
+    			if(value.length != 0){
+    				if(v.indexOf(value) > -1){
+    					$('.search2').append();
+    					
+       				}	
+    			}
+			}
+    		
+    		$('.search2').children().each(function(){
+    	        $(this).click(function(){
+    	            	$('.main_search_text').val($(this).text());
+    	        });
+    	    });	 
+    	})
+    })
+    </script>
 </html>
+
