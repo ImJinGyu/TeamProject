@@ -146,6 +146,7 @@
 			        $.ajax({
 			         	url: "insertReservation",
 			        	type: "POST",
+			        	async: false,	// 동기로 전환
 			        	data: { 'user_id'	 :'${sessionScope.user_id}',
 				        		'user_type'	 :'${sessionScope.user_type}',
 				        		'pen_id'	 :'${businessDTO.PEN_ID }',
@@ -159,9 +160,13 @@
 			        		    'res_status' :'1'
 			        		   },
 			        	dataType:"json",
+			        	success : function(data) {     
+// 			        		debugger; 
+			        		location.href = '${pageContext.request.contextPath}/member/mypage/listReservation';
+			        	}
+			        	
 			        })
-			      
-			        location.href = '${pageContext.request.contextPath}/member/mypage/listReservation';
+			        
 			    } else {
 			      var msg = rsp.error_msg;
 			      alert(msg);

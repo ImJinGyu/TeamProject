@@ -39,10 +39,11 @@ public class PaymentController {
 		Map<String, Object> sMap = para;
 		sMap.put("res_number", para.get("pen_id").toString().concat(para.get("room_id").toString().concat(new FunctionClass().nowTime("yyyyMMddHHmmss"))));
 		sMap.put("res_time", new FunctionClass().nowTime("yyyy-MM-dd HH:mm:ss"));
+		System.out.println("===================");
 		System.out.println(sMap);
 		service.insertreservation(sMap);
 		
-		return "redirect:/member/mypage/listReservation";
+		return "true";
 		
 	}
 	
