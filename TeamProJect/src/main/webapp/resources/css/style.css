@@ -862,31 +862,16 @@ address {
 
 
 /* searchP 페이지 (지연) */
-
-@media (min-width:768px) {
-	.container img {
-		width: 360px;
-		height: 225px;
-		object-fit:cover;
-		vertical-align: middle;
-		filter: brightness(65%);
-	}
-	
-	div > .details {
-		height: 152.94px;
-	}
-}
-
-/* .container img { */
-/* 	width: 100%; */
-/* 	height: 100%; */
-/* 	object-fit:cover; */
-/* 	vertical-align: middle; */
-/* 	filter: brightness(65%); */
+.container img {
+	width: 100%;
+	height: 100%;
+	object-fit:cover;
+	vertical-align: middle;
+	filter: brightness(65%);
 /* 	background: linear-gradient(
 		to bottom,
 		rgba(20, 20, 20, 0) 10%) */
-/* } */
+}
 
 .pensions {
 	width: 100%;
