@@ -20,19 +20,32 @@
                <p><b>만족해요</b></p>
                <!-- 별 그려보기 -->
                <div class="row col-7 mx-auto" style="max-width: 67%;">
+                  <c:choose>
+                  <c:when test="${fn:length(avg.AVG.toString()) == 0}">
                   <div class="text-warning display-3 col-10 float-right" id="paintStar">
                     <c:forEach var="i" begin="1" end="5" step="1">
-                    	<c:choose>
-                    		<c:when test="${i <= avg.AVG}">
-                    			<i class="fas fa-star"></i>
-                    		</c:when>
-                    		<c:otherwise>
-                    			<i class="far fa-star"></i>
-                    		</c:otherwise>
-                    	</c:choose>
+                   			<i class="fas fa-star"></i>
                     </c:forEach>
                   </div>
-                  <div class="num col-2 display-3 text-left">${avg.AVG}</div> 
+                  	<div class="num col-2 display-3 text-left">5</div>
+                  </c:when>
+                  <c:otherwise>
+	                  <div class="text-warning display-3 col-10 float-right" id="paintStar">
+	                    <c:forEach var="i" begin="1" end="5" step="1">
+	                    	<c:choose>
+	                    		<c:when test="${i <= avg.AVG}">
+	                    			<i class="fas fa-star"></i>
+	                    		</c:when>
+	                    		<c:otherwise>
+	                    			<i class="far fa-star"></i>
+	                    		</c:otherwise>
+	                    	</c:choose>
+	                    </c:forEach>
+	                  </div>
+                  	<div class="num col-2 display-3 text-left">${avg.AVG}</div>
+                  </c:otherwise>
+                  </c:choose>
+                   
                </div>
                <p style="text-align: center;">전체 리뷰 <b>${avg.R_COUNT}</b> <span>|</span> 제휴점 답변 <b>${avg.A_COUNT}</b></p>
             </div>
