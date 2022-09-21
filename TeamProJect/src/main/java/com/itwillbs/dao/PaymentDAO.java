@@ -19,7 +19,7 @@ public class PaymentDAO {
 	}
 
 	public void cancelreservation(String res_number) {
-		sqlSession.delete(NAMESPACE + ".cancelreservation", res_number);
+		sqlSession.update(NAMESPACE + ".cancelreservation", res_number);
 	}
 	
 	
