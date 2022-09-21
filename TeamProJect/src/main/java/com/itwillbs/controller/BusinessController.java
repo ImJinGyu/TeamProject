@@ -226,11 +226,19 @@ public class BusinessController extends FunctionClass {
 		String RM_RESABLE_NUM = "";
 		String RM_PRICE = "";
 		String RES_STATUS = "0"; // 예약상태를 따로 입력하지않고 하드코딩했음
+		
+		String filename = "";
+		List<MultipartFile> fileList = RM_IMAGE.getFiles("RM_IMAGE");
+		
 		Map<String, Object> pensionRoom = new HashMap<String, Object>();
 		
 		// 배열에 있는 값들을 DB에 입력하기 위해
 		// 반복문 for문을 사용
 		for(int i = 0; i < NAME.length; i++) {
+			
+			filename = uuid.toString()+"_"+fileList.get(i).getOriginalFilename();
+			File uploadFile = new File(uploadPath,filename);
+			FileCopyUtils.copy(fileList.get(i).getBytes(), uploadFile);
 			
 			System.out.println(NAME[i]);
 			System.out.println(CHECKIN[i]);
@@ -251,6 +259,7 @@ public class BusinessController extends FunctionClass {
 			businessDTO3.setRM_RESABLE_NUM(RM_RESABLE_NUM);
 			businessDTO3.setRM_PRICE(RM_PRICE);
 			businessDTO3.setRES_STATUS(RES_STATUS);
+			businessDTO3.setRM_IMAGE(filename);
 			
 			// DTO 객체의 여러 값을 List에 담기위한 List 객체 생성
 			List<BusinessDTO> room = new ArrayList<BusinessDTO>();
@@ -265,49 +274,49 @@ public class BusinessController extends FunctionClass {
 		
 		// ROOM_ATTACH
 		// rommRegister.jsp의 Form에서 Parameter값을 받아오기 위한 DTO 객체 생성
-		BusinessDTO businessDTO4 = new BusinessDTO();
+//		BusinessDTO businessDTO4 = new BusinessDTO();
 		
 		// Form에서 accordion으로 동일 name의 여러 parameter값을 가져와야하기때문에
 		// String[] 배열로 parameterValues값을 담는다
 		// ( 1개의 prameter값은 getParameterValue, 2개 이상은 getParameterValues 사용)
-		String[] RM_NAMES = request.getParameterValues("RM_NAME");
-		String result = "";
-		String filename = "";
+//		String[] RM_NAMES = request.getParameterValues("RM_NAME");
+//		String result = "";
+//		String filename = "";
 		
 		// List에 담긴 값을 key값과 value값으로 나누기 위해 Map사용 
-		Map<String, Object> registerRoom = new HashMap<String, Object>();
+//		Map<String, Object> registerRoom = new HashMap<String, Object>();
 		
 		// input태그의 file타입의 여러 동일이름의 parameter값을 List 담기위한 코드
-		List<MultipartFile> fileList = RM_IMAGE.getFiles("RM_IMAGE");
+//		List<MultipartFile> fileList = RM_IMAGE.getFiles("RM_IMAGE");
 		
 		// 배열에 있는 값들을 DB에 입력하기 위해
 		// 반복문 for문을 사용 
-		for(int i = 0; i < RM_NAMES.length; i++) {
+//		for(int i = 0; i < RM_NAMES.length; i++) {
 			
 			// RM_NAMES 값들이 잘넘어오는 지 확인하기 위한 println 코드
 			// 확인 후 주석 처리
 			// System.out.println(RM_NAMES[i]);
 			
-			result = RM_NAMES[i];
-			filename = uuid.toString()+"_"+fileList.get(i).getOriginalFilename();
-			File uploadFile = new File(uploadPath,filename);
-			FileCopyUtils.copy(fileList.get(i).getBytes(), uploadFile);
+//			result = RM_NAMES[i];
+//			filename = uuid.toString()+"_"+fileList.get(i).getOriginalFilename();
+//			File uploadFile = new File(uploadPath,filename);
+//			FileCopyUtils.copy(fileList.get(i).getBytes(), uploadFile);
 			// filename 값들이 잘넘어오는지 확인하기위한 println 코드
 			// 확인 후 주석 처리
 			// System.out.println(filename);
 			
-			businessDTO4.setRM_NAME(result);
-			businessDTO4.setRM_IMAGE(filename);
+//			businessDTO4.setRM_NAME(result);
+//			businessDTO4.setRM_IMAGE(filename);
 			
 			// DTO 객체의 여러 값을 List에 담기위한 List 객체 생성
-			List<BusinessDTO> roomAttach = new ArrayList<BusinessDTO>();
-			roomAttach.add(businessDTO4);
-			
-			// List에 담긴 값을 key값과 value값으로 나누기 위해 Map사용
-			registerRoom.put("roomAttach", roomAttach);
-		
-			businessService.registerRoom(registerRoom);
-		}
+//			List<BusinessDTO> roomAttach = new ArrayList<BusinessDTO>();
+//			roomAttach.add(businessDTO4);
+//			
+//			// List에 담긴 값을 key값과 value값으로 나누기 위해 Map사용
+//			registerRoom.put("roomAttach", roomAttach);
+//		
+//			businessService.registerRoom(registerRoom);
+//		}
 		
 		
 		

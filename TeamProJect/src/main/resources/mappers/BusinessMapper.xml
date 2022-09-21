@@ -110,7 +110,8 @@
 								 RM_CHECKOUT,
 			 					 RM_PRICE,
 								 RM_RESABLE_NUM,
-								 RES_STATUS
+								 RES_STATUS,
+								 RM_IMAGE
 								)
 		VALUES
 		<foreach collection="room" item="item" separator=",">
@@ -120,7 +121,8 @@
 			 #{item.RM_CHECKOUT},
 			 #{item.RM_PRICE},
 			 #{item.RM_RESABLE_NUM},
-			 #{item.RES_STATUS})
+			 #{item.RES_STATUS},
+			 #{item.RM_IMAGE})
 		</foreach>
 	</insert>		
 	
