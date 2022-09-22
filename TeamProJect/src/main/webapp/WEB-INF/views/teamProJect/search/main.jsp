@@ -202,9 +202,9 @@
                 <div class="col-md-4">
                     <div class="colpack">
                     	<a href="${pageContext.request.contextPath }/search/pensionDetail?pen_id=${PensionDTO.pen_id}">
-                        <img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="">
+                        <img src="${pageContext.request.contextPath }/resources/upload/${PensionDTO.pen_image }" alt="" style="height: 250px;">
                         </a>
-                        <div class="details row no-margin">
+                        <div class="details row no-margin" style="height: 160px;">
                         	<input id="" type="hidden" name="pen_id" value="${PensionDTO.pen_id}">
                             <h4>${PensionDTO.pen_name}</h4>
                             <p>${PensionDTO.pen_address }</p>
