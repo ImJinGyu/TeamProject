@@ -119,12 +119,14 @@
 			    pg : 'html5_inicis',
 			    pay_method : 'card',
 			    merchant_uid : res_num,
-			    name : '${businessDTO.PEN_NAME}' + '(${businessDTO.RM_NAME })' + '(주)부산온나', 	//결제창에서 보여질 이름
+			    name : '(주)부산온나' + ' ' + '${businessDTO.PEN_NAME}' + '(${businessDTO.RM_NAME })', 	//결제창에서 보여질 이름
 			    amount : amount, 		//실제 결제되는 가격
 			    buyer_email : '${user_id }',
+// 			    buyer_id : '${user_id }',
 				buyer_name : '${sessionScope.user_name}',
 			    buyer_tel : '${user.phone}',
-// 			    buyer_postcode : '${user.zipNo}'}, 
+			    buyer_addr : '${user.roadAddr}',
+			    buyer_postcode : '${user.zipNo}'}, 
 			    
 		function(rsp) {
 			    	
