@@ -47,7 +47,7 @@
 				<div class="col-6 col-lg-4">
 					<div class="box-feature mb-4">
 						<img class="d-block-3 mb-4" src="http://project.yermi.works/resources/assets/images/get-money.png" style="width:50px">
-						<h3 class="text-black mb-3 font-weight-bold"><a href="${pageContext.request.contextPath }/member/mypagePoint">포인트내역 조회</a></h3>
+						<h3 class="text-black mb-3 font-weight-bold"><a href="#" onclick="alert('준비중입니다.');">포인트내역 조회</a></h3>
 						<p class="text-black-50">포인트 내역을 조회합니다.</p>
 <!-- 						<p><a href="#" class="learn-more" id="mypagePoint">페이지 이동</a></p> -->
 					</div>
