@@ -9,6 +9,9 @@
     <title>부산온나 : 숙소등록</title>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/daum_address_api.js"></script>
+    <style>
+     img {width: 250px;}
+    </style>
 </head>
 
 <body id="page-top">
@@ -53,18 +56,10 @@
                                 <hr>
                                 <div class="form-group uploadDiv">
 							   		<label class="btn btn-success btn-sm" for="attach">펜션 사진첨부</label>
-								    <input type="file" class="form-control d-none" placeholder="attach" id="attach" name="PEN_IMAGE" multiple required>
+								    <input type="file" class="form-control d-none" placeholder="attach" id="attach" name="PEN_IMAGE" required accept="image/*" onchange="setThumbnail(event);">
 							    </div>
-							    
-							    <ul class="list-group small container px-1 upload-files">
-
-							    </ul>
-								   
-							    <div class="container pt-3 px-1">
-							   	  <div class="row thumbs">
-							      </div>
-						        </div>
-							    
+							    <span id="image_name"><!-- 업로드 이미지 이름 표시 영역 --></span>
+							    <div id="image_container"><!--  업로드 이미지 표시 영역 --></div>
 							    <hr>
 								<h1 style="font-family: sans-serif; font-size: 18px;">객실 세부정보</h1>
 
@@ -180,6 +175,39 @@
 
     <!-- Page level custom scripts -->
     <script src="${pageContext.request.contextPath }/resources/assets/admin/js/demo/datatables-demo.js"></script>
+    
+<script type="text/javascript">
+
+function setThumbnail(event) {
+    var reader = new FileReader();
+	const files = event.currentTarget.files;
+	
+	// 파일 타입 검사
+    [...files].forEach(file => {
+    	
+    	// 파일 타입이 이미지 파일이 아닐 때 
+        if (!file.type.match("image/.*")) {
+          alert('이미지 파일만 업로드가 가능합니다.');
+          return false;
+        }
+        //  파일 타입이 이미지 파일이 업로드될 때
+        if(file.type.match("image/.*")) {
+        	
+    	    reader.onload = function(event) {
+    	        var img = document.createElement("img");
+    	        img.setAttribute("src", event.target.result);
+    	      
+    	        document.querySelector("div#image_container").innerHTML = '';
+    	        document.querySelector("div#image_container").appendChild(img);
+    	      
+    	    };
+    	    reader.readAsDataURL(event.target.files[0]);
+        } 
+      
+      
+    });
+}
+</script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		document.getElementById("my-btn").click();
@@ -187,119 +215,22 @@
 </script>
 <script>
 	$(function() {
+		var spanElem = document.getElementById("image_name");
+		
 		$("#attach").change(function() {
 			var str = "";
 			$(this.files).each(function() {
-				str += "<p>" + this.name + "</p>";
+				console.log(this.name);
+				str = this.name;
+// 				"<p>" + this.name + "</p>";	
+// 				spanElem.innerHTML = str;
+// 				console.log(spanElem.innerHTML);
 			})
-			$(this).next().html(str);
+			spanElem.innerHTML = str;
+// 			$(this).next().html(str);
 		})
 	});	
 </script>
-<script>
-// 	var headerName = $("meta[name='_csrf_header']").attr("content")
-// 	var token = $("meta[name='_csrf']").attr("content")
-	/* var pensionid = '${pension.pensionid}'; */
-	/* console.log(headerName)
-	console.log(token)
-	console.log(pensionid) */
-	
-// 	$(document).ajaxSend(function(e, xhr) {
-// 		xhr.setRequestHeader(headerName, token);
-// 	})
-	
-$(function() {
-	
-	/* $("#name").focusout(function() {
-		console.log($(this).val())
-		if($(this).val().length == 0) {
-			$(this).parent().find("small").text("펜션 이름을 입력하세요")
-			$(this).addClass("is-invalid")
-		}
-	}) */
 
-	var $clone = $(".uploadDiv").clone()
-		var regexp = /(.*?)\.(exe||sh||js||jsp)$/
-		var maxSize = 1204 * 1024 * 5
-		
-		function validateFiels(fileName, fileSize) {
-			if(fileSize >= maxSize) {
-				alert("너무 커")
-				return false
-			}
-			if(regexp.test(fileName)) {
-				alert("안 돼")
-				return false
-			}
-			return true;
-		}
-		
-// 		// 파일 첨부 이벤트
-		$(".uploadDiv").on("change", ":file", function() {
-			var formData = new  FormData()
-			
-			for(var i in this.files) {
-				if(!validateFiels(this.files[i].name, this.files[i].size)) {
-					return false;
-				}
-				formData.append("files", this.files[i])
-			}
-			formData.append("type", "room")
-			
-			$.post({
-				processData : false,
-				contentType : false,
-				data : formData,
-				url : "/upload",
-				dataType : "json"
-			}).done(function(result) {
-				console.log(result)
-				$(".uploadDiv").html($clone.html())
-
-				var str = "";
-				var thumbStr = "";
-				for(var i in result) {
-					// object >> queryString
-					// result[i]
-					console.log(result[i])
-					console.log($.param(result[i]))
-					str += '<li class="list-group-item" data-uuid="' + result[i].uuid + '" data-path="' + result[i].path + '" data-image="' + result[i].image + '" data-origin="' + result[i].origin + '" data-ord="' + result[i].ord +'">'
-							+ result[i].origin + '</a><button type="button" class="close"><span>&times;</span></button></li>'
-					if(result[i].image) {
-						var o = {...result[i]};  // clone
-						o.uuid = 's_' + o.uuid;
-						thumbStr += '	<div class="col-sm-6 col-md4 col-lg-3 col-xl-2" data-uuid="' + result[i].uuid + '" data-path="' + result[i].path + '" data-image="' + result[i].image + '" data-origin="' + result[i].origin + '" data-ord="' + result[i].ord + '">';
-						thumbStr += '		<figure class="d-inline-block " style="position:relative; overflow: ">';
-						thumbStr += '			<figcaption><button type="button" class="close" style="position: absolute; top:15px; right:8px"><span>&times;</span></button></figcaption>';
-						thumbStr += '			<a href="/display?' + $.param(result[i]) + '"data-lightbox="img" data-title="' + o.origin + '"><img alt="" src="/display?' + $.param(o) + '"class="mx-1 my-2 img-thumbnail"></a>';
-						thumbStr += '		</figure>';
-						thumbStr += '	</div>';
-					}
-				}
-				$(".upload-files").append(str)
-				$(".thumbs").append(thumbStr)
-			})
-		})
-		
-// 		$("#btnReg").click(function () {
-// 			event.preventDefault()
-// 			var str = "";
-// 			var attrArr = ['uuid', 'origin', 'path', 'ord', 'image']
-// 			$(".upload-files li").each(function (i) {
-// 				for(var j in attrArr) {
-// 					attrArr[j]
-// 					str += 
-// 						$("<input>")
-// 						.attr("type", "hidden")
-// 						.attr("name", "attachs[" + i +  "]." + attrArr[j])
-// 						.attr("value", $(this).data(attrArr[j])).get(0).outerHTML + "\n"; 
-// 				}
-// 			})
-// 			console.log(str)
-// 			$(this).closest("form").append(str).submit();
-// 		}) 
-	
-}) 
-</script>
 </body>
 </html>
