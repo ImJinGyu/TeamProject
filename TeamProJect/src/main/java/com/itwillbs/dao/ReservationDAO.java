@@ -27,5 +27,11 @@ public class ReservationDAO {
 	public MemberDTO rescheck(Map<String, Object> sMap) {
 		return sqlSession.selectOne(NAMESPACE + ".rescheck", sMap);
 	}
+
+	public void cancelReservation(String res_number) {
+		sqlSession.update(NAMESPACE + ".cancelReservation", res_number);
+		
+	}
+
 	
 }

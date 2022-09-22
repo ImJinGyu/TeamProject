@@ -1,7 +1,6 @@
 package com.itwillbs.controller;
 
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -69,23 +68,13 @@ public class ReservationController {
 			return "teamProJect/business/msg";
 		}
 	}
-	
-	
-	@RequestMapping(value = "/business/cancelReservation", method = RequestMethod.GET)
-	public String cancelReservation(ReservationDTO reservationDTO, Model model, HttpSession session) {
-//		String user_id = (String)session.getAttribute("user_id");
-//		reservationDTO.setUser_id(user_id);
-//		List<ReservationDTO> listReservation3 = bookService.listReservation(reservationDTO);
-//		if(listReservation3.size() > 0) {
-//			String Res_num = listReservation3.get(0).getRes_number();
-//			
-//			bookService.cancelReservation(Res_num);
-//			return "redirect:/business/b_index";
-//		} else {
-			return "redirect:teamProJect/business/checkReservation";
-//		}
+	@RequestMapping(value="/business/checkReservation2", method = RequestMethod.GET)
+	public String listReservation (HttpServletRequest req) {
+		String res_number = req.getParameter("res_number");
+		System.out.println(res_number);
+		resService.cancelReservation(res_number);
 		
-		
+		return "redirect:/business/checkReservation";
 	}
 	
 	@RequestMapping(value = "/business/listPayment", method = RequestMethod.GET)

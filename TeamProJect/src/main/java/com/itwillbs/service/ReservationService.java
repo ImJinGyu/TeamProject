@@ -24,5 +24,10 @@ public class ReservationService {
 	public MemberDTO rescheck(Map<String, Object> sMap) {
 		return reservationDAO.rescheck(sMap);
 	}
+
+	public void cancelReservation(String res_number) {
+		reservationDAO.cancelReservation(res_number); 
+		
+	}
 	
 }

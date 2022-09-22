@@ -51,7 +51,16 @@
 	                                            <td class="text-center">${r.user_name}</td>
 	                                    		<td class="text-center">${r.check_in_d}</td>
 	                                            <td class="text-center">${r.check_out_d}</td>
-	                                            <td class="text-center small pt-3"><a href="/business/cancelReservation?reservationNum=${r.res_status}" onclick="confirm('예약을 취소하시겠습니까?')">취소하기</a></td>
+	                                            <td style="text-align: center;">
+	                                            <c:choose>
+	                                            <c:when test="${r.res_status == '1'}">
+	                                            <button class="btn btn-primary w-30" style="border-radius:7px;font-family: 'Do Hyeon', sans-serif;" onclick="cancelReservation('${r.res_number}')" >취소하기
+                                                </button> 
+	                                            </c:when>
+	                                            <c:otherwise>
+	                                            <input type="button" value="취소하기" style="width:90px; height:30px; border:none; border-radius:7px; height: 40px; background-color: gray; color:white; font-family: 'Do Hyeon', sans-serif;" disabled>
+	                                            </c:otherwise>
+	                                            </c:choose>
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>
@@ -118,6 +127,12 @@
 				order : [[3,"desc"]]
 			})
 		})
+		
+   function cancelReservation(res_number){
+    	if(confirm('취소하시겠습니까?')){
+    		location.href='checkReservation2?res_number='+res_number+'';
+    	}
+	  }
 	</script>
 
 </body>
