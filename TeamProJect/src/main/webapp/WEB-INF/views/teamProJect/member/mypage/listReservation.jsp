@@ -27,6 +27,12 @@ font-size: 19px;
 a > b:hover{
 color:blue;
 }
+
+#dataTable_filter{
+    display: grid;
+    justify-content: end;
+    
+}
 </style>
 <body>
 <!--헤더 -->
@@ -50,7 +56,7 @@ color:blue;
                             <h6 class="m-0 font-weight-bold text-primary">예약내역조회</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="text-center">
@@ -75,6 +81,9 @@ color:blue;
 	                                            <c:choose>
 	                                            <c:when test="${r.res_status == '1'}">
 	                                            <span style="color:blue"><b>예약확정</b></span>
+	                                            </c:when>
+	                                            <c:when test="${r.res_status == '2'}">
+	                                            <span style="color:green;"><b>취소불가</b></span>
 	                                            </c:when>
 	                                            <c:otherwise>
 	                                            <span style="color:red"><b>취소완료</b></span>
@@ -126,13 +135,32 @@ color:blue;
     	}
     }
     </script>
+    
+    <script>
+		$(function() {
+			$('#dataTable').DataTable({
+				order : [[2,"desc"]]
+			})
+		})
+	</script>
+	
+	<script src="${pageContext.request.contextPath }/resources/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/plugins/slider/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/js/script.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<%--     <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/jquery/jquery.min.js"></script> --%>
+<%--     <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --%>
 
+<!--     Core plugin JavaScript -->
+<%--     <script src="${pageContext.request.contextPath }/resources/assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script> --%>
+
+<!--     Custom scripts for all pages -->
+<%--     <script src="${pageContext.request.contextPath }/resources/assets/admin/js/sb-admin-2.min.js"></script> --%>
+    
     </body>
-
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
-    <script src="assets/plugins/slider/js/owl.carousel.min.js"></script>
-    <script src="assets/js/script.js"></script>
+   
 </html>

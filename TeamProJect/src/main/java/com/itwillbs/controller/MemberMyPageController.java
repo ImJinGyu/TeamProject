@@ -1,6 +1,8 @@
 package com.itwillbs.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,10 +94,23 @@ public class MemberMyPageController {
 	}
 	
 	@RequestMapping(value = "/member/mypage/listReservation", method = RequestMethod.GET)
-	public String listReservation(MemberDTO mT, HttpSession session, Model model) {
+	public String listReservation(MemberDTO mT, HttpSession session, Model model) throws Exception {
 		mT.setUser_id(session.getAttribute("user_id").toString());
 		mT.setUser_type(session.getAttribute("user_type").toString());
+		System.out.println(123);
 		List<ReservationDTO> reslist = service.reservationlist(mT);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		for (ReservationDTO dto : reslist) {
+			Date nowdate = formatter.parse(new FunctionClass().nowTime("yyyy-MM-dd HH:mm"));
+			Date rdate = formatter.parse(dto.getCheck_in_d());
+			
+			if(nowdate.getTime() > rdate.getTime()) {
+				if(dto.getRes_status().equals("1")) {
+					dto.setRes_status("2");
+				}
+			}
+			
+		}
 		System.out.println(reslist);
 		model.addAttribute("list", reslist);
 		return "teamProJect/member/mypage/listReservation";
