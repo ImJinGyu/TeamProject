@@ -136,7 +136,7 @@ h1 {
     <script src="${pageContext.request.contextPath}/resources/js/apilogin/naver_login.js"></script>
 	</div>
 	<!--     카카오 로그인 --> 
-    <a href="https://kauth.kakao.com/oauth/authorize?client_id=	47791105334d48d9d0b4bf1ca0cea8ba&redirect_uri=http://localhost:8080/TeamProject/apilogin/kakao_login&response_type=code">
+    <a href="https://kauth.kakao.com/oauth/authorize?client_id=	47791105334d48d9d0b4bf1ca0cea8ba&redirect_uri=http://itwillbs14.cafe24.com/BusanOn/apilogin/kakao_login&response_type=code">
     <img src="${pageContext.request.contextPath}/resources/images/kakao_login_medium_wide.png" style="width: 300px; height: 45px">
     </a>
    <p class="space_or">

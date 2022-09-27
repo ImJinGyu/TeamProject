@@ -29,7 +29,8 @@ public class KakaoService {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=47791105334d48d9d0b4bf1ca0cea8ba");
-            sb.append("&redirect_uri=http://localhost:8080/TeamProject/apilogin/kakao_login");
+            sb.append("&redirect_uri=http://itwillbs14.cafe24.com/BusanOn/apilogin/kakao_login");
+//            sb.append("&redirect_uri=http://localhost:8080/TeamProject/apilogin/kakao_login");
             sb.append("&code=" + code);
 
             bw.write(sb.toString());

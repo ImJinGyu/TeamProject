@@ -1,4 +1,4 @@
-var naver_id_login = new naver_id_login("U_Ht1pZyNghdI8b2w6mU", "http://localhost:8080/TeamProject/apilogin/itwillnaverlogin");
+var naver_id_login = new naver_id_login("U_Ht1pZyNghdI8b2w6mU", "http://itwillbs14.cafe24.com/BusanOn/apilogin/itwillnaverlogin");
 // 접근 토큰 값 출력
 //alert(naver_id_login.oauthParams.access_token);
 // 네이버 사용자 프로필 조회
