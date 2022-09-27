@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.function.FunctionClass;
 import com.itwillbs.service.KakaoService;
 import com.itwillbs.service.MemberService;
 
@@ -39,7 +40,7 @@ public class API_loginContrller {
 		
 		Map<String, String> userMap = new HashMap<String, String>();
 		sessionSet(session, userMap, user_id, user_name, user_type);
-		
+		session.setAttribute("TT", new FunctionClass().nowTime("yyyy-MM-dd-HH-mm-ss"));
 		return "redirect:/search/main";
 	}
 	
@@ -55,7 +56,7 @@ public class API_loginContrller {
 		
 		
 		sessionSet(session, kakaoMap, user_id, user_name, user_type);
-		
+		session.setAttribute("TT", new FunctionClass().nowTime("yyyy-MM-dd-HH-mm-ss"));
 		return "redirect:/search/main";
 	}
 	
