@@ -47,7 +47,7 @@ function pen(id, name){
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">전체 회원 목록 조회</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">전체 펜션 목록 조회</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
