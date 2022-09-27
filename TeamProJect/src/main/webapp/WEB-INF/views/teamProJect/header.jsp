@@ -122,8 +122,8 @@ header .navs ul li ul li {
                         <li class="dropdown">
 				           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">	더보기<span class="caret"></span></a>
 				        	<ul class="dropdown-menu dropdown-menu1">
-				            	<li><a href="#" onclick="alert('준비중이다')">공지사항</a></li>
-				            	<li><a href="#" onclick="alert('준비중이다')">이벤트</a></li>
+				            	<li><a href="#" onclick="alert('준비중입니다.')">공지사항</a></li>
+				            	<li><a href="#" onclick="alert('준비중입니다.')">이벤트</a></li>
 				        	</ul>
 				        </li>
 				        <li><a class="title_color" href="${pageContext.request.contextPath }/search/searchP">펜션목록</a></li>
