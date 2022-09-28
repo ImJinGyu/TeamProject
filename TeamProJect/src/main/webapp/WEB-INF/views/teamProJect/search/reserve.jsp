@@ -32,78 +32,105 @@
 
 <!--헤더 -->
 <%@ include file="../header.jsp" %>
-	<div style="padding-top: 100px;"></div>
-	
-	<div class="rReserve">
-		<div class="rRight">
-			<section class="rInfo">
-				<p class="rName">
-					<strong class="rStrong">숙소이름</strong>
-					${businessDTO.PEN_NAME }<!-- 기장 비치하임펜션 -->
-				</p>
-				<p class="rName">
-					<strong class="rStrong">객실타입 / 기간</strong>
-					${businessDTO.RM_NAME } / <span>${days } 박</span>
-				</p>
-				<p class="rName">
-					<strong class="rStrong">체크인</strong>
-					${rm_checkin} ${businessDTO.RM_CHECKIN } <%--${.check_in_t } 09.13 월 15:00 --%>
-				</p>
-				<p class="rName">
-					<strong class="rStrong">체크아웃</strong>
-					${rm_checkout} ${businessDTO.RM_CHECKOUT }<%-- ${.check_out_t } 09.14 화 11:00--%>
-				</p>
-			</section>
-			<section class="total_price">
-				<p>
-					<strong class="rsTotalPrice">
-						<b>총 결제 금액</b>
-						(VAT포함)
-					</strong>
-					<span class="in_price">
-						<fmt:formatNumber type="number" maxFractionDigits="3" value="${total }"/> 원<!-- 99,000원 -->
-					</span>
-				</p>
-				<ul>
-					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다.</li>
-					<li>결제완료 후 <span style="color: red;">예약자 이름</span>으로 바로 <span style="color: red;">체크인</span>하시면 됩니다.</li>
-				</ul>
-			</section>
-			<button class="btn btn-primary w-100"
-				style="border-radius:10px; font-size: 30px; font-family: 'Do Hyeon', sans-serif;" onclick="iamport()">결 제 하 기
-			</button>
-		</div>
-		<div class="rLeft">
-			<div>
-				<section class="info_chkin">
-					<h3 style="margin-top: 0;">예약자 정보</h3>
-					<strong>예약자 이름</strong>
-					<p class="inp_wrap">
-						<input type="hidden" name="user_id" value="${user_id}">
-						<input type="text" name="user_name" maxlength="20" value="${memberDTO.user_name }" readonly style="margin: 10.5px 0; color: black;"><!--  placeholder="체크인시 필요한 정보입니다." -->
+
+	<div id="content">
+		<div class="rReserve">
+			<div class="rRight">
+				<section class="rInfo">
+					<p class="rName">
+						<strong>숙소이름</strong>
+						${businessDTO.PEN_NAME }
 					</p>
-					<p class="alert_txt">
-						<!-- 한글, 영문, 숫자만 입력 가능. (문자 사이 공백은 1칸만 입력 가능) -->
+					<p>
+						<strong>객실타입 / 기간</strong>
+						${businessDTO.RM_NAME } / <span>${days } 박</span>
 					</p>
-					
-					<div style="padding-bottom: 50px;"></div>
-					
-					<div>
-						<strong>휴대폰 번호 </strong>
-						<span>개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span>
+					<p>
+						<strong>체크인</strong>
+						${rm_checkin} ${businessDTO.RM_CHECKIN }
+					</p>
+					<p>
+						<strong>체크아웃</strong>
+						${rm_checkout} ${businessDTO.RM_CHECKOUT }
+					</p>
+				</section>
+				<section class="total_price_pc">
+					<p>
+						<strong>
+							<b>총 결제 금액</b>
+							(VAT포함)
+						</strong>
+						<span class="in_price">
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${total }"/> 원
+						</span>
+					</p>
+					<ul>
+						<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li>
+						<li>결제완료 후
+							<span>예약자 이름</span>
+							으로 바로
+							<span>체크인</span>
+							하시면 됩니다
+						</li>
+					</ul>
+				</section>
+				<!--  -->
+				<button class="btn_pay"
+					style="border-radius:10px; font-size: 30px; font-family: 'Do Hyeon', sans-serif;" onclick="iamport()">결 제 하 기
+				</button>
+			</div>
+			<div class="rLeft">
+				<!--  -->
+				<div>
+					<section class="info_chkin" style="border-bottom: none;">
+						<h3 style="margin-top: 0;">예약자 정보</h3>
+						<strong>예약자 이름</strong>
+						<p class="inp_wrap remove">
+							<input type="hidden" name="user_id" value="${user_id}">
+							<input type="text" name="user_name" maxlength="20" value="${memberDTO.user_name }" readonly style="margin: 10.5px 0; color: black;">
+						</p>
 						<div>
-							<div class="inp_wrap">
-								<input type="tel" name="user_phonenumber" maxlength="13" value="${memberDTO.user_phonenumber }" readonly class="" style="margin: 10.5px 0; color: black;"><!--  placeholder="체크인시 필요한 정보입니다." -->
+							<strong class="mt_50">휴대폰 번호</strong>
+							<span class="safety_txt">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span>
+							<div class="phone_confirm guest-phone">
+								<p class="inp_wrap remove">
+									<input type="tel" name="user_phonenumber" maxlength="13" value="${memberDTO.user_phonenumber }" readonly 
+									class="input validation-required-input" style="margin: 10.5px 0; color: black; background: none;">
+								</p>
 							</div>
 						</div>
-					</div>
+					</section>
+				</div>
+				<section class="price_wrap total_price">
+					<p>
+						<strong>
+							<b>총 결제 금액</b>
+							(VAT포함)
+						</strong>
+						<span class="in_price_app">
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${total }"/> 원
+						</span>
+					</p>
+					<ul>
+						<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li>
+						<li>결제완료 후
+							<span>예약자 이름</span>
+							으로 바로
+							<span>체크인</span>
+							하시면 됩니다
+						</li>
+					</ul>
 				</section>
 			</div>
+			
+				
+				<button class="btn btn-primary w-100 d-lg-none"
+					style="border-radius:10px; font-size: 30px; font-family: 'Do Hyeon', sans-serif;" onclick="iamport()">결 제 하 기
+				</button>
 		</div>
-		
 	</div>
 
-	<div style="padding-bottom: 1000px;"></div>
+	<div style="padding-bottom: 20px;"></div>
 <!--footer -->
 <%@ include file="../footer.jsp" %>
 	

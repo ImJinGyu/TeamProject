@@ -1243,130 +1243,445 @@ address {
 
 
 /* reserve 페이지 (지원) */
-@media (min-width: 1024px) {
-	.rRight {
-		float: right;
-		width: 310px;
-		margin: 40px 450px 0 0;
-/* 		margin: 40px 31px 0 0; */
-		background: #f2f2f2;
-	}
+#content {
+	overflow: hidden;
 }
 
-@media (min-width: 1024px) {
-	.rInfo {
-		margin: 39px 24px 0 24px;
-		padding: 0 0 31px 0;
-		border-bottom: 1px soid gray;
-		background: none;
-	}
+.rReserve {
+	width: 100%;
+/* 	background: rgb(235,235,235); */
+	font-size: 16px;
+	color: rgba(0,0,0,0.87);
 }
 
-@media (min-width: 1024px) {
-	.rName {
-		height: auto;
-		margin: 0 0 29px 0;
-		padding: 0;
-		border-bottom: none;
-		line-height: 32px;
-		text-align: left;
-		color: black;
-	}
+.rReserve .rInfo {
+	padding-top: 75px;
+	padding-bottom: 20px;
 }
 
-@media (min-width: 1024px) {
-	.rStrong {
-		display: block !important;
-		position: relative;
-		margin-bottom: 6px;
-		font-size: 18px !important;
-		line-height: 1;
-		color: rgba(0,0,0,0.38);
-	}
+.rReserve section {
+	margin: 0 0 8px 0;
+	padding: 0 16px;
+	background: #fff;
 }
 
-@media (min-width: 1024px) {
-	.total_price:last-of-type {
-		border-bottom: none !important;
-	}
+.rReserve .rInfo .rName {
+	height: 64px;
+	margin-bottom: 20px;
+	padding: 0;
+	border-bottom: 1px solid gainsboro;
+	line-height: 64px;
+	text-align: left;;
 }
 
-@media (min-width: 1024px) {
-	.total_price {
-		display: block;
-		padding: 39px 24px 33px !important;
-		background: none !important;
-	}
+.rReserve .rInfo p {
+	position: relative;
+	margin-bottom: 13px;
+	padding-left: 120px;
+	text-align: right;
 }
 
-@media (min-width: 1024px) {
-	.rsTotalPrice {
-		display: block;
-		font-size: 16px;
-		font-weight: 400;
-	}
+.rReserve .rInfo .rName strong {
+	display: none;
 }
 
-@media (min-width: 1024px) {
-	.in_price {
-		display: block;
-		padding: 19px 0 23px;
-		font-size: 24px;
-		font-weight: 700;
-		color: red;
-	}
+.rReserve .rInfo p strong {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: rgba(0,0,0,0.56);
+	font-weight: normal;
+	text-align: left;
 }
 
-@media (min-width: 1024px) {
-	.rLeft {
-		float: right;
-		width: 564px;
-		margin: 40px 88px 0 0;
-	}
-}
-
-@media (min-width: 1024px) {
-	.rReserve h3 {
-		display: block;
-		margin: 54px 0 42px 0;
-	}
-}
-
-.reserve section strong {
+.rReserve section strong {
 	font-weight: normal;
 }
 
-@media (min-width: 1024px) {
-	.info_chkin strong {
-		display: block;
-		padding: 0 0 12px 0;
-		font-size: 18px;
-		color: gray;
-	}
+.rReserve h3, .rReserve .rRight .btn_pay {
+	display: none;
+	width: 100%;
+	height: 59px;
+	border: none;
+	font-size: 30px;
+	line-height: 59px;
+	color: #fff;
+	text-align: center;
 }
 
-@media (min-width: 1024px) {
-	.inp_wrap {
-		border: 1px solid gray;
-		padding: 8px 14px 8px 16px;
-	}
+.rReserve .rInfo p:last-child {
+	margin-bottom: 0;
+}
+
+.total_price_pc {
+	display: none;
+}
+
+.btn_pay {
+	display: block;
+	width: 100%;
+	background: #ff4a52;
+	cursor: pointer;
+}
+
+.info_chkin {
+	padding-top: 26px !important;
+	padding-bottom: 24px !important;
+}
+
+.info_chkin strong {
+	display: block;
+	padding: 0 0 8px 0;
 }
 
 .inp_wrap {
 	position: relative;
-	border: 1px solid gray;
+	border: 1px solid rgba(0, 0, 0, 0.08);
 	height: 48px;
 	padding: 0 40px 0 10px;
 	border-radius: 4px;
 }
 
-@media (min-width:1024px) {
-	.inp_wrap input {
-		border: none;
-		background: none;
-		width: 100%;
-		margin-top: 5px;
-		font-size: 18px;
-		color: darkgray;
+.inp_wrap input {
+	border: none;
+	background: none;
+	width: 100%;
+	height: 20px;
+	margin-top: 10px;
+	font-size: 16px;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.56);
+}
+
+.mt_50 {
+	margin-top: 25px;
+}
+
+.safety_txt {
+	display: block;
+	font-size: 12px;
+	color: rgba(0, 0, 0, 0.56);
+}
+
+.guest-phone {
+	margin-bottom: 36px;
+	position: relative;
+}
+
+.input-box {
+	position: relative;
+}
+
+.input-box .input.validation-required-input {
+    margin-right: 12px;
+}
+
+.input-box .input {
+    box-sizing: border-box;
+    padding: 8px 14px 8px 16px;
+    width: 100%;
+    height: 48px;
+    border: none;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgba(0,0,0,.56);
+}
+
+.price_wrap {
+	overflow: hidden;
+}
+
+.total_price {
+	margin-bottom: 8px !important;
+	padding: 21px !important;
+}
+
+.total_price.price_wrap p:last-of-type {
+    margin-bottom: 10px;
+}
+
+.total_price.price_wrap p, .total_price.price_wrap strong {
+    height: 34px!important;
+    line-height: 34px!important;
+}
+
+.price_wrap p {
+    position: relative;
+    height: 64px;
+    line-height: 64px;
+    text-align: right;
+}
+
+.price_wrap p strong {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 64px;
+    line-height: 64px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.total_price p {
+    border-bottom: none;
+}
+
+.total_price span {
+    font-weight: 700;
+    color: red;
+}
+
+.total_price ul li {
+    margin-bottom: 6px;
+    padding-left: 16px;
+    background: url(//image.goodchoice.kr/images/web_v3/ico_bul.png) 0 0 no-repeat;
+    background-size: 14px auto;
+}
+
+@media (max-width: 992px) {
+	.input-box .input {
+	    padding: 0 40px 0 10px;
+	    font-size: 16px;
 	}
 }
+
+@media (min-width: 992px) {
+	.rReserve {
+	    width: 1024px;
+	    margin: 0 auto;
+	    padding-top: 72px;
+	}
+}
+
+@media (min-width: 992px) {
+	.rReserve .rRight {
+	    float: right;
+	    width: 310px;
+	    margin: 40px 31px 0 0;
+	    background: #f2f2f2;
+	}
+}
+
+@media (min-width: 992px) {
+	.rReserve .rInfo {
+	    margin: 39px 24px 0 24px;
+	    padding: 0 0 31px 0;
+	    border-bottom: 1px solid rgba(0,0,0,0.08);
+	    background: none;
+	}
+}
+
+@media (min-width: 992px) {
+	.rReserve .rInfo .rName {
+	    height: auto;
+	    margin: 0 0 29px 0;
+	    padding: 0;
+	    border-bottom: none;
+	    line-height: 32px;
+	    text-align: left;
+	}
+}
+
+@media (min-width: 992px){
+	.rReserve .rInfo p strong, .rReserve .rInfo div strong {
+	    display: block !important;
+	    position: relative;
+	    margin-bottom: 6px;
+	    font-size: 18px !important;
+	    line-height: 1;
+	    color: rgba(0,0,0,0.38);
+	}
+}
+
+@media (min-width: 992px) {
+	.rReserve .rInfo p {
+	    position: relative;
+	    margin-bottom: 29px;
+	    padding-left: 0;
+	    font-size: 20px;
+	    line-height: 32px;
+	    color: rgba(0,0,0,0.87);
+	    text-align: left;
+	}
+}
+
+@media (min-width: 992px){
+	.rReserve section {
+	    margin: 0 0 0 0;
+	    padding: 0 0;
+	    border-bottom: 1px solid rgba(0,0,0,0.08);
+	    background: #fbfbfb;
+	}
+}
+
+@media (min-width: 992px) {
+	.total_price_pc:last-of-type {
+	    border-bottom: none!important;
+	}
+}
+
+@media (min-width: 992px) {
+	.total_price_pc {
+	    display: block;
+	    padding: 39px 24px 33px!important;
+	    background: none!important;
+	}
+}
+
+@media (min-width: 992px){
+	.total_price_pc p strong {
+	    display: block;
+	    font-size: 16px;
+	    font-weight: 400;
+	}
+}
+
+@media (min-width: 992px) {
+	.total_price_pc p strong b {
+	    font-size: 18px;
+	    font-weight: 700;
+	}
+}
+
+@media (min-width: 992px) {
+	.total_price_pc p span {
+	    display: block;
+	    padding: 19px 0 23px;
+	    font-size: 24px;
+	    font-weight: 700;
+	    color: red;
+	}
+}
+
+@media (min-width: 992px) {
+	.total_price_pc ul li {
+	    margin-bottom: 2px;
+	    padding-left: 16px;
+	    background: url(//image.goodchoice.kr/images/web_v3/ico_bul.png) 0 0 no-repeat;
+	    background-size: 14px auto;
+	    font-size: 16px;
+	    line-height: 26px;
+	    color: rgba(0,0,0,.72);
+	}
+}
+
+@media (min-width: 992px) {
+	.total_price_pc ul li span {
+	    color: red;
+	}
+}
+
+@media (min-width: 992px) {
+	.rReserve .rRight .btn_pay {
+	    display: block;
+	    border-radius: 0 0 4px 4px;
+	}
+}
+
+@media (min-width: 992px) {
+	.rReserve .rLeft {
+	    float: right;
+	    width: 564px;
+	    margin: 40px 88px 0 0;
+	}
+}
+
+@media (min-width: 992px) {
+	.info_chkin {
+	    padding: 0 0 10px 0 !important;
+	}
+}
+
+@media (min-width: 992px) {
+	.rReserve h3 {
+	    display: block;
+	    margin: 54px 0 42px 0;
+	    color: #545454;
+	    text-align: inherit;
+	}
+}
+
+@media (min-width: 992px) {
+	.info_chkin strong {
+	    display: block;
+	    padding: 0 0 12px 0;
+	    font-size: 18px;
+	    font-weight: normal;
+	    color: gray;
+	}
+}
+
+@media (min-width: 992px) {
+	.inp_wrap {
+	    border: 1px solid gray;
+	    padding: 2px 14px 8px 16px;
+	}
+}
+
+@media (min-width: 992px) {
+	.border {
+		border: 1px solid gray;
+	}
+}
+
+@media (min-width: 992px) {
+	.inp_wrap input {
+	    border: none;
+	    background: none;
+	    width: 100%;
+	    margin-top: 5px;
+	    font-size: 18px;
+	    color: rgba(0, 0, 0, 0.56);
+	}
+}
+
+@media (min-width: 992px) {
+	.mt_50 {
+	    margin-top: 50px;
+	}
+}
+
+@media (min-width: 992px) {
+	.safety_txt {
+	    padding-bottom: 6px;
+	    font-size: 14px;
+	}
+}
+
+@media (min-width: 992px) {
+	.rReserve .rLeft .total_price {
+	    display: none;
+	}
+}
+
+@media (min-width: 992px) {
+	.price_wrap p {
+	    position: relative;
+	    height: 40px;
+	    margin-bottom: 24px;
+	    border-bottom: none;
+	    line-height: 40px;
+	    text-align: right;
+	}
+}
+
+@media (min-width: 992px) {
+	.price_wrap p strong {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    height: 40px;
+	    line-height: 40px;
+	    font-weight: 400;
+	    text-align: left;
+	}
+}
+
+@media (min-width: 992px) {
+	.rReserve .rLeft .btn_pay {
+	    display: none;
+	}
+}
+
