@@ -40,7 +40,7 @@ public class API_loginContrller {
 		
 		Map<String, String> userMap = new HashMap<String, String>();
 		sessionSet(session, userMap, user_id, user_name, user_type);
-		session.setAttribute("TT", new FunctionClass().nowTime("yyyy-MM-dd-HH-mm-ss"));
+		
 		return "redirect:/search/main";
 	}
 	
@@ -56,7 +56,6 @@ public class API_loginContrller {
 		
 		
 		sessionSet(session, kakaoMap, user_id, user_name, user_type);
-		session.setAttribute("TT", new FunctionClass().nowTime("yyyy-MM-dd-HH-mm-ss"));
 		return "redirect:/search/main";
 	}
 	
@@ -77,6 +76,7 @@ public class API_loginContrller {
 		session.setAttribute("user_id", userMap.get("USER_ID"));
 		session.setAttribute("user_type", userMap.get("USER_TYPE"));
 		session.setAttribute("user_name", userMap.get("USER_NAME"));
+		session.setAttribute("TT", new FunctionClass().nowTime("yyyy-MM-dd-HH-mm-ss"));
 	}
 	private MemberDTO newMemberDTO(String user_id, String user_name, String user_type) {
 		
