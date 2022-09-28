@@ -1,6 +1,6 @@
 var ti;
 
-function timer(sT, ts){
+function timer(path, sT, ts){
 	debugger;
 	
 	var now = new Date();
@@ -40,7 +40,7 @@ function timer(sT, ts){
 		if((h == 0 && m == 0 && s == 0) || h < 0) {
 			alert('웹 사이트에서 로그아웃 되셧습니다.');
 			clearInterval(ti);
-			location.href="${pageContext.request.contextPath }/member/logout";
+			location.href=""+path+"/member/logout";
 			return;
 		}
 		

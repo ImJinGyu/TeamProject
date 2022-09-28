@@ -180,7 +180,7 @@ header .navs ul li ul li {
 var user_id = "${sessionScope.user_id}";
 var ts = 170;
 if(user_id != null && user_id != '' && user_id.length != 0){
-	timer("${sessionScope.TT}", ts);
+	timer('${pageContext.request.contextPath}',"${sessionScope.TT}", ts);
 }
 
 
@@ -198,7 +198,7 @@ function resettimer(){
 			type:'get',
 			success:(data) => {
 				debugger;
-				timer(data, ts);
+				timer('${pageContext.request.contextPath}',data, ts);
 			}
 		})
 	})
